@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Ensure secrets exist
         run: |
@@ -35,17 +37,26 @@ jobs:
           if [ "${{ github.event.action }}" = "labeled" ] && [ "${{ github.event.label.name }}" = "generate-article" ]; then
             HAS_LABEL=true
           fi
+          
+          # Mejorar el parsing del título con más patrones
           shopt -s nocasematch
+          TOPIC=""
           if [[ "$TITLE" =~ ^(articulo|artículo|nuevo artículo|nuevo articulo)[:]?[[:space:]]+(.*)$ ]]; then
             TOPIC="${BASH_REMATCH[2]}"
+          elif [[ "$TITLE" =~ ^(generar|crear)[[:space:]]+(articulo|artículo)[[:space:]]+(.*)$ ]]; then
+            TOPIC="${BASH_REMATCH[3]}"
           elif $HAS_LABEL; then
-            TOPIC=$(printf "%s" "$BODY" | head -n1)
-          else
+            TOPIC=$(printf "%s" "$BODY" | head -n1 | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')
+          fi
+          shopt -u nocasematch
+          
+          # Validar que tenemos un tema válido
+          if [ -z "$TOPIC" ] || [ "$TOPIC" = "" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
             exit 0
           fi
-          shopt -u nocasematch
 
+          # Extraer parámetros del cuerpo del issue
           STYLE=$(printf "%s" "$BODY" | grep -iE '^estilo:' | head -n1 | cut -d: -f2- | xargs)
           ACCENT=$(printf "%s" "$BODY" | grep -iE '^color(:| principal:)?' | head -n1 | cut -d: -f2- | xargs)
           DETAILS=$(printf "%s" "$BODY" | grep -iE '^detalles:' | head -n1 | cut -d: -f2- | xargs)
@@ -54,8 +65,9 @@ jobs:
           [ -z "$ACCENT" ] && ACCENT="azul"
 
           echo "topic=$TOPIC" >> $GITHUB_OUTPUT
-          # slug básico
+          # slug mejorado con validación
           SLUG=$(printf "%s" "$TOPIC" | iconv -t ascii//translit 2>/dev/null | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g' | cut -c1-80)
+          [ -z "$SLUG" ] && SLUG="articulo-$(date +%s)"
           echo "slug=$SLUG" >> $GITHUB_OUTPUT
           echo "style=$STYLE" >> $GITHUB_OUTPUT
           echo "accent=$ACCENT" >> $GITHUB_OUTPUT
@@ -68,7 +80,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-          # Desactivamos caché de pip para evitar errores por falta de requirements en rutas buscadas por defecto
 
       - name: Install Python deps
         if: steps.parse.outputs.skip == 'false'
@@ -76,39 +87,99 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Generate article and images
+      - name: Ensure directories exist
         if: steps.parse.outputs.skip == 'false'
         run: |
+          mkdir -p content/blog
+          mkdir -p public/images/blog
+
+      - name: Generate article and images
+        if: steps.parse.outputs.skip == 'false'
+        id: generate
+        run: |
+          set -e
           python tools/generate_article.py \
             --topic "${{ steps.parse.outputs.topic }}" \
             --style "${{ steps.parse.outputs.style }}" \
             --accent "${{ steps.parse.outputs.accent }}" \
             --details "${{ steps.parse.outputs.details }}" \
             $( [ -n "${{ steps.parse.outputs.category }}" ] && echo --category "${{ steps.parse.outputs.category }}" )
+          
+          # Verificar que se generó el archivo
+          if [ ! -f "content/blog/${{ steps.parse.outputs.slug }}.mdx" ]; then
+            echo "::error::No se generó el archivo del artículo"
+            exit 1
+          fi
 
-      - name: Commit changes (direct push)
-        if: steps.parse.outputs.skip == 'false'
+      - name: Commit changes
+        if: steps.parse.outputs.skip == 'false' && success()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/blog public/images/blog || true
+          
+          # Añadir archivos generados
+          git add content/blog/ || true
+          git add public/images/blog/ || true
+          
+          # Verificar si hay cambios
           if git diff --cached --quiet; then
-            echo "No changes to commit"; exit 0; fi
-          git commit -m "chore(content): generate article '${{ steps.parse.outputs.topic }}'\n\nCloses #${{ github.event.issue.number }}"
+            echo "No changes to commit"
+            exit 0
+          fi
+          
+          # Crear mensaje de commit seguro
+          COMMIT_MSG="chore(content): generate article '${{ steps.parse.outputs.topic }}'
+          
+          Closes #${{ github.event.issue.number }}"
+          
+          git commit -m "$COMMIT_MSG"
           git push
 
       - name: Comment with result
-        if: steps.parse.outputs.skip == 'false'
+        if: steps.parse.outputs.skip == 'false' && success()
         uses: actions/github-script@v7
         with:
           script: |
             const topic = `${{ steps.parse.outputs.topic }}`;
-            const body = `Contenido generado y publicado directamente en la rama por defecto para: **${topic}**.\n\nRevisa:\n- \`content/blog\`\n- \`public/images/blog\``;
-            await github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.issue.number, body });
+            const slug = `${{ steps.parse.outputs.slug }}`;
+            const body = `✅ Artículo generado exitosamente: **${topic}**
+            
+            📁 Archivos creados:
+            - \`content/blog/${slug}.mdx\`
+            - \`public/images/blog/${slug}/\` (imágenes)
+            
+            El contenido ha sido publicado en la rama principal.`;
+            await github.rest.issues.createComment({ 
+              owner: context.repo.owner, 
+              repo: context.repo.repo, 
+              issue_number: context.issue.number, 
+              body 
+            });
 
-      - name: Close issue
-        if: steps.parse.outputs.skip == 'false'
+      - name: Comment with error
+        if: steps.parse.outputs.skip == 'false' && failure()
         uses: actions/github-script@v7
         with:
           script: |
-            await github.rest.issues.update({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.issue.number, state: 'closed' });
+            const topic = `${{ steps.parse.outputs.topic }}`;
+            const body = `❌ Error al generar el artículo: **${topic}**
+            
+            Revisa los logs del workflow para más detalles.`;
+            await github.rest.issues.createComment({ 
+              owner: context.repo.owner, 
+              repo: context.repo.repo, 
+              issue_number: context.issue.number, 
+              body 
+            });
+
+      - name: Close issue
+        if: steps.parse.outputs.skip == 'false' && success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.update({ 
+              owner: context.repo.owner, 
+              repo: context.repo.repo, 
+              issue_number: context.issue.number, 
+              state: 'closed' 
+            });
