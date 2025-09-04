@@ -74,34 +74,47 @@ def gen_images_with_gemini(prompt: str, slug: str, how_many: int = 1) -> List[Pa
     if genai is None:
         raise RuntimeError("Falta dependencia: google-genai. Ejecuta: pip install google-genai")
 
-    client = genai.Client(api_key=api)
-    model = "gemini-2.5-flash-image-preview"
+    try:
+        client = genai.Client(api_key=api)
+        # Algunos tenants no tienen habilitado el modelo de preview; probamos con ambos
+        candidate_models = [
+            "gemini-2.5-flash-image-preview",
+            "gemini-1.5-flash",
+        ]
+        model = candidate_models[0]
 
-    contents = [
-        gem_types.Content(
-            role="user",
-            parts=[gem_types.Part.from_text(text=prompt)],
-        )
-    ]
-    config = gem_types.GenerateContentConfig(response_modalities=["IMAGE", "TEXT"])
+        contents = [
+            gem_types.Content(
+                role="user",
+                parts=[gem_types.Part.from_text(text=prompt)],
+            )
+        ]
+        config = gem_types.GenerateContentConfig(response_modalities=["IMAGE", "TEXT"])
 
-    images: List[Path] = []
-    target_dir = IMAGES_DIR / slug
-    target_dir.mkdir(parents=True, exist_ok=True)
+        images: List[Path] = []
+        target_dir = IMAGES_DIR / slug
+        target_dir.mkdir(parents=True, exist_ok=True)
 
-    # Pedimos una sola llamada; si el stream devuelve varias imágenes, las guardamos.
-    for chunk in client.models.generate_content_stream(model=model, contents=contents, config=config):
-        if not chunk.candidates or not chunk.candidates[0].content:
-            continue
-        for part in (chunk.candidates[0].content.parts or []):
-            inline = getattr(part, "inline_data", None)
-            if inline and getattr(inline, "data", None):
-                stem = unique_image_path(target_dir, slug, stem="hero")
-                out_path = save_inline_image(stem, inline.mime_type, inline.data)
-                images.append(out_path)
-                if len(images) >= how_many:
-                    return images
-    return images
+        for m in candidate_models:
+            try:
+                for chunk in client.models.generate_content_stream(model=m, contents=contents, config=config):
+                    if not chunk.candidates or not chunk.candidates[0].content:
+                        continue
+                    for part in (chunk.candidates[0].content.parts or []):
+                        inline = getattr(part, "inline_data", None)
+                        if inline and getattr(inline, "data", None):
+                            stem = unique_image_path(target_dir, slug, stem="hero")
+                            out_path = save_inline_image(stem, inline.mime_type, inline.data)
+                            images.append(out_path)
+                            if len(images) >= how_many:
+                                return images
+            except Exception:
+                # Intentamos con el siguiente modelo
+                continue
+        return images
+    except Exception as e:
+        print(f"[WARN] Generación de imágenes falló: {e}")
+        return []
 
 
 def mdx_frontmatter(**kwargs) -> str:
@@ -131,15 +144,26 @@ def gen_article_with_openai(topic: str, category: str | None) -> Tuple[str, str]
         " Incluye una introducción breve, 4-6 secciones con H2, y un cierre con CTA suave."
     )
 
-    completion = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": system},
-            {"role": "user", "content": user},
-        ],
-        temperature=0.7,
-    )
-    text = completion.choices[0].message.content or ""
+    try:
+        completion = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ],
+            temperature=0.7,
+        )
+        text = completion.choices[0].message.content or ""
+    except Exception as e:
+        print(f"[WARN] OpenAI falló, uso plantilla local: {e}")
+        text = (
+            f"# {topic}\n\n"
+            "## Introducción\n\nResumen del tema con enfoque práctico y profesional.\n\n"
+            "## Puntos clave\n\n- Requisito 1\n- Requisito 2\n- Requisito 3\n\n"
+            "## Implantación\n\nPasos recomendados.\n\n"
+            "## Mantenimiento\n\nBuenas prácticas y periodicidad.\n\n"
+            "## Conclusión\n\nCTA suave orientado a contacto profesional.\n"
+        )
 
     # Primer encabezado como título si existe
     title = topic
@@ -179,7 +203,7 @@ def main():
     )
 
     images = gen_images_with_gemini(prompt, slug, how_many=max(1, args.images))
-    image_path = "/images/blog/{}/{}".format(slug, images[0].name) if images else None
+    image_path = "/images/blog/{}/{}".format(slug, images[0].name) if images else "/images/blog/placeholder-16x9.svg"
 
     # 3) Crear MDX con frontmatter + cuerpo
     post_path = CONTENT_DIR / f"{slug}.mdx"
@@ -197,8 +221,9 @@ def main():
         print("Imágenes:")
         for p in images:
             print(" -", p)
+    else:
+        print("[INFO] No se generaron imágenes; se usó un placeholder.")
 
 
 if __name__ == "__main__":
     main()
-
