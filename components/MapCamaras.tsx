@@ -34,11 +34,10 @@ export default function MapCamaras() {
                   <div className="font-semibold text-primary">{c.name}</div>
                 </div>
 
-                <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+                <div className="relative w-full aspect-video">
                   <iframe
                     src={`https://www.youtube.com/embed/${c.youtubeId}`}
                     title={c.name}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
                     className="absolute inset-0 w-full h-full rounded-md"
