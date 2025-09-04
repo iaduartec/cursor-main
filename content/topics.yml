@@ -1,0 +1,52 @@
+---
+# Lote inicial de artículos (4 líneas + 4 casos de éxito)
+
+- topic: "Videovigilancia IP en comercios de Burgos: guía práctica 2025"
+  category: Seguridad
+  style: fotográfico
+  accent: azul
+  details: "interior de tienda con cámaras domo y bullet bien integradas"
+
+- topic: "Redes informáticas gestionadas para pymes: WiFi, switching y seguridad"
+  category: Informática
+  style: fotográfico
+  accent: azul
+  details: "rack de red ordenado con switches PoE y patch panels etiquetados"
+
+- topic: "Sonido profesional para eventos corporativos: planificación y montaje"
+  category: Sonido
+  style: fotográfico
+  accent: morado
+  details: "mesa de mezclas digital y altavoces de PA en un salón de actos"
+
+- topic: "Instalaciones eléctricas de baja tensión: normativa y buenas prácticas"
+  category: Electricidad
+  style: fotográfico
+  accent: ámbar
+  details: "cuadro eléctrico limpio con protecciones magnetotérmicas y diferencial"
+
+# Casos de éxito (foco local)
+- topic: "Caso de éxito: CCTV en Santo Domingo de Silos"
+  category: Seguridad
+  style: fotográfico
+  accent: azul
+  details: "plano general del pueblo con énfasis en ubicaciones de cámaras discretas"
+
+- topic: "Caso de éxito: WiFi municipal en Rabanera del Pinar"
+  category: Informática
+  style: fotográfico
+  accent: azul
+  details: "antenas exteriores y cobertura en plaza del pueblo"
+
+- topic: "Caso de éxito: Sonorización en Pineda de la Sierra"
+  category: Sonido
+  style: fotográfico
+  accent: morado
+  details: "instalación de altavoces y microfonía para eventos locales"
+
+- topic: "Caso de éxito: Iluminación eficiente en Huerta de Arriba"
+  category: Electricidad
+  style: fotográfico
+  accent: ámbar
+  details: "luminarias LED en vía pública o edificio municipal"
+

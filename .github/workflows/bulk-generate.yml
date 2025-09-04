@@ -1,0 +1,75 @@
+name: Bulk Generate Articles
+
+on:
+  workflow_dispatch:
+    inputs:
+      file:
+        description: Ruta del YAML con tópicos
+        required: false
+        default: content/topics.yml
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade google-genai openai pyyaml python-slugify
+
+      - name: Generate all articles listed in YAML
+        run: |
+          python - << 'PY'
+          import os, sys, yaml, subprocess
+          path = os.environ.get('TOPICS_FILE') or '${{ github.event.inputs.file }}' or 'content/topics.yml'
+          with open(path, 'r', encoding='utf-8') as f:
+              data = yaml.safe_load(f) or []
+          def run(topic, style, accent, details, category):
+              cmd = [
+                  sys.executable,
+                  'tools/generate_article.py',
+                  '--topic', topic,
+                  '--style', style or 'fotográfico',
+                  '--accent', accent or 'azul',
+              ]
+              if details:
+                  cmd += ['--details', details]
+              if category:
+                  cmd += ['--category', category]
+              print('>>', ' '.join(cmd))
+              subprocess.check_call(cmd)
+          for item in data:
+              run(
+                  item.get('topic','').strip(),
+                  item.get('style','fotográfico'),
+                  item.get('accent','azul'),
+                  item.get('details',''),
+                  item.get('category')
+              )
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/blog public/images/blog || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"; exit 0; fi
+          git commit -m "chore(content): bulk generated articles from topics.yml"
+          git push
+
