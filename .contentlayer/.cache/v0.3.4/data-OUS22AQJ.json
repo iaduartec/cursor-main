@@ -1,5 +1,140 @@
 {
   "cacheItemsMap": {
+    "blog/ca3mo-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio.mdx": {
+      "document": {
+        "title": "CÃ³mo elegir el sistema de videovigilancia ideal para tu negocio",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "CÃ³mo elegir el sistema de videovigilancia ideal para tu negocio — artículo técnico",
+        "slug": "ca3mo-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio",
+        "category": "General",
+        "image": "/images/blog/ca3mo-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio/ca3mo-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# CÃ³mo elegir el sistema de videovigilancia ideal para tu negocio\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>CÃ³mo elegir el sistema de videovigilancia ideal para tu negocio</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/ca3mo-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/ca3mo-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio.mdx",
+          "sourceFileName": "ca3mo-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/ca3mo-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio"
+        },
+        "type": "Blog",
+        "url": "/blog/ca3mo-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio"
+      },
+      "documentHash": "1757025155333",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/caso-de-a-0xito-implementacia3n-de-iluminacia3n-eficiente-en-huerta-de-arriba.mdx": {
+      "document": {
+        "title": "Caso de Ã‰xito: ImplementaciÃ³n de IluminaciÃ³n Eficiente en Huerta de Arriba",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Caso de Ã‰xito: ImplementaciÃ³n de IluminaciÃ³n Eficiente en Huerta de Arriba — artículo técnico",
+        "slug": "caso-de-a-0xito-implementacia3n-de-iluminacia3n-eficiente-en-huerta-de-arriba",
+        "category": "General",
+        "image": "/images/blog/caso-de-a-0xito-implementacia3n-de-iluminacia3n-eficiente-en-huerta-de-arriba/caso-de-a-0xito-implementacia3n-de-iluminacia3n-eficiente-en-huerta-de-arriba-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Caso de Ã‰xito: ImplementaciÃ³n de IluminaciÃ³n Eficiente en Huerta de Arriba\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Caso de Ã‰xito: ImplementaciÃ³n de IluminaciÃ³n Eficiente en Huerta de Arriba</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/caso-de-a-0xito-implementacia3n-de-iluminacia3n-eficiente-en-huerta-de-arriba.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/caso-de-a-0xito-implementacia3n-de-iluminacia3n-eficiente-en-huerta-de-arriba.mdx",
+          "sourceFileName": "caso-de-a-0xito-implementacia3n-de-iluminacia3n-eficiente-en-huerta-de-arriba.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/caso-de-a-0xito-implementacia3n-de-iluminacia3n-eficiente-en-huerta-de-arriba"
+        },
+        "type": "Blog",
+        "url": "/blog/caso-de-a-0xito-implementacia3n-de-iluminacia3n-eficiente-en-huerta-de-arriba"
+      },
+      "documentHash": "1757025118830",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/caso-de-a-c-xito-implementacia3n-de-un-sistema-cctv-en-santo-domingo-de-silos.mdx": {
+      "document": {
+        "title": "Caso de Ã©xito: ImplementaciÃ³n de un sistema CCTV en Santo Domingo de Silos",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Caso de Ã©xito: ImplementaciÃ³n de un sistema CCTV en Santo Domingo de Silos — artículo técnico",
+        "slug": "caso-de-a-c-xito-implementacia3n-de-un-sistema-cctv-en-santo-domingo-de-silos",
+        "category": "General",
+        "image": "/images/blog/caso-de-a-c-xito-implementacia3n-de-un-sistema-cctv-en-santo-domingo-de-silos/caso-de-a-c-xito-implementacia3n-de-un-sistema-cctv-en-santo-domingo-de-silos-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Caso de Ã©xito: ImplementaciÃ³n de un sistema CCTV en Santo Domingo de Silos\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Caso de Ã©xito: ImplementaciÃ³n de un sistema CCTV en Santo Domingo de Silos</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/caso-de-a-c-xito-implementacia3n-de-un-sistema-cctv-en-santo-domingo-de-silos.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/caso-de-a-c-xito-implementacia3n-de-un-sistema-cctv-en-santo-domingo-de-silos.mdx",
+          "sourceFileName": "caso-de-a-c-xito-implementacia3n-de-un-sistema-cctv-en-santo-domingo-de-silos.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/caso-de-a-c-xito-implementacia3n-de-un-sistema-cctv-en-santo-domingo-de-silos"
+        },
+        "type": "Blog",
+        "url": "/blog/caso-de-a-c-xito-implementacia3n-de-un-sistema-cctv-en-santo-domingo-de-silos"
+      },
+      "documentHash": "1757025116704",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/caso-de-a-c-xito-implementacia3n-de-wifi-municipal-en-rabanera-del-pinar.mdx": {
+      "document": {
+        "title": "Caso de Ã©xito: ImplementaciÃ³n de WiFi municipal en Rabanera del Pinar",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Caso de Ã©xito: ImplementaciÃ³n de WiFi municipal en Rabanera del Pinar — artículo técnico",
+        "slug": "caso-de-a-c-xito-implementacia3n-de-wifi-municipal-en-rabanera-del-pinar",
+        "category": "General",
+        "image": "/images/blog/caso-de-a-c-xito-implementacia3n-de-wifi-municipal-en-rabanera-del-pinar/caso-de-a-c-xito-implementacia3n-de-wifi-municipal-en-rabanera-del-pinar-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Caso de Ã©xito: ImplementaciÃ³n de WiFi municipal en Rabanera del Pinar\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Caso de Ã©xito: ImplementaciÃ³n de WiFi municipal en Rabanera del Pinar</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/caso-de-a-c-xito-implementacia3n-de-wifi-municipal-en-rabanera-del-pinar.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/caso-de-a-c-xito-implementacia3n-de-wifi-municipal-en-rabanera-del-pinar.mdx",
+          "sourceFileName": "caso-de-a-c-xito-implementacia3n-de-wifi-municipal-en-rabanera-del-pinar.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/caso-de-a-c-xito-implementacia3n-de-wifi-municipal-en-rabanera-del-pinar"
+        },
+        "type": "Blog",
+        "url": "/blog/caso-de-a-c-xito-implementacia3n-de-wifi-municipal-en-rabanera-del-pinar"
+      },
+      "documentHash": "1757025123118",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/caso-de-a-c-xito-sonorizacia3n-integral-en-pineda-de-la-sierra.mdx": {
+      "document": {
+        "title": "Caso de Ã©xito: SonorizaciÃ³n integral en Pineda de la Sierra",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Caso de Ã©xito: SonorizaciÃ³n integral en Pineda de la Sierra — artículo técnico",
+        "slug": "caso-de-a-c-xito-sonorizacia3n-integral-en-pineda-de-la-sierra",
+        "category": "General",
+        "image": "/images/blog/caso-de-a-c-xito-sonorizacia3n-integral-en-pineda-de-la-sierra/caso-de-a-c-xito-sonorizacia3n-integral-en-pineda-de-la-sierra-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Caso de Ã©xito: SonorizaciÃ³n integral en Pineda de la Sierra\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Caso de Ã©xito: SonorizaciÃ³n integral en Pineda de la Sierra</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/caso-de-a-c-xito-sonorizacia3n-integral-en-pineda-de-la-sierra.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/caso-de-a-c-xito-sonorizacia3n-integral-en-pineda-de-la-sierra.mdx",
+          "sourceFileName": "caso-de-a-c-xito-sonorizacia3n-integral-en-pineda-de-la-sierra.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/caso-de-a-c-xito-sonorizacia3n-integral-en-pineda-de-la-sierra"
+        },
+        "type": "Blog",
+        "url": "/blog/caso-de-a-c-xito-sonorizacia3n-integral-en-pineda-de-la-sierra"
+      },
+      "documentHash": "1757025120981",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
     "blog/caso-de-exito-cctv-en-santo-domingo-de-silos.mdx": {
       "document": {
         "title": "Caso de éxito: Implementación de un sistema CCTV en Santo Domingo de Silos",
@@ -108,6 +243,87 @@
       "hasWarnings": false,
       "documentTypeName": "Blog"
     },
+    "blog/configuracia3n-de-redes-wifi-empresariales-mejores-pra-cticas.mdx": {
+      "document": {
+        "title": "ConfiguraciÃ³n de redes WiFi empresariales: mejores prÃ¡cticas",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "ConfiguraciÃ³n de redes WiFi empresariales: mejores prÃ¡cticas — artículo técnico",
+        "slug": "configuracia3n-de-redes-wifi-empresariales-mejores-pra-cticas",
+        "category": "General",
+        "image": "/images/blog/configuracia3n-de-redes-wifi-empresariales-mejores-pra-cticas/configuracia3n-de-redes-wifi-empresariales-mejores-pra-cticas-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# ConfiguraciÃ³n de redes WiFi empresariales: mejores prÃ¡cticas\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>ConfiguraciÃ³n de redes WiFi empresariales: mejores prÃ¡cticas</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/configuracia3n-de-redes-wifi-empresariales-mejores-pra-cticas.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/configuracia3n-de-redes-wifi-empresariales-mejores-pra-cticas.mdx",
+          "sourceFileName": "configuracia3n-de-redes-wifi-empresariales-mejores-pra-cticas.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/configuracia3n-de-redes-wifi-empresariales-mejores-pra-cticas"
+        },
+        "type": "Blog",
+        "url": "/blog/configuracia3n-de-redes-wifi-empresariales-mejores-pra-cticas"
+      },
+      "documentHash": "1757025157490",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/instalaciones-ela-c-ctricas-de-baja-tensia3n-normativa-y-buenas-pra-cticas.mdx": {
+      "document": {
+        "title": "Instalaciones elÃ©ctricas de baja tensiÃ³n: Normativa y buenas prÃ¡cticas",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Instalaciones elÃ©ctricas de baja tensiÃ³n: Normativa y buenas prÃ¡cticas — artículo técnico",
+        "slug": "instalaciones-ela-c-ctricas-de-baja-tensia3n-normativa-y-buenas-pra-cticas",
+        "category": "General",
+        "image": "/images/blog/instalaciones-ela-c-ctricas-de-baja-tensia3n-normativa-y-buenas-pra-cticas/instalaciones-ela-c-ctricas-de-baja-tensia3n-normativa-y-buenas-pra-cticas-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Instalaciones elÃ©ctricas de baja tensiÃ³n: Normativa y buenas prÃ¡cticas\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Instalaciones elÃ©ctricas de baja tensiÃ³n: Normativa y buenas prÃ¡cticas</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/instalaciones-ela-c-ctricas-de-baja-tensia3n-normativa-y-buenas-pra-cticas.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/instalaciones-ela-c-ctricas-de-baja-tensia3n-normativa-y-buenas-pra-cticas.mdx",
+          "sourceFileName": "instalaciones-ela-c-ctricas-de-baja-tensia3n-normativa-y-buenas-pra-cticas.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/instalaciones-ela-c-ctricas-de-baja-tensia3n-normativa-y-buenas-pra-cticas"
+        },
+        "type": "Blog",
+        "url": "/blog/instalaciones-ela-c-ctricas-de-baja-tensia3n-normativa-y-buenas-pra-cticas"
+      },
+      "documentHash": "1757025127403",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/instalaciones-ela-c-ctricas-industriales-disea-o-implementacia3n-y-mantenimiento.mdx": {
+      "document": {
+        "title": "Instalaciones ElÃ©ctricas Industriales: DiseÃ±o, ImplementaciÃ³n y Mantenimiento",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Instalaciones ElÃ©ctricas Industriales: DiseÃ±o, ImplementaciÃ³n y Mantenimiento — artículo técnico",
+        "slug": "instalaciones-ela-c-ctricas-industriales-disea-o-implementacia3n-y-mantenimiento",
+        "category": "General",
+        "image": "/images/blog/instalaciones-ela-c-ctricas-industriales-disea-o-implementacia3n-y-mantenimiento/instalaciones-ela-c-ctricas-industriales-disea-o-implementacia3n-y-mantenimiento-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Instalaciones ElÃ©ctricas Industriales: DiseÃ±o, ImplementaciÃ³n y Mantenimiento\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Instalaciones ElÃ©ctricas Industriales: DiseÃ±o, ImplementaciÃ³n y Mantenimiento</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/instalaciones-ela-c-ctricas-industriales-disea-o-implementacia3n-y-mantenimiento.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/instalaciones-ela-c-ctricas-industriales-disea-o-implementacia3n-y-mantenimiento.mdx",
+          "sourceFileName": "instalaciones-ela-c-ctricas-industriales-disea-o-implementacia3n-y-mantenimiento.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/instalaciones-ela-c-ctricas-industriales-disea-o-implementacia3n-y-mantenimiento"
+        },
+        "type": "Blog",
+        "url": "/blog/instalaciones-ela-c-ctricas-industriales-disea-o-implementacia3n-y-mantenimiento"
+      },
+      "documentHash": "1757025129544",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
     "blog/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas.mdx": {
       "document": {
         "title": "Instalaciones eléctricas de baja tensión: Normativa y buenas prácticas",
@@ -132,6 +348,60 @@
         "url": "/blog/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas"
       },
       "documentHash": "1757019718245",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/mantenimiento-preventivo-de-equipos-informa-ticos.mdx": {
+      "document": {
+        "title": "Mantenimiento preventivo de equipos informÃ¡ticos",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Mantenimiento preventivo de equipos informÃ¡ticos — artículo técnico",
+        "slug": "mantenimiento-preventivo-de-equipos-informa-ticos",
+        "category": "General",
+        "image": "/images/blog/mantenimiento-preventivo-de-equipos-informa-ticos/mantenimiento-preventivo-de-equipos-informa-ticos-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Mantenimiento preventivo de equipos informÃ¡ticos\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Mantenimiento preventivo de equipos informÃ¡ticos</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/mantenimiento-preventivo-de-equipos-informa-ticos.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/mantenimiento-preventivo-de-equipos-informa-ticos.mdx",
+          "sourceFileName": "mantenimiento-preventivo-de-equipos-informa-ticos.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/mantenimiento-preventivo-de-equipos-informa-ticos"
+        },
+        "type": "Blog",
+        "url": "/blog/mantenimiento-preventivo-de-equipos-informa-ticos"
+      },
+      "documentHash": "1757025131655",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/redes-informa-ticas-gestionadas-para-pymes-wifi-switching-y-seguridad.mdx": {
+      "document": {
+        "title": "Redes InformÃ¡ticas Gestionadas para Pymes: WiFi, Switching y Seguridad",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Redes InformÃ¡ticas Gestionadas para Pymes: WiFi, Switching y Seguridad — artículo técnico",
+        "slug": "redes-informa-ticas-gestionadas-para-pymes-wifi-switching-y-seguridad",
+        "category": "General",
+        "image": "/images/blog/redes-informa-ticas-gestionadas-para-pymes-wifi-switching-y-seguridad/redes-informa-ticas-gestionadas-para-pymes-wifi-switching-y-seguridad-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Redes InformÃ¡ticas Gestionadas para Pymes: WiFi, Switching y Seguridad\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Redes InformÃ¡ticas Gestionadas para Pymes: WiFi, Switching y Seguridad</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/redes-informa-ticas-gestionadas-para-pymes-wifi-switching-y-seguridad.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/redes-informa-ticas-gestionadas-para-pymes-wifi-switching-y-seguridad.mdx",
+          "sourceFileName": "redes-informa-ticas-gestionadas-para-pymes-wifi-switching-y-seguridad.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/redes-informa-ticas-gestionadas-para-pymes-wifi-switching-y-seguridad"
+        },
+        "type": "Blog",
+        "url": "/blog/redes-informa-ticas-gestionadas-para-pymes-wifi-switching-y-seguridad"
+      },
+      "documentHash": "1757025133783",
       "hasWarnings": false,
       "documentTypeName": "Blog"
     },
@@ -162,6 +432,114 @@
       "hasWarnings": false,
       "documentTypeName": "Blog"
     },
+    "blog/seguridad-de-red-empresarial-estrategias-para-proteger-tu-infraestructura-it.mdx": {
+      "document": {
+        "title": "Seguridad de Red Empresarial: Estrategias para Proteger tu Infraestructura IT",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Seguridad de Red Empresarial: Estrategias para Proteger tu Infraestructura IT — artículo técnico",
+        "slug": "seguridad-de-red-empresarial-estrategias-para-proteger-tu-infraestructura-it",
+        "category": "General",
+        "image": "/images/blog/seguridad-de-red-empresarial-estrategias-para-proteger-tu-infraestructura-it/seguridad-de-red-empresarial-estrategias-para-proteger-tu-infraestructura-it-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Seguridad de Red Empresarial: Estrategias para Proteger tu Infraestructura IT\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Seguridad de Red Empresarial: Estrategias para Proteger tu Infraestructura IT</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/seguridad-de-red-empresarial-estrategias-para-proteger-tu-infraestructura-it.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/seguridad-de-red-empresarial-estrategias-para-proteger-tu-infraestructura-it.mdx",
+          "sourceFileName": "seguridad-de-red-empresarial-estrategias-para-proteger-tu-infraestructura-it.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/seguridad-de-red-empresarial-estrategias-para-proteger-tu-infraestructura-it"
+        },
+        "type": "Blog",
+        "url": "/blog/seguridad-de-red-empresarial-estrategias-para-proteger-tu-infraestructura-it"
+      },
+      "documentHash": "1757025135940",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/sistemas-de-audio-profesional-disea-o-e-instalacia3n-para-diferentes-aplicacione.mdx": {
+      "document": {
+        "title": "Sistemas de Audio Profesional: DiseÃ±o e InstalaciÃ³n para Diferentes Aplicaciones",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Sistemas de Audio Profesional: DiseÃ±o e InstalaciÃ³n para Diferentes Aplicaciones — artículo técnico",
+        "slug": "sistemas-de-audio-profesional-disea-o-e-instalacia3n-para-diferentes-aplicacione",
+        "category": "General",
+        "image": "/images/blog/sistemas-de-audio-profesional-disea-o-e-instalacia3n-para-diferentes-aplicacione/sistemas-de-audio-profesional-disea-o-e-instalacia3n-para-diferentes-aplicacione-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Sistemas de Audio Profesional: DiseÃ±o e InstalaciÃ³n para Diferentes Aplicaciones\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Sistemas de Audio Profesional: DiseÃ±o e InstalaciÃ³n para Diferentes Aplicaciones</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/sistemas-de-audio-profesional-disea-o-e-instalacia3n-para-diferentes-aplicacione.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/sistemas-de-audio-profesional-disea-o-e-instalacia3n-para-diferentes-aplicacione.mdx",
+          "sourceFileName": "sistemas-de-audio-profesional-disea-o-e-instalacia3n-para-diferentes-aplicacione.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/sistemas-de-audio-profesional-disea-o-e-instalacia3n-para-diferentes-aplicacione"
+        },
+        "type": "Blog",
+        "url": "/blog/sistemas-de-audio-profesional-disea-o-e-instalacia3n-para-diferentes-aplicacione"
+      },
+      "documentHash": "1757025138097",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/sistemas-de-sonido-profesional-para-eventos-corporativos.mdx": {
+      "document": {
+        "title": "Sistemas de sonido profesional para eventos corporativos",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Sistemas de sonido profesional para eventos corporativos — artículo técnico",
+        "slug": "sistemas-de-sonido-profesional-para-eventos-corporativos",
+        "category": "General",
+        "image": "/images/blog/sistemas-de-sonido-profesional-para-eventos-corporativos/sistemas-de-sonido-profesional-para-eventos-corporativos-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Sistemas de sonido profesional para eventos corporativos\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Sistemas de sonido profesional para eventos corporativos</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/sistemas-de-sonido-profesional-para-eventos-corporativos.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/sistemas-de-sonido-profesional-para-eventos-corporativos.mdx",
+          "sourceFileName": "sistemas-de-sonido-profesional-para-eventos-corporativos.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/sistemas-de-sonido-profesional-para-eventos-corporativos"
+        },
+        "type": "Blog",
+        "url": "/blog/sistemas-de-sonido-profesional-para-eventos-corporativos"
+      },
+      "documentHash": "1757025140315",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/sonido-profesional-para-eventos-corporativos-planificacia3n-y-montaje.mdx": {
+      "document": {
+        "title": "Sonido Profesional para Eventos Corporativos: PlanificaciÃ³n y Montaje",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Sonido Profesional para Eventos Corporativos: PlanificaciÃ³n y Montaje — artículo técnico",
+        "slug": "sonido-profesional-para-eventos-corporativos-planificacia3n-y-montaje",
+        "category": "General",
+        "image": "/images/blog/sonido-profesional-para-eventos-corporativos-planificacia3n-y-montaje/sonido-profesional-para-eventos-corporativos-planificacia3n-y-montaje-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Sonido Profesional para Eventos Corporativos: PlanificaciÃ³n y Montaje\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Sonido Profesional para Eventos Corporativos: PlanificaciÃ³n y Montaje</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/sonido-profesional-para-eventos-corporativos-planificacia3n-y-montaje.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/sonido-profesional-para-eventos-corporativos-planificacia3n-y-montaje.mdx",
+          "sourceFileName": "sonido-profesional-para-eventos-corporativos-planificacia3n-y-montaje.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/sonido-profesional-para-eventos-corporativos-planificacia3n-y-montaje"
+        },
+        "type": "Blog",
+        "url": "/blog/sonido-profesional-para-eventos-corporativos-planificacia3n-y-montaje"
+      },
+      "documentHash": "1757025142489",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
     "blog/sonido-profesional-para-eventos-corporativos-planificacion-y-montaje.mdx": {
       "document": {
         "title": "Sonido Profesional para Eventos Corporativos: Planificación y Montaje",
@@ -186,6 +564,141 @@
         "url": "/blog/sonido-profesional-para-eventos-corporativos-planificacion-y-montaje"
       },
       "documentHash": "1757019718249",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/tecnologaas-emergentes-en-videovigilancia-ia-5g-y-el-futuro-de-la-seguridad.mdx": {
+      "document": {
+        "title": "TecnologÃ­as Emergentes en Videovigilancia: IA, 5G y el Futuro de la Seguridad",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "TecnologÃ­as Emergentes en Videovigilancia: IA, 5G y el Futuro de la Seguridad — artículo técnico",
+        "slug": "tecnologaas-emergentes-en-videovigilancia-ia-5g-y-el-futuro-de-la-seguridad",
+        "category": "General",
+        "image": "/images/blog/tecnologaas-emergentes-en-videovigilancia-ia-5g-y-el-futuro-de-la-seguridad/tecnologaas-emergentes-en-videovigilancia-ia-5g-y-el-futuro-de-la-seguridad-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# TecnologÃ­as Emergentes en Videovigilancia: IA, 5G y el Futuro de la Seguridad\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>TecnologÃ­as Emergentes en Videovigilancia: IA, 5G y el Futuro de la Seguridad</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/tecnologaas-emergentes-en-videovigilancia-ia-5g-y-el-futuro-de-la-seguridad.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/tecnologaas-emergentes-en-videovigilancia-ia-5g-y-el-futuro-de-la-seguridad.mdx",
+          "sourceFileName": "tecnologaas-emergentes-en-videovigilancia-ia-5g-y-el-futuro-de-la-seguridad.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/tecnologaas-emergentes-en-videovigilancia-ia-5g-y-el-futuro-de-la-seguridad"
+        },
+        "type": "Blog",
+        "url": "/blog/tecnologaas-emergentes-en-videovigilancia-ia-5g-y-el-futuro-de-la-seguridad"
+      },
+      "documentHash": "1757025144634",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/tendencias-en-seguridad-electra3nica-para-2024.mdx": {
+      "document": {
+        "title": "Tendencias en seguridad electrÃ³nica para 2024",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Tendencias en seguridad electrÃ³nica para 2024 — artículo técnico",
+        "slug": "tendencias-en-seguridad-electra3nica-para-2024",
+        "category": "General",
+        "image": "/images/blog/tendencias-en-seguridad-electra3nica-para-2024/tendencias-en-seguridad-electra3nica-para-2024-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Tendencias en seguridad electrÃ³nica para 2024\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Tendencias en seguridad electrÃ³nica para 2024</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/tendencias-en-seguridad-electra3nica-para-2024.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/tendencias-en-seguridad-electra3nica-para-2024.mdx",
+          "sourceFileName": "tendencias-en-seguridad-electra3nica-para-2024.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/tendencias-en-seguridad-electra3nica-para-2024"
+        },
+        "type": "Blog",
+        "url": "/blog/tendencias-en-seguridad-electra3nica-para-2024"
+      },
+      "documentHash": "1757025146773",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/ventajas-de-la-iluminacia3n-led-en-instalaciones-comerciales.mdx": {
+      "document": {
+        "title": "Ventajas de la iluminaciÃ³n LED en instalaciones comerciales",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Ventajas de la iluminaciÃ³n LED en instalaciones comerciales — artículo técnico",
+        "slug": "ventajas-de-la-iluminacia3n-led-en-instalaciones-comerciales",
+        "category": "General",
+        "image": "/images/blog/ventajas-de-la-iluminacia3n-led-en-instalaciones-comerciales/ventajas-de-la-iluminacia3n-led-en-instalaciones-comerciales-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Ventajas de la iluminaciÃ³n LED en instalaciones comerciales\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Ventajas de la iluminaciÃ³n LED en instalaciones comerciales</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/ventajas-de-la-iluminacia3n-led-en-instalaciones-comerciales.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/ventajas-de-la-iluminacia3n-led-en-instalaciones-comerciales.mdx",
+          "sourceFileName": "ventajas-de-la-iluminacia3n-led-en-instalaciones-comerciales.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/ventajas-de-la-iluminacia3n-led-en-instalaciones-comerciales"
+        },
+        "type": "Blog",
+        "url": "/blog/ventajas-de-la-iluminacia3n-led-en-instalaciones-comerciales"
+      },
+      "documentHash": "1757025148893",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/ventajas-de-la-iluminacion-led-en-instalaciones-comerciales.mdx": {
+      "document": {
+        "title": "Ventajas de la iluminación LED en instalaciones comerciales",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Ventajas de la iluminación LED en instalaciones comerciales — artículo técnico",
+        "slug": "ventajas-de-la-iluminacion-led-en-instalaciones-comerciales",
+        "category": "General",
+        "image": "/images/blog/ventajas-de-la-iluminacion-led-en-instalaciones-comerciales/ventajas-de-la-iluminacion-led-en-instalaciones-comerciales-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Ventajas de la iluminación LED en instalaciones comerciales\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Ventajas de la iluminación LED en instalaciones comerciales</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/ventajas-de-la-iluminacion-led-en-instalaciones-comerciales.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/ventajas-de-la-iluminacion-led-en-instalaciones-comerciales.mdx",
+          "sourceFileName": "ventajas-de-la-iluminacion-led-en-instalaciones-comerciales.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/ventajas-de-la-iluminacion-led-en-instalaciones-comerciales"
+        },
+        "type": "Blog",
+        "url": "/blog/ventajas-de-la-iluminacion-led-en-instalaciones-comerciales"
+      },
+      "documentHash": "1757025088217",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    },
+    "blog/videovigilancia-ip-en-comercios-de-burgos-guaa-pra-ctica-2025.mdx": {
+      "document": {
+        "title": "Videovigilancia IP en comercios de Burgos: GuÃ­a prÃ¡ctica 2025",
+        "date": "2025-09-05T00:00:00.000Z",
+        "description": "Videovigilancia IP en comercios de Burgos: GuÃ­a prÃ¡ctica 2025 — artículo técnico",
+        "slug": "videovigilancia-ip-en-comercios-de-burgos-guaa-pra-ctica-2025",
+        "category": "General",
+        "image": "/images/blog/videovigilancia-ip-en-comercios-de-burgos-guaa-pra-ctica-2025/videovigilancia-ip-en-comercios-de-burgos-guaa-pra-ctica-2025-hero-001.webp\r",
+        "body": {
+          "raw": "\r\n# Videovigilancia IP en comercios de Burgos: GuÃ­a prÃ¡ctica 2025\r\n\r\n## Introducción\r\n\r\nResumen del tema con enfoque práctico y profesional.\r\n\r\n## Puntos clave\r\n\r\n- Requisito 1\r\n- Requisito 2\r\n- Requisito 3\r\n\r\n## Implantación\r\n\r\nPasos recomendados.\r\n\r\n## Mantenimiento\r\n\r\nBuenas prácticas y periodicidad.\r\n\r\n## Conclusión\r\n\r\nCTA suave orientado a contacto profesional.\r\n",
+          "html": "<h1>Videovigilancia IP en comercios de Burgos: GuÃ­a prÃ¡ctica 2025</h1>\n<h2>Introducción</h2>\n<p>Resumen del tema con enfoque práctico y profesional.</p>\n<h2>Puntos clave</h2>\n<ul>\n<li>Requisito 1</li>\n<li>Requisito 2</li>\n<li>Requisito 3</li>\n</ul>\n<h2>Implantación</h2>\n<p>Pasos recomendados.</p>\n<h2>Mantenimiento</h2>\n<p>Buenas prácticas y periodicidad.</p>\n<h2>Conclusión</h2>\n<p>CTA suave orientado a contacto profesional.</p>"
+        },
+        "_id": "blog/videovigilancia-ip-en-comercios-de-burgos-guaa-pra-ctica-2025.mdx",
+        "_raw": {
+          "sourceFilePath": "blog/videovigilancia-ip-en-comercios-de-burgos-guaa-pra-ctica-2025.mdx",
+          "sourceFileName": "videovigilancia-ip-en-comercios-de-burgos-guaa-pra-ctica-2025.mdx",
+          "sourceFileDir": "blog",
+          "contentType": "mdx",
+          "flattenedPath": "blog/videovigilancia-ip-en-comercios-de-burgos-guaa-pra-ctica-2025"
+        },
+        "type": "Blog",
+        "url": "/blog/videovigilancia-ip-en-comercios-de-burgos-guaa-pra-ctica-2025"
+      },
+      "documentHash": "1757025153177",
       "hasWarnings": false,
       "documentTypeName": "Blog"
     },
