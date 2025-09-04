@@ -22,7 +22,6 @@ export default function HuertaArribaCamPage() {
             className="absolute inset-0 w-full h-full"
             src="https://www.youtube.com/embed/Kv2HeXZXWaw"
             title="Huerta de Arriba"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           />
@@ -31,3 +30,4 @@ export default function HuertaArribaCamPage() {
     </div>
   );
 }
+

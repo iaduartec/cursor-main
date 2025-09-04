@@ -22,7 +22,6 @@ export default function RabaneraCamPage() {
             className="absolute inset-0 w-full h-full"
             src="https://www.youtube.com/embed/2FLLNsHmgxc"
             title="Rabanera del Pinar"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           />
@@ -31,3 +30,4 @@ export default function RabaneraCamPage() {
     </div>
   );
 }
+
