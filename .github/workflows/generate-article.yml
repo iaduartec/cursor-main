@@ -74,7 +74,7 @@ jobs:
         if: steps.parse.outputs.skip == 'false'
         run: |
           python -m pip install --upgrade pip
-          if [ -f tools/requirements.txt ]; then pip install -r tools/requirements.txt; else pip install --upgrade google-genai openai pyyaml python-slugify; fi
+          pip install -r requirements.txt
 
       - name: Generate article and images
         if: steps.parse.outputs.skip == 'false'
