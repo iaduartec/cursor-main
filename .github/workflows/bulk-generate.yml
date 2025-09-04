@@ -25,12 +25,11 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-          # Cache desactivada para evitar errores cuando GitHub busca requirements en rutas por defecto
 
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
-          if [ -f tools/requirements.txt ]; then pip install -r tools/requirements.txt; else pip install --upgrade google-genai openai pyyaml python-slugify; fi
+          pip install -r requirements.txt
 
       - name: Generate all articles listed in YAML
         run: |
