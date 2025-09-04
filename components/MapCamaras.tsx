@@ -3,6 +3,7 @@
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Link from 'next/link';
+import { LatLngExpression, PathOptions } from 'leaflet';
 
 type Cam = {
   slug: string;
@@ -10,6 +11,17 @@ type Cam = {
   lat: number;
   lng: number;
   youtubeId: string;
+};
+
+type MapProps = {
+  center: LatLngExpression;
+  zoom: number;
+};
+
+type CircleMarkerProps = {
+  center: LatLngExpression;
+  radius: number;
+  pathOptions: PathOptions;
 };
 
 // Coordenadas aproximadas de los núcleos urbanos
@@ -21,37 +33,44 @@ const cams: Cam[] = [
 ];
 
 export default function MapCamaras() {
-  const mapProps: any = { center: [42.15, -3.35], zoom: 9 };
+  const mapProps: MapProps = { center: [42.15, -3.35], zoom: 9 };
   return (
     <div className="w-full h-[480px] rounded-xl overflow-hidden border border-gray-100 dark:border-slate-700">
       <MapContainer {...mapProps} className="w-full h-full">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {cams.map((c) => (
-          <CircleMarker key={c.slug} {...({ center: [c.lat, c.lng], radius: 10, pathOptions: { color: '#0ea5e9', fillColor: '#0ea5e9', fillOpacity: 0.85 } } as any)}>
-            <Popup>
-              <div className="space-y-3 w-72">
-                <div className="flex items-center justify-between">
-                  <div className="font-semibold text-primary">{c.name}</div>
-                </div>
+        {cams.map((c) => {
+          const circleMarkerProps: CircleMarkerProps = {
+            center: [c.lat, c.lng],
+            radius: 10,
+            pathOptions: { color: '#0ea5e9', fillColor: '#0ea5e9', fillOpacity: 0.85 },
+          };
+          return (
+            <CircleMarker key={c.slug} {...circleMarkerProps}>
+              <Popup>
+                <div className="space-y-3 w-72">
+                  <div className="flex items-center justify-between">
+                    <div className="font-semibold text-primary">{c.name}</div>
+                  </div>
 
-                <div className="relative w-full aspect-video">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${c.youtubeId}`}
-                    title={c.name}
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full rounded-md"
-                  />
-                </div>
+                  <div className="relative w-full aspect-video">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${c.youtubeId}`}
+                      title={c.name}
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full rounded-md"
+                    />
+                  </div>
 
-                <div className="flex items-center justify-between">
-                  <a href={`https://www.youtube.com/watch?v=${c.youtubeId}`} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline font-medium">Ver en YouTube</a>
-                  <Link href={`/streaming/${c.slug}`} className="text-accent hover:underline font-medium">Ver cámara</Link>
+                  <div className="flex items-center justify-between">
+                    <a href={`https://www.youtube.com/watch?v=${c.youtubeId}`} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline font-medium">Ver en YouTube</a>
+                    <Link href={`/streaming/${c.slug}`} className="text-accent hover:underline font-medium">Ver cámara</Link>
+                  </div>
                 </div>
-              </div>
-            </Popup>
-          </CircleMarker>
-        ))}
+              </Popup>
+            </CircleMarker>
+          );
+        })}
       </MapContainer>
     </div>
   );
