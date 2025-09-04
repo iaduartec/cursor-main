@@ -4,9 +4,9 @@
   "description": "Guía completa sobre diseño, instalación y mantenimiento de sistemas eléctricos industriales, incluyendo normativas, equipos de protección y eficiencia energética.",
   "slug": "instalaciones-electricas-industriales",
   "category": "Electricidad",
-  "image": "/images/blog/instalaciones-electricas-industriales/instalaciones-electricas-industriales-hero-001.webp",
+  "image": "/images/blog/instalaciones-electricas-industriales/instalaciones-electricas-industriales-hero-001.webp\r",
   "body": {
-    "raw": "\n# Instalaciones Eléctricas Industriales: Diseño, Implementación y Mantenimiento\n\nLas instalaciones eléctricas industriales son sistemas complejos que requieren un diseño cuidadoso, implementación profesional y mantenimiento continuo para garantizar la seguridad, eficiencia y fiabilidad operativa. En este artículo abordamos los aspectos fundamentales de estos sistemas críticos.\n\n... (contenido)\n",
+    "raw": "\r\n# Instalaciones Eléctricas Industriales: Diseño, Implementación y Mantenimiento\r\n\r\nLas instalaciones eléctricas industriales son sistemas complejos que requieren un diseño cuidadoso, implementación profesional y mantenimiento continuo para garantizar la seguridad, eficiencia y fiabilidad operativa. En este artículo abordamos los aspectos fundamentales de estos sistemas críticos.\r\n\r\n... (contenido)\r\n",
     "html": "<h1>Instalaciones Eléctricas Industriales: Diseño, Implementación y Mantenimiento</h1>\n<p>Las instalaciones eléctricas industriales son sistemas complejos que requieren un diseño cuidadoso, implementación profesional y mantenimiento continuo para garantizar la seguridad, eficiencia y fiabilidad operativa. En este artículo abordamos los aspectos fundamentales de estos sistemas críticos.</p>\n<p>... (contenido)</p>"
   },
   "_id": "blog/instalaciones-electricas-industriales.mdx",

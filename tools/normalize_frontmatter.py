@@ -33,12 +33,22 @@ for p in MDX_PATHS:
             print(f"[SKIP] Couldn't split frontmatter for {p}")
             continue
     fm_raw_str = fm_raw
+    # Normalize smart quotes to simple ones
+    fm_raw_str = fm_raw_str.replace('\u2018', "'").replace('\u2019', "'")
+    fm_raw_str = fm_raw_str.replace('\u201c', '"').replace('\u201d', '"')
     # Try parse
     try:
         data = yaml.safe_load(fm_raw_str)
         if not isinstance(data, dict):
             print(f"[WARN] frontmatter not mapping for {p}")
             continue
+        # Ensure image field is plain string (no leading/trailing quotes artifacts)
+        if 'image' in data and data['image'] is not None:
+            img = str(data['image'])
+            # strip accidental surrounding quotes
+            if (img.startswith("\'") and img.endswith("\'")) or (img.startswith('"') and img.endswith('"')):
+                img = img[1:-1]
+            data['image'] = img
         # Re-dump frontmatter
         new_fm = yaml.safe_dump(data, allow_unicode=True, sort_keys=False)
         new_text = "---\n" + new_fm + "---\n\n" + body.lstrip('\n')

@@ -1,1 +1,216 @@
-[]
+[
+  {
+    "title": "Electricidad",
+    "description": "Instalaciones eléctricas, cableados y soluciones energéticas para todo tipo de espacios en Burgos.",
+    "slug": "electricidad",
+    "areaServed": "Burgos y alrededores",
+    "hasOfferCatalog": true,
+    "faq": [
+      "¿Qué tipos de instalaciones eléctricas realizan?",
+      "¿Tienen certificación oficial?",
+      "¿Realizan instalaciones de energía solar?",
+      "¿Ofrecen mantenimiento eléctrico?"
+    ],
+    "schema": {
+      "@type": "Service",
+      "name": "Electricidad",
+      "description": "Instalaciones eléctricas, cableados y soluciones energéticas para todo tipo de espacios en Burgos.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Duartec Instalaciones Informáticas"
+      },
+      "areaServed": "Burgos y alrededores",
+      "offers": "Instalaciones eléctricas profesionales",
+      "faq": [
+        {
+          "question": "¿Qué tipos de instalaciones eléctricas realizan?",
+          "answer": "Realizamos instalaciones domésticas, comerciales e industriales, incluyendo cableado estructurado y sistemas de emergencia."
+        },
+        {
+          "question": "¿Tienen certificación oficial?",
+          "answer": "Sí, somos instaladores autorizados con todas las certificaciones necesarias para realizar instalaciones eléctricas."
+        },
+        {
+          "question": "¿Realizan instalaciones de energía solar?",
+          "answer": "Sí, instalamos sistemas de energía solar fotovoltaica para autoconsumo y venta a red."
+        },
+        {
+          "question": "¿Ofrecen mantenimiento eléctrico?",
+          "answer": "Ofrecemos contratos de mantenimiento preventivo y correctivo para instalaciones eléctricas.\r"
+        }
+      ]
+    },
+    "body": {
+      "raw": "\r\n# Electricidad\r\n\r\nInstalaciones eléctricas profesionales para hogares, comercios e industrias. Cumplimos con todas las normativas vigentes y garantizamos la máxima seguridad en todas nuestras instalaciones.\r\n\r\n## Tipos de Instalaciones\r\n\r\n### Instalaciones Domésticas\r\n- **Viviendas nuevas**: Instalación completa desde cero\r\n- **Reformas**: Actualización de instalaciones existentes\r\n- **Ampliaciones**: Nuevos circuitos y puntos de luz\r\n- **Mantenimiento**: Reparaciones y mejoras\r\n\r\n### Instalaciones Comerciales\r\n- **Locales comerciales**: Iluminación y equipos\r\n- **Oficinas**: Cableado estructurado y electricidad\r\n- **Restaurantes**: Instalaciones específicas para hostelería\r\n- **Almacenes**: Iluminación industrial y equipos\r\n\r\n### Instalaciones Industriales\r\n- **Naves industriales**: Instalaciones de alta potencia\r\n- **Maquinaria**: Conexiones y automatización\r\n- **Sistemas de emergencia**: Iluminación y equipos de seguridad\r\n- **Cuadros eléctricos**: Diseño e instalación\r\n\r\n## Servicios Especializados\r\n\r\n### Cableado Estructurado\r\n- **Redes de datos**: Cableado Cat6/Cat7 para internet\r\n- **Telefonía**: Instalación de líneas telefónicas\r\n- **Videovigilancia**: Cableado para sistemas CCTV\r\n- **Sonido**: Instalaciones de audio profesional\r\n\r\n### Energía Solar\r\n- **Sistemas fotovoltaicos**: Instalación de paneles solares\r\n- **Autoconsumo**: Sistemas para reducir la factura eléctrica\r\n- **Venta a red**: Instalaciones para vender energía\r\n- **Baterías**: Sistemas de almacenamiento energético\r\n\r\n### Automatización\r\n- **Domótica**: Control inteligente del hogar\r\n- **Iluminación LED**: Sistemas de iluminación eficiente\r\n- **Control de acceso**: Sistemas de entrada automatizados\r\n- **Integración**: Conexión con otros sistemas\r\n\r\n## Normativas y Certificaciones\r\n\r\n### Cumplimiento Normativo\r\n- **REBT**: Reglamento Electrotécnico de Baja Tensión\r\n- **RITE**: Reglamento de Instalaciones Térmicas\r\n- **Certificaciones**: Instalador autorizado\r\n- **Inspecciones**: Certificados de instalación\r\n\r\n### Seguridad\r\n- **Protecciones**: Interruptores diferenciales y magnetotérmicos\r\n- **Puesta a tierra**: Sistemas de protección\r\n- **Aislamiento**: Materiales certificados\r\n- **Pruebas**: Verificación de seguridad\r\n\r\n## Proceso de Trabajo\r\n\r\n### 1. Evaluación y Diseño\r\n- Análisis de necesidades eléctricas\r\n- Diseño de la instalación según normativas\r\n- Presupuesto detallado\r\n- Planificación de trabajos\r\n\r\n### 2. Instalación Profesional\r\n- Instalación de cuadros eléctricos\r\n- Tendido de cableado\r\n- Instalación de puntos de luz y enchufes\r\n- Conexión de equipos\r\n\r\n### 3. Verificación y Certificación\r\n- Pruebas de funcionamiento\r\n- Medición de parámetros eléctricos\r\n- Certificado de instalación\r\n- Documentación técnica\r\n\r\n## Mantenimiento y Emergencias\r\n\r\n### Mantenimiento Preventivo\r\n- Revisión anual de instalaciones\r\n- Verificación de protecciones\r\n- Limpieza de cuadros eléctricos\r\n- Actualización de equipos\r\n\r\n### Servicios de Emergencia\r\n- Reparaciones urgentes 24/7\r\n- Averías eléctricas\r\n- Sustitución de componentes\r\n- Restauración de servicio\r\n\r\n## Beneficios\r\n\r\n- **Seguridad garantizada**: Cumplimiento de todas las normativas\r\n- **Ahorro energético**: Instalaciones eficientes\r\n- **Profesionalidad**: Técnicos cualificados y certificados\r\n- **Garantía**: Todos nuestros trabajos están garantizados\r\n- **Soporte**: Atención técnica continua\r\n\r\n## Garantías\r\n\r\n- **Garantía de materiales**: 2 años en todos los componentes\r\n- **Garantía de instalación**: 1 año en la instalación\r\n- **Garantía de funcionamiento**: 30 días de prueba\r\n- **Soporte técnico**: Incluido durante el primer año\r\n\r\n## Preguntas frecuentes\r\n\r\n### ¿Qué tipos de instalaciones eléctricas realizan?\r\n\r\nRealizamos todo tipo de instalaciones: domésticas, comerciales e industriales. Desde instalaciones completas en viviendas nuevas hasta reformas y ampliaciones de instalaciones existentes.\r\n\r\n### ¿Tienen certificación oficial?\r\n\r\nSí, somos instaladores autorizados con todas las certificaciones necesarias. Cumplimos con el REBT (Reglamento Electrotécnico de Baja Tensión) y emitimos certificados oficiales de instalación.\r\n\r\n### ¿Realizan instalaciones de energía solar?\r\n\r\nSí, instalamos sistemas de energía solar fotovoltaica para autoconsumo y venta a red. Incluimos paneles solares, inversores y sistemas de monitorización.\r\n\r\n### ¿Ofrecen mantenimiento eléctrico?\r\n\r\nSí, ofrecemos contratos de mantenimiento preventivo y correctivo. Incluyen revisiones periódicas, limpieza de equipos y soporte técnico para emergencias.\r\n\r\n### ¿Qué garantías ofrecen en las instalaciones?\r\n\r\nOfrecemos garantía de 2 años en materiales, 1 año en la instalación y soporte técnico incluido durante el primer año. Todos nuestros trabajos cumplen las normativas vigentes.\r\n\r\n### ¿Realizan trabajos de emergencia?\r\n\r\nSí, ofrecemos servicio de emergencias 24/7 para reparaciones urgentes, averías eléctricas y restauración de servicio en el menor tiempo posible.\r\n",
+      "html": "<h1>Electricidad</h1>\n<p>Instalaciones eléctricas profesionales para hogares, comercios e industrias. Cumplimos con todas las normativas vigentes y garantizamos la máxima seguridad en todas nuestras instalaciones.</p>\n<h2>Tipos de Instalaciones</h2>\n<h3>Instalaciones Domésticas</h3>\n<ul>\n<li><strong>Viviendas nuevas</strong>: Instalación completa desde cero</li>\n<li><strong>Reformas</strong>: Actualización de instalaciones existentes</li>\n<li><strong>Ampliaciones</strong>: Nuevos circuitos y puntos de luz</li>\n<li><strong>Mantenimiento</strong>: Reparaciones y mejoras</li>\n</ul>\n<h3>Instalaciones Comerciales</h3>\n<ul>\n<li><strong>Locales comerciales</strong>: Iluminación y equipos</li>\n<li><strong>Oficinas</strong>: Cableado estructurado y electricidad</li>\n<li><strong>Restaurantes</strong>: Instalaciones específicas para hostelería</li>\n<li><strong>Almacenes</strong>: Iluminación industrial y equipos</li>\n</ul>\n<h3>Instalaciones Industriales</h3>\n<ul>\n<li><strong>Naves industriales</strong>: Instalaciones de alta potencia</li>\n<li><strong>Maquinaria</strong>: Conexiones y automatización</li>\n<li><strong>Sistemas de emergencia</strong>: Iluminación y equipos de seguridad</li>\n<li><strong>Cuadros eléctricos</strong>: Diseño e instalación</li>\n</ul>\n<h2>Servicios Especializados</h2>\n<h3>Cableado Estructurado</h3>\n<ul>\n<li><strong>Redes de datos</strong>: Cableado Cat6/Cat7 para internet</li>\n<li><strong>Telefonía</strong>: Instalación de líneas telefónicas</li>\n<li><strong>Videovigilancia</strong>: Cableado para sistemas CCTV</li>\n<li><strong>Sonido</strong>: Instalaciones de audio profesional</li>\n</ul>\n<h3>Energía Solar</h3>\n<ul>\n<li><strong>Sistemas fotovoltaicos</strong>: Instalación de paneles solares</li>\n<li><strong>Autoconsumo</strong>: Sistemas para reducir la factura eléctrica</li>\n<li><strong>Venta a red</strong>: Instalaciones para vender energía</li>\n<li><strong>Baterías</strong>: Sistemas de almacenamiento energético</li>\n</ul>\n<h3>Automatización</h3>\n<ul>\n<li><strong>Domótica</strong>: Control inteligente del hogar</li>\n<li><strong>Iluminación LED</strong>: Sistemas de iluminación eficiente</li>\n<li><strong>Control de acceso</strong>: Sistemas de entrada automatizados</li>\n<li><strong>Integración</strong>: Conexión con otros sistemas</li>\n</ul>\n<h2>Normativas y Certificaciones</h2>\n<h3>Cumplimiento Normativo</h3>\n<ul>\n<li><strong>REBT</strong>: Reglamento Electrotécnico de Baja Tensión</li>\n<li><strong>RITE</strong>: Reglamento de Instalaciones Térmicas</li>\n<li><strong>Certificaciones</strong>: Instalador autorizado</li>\n<li><strong>Inspecciones</strong>: Certificados de instalación</li>\n</ul>\n<h3>Seguridad</h3>\n<ul>\n<li><strong>Protecciones</strong>: Interruptores diferenciales y magnetotérmicos</li>\n<li><strong>Puesta a tierra</strong>: Sistemas de protección</li>\n<li><strong>Aislamiento</strong>: Materiales certificados</li>\n<li><strong>Pruebas</strong>: Verificación de seguridad</li>\n</ul>\n<h2>Proceso de Trabajo</h2>\n<h3>1. Evaluación y Diseño</h3>\n<ul>\n<li>Análisis de necesidades eléctricas</li>\n<li>Diseño de la instalación según normativas</li>\n<li>Presupuesto detallado</li>\n<li>Planificación de trabajos</li>\n</ul>\n<h3>2. Instalación Profesional</h3>\n<ul>\n<li>Instalación de cuadros eléctricos</li>\n<li>Tendido de cableado</li>\n<li>Instalación de puntos de luz y enchufes</li>\n<li>Conexión de equipos</li>\n</ul>\n<h3>3. Verificación y Certificación</h3>\n<ul>\n<li>Pruebas de funcionamiento</li>\n<li>Medición de parámetros eléctricos</li>\n<li>Certificado de instalación</li>\n<li>Documentación técnica</li>\n</ul>\n<h2>Mantenimiento y Emergencias</h2>\n<h3>Mantenimiento Preventivo</h3>\n<ul>\n<li>Revisión anual de instalaciones</li>\n<li>Verificación de protecciones</li>\n<li>Limpieza de cuadros eléctricos</li>\n<li>Actualización de equipos</li>\n</ul>\n<h3>Servicios de Emergencia</h3>\n<ul>\n<li>Reparaciones urgentes 24/7</li>\n<li>Averías eléctricas</li>\n<li>Sustitución de componentes</li>\n<li>Restauración de servicio</li>\n</ul>\n<h2>Beneficios</h2>\n<ul>\n<li><strong>Seguridad garantizada</strong>: Cumplimiento de todas las normativas</li>\n<li><strong>Ahorro energético</strong>: Instalaciones eficientes</li>\n<li><strong>Profesionalidad</strong>: Técnicos cualificados y certificados</li>\n<li><strong>Garantía</strong>: Todos nuestros trabajos están garantizados</li>\n<li><strong>Soporte</strong>: Atención técnica continua</li>\n</ul>\n<h2>Garantías</h2>\n<ul>\n<li><strong>Garantía de materiales</strong>: 2 años en todos los componentes</li>\n<li><strong>Garantía de instalación</strong>: 1 año en la instalación</li>\n<li><strong>Garantía de funcionamiento</strong>: 30 días de prueba</li>\n<li><strong>Soporte técnico</strong>: Incluido durante el primer año</li>\n</ul>\n<h2>Preguntas frecuentes</h2>\n<h3>¿Qué tipos de instalaciones eléctricas realizan?</h3>\n<p>Realizamos todo tipo de instalaciones: domésticas, comerciales e industriales. Desde instalaciones completas en viviendas nuevas hasta reformas y ampliaciones de instalaciones existentes.</p>\n<h3>¿Tienen certificación oficial?</h3>\n<p>Sí, somos instaladores autorizados con todas las certificaciones necesarias. Cumplimos con el REBT (Reglamento Electrotécnico de Baja Tensión) y emitimos certificados oficiales de instalación.</p>\n<h3>¿Realizan instalaciones de energía solar?</h3>\n<p>Sí, instalamos sistemas de energía solar fotovoltaica para autoconsumo y venta a red. Incluimos paneles solares, inversores y sistemas de monitorización.</p>\n<h3>¿Ofrecen mantenimiento eléctrico?</h3>\n<p>Sí, ofrecemos contratos de mantenimiento preventivo y correctivo. Incluyen revisiones periódicas, limpieza de equipos y soporte técnico para emergencias.</p>\n<h3>¿Qué garantías ofrecen en las instalaciones?</h3>\n<p>Ofrecemos garantía de 2 años en materiales, 1 año en la instalación y soporte técnico incluido durante el primer año. Todos nuestros trabajos cumplen las normativas vigentes.</p>\n<h3>¿Realizan trabajos de emergencia?</h3>\n<p>Sí, ofrecemos servicio de emergencias 24/7 para reparaciones urgentes, averías eléctricas y restauración de servicio en el menor tiempo posible.</p>"
+    },
+    "_id": "servicios/electricidad.mdx",
+    "_raw": {
+      "sourceFilePath": "servicios/electricidad.mdx",
+      "sourceFileName": "electricidad.mdx",
+      "sourceFileDir": "servicios",
+      "contentType": "mdx",
+      "flattenedPath": "servicios/electricidad"
+    },
+    "type": "Servicio",
+    "url": "/servicios/electricidad"
+  },
+  {
+    "title": "Informática",
+    "description": "Instalación, mantenimiento y soporte informático para empresas y particulares en Burgos.",
+    "slug": "informatica",
+    "areaServed": "Burgos y alrededores [No verificado]",
+    "hasOfferCatalog": true,
+    "faq": [
+      "¿Qué tipo de soporte informático ofrecen?",
+      "¿Trabajan con empresas y particulares?"
+    ],
+    "schema": {
+      "@type": "Service",
+      "name": "Informática",
+      "description": "Instalación, mantenimiento y soporte informático para empresas y particulares en Burgos.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Duartec Instalaciones Informáticas"
+      },
+      "areaServed": "Burgos y alrededores [No verificado]",
+      "offers": "[No verificado]",
+      "faq": [
+        {
+          "question": "¿Qué tipo de soporte informático ofrecen?",
+          "answer": "Ofrecemos instalación, mantenimiento y soporte técnico para equipos y redes informáticas."
+        },
+        {
+          "question": "¿Trabajan con empresas y particulares?",
+          "answer": "Sí, nuestros servicios están dirigidos tanto a empresas como a particulares.\r"
+        }
+      ]
+    },
+    "body": {
+      "raw": "\r\n# Informática\r\n\r\nOfrecemos soluciones integrales en informática: instalación, mantenimiento y soporte técnico para empresas y particulares. Trabajamos con equipos, redes y software, adaptándonos a las necesidades de cada cliente.\r\n\r\n## Beneficios\r\n\r\n- Asesoramiento personalizado\r\n- Respuesta rápida\r\n- Experiencia en múltiples sectores\r\n\r\n## Proceso\r\n\r\n1. Análisis de necesidades\r\n2. Propuesta técnica\r\n3. Instalación y configuración\r\n4. Mantenimiento y soporte\r\n\r\n## Garantías\r\n\r\n- Calidad de servicio\r\n- Atención cercana\r\n- Cumplimiento de normativas\r\n\r\n## Preguntas frecuentes\r\n\r\n### ¿Qué tipo de soporte informático ofrecen?\r\n\r\nOfrecemos instalación, mantenimiento y soporte técnico para equipos y redes informáticas.\r\n\r\n### ¿Trabajan con empresas y particulares?\r\n\r\nSí, nuestros servicios están dirigidos tanto a empresas como a particulares.\r\n",
+      "html": "<h1>Informática</h1>\n<p>Ofrecemos soluciones integrales en informática: instalación, mantenimiento y soporte técnico para empresas y particulares. Trabajamos con equipos, redes y software, adaptándonos a las necesidades de cada cliente.</p>\n<h2>Beneficios</h2>\n<ul>\n<li>Asesoramiento personalizado</li>\n<li>Respuesta rápida</li>\n<li>Experiencia en múltiples sectores</li>\n</ul>\n<h2>Proceso</h2>\n<ol>\n<li>Análisis de necesidades</li>\n<li>Propuesta técnica</li>\n<li>Instalación y configuración</li>\n<li>Mantenimiento y soporte</li>\n</ol>\n<h2>Garantías</h2>\n<ul>\n<li>Calidad de servicio</li>\n<li>Atención cercana</li>\n<li>Cumplimiento de normativas</li>\n</ul>\n<h2>Preguntas frecuentes</h2>\n<h3>¿Qué tipo de soporte informático ofrecen?</h3>\n<p>Ofrecemos instalación, mantenimiento y soporte técnico para equipos y redes informáticas.</p>\n<h3>¿Trabajan con empresas y particulares?</h3>\n<p>Sí, nuestros servicios están dirigidos tanto a empresas como a particulares.</p>"
+    },
+    "_id": "servicios/informatica.mdx",
+    "_raw": {
+      "sourceFilePath": "servicios/informatica.mdx",
+      "sourceFileName": "informatica.mdx",
+      "sourceFileDir": "servicios",
+      "contentType": "mdx",
+      "flattenedPath": "servicios/informatica"
+    },
+    "type": "Servicio",
+    "url": "/servicios/informatica"
+  },
+  {
+    "title": "Sonido Profesional",
+    "description": "Instalaciones de audio profesional para eventos, locales comerciales y espacios públicos en Burgos.",
+    "slug": "sonido",
+    "areaServed": "Burgos y alrededores",
+    "hasOfferCatalog": true,
+    "faq": [
+      "¿Qué tipos de instalaciones de sonido realizan?",
+      "¿Trabajan con marcas profesionales?",
+      "¿Incluyen acústica en las instalaciones?",
+      "¿Ofrecen mantenimiento de equipos de sonido?"
+    ],
+    "schema": {
+      "@type": "Service",
+      "name": "Sonido Profesional",
+      "description": "Instalaciones de audio profesional para eventos, locales comerciales y espacios públicos en Burgos.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Duartec Instalaciones Informáticas"
+      },
+      "areaServed": "Burgos y alrededores",
+      "offers": "Sistemas de audio profesional",
+      "faq": [
+        {
+          "question": "¿Qué tipos de instalaciones de sonido realizan?",
+          "answer": "Instalamos sistemas de sonido para bares, restaurantes, salas de eventos, iglesias, auditorios y espacios públicos."
+        },
+        {
+          "question": "¿Trabajan con marcas profesionales?",
+          "answer": "Sí, trabajamos con las mejores marcas: Bose, JBL, Yamaha, QSC, y otras marcas profesionales del sector."
+        },
+        {
+          "question": "¿Incluyen acústica en las instalaciones?",
+          "answer": "Sí, realizamos estudios acústicos y aplicamos tratamientos acústicos para optimizar la calidad del sonido."
+        },
+        {
+          "question": "¿Ofrecen mantenimiento de equipos de sonido?",
+          "answer": "Ofrecemos contratos de mantenimiento preventivo y correctivo para todos nuestros sistemas de sonido.\r"
+        }
+      ]
+    },
+    "body": {
+      "raw": "\r\n# Sonido Profesional\r\n\r\nEspecialistas en instalaciones de audio profesional para todo tipo de espacios. Desde sistemas de megafonía para comercios hasta instalaciones complejas para salas de eventos, auditorios e iglesias.\r\n\r\n## Tipos de Instalaciones\r\n\r\n### Sistemas de Megafonía\r\n- **Comercios y restaurantes**: Música ambiental y anuncios\r\n- **Oficinas y empresas**: Comunicaciones internas\r\n- **Centros comerciales**: Megafonía de emergencia y música\r\n- **Estacionamientos**: Sistemas de evacuación\r\n\r\n### Sistemas de Eventos\r\n- **Salas de fiestas**: Sistemas de alta potencia\r\n- **Auditorios**: Sonido profesional para presentaciones\r\n- **Iglesias**: Sistemas de refuerzo de voz y música\r\n- **Teatros**: Sistemas de sonido escénico\r\n\r\n### Sistemas Especializados\r\n- **Estudios de grabación**: Acústica y equipamiento\r\n- **Home cinema**: Sistemas de entretenimiento\r\n- **Sistemas de conferencias**: Audio para reuniones\r\n- **Sistemas de emergencia**: Megafonía de evacuación\r\n\r\n## Equipamiento Profesional\r\n\r\n### Altavoces y Monitores\r\n- **Altavoces de techo**: Discretos y eficientes\r\n- **Monitores de pared**: Para espacios específicos\r\n- **Subwoofers**: Para refuerzo de bajos\r\n- **Monitores de escenario**: Para eventos en vivo\r\n\r\n### Amplificadores y Procesadores\r\n- **Amplificadores de potencia**: Marca QSC, Crown, Yamaha\r\n- **Procesadores DSP**: Control digital de señal\r\n- **Mezcladores**: Para control de múltiples fuentes\r\n- **Efectos**: Reverb, delay, ecualización\r\n\r\n### Fuentes de Audio\r\n- **Reproductores de música**: Integración con streaming\r\n- **Micrófonos**: Inalámbricos y cableados\r\n- **Sistemas de DJ**: Equipamiento profesional\r\n- **Integración con video**: Sincronización audio-video\r\n\r\n## Servicios de Acústica\r\n\r\n### Estudios Acústicos\r\n- Análisis de la acústica del espacio\r\n- Medición de reverberación y eco\r\n- Identificación de problemas acústicos\r\n- Propuestas de mejora\r\n\r\n### Tratamientos Acústicos\r\n- **Absorción**: Paneles acústicos y difusores\r\n- **Aislamiento**: Reducción de ruido entre espacios\r\n- **Difusión**: Distribución uniforme del sonido\r\n- **Bass traps**: Control de frecuencias bajas\r\n\r\n## Proceso de Instalación\r\n\r\n### 1. Análisis y Diseño\r\n- Evaluación de las necesidades acústicas\r\n- Diseño del sistema según el espacio\r\n- Selección de equipos apropiados\r\n- Presupuesto detallado\r\n\r\n### 2. Instalación Profesional\r\n- Instalación de altavoces y equipos\r\n- Cableado estructurado profesional\r\n- Configuración de procesadores\r\n- Pruebas de funcionamiento\r\n\r\n### 3. Configuración y Optimización\r\n- Calibración del sistema\r\n- Configuración de zonas y volúmenes\r\n- Entrenamiento del personal\r\n- Documentación técnica\r\n\r\n## Mantenimiento y Soporte\r\n\r\n### Mantenimiento Preventivo\r\n- Revisión mensual de equipos\r\n- Limpieza de altavoces y conexiones\r\n- Verificación de calibración\r\n- Actualización de firmware\r\n\r\n### Servicios Técnicos\r\n- Reparación de equipos\r\n- Sustitución de componentes\r\n- Mejoras y actualizaciones\r\n- Soporte técnico especializado\r\n\r\n## Beneficios\r\n\r\n- **Calidad profesional**: Equipos de marcas reconocidas\r\n- **Optimización acústica**: Mejor experiencia de sonido\r\n- **Flexibilidad**: Sistemas configurables y escalables\r\n- **Fiabilidad**: Equipos robustos para uso intensivo\r\n- **Soporte técnico**: Mantenimiento y asistencia continua\r\n\r\n## Garantías\r\n\r\n- **Garantía de equipos**: 2 años en todos los componentes\r\n- **Garantía de instalación**: 1 año en la instalación\r\n- **Garantía de funcionamiento**: 30 días de prueba\r\n- **Soporte técnico**: Incluido durante el primer año\r\n\r\n## Preguntas frecuentes\r\n\r\n### ¿Qué tipos de instalaciones de sonido realizan?\r\n\r\nRealizamos todo tipo de instalaciones: sistemas de megafonía para comercios, sonido profesional para eventos, sistemas de refuerzo para iglesias, instalaciones para auditorios y estudios de grabación.\r\n\r\n### ¿Trabajan con marcas profesionales?\r\n\r\nSí, trabajamos exclusivamente con las mejores marcas del sector: Bose, JBL, Yamaha, QSC, Crown, Shure, Sennheiser y otras marcas profesionales reconocidas.\r\n\r\n### ¿Incluyen acústica en las instalaciones?\r\n\r\nAbsolutamente. Realizamos estudios acústicos completos y aplicamos tratamientos acústicos cuando es necesario para optimizar la calidad del sonido en cada espacio.\r\n\r\n### ¿Ofrecen mantenimiento de equipos de sonido?\r\n\r\nSí, ofrecemos contratos de mantenimiento preventivo y correctivo. Incluyen revisiones periódicas, limpieza, calibración y soporte técnico especializado.\r\n\r\n### ¿Pueden integrar el sonido con otros sistemas?\r\n\r\nSí, nuestros sistemas se pueden integrar con iluminación, video, domótica y otros sistemas para crear experiencias multimedia completas.\r\n\r\n### ¿Qué garantías ofrecen en los equipos?\r\n\r\nOfrecemos garantía de 2 años en todos los equipos, garantía de instalación de 1 año y soporte técnico incluido durante el primer año.\r\n",
+      "html": "<h1>Sonido Profesional</h1>\n<p>Especialistas en instalaciones de audio profesional para todo tipo de espacios. Desde sistemas de megafonía para comercios hasta instalaciones complejas para salas de eventos, auditorios e iglesias.</p>\n<h2>Tipos de Instalaciones</h2>\n<h3>Sistemas de Megafonía</h3>\n<ul>\n<li><strong>Comercios y restaurantes</strong>: Música ambiental y anuncios</li>\n<li><strong>Oficinas y empresas</strong>: Comunicaciones internas</li>\n<li><strong>Centros comerciales</strong>: Megafonía de emergencia y música</li>\n<li><strong>Estacionamientos</strong>: Sistemas de evacuación</li>\n</ul>\n<h3>Sistemas de Eventos</h3>\n<ul>\n<li><strong>Salas de fiestas</strong>: Sistemas de alta potencia</li>\n<li><strong>Auditorios</strong>: Sonido profesional para presentaciones</li>\n<li><strong>Iglesias</strong>: Sistemas de refuerzo de voz y música</li>\n<li><strong>Teatros</strong>: Sistemas de sonido escénico</li>\n</ul>\n<h3>Sistemas Especializados</h3>\n<ul>\n<li><strong>Estudios de grabación</strong>: Acústica y equipamiento</li>\n<li><strong>Home cinema</strong>: Sistemas de entretenimiento</li>\n<li><strong>Sistemas de conferencias</strong>: Audio para reuniones</li>\n<li><strong>Sistemas de emergencia</strong>: Megafonía de evacuación</li>\n</ul>\n<h2>Equipamiento Profesional</h2>\n<h3>Altavoces y Monitores</h3>\n<ul>\n<li><strong>Altavoces de techo</strong>: Discretos y eficientes</li>\n<li><strong>Monitores de pared</strong>: Para espacios específicos</li>\n<li><strong>Subwoofers</strong>: Para refuerzo de bajos</li>\n<li><strong>Monitores de escenario</strong>: Para eventos en vivo</li>\n</ul>\n<h3>Amplificadores y Procesadores</h3>\n<ul>\n<li><strong>Amplificadores de potencia</strong>: Marca QSC, Crown, Yamaha</li>\n<li><strong>Procesadores DSP</strong>: Control digital de señal</li>\n<li><strong>Mezcladores</strong>: Para control de múltiples fuentes</li>\n<li><strong>Efectos</strong>: Reverb, delay, ecualización</li>\n</ul>\n<h3>Fuentes de Audio</h3>\n<ul>\n<li><strong>Reproductores de música</strong>: Integración con streaming</li>\n<li><strong>Micrófonos</strong>: Inalámbricos y cableados</li>\n<li><strong>Sistemas de DJ</strong>: Equipamiento profesional</li>\n<li><strong>Integración con video</strong>: Sincronización audio-video</li>\n</ul>\n<h2>Servicios de Acústica</h2>\n<h3>Estudios Acústicos</h3>\n<ul>\n<li>Análisis de la acústica del espacio</li>\n<li>Medición de reverberación y eco</li>\n<li>Identificación de problemas acústicos</li>\n<li>Propuestas de mejora</li>\n</ul>\n<h3>Tratamientos Acústicos</h3>\n<ul>\n<li><strong>Absorción</strong>: Paneles acústicos y difusores</li>\n<li><strong>Aislamiento</strong>: Reducción de ruido entre espacios</li>\n<li><strong>Difusión</strong>: Distribución uniforme del sonido</li>\n<li><strong>Bass traps</strong>: Control de frecuencias bajas</li>\n</ul>\n<h2>Proceso de Instalación</h2>\n<h3>1. Análisis y Diseño</h3>\n<ul>\n<li>Evaluación de las necesidades acústicas</li>\n<li>Diseño del sistema según el espacio</li>\n<li>Selección de equipos apropiados</li>\n<li>Presupuesto detallado</li>\n</ul>\n<h3>2. Instalación Profesional</h3>\n<ul>\n<li>Instalación de altavoces y equipos</li>\n<li>Cableado estructurado profesional</li>\n<li>Configuración de procesadores</li>\n<li>Pruebas de funcionamiento</li>\n</ul>\n<h3>3. Configuración y Optimización</h3>\n<ul>\n<li>Calibración del sistema</li>\n<li>Configuración de zonas y volúmenes</li>\n<li>Entrenamiento del personal</li>\n<li>Documentación técnica</li>\n</ul>\n<h2>Mantenimiento y Soporte</h2>\n<h3>Mantenimiento Preventivo</h3>\n<ul>\n<li>Revisión mensual de equipos</li>\n<li>Limpieza de altavoces y conexiones</li>\n<li>Verificación de calibración</li>\n<li>Actualización de firmware</li>\n</ul>\n<h3>Servicios Técnicos</h3>\n<ul>\n<li>Reparación de equipos</li>\n<li>Sustitución de componentes</li>\n<li>Mejoras y actualizaciones</li>\n<li>Soporte técnico especializado</li>\n</ul>\n<h2>Beneficios</h2>\n<ul>\n<li><strong>Calidad profesional</strong>: Equipos de marcas reconocidas</li>\n<li><strong>Optimización acústica</strong>: Mejor experiencia de sonido</li>\n<li><strong>Flexibilidad</strong>: Sistemas configurables y escalables</li>\n<li><strong>Fiabilidad</strong>: Equipos robustos para uso intensivo</li>\n<li><strong>Soporte técnico</strong>: Mantenimiento y asistencia continua</li>\n</ul>\n<h2>Garantías</h2>\n<ul>\n<li><strong>Garantía de equipos</strong>: 2 años en todos los componentes</li>\n<li><strong>Garantía de instalación</strong>: 1 año en la instalación</li>\n<li><strong>Garantía de funcionamiento</strong>: 30 días de prueba</li>\n<li><strong>Soporte técnico</strong>: Incluido durante el primer año</li>\n</ul>\n<h2>Preguntas frecuentes</h2>\n<h3>¿Qué tipos de instalaciones de sonido realizan?</h3>\n<p>Realizamos todo tipo de instalaciones: sistemas de megafonía para comercios, sonido profesional para eventos, sistemas de refuerzo para iglesias, instalaciones para auditorios y estudios de grabación.</p>\n<h3>¿Trabajan con marcas profesionales?</h3>\n<p>Sí, trabajamos exclusivamente con las mejores marcas del sector: Bose, JBL, Yamaha, QSC, Crown, Shure, Sennheiser y otras marcas profesionales reconocidas.</p>\n<h3>¿Incluyen acústica en las instalaciones?</h3>\n<p>Absolutamente. Realizamos estudios acústicos completos y aplicamos tratamientos acústicos cuando es necesario para optimizar la calidad del sonido en cada espacio.</p>\n<h3>¿Ofrecen mantenimiento de equipos de sonido?</h3>\n<p>Sí, ofrecemos contratos de mantenimiento preventivo y correctivo. Incluyen revisiones periódicas, limpieza, calibración y soporte técnico especializado.</p>\n<h3>¿Pueden integrar el sonido con otros sistemas?</h3>\n<p>Sí, nuestros sistemas se pueden integrar con iluminación, video, domótica y otros sistemas para crear experiencias multimedia completas.</p>\n<h3>¿Qué garantías ofrecen en los equipos?</h3>\n<p>Ofrecemos garantía de 2 años en todos los equipos, garantía de instalación de 1 año y soporte técnico incluido durante el primer año.</p>"
+    },
+    "_id": "servicios/sonido.mdx",
+    "_raw": {
+      "sourceFilePath": "servicios/sonido.mdx",
+      "sourceFileName": "sonido.mdx",
+      "sourceFileDir": "servicios",
+      "contentType": "mdx",
+      "flattenedPath": "servicios/sonido"
+    },
+    "type": "Servicio",
+    "url": "/servicios/sonido"
+  },
+  {
+    "title": "Videovigilancia (CCTV)",
+    "description": "Instalación y gestión de sistemas de videovigilancia y seguridad para empresas y particulares en Burgos.",
+    "slug": "videovigilancia",
+    "areaServed": "Burgos y alrededores",
+    "hasOfferCatalog": true,
+    "faq": [
+      "¿Qué tipos de cámaras de seguridad ofrecen?",
+      "¿Los sistemas incluyen grabación y almacenamiento?",
+      "¿Puedo acceder a las cámaras desde mi móvil?",
+      "¿Ofrecen mantenimiento de los sistemas instalados?"
+    ],
+    "schema": {
+      "@type": "Service",
+      "name": "Videovigilancia (CCTV)",
+      "description": "Instalación y gestión de sistemas de videovigilancia y seguridad para empresas y particulares en Burgos.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Duartec Instalaciones Informáticas"
+      },
+      "areaServed": "Burgos y alrededores",
+      "offers": "Sistemas de CCTV completos",
+      "faq": [
+        {
+          "question": "¿Qué tipos de cámaras de seguridad ofrecen?",
+          "answer": "Ofrecemos cámaras domo, bullet, PTZ, térmicas y con visión nocturna para diferentes necesidades."
+        },
+        {
+          "question": "¿Los sistemas incluyen grabación y almacenamiento?",
+          "answer": "Sí, todos nuestros sistemas incluyen DVR/NVR con almacenamiento configurable según tus necesidades."
+        },
+        {
+          "question": "¿Puedo acceder a las cámaras desde mi móvil?",
+          "answer": "Absolutamente, todos nuestros sistemas incluyen acceso remoto vía app móvil y web."
+        },
+        {
+          "question": "¿Ofrecen mantenimiento de los sistemas instalados?",
+          "answer": "Sí, ofrecemos contratos de mantenimiento preventivo y correctivo para todos nuestros sistemas.\r"
+        }
+      ]
+    },
+    "body": {
+      "raw": "\r\n# Videovigilancia (CCTV)\r\n\r\nInstalamos y mantenemos sistemas de videovigilancia y seguridad completos para empresas, comercios y particulares. Nuestras soluciones incluyen cámaras de alta definición, grabación digital y acceso remoto para tu tranquilidad.\r\n\r\n## Tipos de Sistemas\r\n\r\n### Cámaras Domésticas\r\n- **Cámaras domo**: Discretas y versátiles para interiores\r\n- **Cámaras bullet**: Robustas para exteriores\r\n- **Cámaras PTZ**: Con movimiento y zoom controlado\r\n- **Cámaras térmicas**: Para detección en condiciones de baja visibilidad\r\n\r\n### Sistemas Empresariales\r\n- **Videovigilancia IP**: Alta definición y escalabilidad\r\n- **Sistemas híbridos**: Compatibles con cámaras analógicas e IP\r\n- **Control de acceso**: Integración con sistemas de entrada\r\n- **Analítica avanzada**: Detección de movimiento y reconocimiento\r\n\r\n## Características Principales\r\n\r\n### Calidad de Imagen\r\n- Resolución hasta 4K Ultra HD\r\n- Visión nocturna infrarroja\r\n- Compresión H.264/H.265 para optimizar almacenamiento\r\n- WDR (Wide Dynamic Range) para condiciones de luz variables\r\n\r\n### Almacenamiento y Grabación\r\n- DVR/NVR con capacidad configurable\r\n- Grabación continua o por detección de movimiento\r\n- Retención de datos personalizable\r\n- Backup automático en la nube (opcional)\r\n\r\n### Acceso Remoto\r\n- App móvil para iOS y Android\r\n- Acceso web desde cualquier dispositivo\r\n- Notificaciones push en tiempo real\r\n- Control PTZ desde móvil\r\n\r\n## Beneficios\r\n\r\n- **Seguridad 24/7**: Vigilancia continua de tu propiedad\r\n- **Disuasión**: La presencia de cámaras reduce el riesgo de incidentes\r\n- **Evidencia**: Grabaciones útiles en caso de incidentes\r\n- **Tranquilidad**: Acceso remoto para verificar el estado en cualquier momento\r\n- **Ahorro**: Reducción de costes de seguridad tradicional\r\n\r\n## Proceso de Instalación\r\n\r\n### 1. Evaluación y Diseño\r\n- Análisis de las necesidades de seguridad\r\n- Estudio del espacio y puntos críticos\r\n- Diseño del sistema optimizado\r\n- Presupuesto detallado\r\n\r\n### 2. Instalación Profesional\r\n- Instalación de cámaras en ubicaciones estratégicas\r\n- Configuración del sistema de grabación\r\n- Configuración del acceso remoto\r\n- Pruebas de funcionamiento\r\n\r\n### 3. Configuración y Entrenamiento\r\n- Configuración de alertas y notificaciones\r\n- Entrenamiento en el uso del sistema\r\n- Documentación técnica\r\n- Garantía post-instalación\r\n\r\n## Mantenimiento y Soporte\r\n\r\n### Mantenimiento Preventivo\r\n- Revisión trimestral de equipos\r\n- Limpieza de lentes y cámaras\r\n- Actualización de firmware\r\n- Verificación de grabaciones\r\n\r\n### Soporte Técnico\r\n- Atención telefónica 24/7\r\n- Visitas técnicas en menos de 4 horas\r\n- Reparación y sustitución de equipos\r\n- Actualización de sistemas\r\n\r\n## Garantías\r\n\r\n- **Garantía de equipos**: 2 años en todos los componentes\r\n- **Garantía de instalación**: 1 año en la instalación\r\n- **Garantía de funcionamiento**: 30 días de prueba\r\n- **Soporte técnico**: Incluido durante el primer año\r\n\r\n## Preguntas frecuentes\r\n\r\n### ¿Qué tipos de cámaras de seguridad ofrecen?\r\n\r\nOfrecemos una amplia gama de cámaras: domo para interiores, bullet para exteriores, PTZ con movimiento controlado, térmicas para condiciones especiales y cámaras con visión nocturna. Cada tipo se adapta a necesidades específicas.\r\n\r\n### ¿Los sistemas incluyen grabación y almacenamiento?\r\n\r\nSí, todos nuestros sistemas incluyen DVR (Digital Video Recorder) o NVR (Network Video Recorder) con almacenamiento configurable. Puedes elegir la capacidad según tus necesidades de retención de grabaciones.\r\n\r\n### ¿Puedo acceder a las cámaras desde mi móvil?\r\n\r\nAbsolutamente. Todos nuestros sistemas incluyen acceso remoto vía aplicación móvil para iOS y Android, así como acceso web desde cualquier dispositivo con conexión a internet.\r\n\r\n### ¿Ofrecen mantenimiento de los sistemas instalados?\r\n\r\nSí, ofrecemos contratos de mantenimiento preventivo y correctivo. Incluyen revisiones periódicas, limpieza, actualizaciones y soporte técnico 24/7 para emergencias.\r\n\r\n### ¿Los sistemas son compatibles con otros equipos de seguridad?\r\n\r\nSí, nuestros sistemas se pueden integrar con alarmas, control de acceso, domótica y otros sistemas de seguridad existentes para crear una solución integral.\r\n\r\n### ¿Qué pasa si hay un corte de electricidad o internet?\r\n\r\nLos sistemas incluyen baterías de respaldo para mantener la grabación durante cortes eléctricos. Para cortes de internet, las cámaras siguen grabando localmente y se sincronizan cuando se restaura la conexión.\r\n",
+      "html": "<h1>Videovigilancia (CCTV)</h1>\n<p>Instalamos y mantenemos sistemas de videovigilancia y seguridad completos para empresas, comercios y particulares. Nuestras soluciones incluyen cámaras de alta definición, grabación digital y acceso remoto para tu tranquilidad.</p>\n<h2>Tipos de Sistemas</h2>\n<h3>Cámaras Domésticas</h3>\n<ul>\n<li><strong>Cámaras domo</strong>: Discretas y versátiles para interiores</li>\n<li><strong>Cámaras bullet</strong>: Robustas para exteriores</li>\n<li><strong>Cámaras PTZ</strong>: Con movimiento y zoom controlado</li>\n<li><strong>Cámaras térmicas</strong>: Para detección en condiciones de baja visibilidad</li>\n</ul>\n<h3>Sistemas Empresariales</h3>\n<ul>\n<li><strong>Videovigilancia IP</strong>: Alta definición y escalabilidad</li>\n<li><strong>Sistemas híbridos</strong>: Compatibles con cámaras analógicas e IP</li>\n<li><strong>Control de acceso</strong>: Integración con sistemas de entrada</li>\n<li><strong>Analítica avanzada</strong>: Detección de movimiento y reconocimiento</li>\n</ul>\n<h2>Características Principales</h2>\n<h3>Calidad de Imagen</h3>\n<ul>\n<li>Resolución hasta 4K Ultra HD</li>\n<li>Visión nocturna infrarroja</li>\n<li>Compresión H.264/H.265 para optimizar almacenamiento</li>\n<li>WDR (Wide Dynamic Range) para condiciones de luz variables</li>\n</ul>\n<h3>Almacenamiento y Grabación</h3>\n<ul>\n<li>DVR/NVR con capacidad configurable</li>\n<li>Grabación continua o por detección de movimiento</li>\n<li>Retención de datos personalizable</li>\n<li>Backup automático en la nube (opcional)</li>\n</ul>\n<h3>Acceso Remoto</h3>\n<ul>\n<li>App móvil para iOS y Android</li>\n<li>Acceso web desde cualquier dispositivo</li>\n<li>Notificaciones push en tiempo real</li>\n<li>Control PTZ desde móvil</li>\n</ul>\n<h2>Beneficios</h2>\n<ul>\n<li><strong>Seguridad 24/7</strong>: Vigilancia continua de tu propiedad</li>\n<li><strong>Disuasión</strong>: La presencia de cámaras reduce el riesgo de incidentes</li>\n<li><strong>Evidencia</strong>: Grabaciones útiles en caso de incidentes</li>\n<li><strong>Tranquilidad</strong>: Acceso remoto para verificar el estado en cualquier momento</li>\n<li><strong>Ahorro</strong>: Reducción de costes de seguridad tradicional</li>\n</ul>\n<h2>Proceso de Instalación</h2>\n<h3>1. Evaluación y Diseño</h3>\n<ul>\n<li>Análisis de las necesidades de seguridad</li>\n<li>Estudio del espacio y puntos críticos</li>\n<li>Diseño del sistema optimizado</li>\n<li>Presupuesto detallado</li>\n</ul>\n<h3>2. Instalación Profesional</h3>\n<ul>\n<li>Instalación de cámaras en ubicaciones estratégicas</li>\n<li>Configuración del sistema de grabación</li>\n<li>Configuración del acceso remoto</li>\n<li>Pruebas de funcionamiento</li>\n</ul>\n<h3>3. Configuración y Entrenamiento</h3>\n<ul>\n<li>Configuración de alertas y notificaciones</li>\n<li>Entrenamiento en el uso del sistema</li>\n<li>Documentación técnica</li>\n<li>Garantía post-instalación</li>\n</ul>\n<h2>Mantenimiento y Soporte</h2>\n<h3>Mantenimiento Preventivo</h3>\n<ul>\n<li>Revisión trimestral de equipos</li>\n<li>Limpieza de lentes y cámaras</li>\n<li>Actualización de firmware</li>\n<li>Verificación de grabaciones</li>\n</ul>\n<h3>Soporte Técnico</h3>\n<ul>\n<li>Atención telefónica 24/7</li>\n<li>Visitas técnicas en menos de 4 horas</li>\n<li>Reparación y sustitución de equipos</li>\n<li>Actualización de sistemas</li>\n</ul>\n<h2>Garantías</h2>\n<ul>\n<li><strong>Garantía de equipos</strong>: 2 años en todos los componentes</li>\n<li><strong>Garantía de instalación</strong>: 1 año en la instalación</li>\n<li><strong>Garantía de funcionamiento</strong>: 30 días de prueba</li>\n<li><strong>Soporte técnico</strong>: Incluido durante el primer año</li>\n</ul>\n<h2>Preguntas frecuentes</h2>\n<h3>¿Qué tipos de cámaras de seguridad ofrecen?</h3>\n<p>Ofrecemos una amplia gama de cámaras: domo para interiores, bullet para exteriores, PTZ con movimiento controlado, térmicas para condiciones especiales y cámaras con visión nocturna. Cada tipo se adapta a necesidades específicas.</p>\n<h3>¿Los sistemas incluyen grabación y almacenamiento?</h3>\n<p>Sí, todos nuestros sistemas incluyen DVR (Digital Video Recorder) o NVR (Network Video Recorder) con almacenamiento configurable. Puedes elegir la capacidad según tus necesidades de retención de grabaciones.</p>\n<h3>¿Puedo acceder a las cámaras desde mi móvil?</h3>\n<p>Absolutamente. Todos nuestros sistemas incluyen acceso remoto vía aplicación móvil para iOS y Android, así como acceso web desde cualquier dispositivo con conexión a internet.</p>\n<h3>¿Ofrecen mantenimiento de los sistemas instalados?</h3>\n<p>Sí, ofrecemos contratos de mantenimiento preventivo y correctivo. Incluyen revisiones periódicas, limpieza, actualizaciones y soporte técnico 24/7 para emergencias.</p>\n<h3>¿Los sistemas son compatibles con otros equipos de seguridad?</h3>\n<p>Sí, nuestros sistemas se pueden integrar con alarmas, control de acceso, domótica y otros sistemas de seguridad existentes para crear una solución integral.</p>\n<h3>¿Qué pasa si hay un corte de electricidad o internet?</h3>\n<p>Los sistemas incluyen baterías de respaldo para mantener la grabación durante cortes eléctricos. Para cortes de internet, las cámaras siguen grabando localmente y se sincronizan cuando se restaura la conexión.</p>"
+    },
+    "_id": "servicios/videovigilancia.mdx",
+    "_raw": {
+      "sourceFilePath": "servicios/videovigilancia.mdx",
+      "sourceFileName": "videovigilancia.mdx",
+      "sourceFileDir": "servicios",
+      "contentType": "mdx",
+      "flattenedPath": "servicios/videovigilancia"
+    },
+    "type": "Servicio",
+    "url": "/servicios/videovigilancia"
+  }
+]
