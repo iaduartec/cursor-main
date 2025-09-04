@@ -110,6 +110,13 @@ jobs:
             echo "::error::No se generó el archivo del artículo"
             exit 1
           fi
+          
+          # Verificar que se generó una imagen
+          if [ ! -d "public/images/blog/${{ steps.parse.outputs.slug }}" ]; then
+            echo "::warning::No se generaron imágenes, pero el artículo se creó correctamente"
+          else
+            echo "✅ Imágenes generadas en public/images/blog/${{ steps.parse.outputs.slug }}/"
+          fi
 
       - name: Commit changes
         if: steps.parse.outputs.skip == 'false' && success()

@@ -361,6 +361,17 @@ def main():
     
     if not image_path:
         print("⚠️  No se pudo generar una imagen válida")
+        print("🖼️  Generando imagen de placeholder...")
+        try:
+            from generate_placeholder_image import create_placeholder_image
+            placeholder_path = create_placeholder_image(slug, topic, args.style, args.accent)
+            if placeholder_path.exists() and placeholder_path.stat().st_size > 1000:
+                image_path = f"/images/blog/{slug}/{placeholder_path.name}"
+                print(f"✅ Imagen de placeholder generada: {image_path}")
+            else:
+                print("❌ Error generando imagen de placeholder")
+        except Exception as e:
+            print(f"❌ Error generando placeholder: {e}")
 
     # 3) Crear MDX con frontmatter + cuerpo
     post_path = CONTENT_DIR / f"{slug}.mdx"
