@@ -176,11 +176,12 @@ def gen_images_with_openai(prompt: str, slug: str, how_many: int = 1) -> List[Pa
         n = max(1, how_many)
         
         print(f"[INFO] Generando {n} imagen(es) con OpenAI...")
-        # gpt-image-1 acepta size tipo 1920x1080 para 16:9
+        # gpt-image-1 acepta tamaños como '1024x1536' (vertical) o '1920x1080' (16:9).
+        # Usamos el tamaño recomendado/solicitado: 1024x1536
         res = client.images.generate(
             model="gpt-image-1",
             prompt=prompt,
-            size="1920x1080",
+            size="1024x1536",
             n=n,
         )
         

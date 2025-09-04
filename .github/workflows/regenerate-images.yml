@@ -1,7 +1,12 @@
 name: Regenerate Blog Images
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Optional slug of a single article to regenerate images for'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -12,6 +17,8 @@ jobs:
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      KIE_API_KEY: ${{ secrets.KIE_API_KEY }}
+      SLUG: ${{ github.event.inputs.slug }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,18 +38,49 @@ jobs:
           mkdir -p content/blog
           mkdir -p public/images/blog
 
-      - name: Regenerate images for all blog posts
+      - name: Regenerate images for blog posts
         shell: bash
         run: |
           set -euo pipefail
-          # Iterate over mdx files and call the generator using the title from frontmatter
-          for f in content/blog/*.mdx; do
-            if [ -f "$f" ]; then
-              title=$(awk '/^title:/{print; exit}' "$f" | sed -E "s/^title:\s*['\"]?(.*)['\"]?$/\1/")
-              echo "Generating images for: $title"
+          # If SLUG provided, try to run only for that article; otherwise iterate all
+          if [ -n "${SLUG:-}" ]; then
+            echo "Slug provided: ${SLUG}"
+            target="content/blog/${SLUG}.mdx"
+            if [ -f "$target" ]; then
+              title=$(awk '/^title:/{print; exit}' "$target" | sed -E "s/^title:\s*['\"]?(.*)['\"]?$/\1/")
+              echo "Generating images for: $title (file: $target)"
               python tools/generate_article.py --topic "$title" --style fotografico --accent azul --details "regeneracion imagenes" --images 1 || true
+            else
+              # Try to find by frontmatter slug or filename containing slug
+              found=$(grep -rl "^slug:\s*${SLUG}" content/blog || true)
+              if [ -n "$found" ]; then
+                f=$(echo "$found" | head -n1)
+                title=$(awk '/^title:/{print; exit}' "$f" | sed -E "s/^title:\s*['\"]?(.*)['\"]?$/\1/")
+                echo "Generating images for: $title (file: $f)"
+                python tools/generate_article.py --topic "$title" --style fotografico --accent azul --details "regeneracion imagenes" --images 1 || true
+              else
+                # Try filenames that contain the slug
+                fmatch=$(ls content/blog/*${SLUG}*.mdx 2>/dev/null || true)
+                if [ -n "$fmatch" ]; then
+                  f=$(echo "$fmatch" | head -n1)
+                  title=$(awk '/^title:/{print; exit}' "$f" | sed -E "s/^title:\s*['\"]?(.*)['\"]?$/\1/")
+                  echo "Generating images for: $title (file: $f)"
+                  python tools/generate_article.py --topic "$title" --style fotografico --accent azul --details "regeneracion imagenes" --images 1 || true
+                else
+                  echo "No article found for slug: ${SLUG}; exiting with success (no-op)"
+                fi
+              fi
             fi
-          done
+          else
+            # Iterate over mdx files and call the generator using the title from frontmatter
+            for f in content/blog/*.mdx; do
+              if [ -f "$f" ]; then
+                title=$(awk '/^title:/{print; exit}' "$f" | sed -E "s/^title:\s*['\"]?(.*)['\"]?$/\1/")
+                echo "Generating images for: $title"
+                python tools/generate_article.py --topic "$title" --style fotografico --accent azul --details "regeneracion imagenes" --images 1 || true
+              fi
+            done
+          fi
 
       - name: Commit and push images
         run: |
