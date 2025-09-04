@@ -67,6 +67,28 @@ def save_inline_image(target_stem: Path, mime: str, data_b64: str) -> Path:
     return out_path
 
 
+def convert_to_webp(src: Path, quality: int = 85) -> Path | None:
+    """Convierte una imagen a WEBP y devuelve la ruta nueva. Si falla, devuelve None.
+    Mantiene el nombre base y cambia la extensión a .webp. Elimina el original si la conversión tiene éxito.
+    """
+    try:
+        from PIL import Image
+        dst = src.with_suffix(".webp")
+        # Evitar reconvertir si ya es .webp
+        if src.suffix.lower() == ".webp":
+            return src
+        with Image.open(src) as im:
+            im.save(dst, format="WEBP", quality=quality, method=6)
+        try:
+            src.unlink(missing_ok=True)
+        except Exception:
+            pass
+        return dst
+    except Exception as e:
+        print(f"[WARN] Conversión a WEBP falló para {src.name}: {e}")
+        return None
+
+
 def _extract_gemini_text(resp) -> str:
     try:
         # Muchos SDK exponen resp.text directo
@@ -292,6 +314,12 @@ def main():
     if not images:
         print("[WARN] Intento fallback de imágenes con OpenAI...")
         images = gen_images_with_openai(prompt, slug, how_many=max(1, args.images))
+    # Convertir a WEBP para optimizar
+    out_images: List[Path] = []
+    for p in images:
+        wp = convert_to_webp(p)
+        out_images.append(wp or p)
+    images = out_images
     image_path = "/images/blog/{}/{}".format(slug, images[0].name) if images else None
 
     # 3) Crear MDX con frontmatter + cuerpo
