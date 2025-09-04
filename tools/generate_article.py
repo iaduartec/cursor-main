@@ -27,6 +27,7 @@ from typing import List, Tuple
 
 import yaml
 from slugify import slugify
+import requests
 
 try:
     from google import genai
@@ -210,6 +211,92 @@ def gen_images_with_openai(prompt: str, slug: str, how_many: int = 1) -> List[Pa
         return []
 
 
+def gen_images_with_kie(prompt: str, slug: str, how_many: int = 1) -> List[Path]:
+    """Genera imágenes usando la API externa KIE (https://api.kie.ai).
+    Soporta respuestas con 'fileUrl' o campos base64 ('b64', 'b64_json').
+    """
+    api = os.environ.get("KIE_API_KEY")
+    if not api:
+        return []
+    url = "https://api.kie.ai/api/v1/gpt4o-image/generate"
+    images: List[Path] = []
+    target_dir = (IMAGES_DIR / slug)
+    target_dir.mkdir(parents=True, exist_ok=True)
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': f'Bearer {api}'
+    }
+
+    for i in range(max(1, how_many)):
+        try:
+            payload = {
+                'prompt': prompt,
+                # usar ratio 16:9 para cabeceras de blog
+                'size': '16:9'
+            }
+            resp = requests.post(url, headers=headers, json=payload, timeout=120)
+            resp.raise_for_status()
+            j = resp.json()
+
+            # Prefer fileUrl
+            file_url = j.get('fileUrl') or (j.get('data') and j.get('data').get('fileUrl'))
+            if file_url:
+                r2 = requests.get(file_url, timeout=120)
+                stem = unique_image_path(target_dir, slug, stem='hero')
+                ext = mimetypes.guess_extension(r2.headers.get('content-type', '')) or '.png'
+                out_path = stem.with_suffix(ext)
+                out_path.write_bytes(r2.content)
+                images.append(out_path)
+                print(f"[INFO] KIE image downloaded: {out_path.name}")
+                continue
+
+            # Try base64 fields
+            b64 = j.get('b64') or j.get('b64_json') or (j.get('data') and j.get('data').get('b64'))
+            if b64:
+                stem = unique_image_path(target_dir, slug, stem='hero')
+                out_path = stem.with_suffix('.png')
+                out_path.write_bytes(base64.b64decode(b64))
+                images.append(out_path)
+                print(f"[INFO] KIE image generated: {out_path.name}")
+                continue
+
+            # Some responses include an array under 'data'
+            data_list = j.get('data') or []
+            if isinstance(data_list, list):
+                handled = False
+                for d in data_list:
+                    b = d.get('b64') or d.get('b64_json') or d.get('fileUrl')
+                    if not b:
+                        continue
+                    if d.get('fileUrl'):
+                        r2 = requests.get(d.get('fileUrl'), timeout=120)
+                        stem = unique_image_path(target_dir, slug, stem='hero')
+                        ext = mimetypes.guess_extension(r2.headers.get('content-type', '')) or '.png'
+                        out_path = stem.with_suffix(ext)
+                        out_path.write_bytes(r2.content)
+                        images.append(out_path)
+                        handled = True
+                        break
+                    else:
+                        stem = unique_image_path(target_dir, slug, stem='hero')
+                        out_path = stem.with_suffix('.png')
+                        out_path.write_bytes(base64.b64decode(b))
+                        images.append(out_path)
+                        handled = True
+                        break
+                if handled:
+                    continue
+
+            print(f"[WARN] KIE response did not contain image data: {j}")
+        except Exception as e:
+            print(f"[WARN] KIE image generation failed: {e}")
+            continue
+
+    return images
+
+
 def mdx_frontmatter(**kwargs) -> str:
     data = {k: v for k, v in kwargs.items() if v is not None}
     return "---\n" + yaml.safe_dump(data, allow_unicode=True, sort_keys=False) + "---\n\n"
@@ -332,12 +419,19 @@ def main():
         "- Uso final: imagen hero para web, debe ser clara y atractiva"
     )
 
+    # Prefer KIE if disponible
+    images = []
+    if os.environ.get('KIE_API_KEY'):
+        print('[INFO] KIE API key found: attempting KIE image generation')
+        images = gen_images_with_kie(prompt, slug, how_many=max(1, args.images))
+
     # Intentar generar imágenes con Gemini; si falla (p.ej. falta API key), hacer fallback a OpenAI
-    try:
-        images = gen_images_with_gemini(prompt, slug, how_many=max(1, args.images))
-    except Exception as e:
-        print(f"[WARN] Generación con Gemini falló: {e}. Intento fallback con OpenAI...")
-        images = []
+    if not images:
+        try:
+            images = gen_images_with_gemini(prompt, slug, how_many=max(1, args.images))
+        except Exception as e:
+            print(f"[WARN] Generación con Gemini falló: {e}. Intento fallback con OpenAI...")
+            images = []
 
     if not images:
         images = gen_images_with_openai(prompt, slug, how_many=max(1, args.images))
