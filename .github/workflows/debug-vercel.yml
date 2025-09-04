@@ -1,0 +1,48 @@
+name: Debug Vercel Configuration
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - debug-vercel
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Debug Vercel CLI
+        run: |
+          echo "=== Vercel CLI Version ==="
+          npx vercel --version
+          
+          echo "=== Vercel Authentication ==="
+          npx vercel whoami --token=$VERCEL_TOKEN
+          
+          echo "=== Vercel Project Info ==="
+          npx vercel project ls --token=$VERCEL_TOKEN
+          
+          echo "=== Current Directory ==="
+          pwd
+          ls -la
+          
+          echo "=== Vercel Configuration ==="
+          cat vercel.json
+
+      - name: Test Vercel Pull (with verbose output)
+        run: |
+          npx vercel pull --yes --environment=production --token=$VERCEL_TOKEN --debug
+        timeout-minutes: 15
