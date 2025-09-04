@@ -67,6 +67,24 @@ def save_inline_image(target_stem: Path, mime: str, data_b64: str) -> Path:
     return out_path
 
 
+def _extract_gemini_text(resp) -> str:
+    try:
+        # Muchos SDK exponen resp.text directo
+        if getattr(resp, "text", None):
+            return resp.text
+        # Alternativamente, a través de candidates/parts
+        cand = resp.candidates[0]
+        parts = getattr(cand.content, "parts", [])
+        buf = []
+        for p in parts:
+            t = getattr(p, "text", None)
+            if t:
+                buf.append(t)
+        return "".join(buf)
+    except Exception:
+        return ""
+
+
 def gen_images_with_gemini(prompt: str, slug: str, how_many: int = 1) -> List[Path]:
     api = os.environ.get("GEMINI_API_KEY")
     if not api:
@@ -117,6 +135,37 @@ def gen_images_with_gemini(prompt: str, slug: str, how_many: int = 1) -> List[Pa
         return []
 
 
+def gen_images_with_openai(prompt: str, slug: str, how_many: int = 1) -> List[Path]:
+    api = os.environ.get("OPENAI_API_KEY")
+    if not api or OpenAI is None:
+        return []
+    try:
+        client = OpenAI(api_key=api)
+        images: List[Path] = []
+        target_dir = (IMAGES_DIR / slug)
+        target_dir.mkdir(parents=True, exist_ok=True)
+        n = max(1, how_many)
+        # gpt-image-1 acepta size tipo 1920x1080 para 16:9
+        res = client.images.generate(
+            model="gpt-image-1",
+            prompt=prompt,
+            size="1920x1080",
+            n=n,
+        )
+        for i, d in enumerate(res.data):
+            b64 = getattr(d, "b64_json", None)
+            if not b64:
+                continue
+            stem = unique_image_path(target_dir, slug, stem="hero")
+            out_path = stem.with_suffix(".png")
+            out_path.write_bytes(base64.b64decode(b64))
+            images.append(out_path)
+        return images
+    except Exception as e:
+        print(f"[WARN] OpenAI imágenes falló: {e}")
+        return []
+
+
 def mdx_frontmatter(**kwargs) -> str:
     data = {k: v for k, v in kwargs.items() if v is not None}
     return "---\n" + yaml.safe_dump(data, allow_unicode=True, sort_keys=False) + "---\n\n"
@@ -155,17 +204,38 @@ def gen_article_with_openai(topic: str, category: str | None) -> Tuple[str, str]
         )
         text = completion.choices[0].message.content or ""
     except Exception as e:
-        print(f"[WARN] OpenAI falló, uso plantilla local: {e}")
-        text = (
-            f"# {topic}\n\n"
-            "## Introducción\n\nResumen del tema con enfoque práctico y profesional.\n\n"
-            "## Puntos clave\n\n- Requisito 1\n- Requisito 2\n- Requisito 3\n\n"
-            "## Implantación\n\nPasos recomendados.\n\n"
-            "## Mantenimiento\n\nBuenas prácticas y periodicidad.\n\n"
-            "## Conclusión\n\nCTA suave orientado a contacto profesional.\n"
-        )
+        raise
 
     # Primer encabezado como título si existe
+    title = topic
+    for line in text.splitlines():
+        if line.strip().startswith("# "):
+            title = line.strip().lstrip("# ").strip()
+            break
+    return title, text
+
+
+def gen_article_with_gemini(topic: str, category: str | None) -> Tuple[str, str]:
+    api = os.environ.get("GEMINI_API_KEY")
+    if not api or genai is None:
+        raise RuntimeError("GEMINI_API_KEY no disponible")
+    client = genai.Client(api_key=api)
+    model = "gemini-1.5-flash"
+    contents = [
+        gem_types.Content(
+            role="user",
+            parts=[gem_types.Part.from_text(text=(
+                "Eres redactor técnico senior. Escribe en Markdown un artículo optimizado para SEO,"
+                " con H2/H3, listas y tono profesional. No añadas frontmatter.\n\n"
+                f"Tema: {topic}. Categoría sugerida: {category or 'General'}."
+            ))],
+        )
+    ]
+    config = gem_types.GenerateContentConfig(response_modalities=["TEXT"])
+    resp = client.models.generate_content(model=model, contents=contents, config=config)
+    text = _extract_gemini_text(resp)
+    if not text.strip():
+        raise RuntimeError("Gemini devolvió texto vacío")
     title = topic
     for line in text.splitlines():
         if line.strip().startswith("# "):
@@ -188,10 +258,26 @@ def main():
     slug = slugify(topic)[:80]
     today = dt.date.today().isoformat()
 
-    # 1) Generar artículo (texto)
-    title, body_md = gen_article_with_openai(topic, args.category)
+    # 1) Generar artículo (texto) con fallback OpenAI -> Gemini -> plantilla
+    try:
+        title, body_md = gen_article_with_openai(topic, args.category)
+    except Exception as e1:
+        print(f"[WARN] OpenAI texto falló: {e1}. Intento con Gemini...")
+        try:
+            title, body_md = gen_article_with_gemini(topic, args.category)
+        except Exception as e2:
+            print(f"[WARN] Gemini texto también falló: {e2}. Uso plantilla local.")
+            body_md = (
+                f"# {topic}\n\n"
+                "## Introducción\n\nResumen del tema con enfoque práctico y profesional.\n\n"
+                "## Puntos clave\n\n- Requisito 1\n- Requisito 2\n- Requisito 3\n\n"
+                "## Implantación\n\nPasos recomendados.\n\n"
+                "## Mantenimiento\n\nBuenas prácticas y periodicidad.\n\n"
+                "## Conclusión\n\nCTA suave orientado a contacto profesional.\n"
+            )
+            title = topic
 
-    # 2) Generar imágenes con Gemini
+    # 2) Generar imágenes con Gemini y fallback a OpenAI
     prompt = (
         f"Genera una ilustración/fotografía digital para un artículo web sobre {topic}.\n"
         f"- Estilo: {args.style}\n"
@@ -203,7 +289,10 @@ def main():
     )
 
     images = gen_images_with_gemini(prompt, slug, how_many=max(1, args.images))
-    image_path = "/images/blog/{}/{}".format(slug, images[0].name) if images else "/images/blog/placeholder-16x9.svg"
+    if not images:
+        print("[WARN] Intento fallback de imágenes con OpenAI...")
+        images = gen_images_with_openai(prompt, slug, how_many=max(1, args.images))
+    image_path = "/images/blog/{}/{}".format(slug, images[0].name) if images else None
 
     # 3) Crear MDX con frontmatter + cuerpo
     post_path = CONTENT_DIR / f"{slug}.mdx"
@@ -221,8 +310,6 @@ def main():
         print("Imágenes:")
         for p in images:
             print(" -", p)
-    else:
-        print("[INFO] No se generaron imágenes; se usó un placeholder.")
 
 
 if __name__ == "__main__":
