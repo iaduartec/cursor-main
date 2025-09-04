@@ -40,7 +40,7 @@ export default function Header() {
       </div>
 
       {/* Header principal */}
-      <div className="max-w-6xl mx-auto px-4 py-4 bg-slate-800 dark:bg-slate-800 rounded-lg mx-4 my-2 shadow-lg">
+      <div className="max-w-6xl mx-auto px-4 py-4 bg-slate-800 dark:bg-slate-800 rounded-lg my-2 shadow-lg">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
