@@ -121,7 +121,6 @@ def gen_images_with_gemini(prompt: str, slug: str, how_many: int = 1) -> List[Pa
             "gemini-2.5-flash-image-preview",
             "gemini-1.5-flash",
         ]
-        model = candidate_models[0]
 
         contents = [
             gem_types.Content(
@@ -137,6 +136,7 @@ def gen_images_with_gemini(prompt: str, slug: str, how_many: int = 1) -> List[Pa
 
         for m in candidate_models:
             try:
+                print(f"[INFO] Intentando con modelo: {m}")
                 for chunk in client.models.generate_content_stream(model=m, contents=contents, config=config):
                     if not chunk.candidates or not chunk.candidates[0].content:
                         continue
@@ -145,11 +145,17 @@ def gen_images_with_gemini(prompt: str, slug: str, how_many: int = 1) -> List[Pa
                         if inline and getattr(inline, "data", None):
                             stem = unique_image_path(target_dir, slug, stem="hero")
                             out_path = save_inline_image(stem, inline.mime_type, inline.data)
-                            images.append(out_path)
-                            if len(images) >= how_many:
-                                return images
-            except Exception:
-                # Intentamos con el siguiente modelo
+                            
+                            # Verificar que la imagen se guardó correctamente
+                            if out_path.exists() and out_path.stat().st_size > 1000:
+                                images.append(out_path)
+                                print(f"[INFO] Imagen generada: {out_path.name} ({out_path.stat().st_size} bytes)")
+                                if len(images) >= how_many:
+                                    return images
+                            else:
+                                print(f"[WARN] Imagen inválida generada: {out_path}")
+            except Exception as e:
+                print(f"[WARN] Error con modelo {m}: {e}")
                 continue
         return images
     except Exception as e:
@@ -167,6 +173,8 @@ def gen_images_with_openai(prompt: str, slug: str, how_many: int = 1) -> List[Pa
         target_dir = (IMAGES_DIR / slug)
         target_dir.mkdir(parents=True, exist_ok=True)
         n = max(1, how_many)
+        
+        print(f"[INFO] Generando {n} imagen(es) con OpenAI...")
         # gpt-image-1 acepta size tipo 1920x1080 para 16:9
         res = client.images.generate(
             model="gpt-image-1",
@@ -174,14 +182,28 @@ def gen_images_with_openai(prompt: str, slug: str, how_many: int = 1) -> List[Pa
             size="1920x1080",
             n=n,
         )
+        
         for i, d in enumerate(res.data):
             b64 = getattr(d, "b64_json", None)
             if not b64:
+                print(f"[WARN] Imagen {i+1} sin datos base64")
                 continue
-            stem = unique_image_path(target_dir, slug, stem="hero")
-            out_path = stem.with_suffix(".png")
-            out_path.write_bytes(base64.b64decode(b64))
-            images.append(out_path)
+            
+            try:
+                stem = unique_image_path(target_dir, slug, stem="hero")
+                out_path = stem.with_suffix(".png")
+                image_data = base64.b64decode(b64)
+                out_path.write_bytes(image_data)
+                
+                # Verificar que la imagen se guardó correctamente
+                if out_path.exists() and out_path.stat().st_size > 1000:
+                    images.append(out_path)
+                    print(f"[INFO] Imagen {i+1} generada: {out_path.name} ({out_path.stat().st_size} bytes)")
+                else:
+                    print(f"[WARN] Imagen {i+1} inválida: {out_path}")
+            except Exception as e:
+                print(f"[WARN] Error procesando imagen {i+1}: {e}")
+        
         return images
     except Exception as e:
         print(f"[WARN] OpenAI imágenes falló: {e}")
@@ -314,13 +336,31 @@ def main():
     if not images:
         print("[WARN] Intento fallback de imágenes con OpenAI...")
         images = gen_images_with_openai(prompt, slug, how_many=max(1, args.images))
-    # Convertir a WEBP para optimizar
+    
+    # Convertir a WEBP para optimizar y verificar que las imágenes son válidas
     out_images: List[Path] = []
     for p in images:
-        wp = convert_to_webp(p)
-        out_images.append(wp or p)
+        if p.exists() and p.stat().st_size > 1000:  # Verificar que la imagen es válida (>1KB)
+            wp = convert_to_webp(p)
+            out_images.append(wp or p)
+        else:
+            print(f"[WARN] Imagen inválida o muy pequeña: {p}")
+    
     images = out_images
-    image_path = "/images/blog/{}/{}".format(slug, images[0].name) if images else None
+    
+    # Generar ruta de imagen para el frontmatter
+    image_path = None
+    if images:
+        # Usar la primera imagen válida
+        first_image = images[0]
+        if first_image.exists() and first_image.stat().st_size > 1000:
+            image_path = f"/images/blog/{slug}/{first_image.name}"
+            print(f"✅ Imagen principal: {image_path}")
+        else:
+            print(f"⚠️  Imagen principal inválida: {first_image}")
+    
+    if not image_path:
+        print("⚠️  No se pudo generar una imagen válida")
 
     # 3) Crear MDX con frontmatter + cuerpo
     post_path = CONTENT_DIR / f"{slug}.mdx"
