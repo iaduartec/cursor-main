@@ -69,12 +69,13 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
+          cache-dependency-path: tools/requirements.txt
 
       - name: Install Python deps
         if: steps.parse.outputs.skip == 'false'
         run: |
           python -m pip install --upgrade pip
-          pip install --upgrade google-genai openai pyyaml python-slugify
+          pip install -r tools/requirements.txt
 
       - name: Generate article and images
         if: steps.parse.outputs.skip == 'false'
