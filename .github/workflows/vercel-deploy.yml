@@ -10,9 +10,10 @@ on:
       - main
       - master
 
-concurrency:
-  group: vercel-deploy-${{ github.ref }}
-  cancel-in-progress: true
+# concurrency desactivada para no cancelar builds en curso
+# concurrency:
+#   group: vercel-deploy-${{ github.ref }}
+#   cancel-in-progress: true
 
 jobs:
   preview:
