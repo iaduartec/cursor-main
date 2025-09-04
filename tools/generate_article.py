@@ -332,9 +332,14 @@ def main():
         "- Uso final: imagen hero para web, debe ser clara y atractiva"
     )
 
-    images = gen_images_with_gemini(prompt, slug, how_many=max(1, args.images))
+    # Intentar generar imágenes con Gemini; si falla (p.ej. falta API key), hacer fallback a OpenAI
+    try:
+        images = gen_images_with_gemini(prompt, slug, how_many=max(1, args.images))
+    except Exception as e:
+        print(f"[WARN] Generación con Gemini falló: {e}. Intento fallback con OpenAI...")
+        images = []
+
     if not images:
-        print("[WARN] Intento fallback de imágenes con OpenAI...")
         images = gen_images_with_openai(prompt, slug, how_many=max(1, args.images))
     
     # Convertir a WEBP para optimizar y verificar que las imágenes son válidas
