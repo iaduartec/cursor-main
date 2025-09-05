@@ -25,6 +25,7 @@ function parseFlag(name, fallback) {
 }
 
 const onlyMissing = userArgs.includes('--only-missing') || !userArgs.length;
+const force = userArgs.includes('--force');
 const dryRun = userArgs.includes('--dry-run');
 const minBytes = parseFlag('min-bytes', 1000);
 
@@ -70,6 +71,7 @@ try {
 const ROOT = path.resolve(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content', 'blog');
 const IMAGES_DIR = path.join(ROOT, 'public', 'images', 'blog');
+const STOCK_DIR = path.join(ROOT, 'public', 'images', 'proyectos');
 
 function extractFrontmatter(text) {
   if (!text.startsWith('---')) return null;
@@ -105,6 +107,22 @@ function targetFromImageField(imagePath, fallbackSlug) {
   return { dirSlug, target: path.join(IMAGES_DIR, dirSlug, filename) };
 }
 
+function stockForCategory(category) {
+  const map = new Map([
+    ['Seguridad', 'CCTV.jpeg'],
+    ['Electricidad', 'electricidad.jpeg'],
+    ['Informática', 'servers.jpeg'],
+    ['Informatica', 'servers.jpeg'],
+    ['Informtica', 'servers.jpeg'],
+    ['Sonido', 'sonido.jpeg'],
+    ['General', 'seguridad_red.jpeg'],
+  ]);
+  const key = (category || 'General').trim();
+  const file = map.get(key) || map.get('General');
+  const p = path.join(STOCK_DIR, file);
+  return fs.existsSync(p) ? p : null;
+}
+
 function listMDX(dir) {
   try {
     return fs.readdirSync(dir).filter(f => f.endsWith('.mdx')).map(f => path.join(dir, f));
@@ -113,15 +131,22 @@ function listMDX(dir) {
   }
 }
 
+async function createWebpFromStock(srcPath, outPath) {
+  const width = 1920, height = 1080;
+  await fs.promises.mkdir(path.dirname(outPath), { recursive: true });
+  await sharp(srcPath)
+    .resize(width, height, { fit: 'cover', position: 'centre' })
+    .webp({ quality: 85 })
+    .toFile(outPath);
+}
+
 async function createWebpPlaceholder(outPath) {
   const width = 1920, height = 1080;
-  // soft background
-  const background = '#f8fafc';
-  const buffer = await sharp({ create: { width, height, channels: 3, background } })
-    .webp({ quality: 85 })
-    .toBuffer();
+  const background = '#e2e8f0'; // slate-200
   await fs.promises.mkdir(path.dirname(outPath), { recursive: true });
-  await fs.promises.writeFile(outPath, buffer);
+  await sharp({ create: { width, height, channels: 3, background } })
+    .webp({ quality: 80 })
+    .toFile(outPath);
 }
 
 (async () => {
@@ -131,19 +156,25 @@ async function createWebpPlaceholder(outPath) {
     const text = fs.readFileSync(file, 'utf8');
     const fm = extractFrontmatter(text);
     const slug = (fm && extractField(fm, 'slug')) || path.basename(file, '.mdx');
+    const category = (fm && extractField(fm, 'category')) || 'General';
     const image = fm && extractField(fm, 'image');
     const { target } = targetFromImageField(image, slug);
     let size = 0;
     if (fs.existsSync(target)) {
       try { size = fs.statSync(target).size; } catch {}
     }
-    const needs = (!fs.existsSync(target)) || (size < minBytes);
+    const needs = force || (!fs.existsSync(target)) || (size < minBytes);
     if (onlyMissing && !needs) { skipped++; continue; }
     candidates++;
     console.log(`[GEN] ${path.basename(file)} -> ${path.relative(ROOT, target)}`);
     if (dryRun) continue;
     try {
-      await createWebpPlaceholder(target);
+      const stock = stockForCategory(category);
+      if (stock) {
+        await createWebpFromStock(stock, target);
+      } else {
+        await createWebpPlaceholder(target);
+      }
       const outSize = fs.statSync(target).size;
       console.log(`   created: ${path.relative(ROOT, target)} (${outSize} bytes)`);
       created++;
