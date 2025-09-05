@@ -9,14 +9,14 @@ import { allBlogs, type Blog } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { unstable_cache } from 'next/cache';
 
-// Color por categoría
+// Color por categorÃ­a
 const getCategoryColor = (category: string) => {
   switch (category) {
     case 'Seguridad':
       return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
     case 'Electricidad':
       return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-    case 'Informática':
+    case 'InformÃ¡tica':
       return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
     case 'Sonido':
       return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
@@ -25,7 +25,7 @@ const getCategoryColor = (category: string) => {
   }
 };
 
-// Versión robusta de colores por categoría
+// VersiÃ³n robusta de colores por categorÃ­a
 const getCategoryColor2 = (category: string) => {
   const c = (category || '').toLowerCase();
   if (c === 'seguridad' || c === 'security') {
@@ -34,7 +34,7 @@ const getCategoryColor2 = (category: string) => {
   if (c === 'electricidad' || c === 'electricity') {
     return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
   }
-  if (c === 'informática' || c === 'informatica' || c === 'it') {
+  if (c === 'informÃ¡tica' || c === 'informatica' || c === 'it') {
     return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
   }
   if (c === 'sonido' || c === 'audio') {
@@ -53,8 +53,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const post = allBlogs.find((p) => p.slug === params.slug);
   if (!post) {
     return {
-      title: 'Artículo no encontrado',
-      description: 'El artículo que buscas no existe.'
+      title: 'ArtÃ­culo no encontrado',
+      description: 'El artÃ­culo que buscas no existe.'
     };
   }
 
@@ -67,6 +67,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       images: post.image ? [cleanSrc(post.image)] : [],
     },
   };
+}
+
+// Pre-render all blog slugs at build time to avoid dynamic 500s
+export function generateStaticParams() {
+  const toParam = (p: Blog) => {
+    const raw = (p as any)?._raw?.flattenedPath as string | undefined;
+    return p.slug || (raw ? (raw.split('/').pop() || raw) : '');
+  };
+  return allBlogs.map((p) => ({ slug: toParam(p) }));
 }
 
 type BlogCard = {
@@ -182,14 +191,14 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             </Link>
           </div>
           
-          {/* Categoría */}
+          {/* CategorÃ­a */}
           <div className="mb-6">
-            <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${getCategoryColor((current.category || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace('IT','Informática'))}`}>
+            <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${getCategoryColor((current.category || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace('IT','InformÃ¡tica'))}`}>
               {current.category}
             </span>
           </div>
 
-          {/* Título */}
+          {/* TÃ­tulo */}
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">
             {current.title}
           </h1>
@@ -212,13 +221,13 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </div>
       </section>
 
-      {/* Contenido del artículo */}
+      {/* Contenido del artÃ­culo */}
       <section className="max-w-4xl mx-auto py-16 px-4">
         <article className="prose prose-lg dark:prose-invert max-w-none">
           <MDXContent components={mdxComponents} />
         </article>
 
-        {/* Artículos relacionados */}
+        {/* ArtÃ­culos relacionados */}
         <RelatedPosts 
           currentPost={current}
           allPosts={allPosts}
@@ -228,10 +237,10 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         {/* CTA Section */}
         <div className="mt-16 bg-accent rounded-2xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-4">
-            ¿Necesitas ayuda con tu proyecto?
+            Â¿Necesitas ayuda con tu proyecto?
           </h3>
           <p className="text-lg mb-6 opacity-90">
-            Nuestros expertos están aquí para ayudarte con cualquier consulta técnica
+            Nuestros expertos estÃ¡n aquÃ­ para ayudarte con cualquier consulta tÃ©cnica
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
