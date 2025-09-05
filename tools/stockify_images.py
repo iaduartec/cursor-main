@@ -17,6 +17,7 @@ import re
 from typing import Optional, Tuple
 
 from PIL import Image, ImageOps
+import hashlib
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT_DIR = ROOT / "content" / "blog"
@@ -48,19 +49,62 @@ def parse_frontmatter(p: Path) -> tuple[str, str, Optional[str]]:
     return slug, title, category
 
 
-def stock_for_category(category: Optional[str]) -> Optional[Path]:
-    mapping = {
-        'Seguridad': 'CCTV.jpeg',
-        'Electricidad': 'electricidad.jpeg',
-        'Informática': 'servers.jpeg',
-        'Informatica': 'servers.jpeg',
-        'Sonido': 'sonido.jpeg',
-        'General': 'seguridad_red.jpeg',
+def stock_list_for_category(category: Optional[str]) -> list[Path]:
+    # Múltiples imágenes por categoría para evitar repetición visual
+    mapping: dict[str, list[str]] = {
+        'Seguridad': [
+            'CCTV.jpeg',
+            'seguridad_red.jpeg',
+            'racks.jpeg',
+        ],
+        'Electricidad': [
+            'electricidad.jpeg',
+            'electricidad1.jpeg',
+        ],
+        'Informática': [
+            'servers.jpeg',
+            'server_backup.jpeg',
+            'ordenadores.jpeg',
+            'portatiles.jpeg',
+            'impresoras.jpeg',
+            'racks.jpeg',
+        ],
+        'Informatica': [  # fallback por si la tilde varía en frontmatter
+            'servers.jpeg',
+            'server_backup.jpeg',
+            'ordenadores.jpeg',
+            'portatiles.jpeg',
+            'impresoras.jpeg',
+            'racks.jpeg',
+        ],
+        'Sonido': [
+            'sonido.jpeg',
+            'auditorio.jpeg',
+        ],
+        'General': [
+            'CCTV.jpeg',
+            'servers.jpeg',
+            'electricidad.jpeg',
+            'sonido.jpeg',
+            'seguridad_red.jpeg',
+        ],
     }
     key = (category or 'General').strip()
-    fname = mapping.get(key) or mapping['General']
-    cand = STOCK_DIR / fname
-    return cand if cand.exists() else None
+    names = mapping.get(key) or mapping['General']
+    paths = [STOCK_DIR / n for n in names if (STOCK_DIR / n).exists()]
+    # si ninguna existe, usar cualquier archivo del directorio como último recurso
+    if not paths:
+        paths = list(STOCK_DIR.glob('*.*'))
+    return paths
+
+
+def pick_stock_for_slug(category: Optional[str], slug: str) -> Optional[Path]:
+    items = stock_list_for_category(category)
+    if not items:
+        return None
+    h = hashlib.sha1(slug.encode('utf-8')).hexdigest()
+    idx = int(h, 16) % len(items)
+    return items[idx]
 
 
 def save_cover_webp(src: Path, dst: Path, size=(1920, 1080), quality=85):
@@ -87,7 +131,7 @@ def main() -> int:
         slug, title, category = parse_frontmatter(p)
         if args.filter and (args.filter.lower() not in (slug + ' ' + title).lower()):
             continue
-        stock = stock_for_category(category)
+        stock = pick_stock_for_slug(category, slug)
         if not stock:
             skipped += 1
             continue
