@@ -7,6 +7,7 @@ import Breadcrumb from '../../../components/Breadcrumb';
 import RelatedPosts from '../../../components/RelatedPosts';
 import { allBlogs, type Blog } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import { unstable_cache } from 'next/cache';
 
 // Color por categoría
 const getCategoryColor = (category: string) => {
@@ -78,7 +79,33 @@ type BlogCard = {
   excerpt: string;
 };
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+const getBlogCards = unstable_cache(
+  async (): Promise<{
+    title: string;
+    slug: string;
+    category: string;
+    image: string;
+    date: string;
+    readTime: string;
+    excerpt: string;
+  }[]> => {
+    return allBlogs
+      .map((p: Blog) => ({
+        title: p.title,
+        slug: p.slug,
+        category: p.category ?? 'General',
+        image: p.image ?? '/images/proyectos/CCTV.jpeg',
+        date: p.date,
+        readTime: estimateReadTime(p.body?.raw ?? ''),
+        excerpt: p.description,
+      }))
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  },
+  ['blog-cards-v1'],
+  { revalidate: 3600, tags: ['blogs'] }
+);
+
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = allBlogs.find((p) => p.slug === params.slug);
   if (!post) {
     notFound();
@@ -102,17 +129,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   };
   const readTime = estimateReadTime((post as any).body.raw ?? '');
 
-  const allPosts: BlogCard[] = allBlogs
-    .map((p: Blog) => ({
-      title: p.title,
-      slug: p.slug,
-      category: p.category ?? 'General',
-      image: p.image ?? '/images/proyectos/CCTV.jpeg',
-      date: p.date,
-      readTime: estimateReadTime(p.body?.raw ?? ''),
-      excerpt: p.description,
-    }))
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const allPosts: BlogCard[] = await getBlogCards();
 
   const current: BlogCard = {
     title: post!.title,
