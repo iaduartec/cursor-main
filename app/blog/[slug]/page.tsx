@@ -5,8 +5,7 @@ import { Calendar, ArrowLeft, Clock } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import Breadcrumb from '../../../components/Breadcrumb';
 import RelatedPosts from '../../../components/RelatedPosts';
-import { allBlogs } from 'contentlayer/generated';
-import type { Blog } from 'contentlayer/generated';
+import { allBlogs, type Blog } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 // Color por categoría

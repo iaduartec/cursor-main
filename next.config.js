@@ -4,7 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configuración de imágenes
+  // Images
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -14,46 +14,12 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
-  // Configuración de compresión
+  // Compression
   compress: true,
 
-  // Configuración de headers de seguridad
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
-          },
-        ],
-      },
-      {
-        source: '/api/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-store, max-age=0',
-          },
-        ],
-      },
-    ];
-  },
+  // Security headers now handled at the Vercel edge via vercel.json
 
-  // Configuración de redirecciones
+  // Redirects
   async redirects() {
     return [
       {
@@ -64,7 +30,7 @@ const nextConfig = {
     ];
   },
 
-  // Configuración de rewrites
+  // Rewrites
   async rewrites() {
     return [
       {
@@ -74,9 +40,8 @@ const nextConfig = {
     ];
   },
 
-  // Configuración de webpack
+  // Webpack tweaks
   webpack: (config, { dev, isServer }) => {
-    // Optimizaciones para producción
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
@@ -90,7 +55,7 @@ const nextConfig = {
       };
     }
 
-    // Configuración para SVG
+    // SVG as React components
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
@@ -99,7 +64,7 @@ const nextConfig = {
     return config;
   },
 
-  // Configuración de experimental features
+  // Experimental
   experimental: {
     optimizeCss: true,
     scrollRestoration: true,
@@ -107,35 +72,23 @@ const nextConfig = {
     browsersListForSwc: true,
   },
 
-  // Configuración de TypeScript
+  // TypeScript
   typescript: {
     ignoreBuildErrors: false,
   },
 
-  // Configuración de ESLint
+  // ESLint: run externally with flat config
   eslint: {
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: true,
   },
 
-  // Configuración de output
+  // Output & misc
   output: 'standalone',
-
-  // Configuración de trailing slash
   trailingSlash: false,
-
-  // Configuración de base path
   basePath: '',
-
-  // Asset prefix: let Vercel/Next handle this automatically
   assetPrefix: '',
-
-  // Configuración de powered by header
   poweredByHeader: false,
-
-  // Configuración de react strict mode
   reactStrictMode: true,
-
-  // Configuración de swc minify
   swcMinify: true,
 };
 

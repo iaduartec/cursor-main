@@ -5,8 +5,7 @@ import Image from 'next/image';
 import { Calendar, ArrowRight } from 'lucide-react';
 import Breadcrumb from '../../components/Breadcrumb';
 import BlogCategories from '../../components/BlogCategories';
-import { allBlogs } from 'contentlayer/generated';
-import type { Blog } from 'contentlayer/generated';
+import { allBlogs, type Blog } from 'contentlayer/generated';
 import { useMemo, useState } from 'react';
 
 // Color de etiqueta por categoría

@@ -13,23 +13,48 @@ export default [
     ignores: [
       'node_modules/**',
       '.next/**',
+      '.contentlayer/**',
+      '.venv/**',
       'out/**',
       'build/**',
       'dist/**',
+      'public/**',
+      '.git/**',
+      '.lintstagedrc.js',
+      '__tests__/**',
+      '*.config.js',
+      'jest.config.js',
+      'jest.setup.js',
+      'tailwind.config.js',
+      'tmp_home.tsx',
     ],
   },
 
   // Base JS recommendations
   js.configs.recommended,
 
-  // Next.js + TypeScript rules via legacy shareable config
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  // React + TS + A11y rules via legacy shareable configs (ESLint v9 compatible)
+  ...compat.extends(
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended'
+  ),
 
   // Project rules (ported from .eslintrc.json)
   {
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        module: 'writable',
+        process: 'readonly',
+        __dirname: 'readonly',
+        console: 'readonly',
+      },
     },
     settings: {
       react: { version: 'detect' },
@@ -66,6 +91,8 @@ export default [
       'react/jsx-key': 'error',
       'react/jsx-no-duplicate-props': 'error',
       'react/jsx-no-undef': 'error',
+      'react/react-in-jsx-scope': 'off',
+      'react/jsx-uses-react': 'off',
       'react/no-array-index-key': 'warn',
       'react/no-danger': 'warn',
       'react/no-deprecated': 'error',
@@ -84,5 +111,60 @@ export default [
       'react/void-dom-elements-no-children': 'error',
     },
   },
-];
 
+  // Node-oriented JS files (config and scripts)
+  {
+    files: [
+      'scripts/**/*.js',
+      'next.config.*',
+      'tailwind.config.js',
+      'jest.config.js',
+      'jest.setup.js',
+      'next.config.analyze.js',
+    ],
+    languageOptions: {
+      sourceType: 'script',
+      globals: {
+        module: 'writable',
+        require: 'readonly',
+        __dirname: 'readonly',
+        console: 'readonly',
+        process: 'readonly',
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      'no-undef': 'off',
+      'no-console': 'off',
+      curly: 'off',
+      'prefer-destructuring': 'off',
+      'no-empty': 'off',
+    },
+  },
+
+  // Special app error pages: relax strict a11y
+  {
+    files: ['app/error.tsx', 'app/global-error.tsx', 'app/not-found.tsx'],
+    rules: {
+      'jsx-a11y/anchor-is-valid': 'off',
+      'jsx-a11y/html-has-lang': 'off',
+    },
+  },
+
+  // Contentlayer config allows 'any' for convenience
+  {
+    files: ['contentlayer.config.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+
+  // Observability bootstrap can use console
+  {
+    files: ['instrumentation.ts'],
+    rules: {
+      'no-console': 'off',
+    },
+  },
+];

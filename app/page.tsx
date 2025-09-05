@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { Monitor, Camera, Volume2, Zap, Shield, Clock, Users, MapPin, Phone } from 'lucide-react';
@@ -269,11 +268,8 @@ export default function HomePage() {
       </section>
 
       {/* Datos estructurados JSON-LD */}
-      {/* eslint-disable-next-line react/no-danger */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+      <script type="application/ld+json">
+        {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "Duartec Instalaciones Informáticas",
@@ -341,9 +337,8 @@ export default function HomePage() {
                 }
               ]
             }
-          })
-        }}
-      />
+          })}
+      </script>
     </>
   );
 }
