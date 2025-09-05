@@ -13,7 +13,9 @@ const scriptPath = path.join(repoRoot, 'tools', 'generate_missing_images.py');
 // Default args if none provided
 const userArgs = process.argv.slice(2);
 const defaultArgs = ['--only-missing', '--min-bytes', '1000'];
-const args = [scriptPath, ...(userArgs.length ? userArgs : defaultArgs)];
+// Build args for the python script (it doesn't support --force)
+const passthrough = (userArgs.length ? userArgs : defaultArgs).filter(a => a !== '--force');
+const args = [scriptPath, ...passthrough];
 
 function parseFlag(name, fallback) {
   const idx = userArgs.findIndex(a => a === `--${name}`);
@@ -25,9 +27,11 @@ function parseFlag(name, fallback) {
 }
 
 const onlyMissing = userArgs.includes('--only-missing') || !userArgs.length;
-const force = userArgs.includes('--force');
+const force = userArgs.includes('--force') || process.env.PLACEHOLDERS_FORCE === '1';
 const dryRun = userArgs.includes('--dry-run');
 const minBytes = parseFlag('min-bytes', 1000);
+const preferNode = userArgs.includes('--node') || userArgs.includes('--skip-python') || process.env.PLACEHOLDERS_PREFER_NODE === '1';
+const filterText = parseFlag('filter', null);
 
 function tryRun(interpreter) {
   try {
@@ -52,7 +56,7 @@ function tryRun(interpreter) {
   }
 }
 
-if (fs.existsSync(scriptPath)) {
+if (!preferNode && fs.existsSync(scriptPath)) {
   let result = tryRun('python');
   if (!result.ran) result = tryRun('python3');
   if (result.ran) process.exit(0);
@@ -158,6 +162,14 @@ async function createWebpPlaceholder(outPath) {
     const slug = (fm && extractField(fm, 'slug')) || path.basename(file, '.mdx');
     const category = (fm && extractField(fm, 'category')) || 'General';
     const image = fm && extractField(fm, 'image');
+    const title = (fm && extractField(fm, 'title')) || slug.replace(/-/g, ' ');
+
+    if (filterText) {
+      const key = `${slug} ${title}`.toLowerCase();
+      if (!key.includes(String(filterText).toLowerCase())) {
+        continue;
+      }
+    }
     const { target } = targetFromImageField(image, slug);
     let size = 0;
     if (fs.existsSync(target)) {
