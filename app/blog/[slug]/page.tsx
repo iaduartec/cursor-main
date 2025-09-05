@@ -2,12 +2,26 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, ArrowLeft, Clock } from 'lucide-react';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Breadcrumb from '../../../components/Breadcrumb';
 import RelatedPosts from '../../../components/RelatedPosts';
 import { allBlogs, type Blog } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { unstable_cache } from 'next/cache';
+
+const normalizeSlug = (s: string) =>
+  String(s || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+const canonicalSlugFor = (p: Blog): string => {
+  const raw = (p as any)?._raw?.flattenedPath as string | undefined;
+  const base = p.slug || (raw ? (raw.split('/').pop() || raw) : p.title);
+  return normalizeSlug(base);
+};
 
 // Color por categorÃ­a
 const getCategoryColor = (category: string) => {
@@ -50,7 +64,8 @@ const estimateReadTime = (text: string) => {
 };
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = allBlogs.find((p) => p.slug === params.slug);
+  const incoming = normalizeSlug(params.slug);
+  const post = allBlogs.find((p) => canonicalSlugFor(p) === incoming);
   if (!post) {
     return {
       title: 'ArtÃ­culo no encontrado',
@@ -103,7 +118,7 @@ const getBlogCards = unstable_cache(
     return allBlogs
       .map((p: Blog) => ({
         title: p.title,
-        slug: p.slug,
+        slug: canonicalSlugFor(p),
         category: p.category ?? 'General',
         image: cleanSrc(p.image) || '/images/proyectos/CCTV.jpeg',
         date: p.date,
@@ -117,9 +132,14 @@ const getBlogCards = unstable_cache(
 );
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = allBlogs.find((p) => p.slug === params.slug);
+  const incoming = normalizeSlug(params.slug);
+  const post = allBlogs.find((p) => canonicalSlugFor(p) === incoming);
   if (!post) {
     notFound();
+  }
+  const canonical = canonicalSlugFor(post);
+  if (params.slug !== canonical) {
+    redirect(`/blog/${canonical}`);
   }
 
   // Contentlayer typing marks body as Markdown in some setups; cast to access compiled MDX
@@ -140,12 +160,13 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       );
     },
     img: (props: any) => (
-      <Image
+      // Evita next/image en prerender MDX para reducir errores en SSR/export
+      // Usa <img> nativo con limpieza de URL
+      <img
         src={cleanSrc(props.src)}
         alt={props.alt || ''}
-        width={1200}
-        height={675}
-        className={`rounded-xl my-6 ${props.className || ''}`}
+        loading="lazy"
+        className={`rounded-xl my-6 w-full h-auto ${props.className || ''}`}
       />
     ),
   };
@@ -155,7 +176,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
   const current: BlogCard = {
     title: post!.title,
-    slug: post!.slug,
+    slug: canonicalSlugFor(post!),
     category: post!.category ?? 'General',
     image: post!.image ?? '/images/proyectos/CCTV.jpeg',
     date: post!.date,

@@ -3,6 +3,18 @@ import { allBlogs, type Blog } from 'contentlayer/generated';
 import BlogListClient, { type BlogCard } from './BlogListClient';
 
 const cleanSrc = (s?: string) => (s || '').replace(/[\r\n]+/g, '').trim();
+const normalizeSlug = (s: string) =>
+  String(s || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+const canonicalSlugFor = (p: Blog): string => {
+  const raw = (p as any)?._raw?.flattenedPath as string | undefined;
+  const base = p.slug || (raw ? (raw.split('/').pop() || raw) : p.title);
+  return normalizeSlug(base);
+};
 const estimateReadTime = (text: string) => {
   const words = text ? text.trim().split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.round(words / 200));
@@ -13,7 +25,7 @@ export default function BlogPage() {
   const posts: BlogCard[] = allBlogs
     .map((p: Blog) => ({
       title: p.title,
-      slug: p.slug,
+      slug: canonicalSlugFor(p),
       category: p.category ?? 'General',
       image: cleanSrc(p.image) || '/images/proyectos/CCTV.jpeg',
       date: p.date,
@@ -40,4 +52,3 @@ export default function BlogPage() {
     </div>
   );
 }
-
