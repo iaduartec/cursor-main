@@ -1,0 +1,83 @@
+name: Generate AI Blog Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      filter:
+        description: "Optional filter (substring in slug/title)"
+        required: false
+        default: ""
+      onlyMissing:
+        description: "Generate only when missing/small"
+        required: false
+        default: "true"
+      force:
+        description: "Force overwrite existing images"
+        required: false
+        default: "false"
+      style:
+        description: "Prompt style (e.g., photographic/minimalist)"
+        required: false
+        default: "photographic"
+      accent:
+        description: "Accent color (free text)"
+        required: false
+        default: "blue"
+      n:
+        description: "Images to request per post"
+        required: false
+        default: "1"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tools/requirements.txt
+
+      - name: Ensure dirs
+        run: |
+          mkdir -p content/blog
+          mkdir -p public/images/blog
+
+      - name: Generate AI images
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=( )
+          if [[ "${{ github.event.inputs.onlyMissing }}" == "true" ]]; then args+=("--only-missing"); fi
+          if [[ "${{ github.event.inputs.force }}" == "true" ]]; then args+=("--force"); fi
+          if [[ -n "${{ github.event.inputs.filter }}" ]]; then args+=("--filter" "${{ github.event.inputs.filter }}"); fi
+          args+=("--style" "${{ github.event.inputs.style }}")
+          args+=("--accent" "${{ github.event.inputs.accent }}")
+          args+=("--n" "${{ github.event.inputs.n }}")
+          echo "python tools/generate_ai_images.py ${args[*]}"
+          python tools/generate_ai_images.py "${args[@]}"
+
+      - name: Create Pull Request with AI images
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(images): generate AI hero images"
+          title: "chore(images): generate AI hero images"
+          body: |
+            This PR contains AI-generated hero images for blog posts.
+          branch: "images/ai-gen-${{ github.run_id }}"
+          delete-branch: true
+          add-paths: |
+            public/images/blog/**
