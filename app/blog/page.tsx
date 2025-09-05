@@ -36,6 +36,8 @@ type BlogCard = {
   excerpt: string;
 };
 
+const cleanSrc = (s?: string) => (s || '').replace(/[\r\n]+/g, '').trim();
+
 const estimateReadTime = (text: string) => {
   const words = text ? text.trim().split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.round(words / 200));
@@ -51,7 +53,7 @@ export default function BlogPage() {
         title: p.title,
         slug: p.slug,
         category: p.category ?? 'General',
-        image: p.image ?? '/images/proyectos/CCTV.jpeg',
+        image: cleanSrc(p.image) || '/images/proyectos/CCTV.jpeg',
         date: p.date,
         readTime: estimateReadTime(p.body?.raw ?? ''),
         excerpt: p.description,

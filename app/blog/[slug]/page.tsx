@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     openGraph: {
       title: post.title,
       description: post.description,
-      images: post.image ? [post.image] : [],
+      images: post.image ? [cleanSrc(post.image)] : [],
     },
   };
 }
@@ -78,6 +78,8 @@ type BlogCard = {
   readTime: string;
   excerpt: string;
 };
+
+const cleanSrc = (s?: string) => (s || '').replace(/[\r\n]+/g, '').trim();
 
 const getBlogCards = unstable_cache(
   async (): Promise<{
@@ -94,7 +96,7 @@ const getBlogCards = unstable_cache(
         title: p.title,
         slug: p.slug,
         category: p.category ?? 'General',
-        image: p.image ?? '/images/proyectos/CCTV.jpeg',
+        image: cleanSrc(p.image) || '/images/proyectos/CCTV.jpeg',
         date: p.date,
         readTime: estimateReadTime(p.body?.raw ?? ''),
         excerpt: p.description,
@@ -119,7 +121,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     ),
     img: (props: any) => (
       <Image
-        src={props.src}
+        src={cleanSrc(props.src)}
         alt={props.alt || ''}
         width={1200}
         height={675}
