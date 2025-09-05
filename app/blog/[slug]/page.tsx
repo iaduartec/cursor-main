@@ -24,6 +24,24 @@ const getCategoryColor = (category: string) => {
   }
 };
 
+// Versión robusta de colores por categoría
+const getCategoryColor2 = (category: string) => {
+  const c = (category || '').toLowerCase();
+  if (c === 'seguridad' || c === 'security') {
+    return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+  }
+  if (c === 'electricidad' || c === 'electricity') {
+    return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
+  }
+  if (c === 'informática' || c === 'informatica' || c === 'it') {
+    return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+  }
+  if (c === 'sonido' || c === 'audio') {
+    return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
+  }
+  return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
+};
+
 const estimateReadTime = (text: string) => {
   const words = text ? text.trim().split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.round(words / 200));
@@ -68,6 +86,20 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   // Contentlayer typing marks body as Markdown in some setups; cast to access compiled MDX
   const MDXContent = useMDXComponent((post as any).body.code);
+  const mdxComponents = {
+    a: (props: any) => (
+      <a {...props} className={`text-accent hover:text-accent-700 underline ${props.className || ''}`} />
+    ),
+    img: (props: any) => (
+      <Image
+        src={props.src}
+        alt={props.alt || ''}
+        width={1200}
+        height={675}
+        className={`rounded-xl my-6 ${props.className || ''}`}
+      />
+    ),
+  };
   const readTime = estimateReadTime((post as any).body.raw ?? '');
 
   const allPosts: BlogCard[] = allBlogs
@@ -122,7 +154,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           
           {/* Categoría */}
           <div className="mb-6">
-            <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${getCategoryColor(current.category)}`}>
+            <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${getCategoryColor((current.category || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace('IT','Informática'))}`}>
               {current.category}
             </span>
           </div>
@@ -153,7 +185,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       {/* Contenido del artículo */}
       <section className="max-w-4xl mx-auto py-16 px-4">
         <article className="prose prose-lg dark:prose-invert max-w-none">
-          <MDXContent />
+          <MDXContent components={mdxComponents} />
         </article>
 
         {/* Artículos relacionados */}
