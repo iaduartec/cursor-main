@@ -7,7 +7,6 @@ on:
         description: 'Optional slug of a single article to regenerate images for'
         required: false
         default: ''
-
 permissions:
   contents: write
 
