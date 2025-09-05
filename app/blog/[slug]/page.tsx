@@ -66,8 +66,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  const MDXContent = useMDXComponent(post!.body.code);
-  const readTime = estimateReadTime(post!.body.raw ?? '');
+  // Contentlayer typing marks body as Markdown in some setups; cast to access compiled MDX
+  const MDXContent = useMDXComponent((post as any).body.code);
+  const readTime = estimateReadTime((post as any).body.raw ?? '');
 
   const allPosts: BlogCard[] = allBlogs
     .map((p: Blog) => ({
