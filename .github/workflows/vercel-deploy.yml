@@ -36,6 +36,20 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
+      - name: Setup Python (for image placeholders)
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tools/requirements.txt
+
+      - name: Generate missing blog images (placeholder)
+        run: |
+          python tools/generate_missing_images.py --only-missing --min-bytes 1000
+
       - name: Verify Vercel CLI
         run: |
           npx vercel --version
@@ -73,6 +87,20 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
+
+      - name: Setup Python (for image placeholders)
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tools/requirements.txt
+
+      - name: Generate missing blog images (placeholder)
+        run: |
+          python tools/generate_missing_images.py --only-missing --min-bytes 1000
 
       - name: Verify Vercel CLI
         run: |
