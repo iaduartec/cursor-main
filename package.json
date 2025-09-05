@@ -32,6 +32,8 @@
     "postbuild": "next-sitemap",
     "images:generate": "node scripts/generate_missing_images_runner.js --only-missing --min-bytes 1000",
     "images:check": "node scripts/generate_missing_images_runner.js --only-missing --min-bytes 1000 --dry-run",
+    "images:ai": "python tools/generate_ai_images.py --only-missing --style photographic --accent blue",
+    "images:ai:force": "python tools/generate_ai_images.py --force --style photographic --accent blue",
     "gen:article": "python tools/generate_article.py --topic"
   },
   "dependencies": {
