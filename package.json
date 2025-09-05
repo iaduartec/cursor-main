@@ -17,6 +17,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "python tools/generate_missing_images.py --only-missing --min-bytes 1000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -29,6 +30,8 @@
     "analyze": "cross-env ANALYZE=true next build",
     "sitemap": "next-sitemap",
     "postbuild": "next-sitemap",
+    "images:generate": "python tools/generate_missing_images.py --only-missing --min-bytes 1000",
+    "images:check": "python tools/generate_missing_images.py --only-missing --min-bytes 1000 --dry-run",
     "gen:article": "python tools/generate_article.py --topic"
   },
   "dependencies": {
