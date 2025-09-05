@@ -13,7 +13,6 @@ coverage
 __pycache__
 # Keep most of tools/ out of deployment except the Node runner used in prebuild
 tools/
-!tools/generate_missing_images_runner.js
 tests/
 __tests__
 tmp

@@ -4,6 +4,7 @@
 
 const { spawnSync } = require('child_process');
 const path = require('path');
+const fs = require('fs');
 
 const isVercel = process.env.VERCEL === '1' || process.env.VERCEL_ENV;
 const repoRoot = __dirname ? path.resolve(__dirname, '..') : process.cwd();
@@ -37,6 +38,11 @@ function tryRun(interpreter) {
   }
 }
 
+if (!fs.existsSync(scriptPath)) {
+  console.warn('[WARN] Placeholder generator script not found; skipping.');
+  process.exit(0);
+}
+
 let result = tryRun('python');
 if (!result.ran) result = tryRun('python3');
 
@@ -45,4 +51,3 @@ if (!result.ran) {
 }
 
 process.exit(0);
-
