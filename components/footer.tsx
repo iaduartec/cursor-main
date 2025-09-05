@@ -19,6 +19,10 @@ export default function Footer() {
                 className="h-14 w-auto"
                 loading="lazy"
               />
+              <div className="ml-2">
+                <div className="text-lg font-bold">Duartec</div>
+                <div className="text-sm text-gray-300">Instalaciones Informáticas</div>
+              </div>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
               Más de 10 años de experiencia en instalaciones informáticas, videovigilancia, 

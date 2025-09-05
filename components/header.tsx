@@ -52,6 +52,11 @@ export default function Header() {
               className="h-16 w-auto group-hover:opacity-80 transition-opacity"
               priority
             />
+            {/* Texto con el nombre de la empresa (un único elemento para las pruebas) */}
+            <div className="flex flex-col leading-tight">
+              <span className="text-white font-bold text-lg">Duartec</span>
+              <span className="text-sm text-gray-200">Instalaciones Informáticas</span>
+            </div>
           </Link>
 
           {/* Navegación desktop */}
