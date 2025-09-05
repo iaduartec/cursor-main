@@ -116,9 +116,20 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   // Contentlayer typing marks body as Markdown in some setups; cast to access compiled MDX
   const MDXContent = useMDXComponent((post as any).body.code);
   const mdxComponents = {
-    a: (props: any) => (
-      <a {...props} className={`text-accent hover:text-accent-700 underline ${props.className || ''}`} />
-    ),
+    a: (props: any) => {
+      const { href = '', children, className, ...rest } = props || {};
+      const isExternal = /^https?:\/\//i.test(String(href));
+      return (
+        <a
+          href={href}
+          className={`text-accent hover:text-accent-700 underline ${className || ''}`}
+          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          {...rest}
+        >
+          {children}
+        </a>
+      );
+    },
     img: (props: any) => (
       <Image
         src={cleanSrc(props.src)}
