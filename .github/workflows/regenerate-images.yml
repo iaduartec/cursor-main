@@ -82,15 +82,16 @@ jobs:
             done
           fi
 
-      - name: Commit and push images
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/images/blog || true
-          git add content/blog || true
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
-          git commit -m "chore(content): regenerate images via workflow"
-          git push
+      - name: Create Pull Request with regenerated images
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(content): regenerate images via workflow"
+          title: "chore(content): regenerate images via workflow"
+          body: |
+            This PR contains regenerated blog images produced by the `regenerate-images` workflow.
+          branch: "images/regenerated-${{ github.run_id }}"
+          delete-branch: true
+          add-paths: |
+            public/images/blog/**
+            content/blog/**
