@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"chatgpt.openOnStartup": true,
+		"window.density.editorTabHeight": "compact",
+		"workbench.editor.tabActionLocation": "left",
+		"workbench.editor.highlightModifiedTabs": true,
+		"workbench.editor.scrollToSwitchTabs": true,
+		"workbench.editor.enablePreviewFromQuickOpen": true,
+		"workbench.editor.showTabs": "single"
+	}
+}
