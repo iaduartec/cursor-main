@@ -62,6 +62,10 @@ jobs:
               )
           PY
 
+      - name: Generate missing blog images (placeholder)
+        run: |
+          python tools/generate_missing_images.py --only-missing --min-bytes 1000
+
       - name: Create Pull Request with generated content
         uses: peter-evans/create-pull-request@v6
         with:
