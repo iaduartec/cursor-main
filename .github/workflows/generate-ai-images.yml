@@ -60,9 +60,21 @@ jobs:
         run: |
           set -euo pipefail
           args=( )
-          if [[ "${{ github.event.inputs.onlyMissing }}" == "true" ]]; then args+=("--only-missing"); fi
-          if [[ "${{ github.event.inputs.force }}" == "true" ]]; then args+=("--force"); fi
-          if [[ -n "${{ github.event.inputs.filter }}" ]]; then args+=("--filter" "${{ github.event.inputs.filter }}"); fi
+          FORCE="${{ github.event.inputs.force }}"
+          ONLY="${{ github.event.inputs.onlyMissing }}"
+          FLT="${{ github.event.inputs.filter }}"
+
+          # If force=true, do not pass --only-missing
+          if [[ "$FORCE" == "true" ]]; then
+            args+=("--force")
+          else
+            if [[ "$ONLY" == "true" ]]; then args+=("--only-missing"); fi
+          fi
+
+          # Ignore literal 'slug' or empty filter
+          if [[ -n "$FLT" && "$FLT" != "slug" && "$FLT" != "SLUG" && "$FLT" != "Slug" ]]; then
+            args+=("--filter" "$FLT")
+          fi
           args+=("--style" "${{ github.event.inputs.style }}")
           args+=("--accent" "${{ github.event.inputs.accent }}")
           args+=("--n" "${{ github.event.inputs.n }}")

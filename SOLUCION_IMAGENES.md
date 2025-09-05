@@ -36,12 +36,12 @@ Las imágenes generadas por el workflow de artículos eran muy pequeñas (86B - 
 
 ### 4. **Scripts de Diagnóstico y Pruebas**
 
-#### Archivos creados:
-- `test_workflow.py` - Verificación de dependencias y configuración
-- `debug_images.py` - Diagnóstico específico de generación de imágenes
-- `test_article_generation.py` - Prueba completa de generación
-- `cleanup_images.py` - Limpieza de imágenes inválidas
-- `test_final_workflow.py` - Prueba final del sistema completo
+#### Scripts locales (ahora en `tools/dev/`):
+- `tools/dev/test_workflow.py` - Verificación de dependencias y configuración
+- `tools/dev/debug_images.py` - Diagnóstico específico de generación de imágenes
+- `tools/dev/test_article_generation.py` - Prueba completa de generación
+- `tools/dev/cleanup_images.py` - Limpieza de imágenes inválidas
+- `tools/dev/test_final_workflow.py` - Prueba final del sistema completo
 
 ## 📊 Resultados de las Pruebas
 
@@ -113,13 +113,13 @@ Para verificar que todo funciona:
 
 ```bash
 # Verificar configuración
-python test_workflow.py
+python tools/dev/test_workflow.py
 
 # Probar generación completa
-python test_final_workflow.py
+python tools/dev/test_final_workflow.py
 
 # Limpiar imágenes inválidas
-python cleanup_images.py
+python tools/dev/cleanup_images.py
 ```
 
 ## ✅ Estado Actual

@@ -79,10 +79,10 @@ El workflow usa `GITHUB_TOKEN` automáticamente. Si hay problemas, verifica que 
 
 ## 🧪 Pruebas locales
 
-Ejecuta el script de prueba para verificar la configuración:
+Ejecuta el script de prueba para verificar la configuración (ubicado en `tools/dev/`):
 
 ```bash
-python test_workflow.py
+python tools/dev/test_workflow.py
 ```
 
 ## 📝 Ejemplos de uso
@@ -140,6 +140,6 @@ El sistema tiene múltiples fallbacks:
 Si tienes problemas:
 
 1. Revisa los logs del workflow en Actions
-2. Ejecuta `python test_workflow.py` localmente
+2. Ejecuta `python tools/dev/test_workflow.py` localmente
 3. Verifica la configuración de secrets
 4. Comprueba que las APIs de IA estén activas
