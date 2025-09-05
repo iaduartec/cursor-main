@@ -60,6 +60,10 @@ jobs:
             --category "${{ github.event.inputs.category }}" \
             --images ${{ github.event.inputs.images }}
 
+      - name: Generar placeholders faltantes (seguridad)
+        run: |
+          python tools/generate_missing_images.py --only-missing --min-bytes 1000
+
       - name: Crear Pull Request con los cambios
         uses: peter-evans/create-pull-request@v6
         with:
