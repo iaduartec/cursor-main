@@ -74,6 +74,10 @@ export const metadata = {
   verification: {
     google: 'tu-codigo-verificacion-google',
   },
+  icons: {
+    icon:
+      'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%231e3a8a"/><stop offset="100%" stop-color="%2306b6d4"/></linearGradient></defs><rect width="64" height="64" rx="12" fill="url(%23g)"/><path fill="white" d="M20 42h8l4-8 4 8h8L34 18h-4z"/></svg>',
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
