@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import Breadcrumb from '../../../components/Breadcrumb';
 import RelatedPosts from '../../../components/RelatedPosts';
 import { allBlogs } from 'contentlayer/generated';
+import type { Blog } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 // Color por categoría
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     openGraph: {
       title: post.title,
       description: post.description,
-      images: [(post as any).image].filter(Boolean) as string[],
+      images: post.image ? [post.image] : [],
     },
   };
 }
@@ -66,11 +67,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  const MDXContent = useMDXComponent((post as any).body.code);
-  const readTime = estimateReadTime((post as any).body.raw ?? '');
+  const MDXContent = useMDXComponent(post!.body.code);
+  const readTime = estimateReadTime(post!.body.raw ?? '');
 
   const allPosts: BlogCard[] = allBlogs
-    .map((p: any) => ({
+    .map((p: Blog) => ({
       title: p.title,
       slug: p.slug,
       category: p.category ?? 'General',
@@ -84,11 +85,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const current: BlogCard = {
     title: post!.title,
     slug: post!.slug,
-    category: (post as any).category ?? 'General',
-    image: (post as any).image ?? '/images/proyectos/CCTV.jpeg',
-    date: (post as any).date,
+    category: post!.category ?? 'General',
+    image: post!.image ?? '/images/proyectos/CCTV.jpeg',
+    date: post!.date,
     readTime,
-    excerpt: (post as any).description,
+    excerpt: post!.description,
   };
 
   return (

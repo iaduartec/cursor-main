@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { Monitor, Camera, Volume2, Zap, Shield, Clock, Users, MapPin, Phone } from 'lucide-react';

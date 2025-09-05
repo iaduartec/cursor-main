@@ -6,6 +6,7 @@ import { Calendar, ArrowRight } from 'lucide-react';
 import Breadcrumb from '../../components/Breadcrumb';
 import BlogCategories from '../../components/BlogCategories';
 import { allBlogs } from 'contentlayer/generated';
+import type { Blog } from 'contentlayer/generated';
 import { useMemo, useState } from 'react';
 
 // Color de etiqueta por categoría
@@ -45,7 +46,7 @@ export default function BlogPage() {
 
   const allPosts: BlogCard[] = useMemo(() => {
     return allBlogs
-      .map((p: any) => ({
+      .map((p: Blog) => ({
         title: p.title,
         slug: p.slug,
         category: p.category ?? 'General',

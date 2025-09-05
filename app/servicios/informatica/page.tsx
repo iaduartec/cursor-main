@@ -82,10 +82,10 @@ export default function InformaticaPage() {
       {/* Servicios Detallados */}
       <section className="max-w-6xl mx-auto py-16 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicios.map((servicio, index) => {
+          {servicios.map((servicio) => {
             const IconComponent = servicio.icon;
             return (
-              <div key={index} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-slate-700">
+              <div key={servicio.title} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-slate-700">
                 <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
                   <IconComponent className="w-6 h-6 text-blue-600" />
                 </div>
@@ -96,8 +96,8 @@ export default function InformaticaPage() {
                   {servicio.description}
                 </p>
                 <ul className="space-y-2">
-                  {servicio.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                  {servicio.features.map((feature) => (
+                    <li key={`${servicio.title}:${feature}`} className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
                       <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2" />
                       {feature}
                     </li>

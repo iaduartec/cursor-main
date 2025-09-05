@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Monitor, Camera, Volume2, Zap, ArrowRight } from 'lucide-react';
+import { Monitor, Camera, Volume2, Zap, ArrowRight, type LucideIcon } from 'lucide-react';
 import { allServicios } from 'contentlayer/generated';
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Servicios de informática, videovigilancia, sonido y electricidad en Burgos. Instalación, mantenimiento y soporte técnico profesional.',
 };
 
-const iconBySlug: Record<string, { Icon: any; bg: string; text: string }> = {
+const iconBySlug: Record<string, { Icon: LucideIcon; bg: string; text: string }> = {
   informatica: { Icon: Monitor, bg: 'bg-blue-100 dark:bg-blue-900', text: 'text-blue-600' },
   videovigilancia: { Icon: Camera, bg: 'bg-green-100 dark:bg-green-900', text: 'text-green-600' },
   sonido: { Icon: Volume2, bg: 'bg-purple-100 dark:bg-purple-900', text: 'text-purple-600' },
@@ -21,13 +21,13 @@ type ServicioCard = {
   title: string;
   description: string;
   href: string;
-  Icon: any;
+  Icon: LucideIcon;
   bg: string;
   text: string;
 };
 
 export default function ServiciosPage() {
-  const fromContent: ServicioCard[] = allServicios.map((s: any) => {
+  const fromContent: ServicioCard[] = allServicios.map((s) => {
     const mapping = iconBySlug[s.slug] ?? { Icon: Monitor, bg: 'bg-gray-100 dark:bg-slate-700', text: 'text-gray-700' };
     return {
       id: s.slug as string,
