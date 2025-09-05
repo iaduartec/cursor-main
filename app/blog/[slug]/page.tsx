@@ -85,12 +85,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 // Pre-render all blog slugs at build time to avoid dynamic 500s
+// app/blog/[slug]/page.tsx
+
+/** 
+ * Pre‑renderiza los slugs del blog con canonicalSlugFor. Evita problemas de codificación
+ * de caracteres acentuados al generar las rutas estáticas.
+ */
 export function generateStaticParams() {
-  const toParam = (p: Blog) => {
-    const raw = (p as any)?._raw?.flattenedPath as string | undefined;
-    return p.slug || (raw ? (raw.split('/').pop() || raw) : '');
-  };
-  return allBlogs.map((p) => ({ slug: toParam(p) }));
+  return allBlogs.map((p) => ({ slug: canonicalSlugFor(p) }));
 }
 
 type BlogCard = {
