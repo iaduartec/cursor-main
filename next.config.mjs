@@ -84,6 +84,8 @@ const nextConfig = {
   // Avoid workspace root inference warning with multiple lockfiles
   outputFileTracingRoot: path.join(process.cwd()),
 };
-
+module.exports = {
+  allowedDevOrigins: ['local-origin.dev', '*.local-origin.dev'],
+}
 export default withContentlayer(nextConfig);
 
