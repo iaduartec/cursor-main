@@ -23,10 +23,6 @@ on:
         description: 'CategorÃ­a del post'
         required: false
         default: 'General'
-      images:
-        description: 'NÃºmero de imÃ¡genes a generar'
-        required: false
-        default: '1'
 
 jobs:
   generate:
