@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
@@ -8,7 +8,7 @@ export default function Footer() {
       {/* Contenido principal del footer */}
       <div className="max-w-6xl mx-auto py-12 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* InformaciÃ³n de la empresa */}
+          {/* Información de la empresa */}
           <div className="lg:col-span-2">
             <div className="flex items-center mb-4">
               <Image 
@@ -25,7 +25,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
-              Más de 10 años de experiencia en instalaciones Informáticas, videovigilancia, 
+              Más de 10 años de experiencia en instalaciones informáticas, videovigilancia, 
               sonido y electricidad en Burgos y Castilla y León. Calidad y profesionalidad garantizadas.
             </p>
             <div className="flex space-x-4">
@@ -50,7 +50,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="/servicios/informatica" className="text-gray-300 hover:text-accent transition-colors">
-                  InformÃ¡tica
+                  Informática
                 </Link>
               </li>
               <li>
@@ -105,7 +105,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* LÃ­nea separadora */}
+      {/* Línea separadora */}
       <div className="border-t border-slate-700">
         <div className="max-w-6xl mx-auto py-6 px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -133,7 +133,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* InformaciÃ³n adicional */}
+      {/* Información adicional */}
       <div className="bg-slate-950 py-4 px-4">
         <div className="max-w-6xl mx-auto text-center text-xs text-gray-500">
           <p>
@@ -147,4 +147,3 @@ export default function Footer() {
     </footer>
   );
 }
-
