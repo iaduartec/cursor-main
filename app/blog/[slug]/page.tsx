@@ -63,8 +63,9 @@ const estimateReadTime = (text: string) => {
   return `${minutes} min`;
 };
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const incoming = normalizeSlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const incoming = normalizeSlug(slug);
   const post = allBlogs.find((p) => canonicalSlugFor(p) === incoming);
   if (!post) {
     return {
@@ -133,14 +134,15 @@ const getBlogCards = unstable_cache(
   { revalidate: 3600, tags: ['blogs'] }
 );
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const incoming = normalizeSlug(params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const incoming = normalizeSlug(slug);
   const post = allBlogs.find((p) => canonicalSlugFor(p) === incoming);
   if (!post) {
     notFound();
   }
   const canonical = canonicalSlugFor(post);
-  if (params.slug !== canonical) {
+  if (slug !== canonical) {
     redirect(`/blog/${canonical}`);
   }
 
