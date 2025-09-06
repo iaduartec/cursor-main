@@ -43,17 +43,17 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 py-4 bg-slate-800 dark:bg-slate-800 rounded-lg my-2 shadow-lg">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center group" aria-label="Inicio">
             <Image 
               src="/images/logo.png" 
               alt="Duartec Instalaciones Informáticas" 
-              width={64}
-              height={64}
-              className="h-16 w-auto group-hover:opacity-80 transition-opacity"
+              width={80}
+              height={80}
+              className="h-20 w-auto group-hover:opacity-80 transition-opacity"
               priority
             />
             {/* Texto con el nombre de la empresa (un único elemento para las pruebas) */}
-            <div className="flex flex-col leading-tight">
+            <div className="flex flex-col leading-tight hidden">
               <span className="text-white font-bold text-lg">Duartec</span>
               <span className="text-sm text-gray-200">Instalaciones Informáticas</span>
             </div>
