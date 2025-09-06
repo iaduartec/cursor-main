@@ -79,7 +79,8 @@ const nextConfig = {
   basePath: '',
   assetPrefix: '',
   poweredByHeader: false,
-  reactStrictMode: true,
+  // Disable React Strict Mode in dev to avoid double-mounting client maps
+  reactStrictMode: false,
 
   // Avoid workspace root inference warning with multiple lockfiles
 outputFileTracingRoot: path.join(process.cwd()),
