@@ -65,12 +65,8 @@ jobs:
         env:
           TOPIC: ${{ github.event.inputs.topic }}
         run: |
-          echo "slug=$(python - << 'PY'
-from slugify import slugify
-import os
-print(slugify(os.environ['TOPIC'])[:80])
-PY
-)" >> $GITHUB_OUTPUT
+          slug=$(python -c "from slugify import slugify; import os; print(slugify(os.environ.get('TOPIC',''))[:80])")
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
 
       - name: Generar imágenes AI (paso dedicado)
         if: ${{ secrets.GEMINI_API_KEY != '' }}
