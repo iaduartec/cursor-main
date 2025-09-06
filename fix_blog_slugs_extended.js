@@ -64,7 +64,7 @@ function parseFrontMatter(content) {
   const frontMatter = {};
   for (const line of fmLines) {
     const idx = line.indexOf(':');
-    if (idx <= 0) continue;
+    if (idx <= 0) {continue;}
     const key = line.slice(0, idx).trim();
     let val = line.slice(idx + 1).trim();
     if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
@@ -115,7 +115,7 @@ function fixSlugs(rootDir) {
     }
     // Rename file if its basename differs from normalized slug
     if (fileName !== normalized) {
-      const newPath = path.join(path.dirname(file), normalized + '.mdx');
+      const newPath = path.join(path.dirname(file), `${normalized  }.mdx`);
       // If destination exists, avoid overwriting
       if (!fs.existsSync(newPath)) {
         fs.renameSync(file, newPath);

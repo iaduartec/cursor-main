@@ -25,7 +25,7 @@ function fixFile(fp) {
   const raw = fs.readFileSync(fp, 'utf8');
   const lines = raw.replace(/\r\n?/g, '\n').split('\n');
   let i = 0;
-  let fm = {};
+  const fm = {};
   let bodyStart = 0;
 
   // If starts with '---', parse front matter header lines
@@ -80,7 +80,7 @@ function fixFile(fp) {
       outVal = outVal;
     } else {
       // escape existing quotes
-      outVal = '"' + outVal.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+      outVal = `"${  outVal.replace(/\\/g, '\\\\').replace(/"/g, '\\"')  }"`;
     }
     fmOut.push(`${key}: ${outVal}`);
   }
@@ -93,7 +93,7 @@ function fixFile(fp) {
   }
 
   // Rename if needed
-  const newPath = path.join(path.dirname(fp), normalizedSlug + '.mdx');
+  const newPath = path.join(path.dirname(fp), `${normalizedSlug  }.mdx`);
   if (newPath !== fp) {
     if (!fs.existsSync(newPath)) {
       fs.renameSync(fp, newPath);
@@ -110,7 +110,7 @@ function run(dir) {
   const root = path.resolve(dir);
   const files = fs.readdirSync(root).filter(f => f.endsWith('.mdx')).map(f => path.join(root, f));
   let changed = 0;
-  for (let fp of files) {
+  for (const fp of files) {
     const newFp = fixFile(fp);
     if (newFp !== fp) changed++;
   }

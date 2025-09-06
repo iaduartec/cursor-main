@@ -54,7 +54,7 @@ function parseFrontMatter(content) {
   const frontMatter = {};
   for (const line of fmContent.split(/\r?\n/)) {
     const idx = line.indexOf(':');
-    if (idx === -1) continue;
+    if (idx === -1) {continue;}
     const key = line.slice(0, idx).trim();
     let value = line.slice(idx + 1).trim();
     // Remove surrounding quotes if present

@@ -80,7 +80,7 @@ function parseMultipleFrontMatter(content) {
   if (parts.length === 1 || parts[0].trim() !== '') {
     return { frontMatter: {}, body: content };
   }
-  let frontMatterData = {};
+  const frontMatterData = {};
   let bodyStartIndex = 1;
   // Iterate over blocks after the initial empty string. Collect all
   // metadata blocks (those containing a colon) until we hit a block
@@ -93,7 +93,7 @@ function parseMultipleFrontMatter(content) {
     }
     for (const line of block.split(/\n+/)) {
       const idx = line.indexOf(':');
-      if (idx <= 0) continue;
+      if (idx <= 0) {continue;}
       const key = line.slice(0, idx).trim();
       let value = line.slice(idx + 1).trim();
       // Remove surrounding quotes from the value.
@@ -164,7 +164,7 @@ function run(directory) {
   const files = collectMdxFiles(targetDir);
   let updatedCount = 0;
   for (const file of files) {
-    if (processFile(file)) updatedCount++;
+    if (processFile(file)) {updatedCount++;}
   }
   console.log(`Processed ${files.length} file(s). Updated ${updatedCount} file(s).`);
 }

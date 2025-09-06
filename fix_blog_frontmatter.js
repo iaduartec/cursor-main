@@ -60,11 +60,11 @@ function parseMultipleFrontMatter(content) {
   while (content.startsWith('---', index)) {
     const start = index + 3; // skip '---'
     const next = content.indexOf('\n---', start);
-    if (next === -1) break;
+    if (next === -1) {break;}
     const block = content.slice(start, next).trim();
     for (const line of block.split(/\r?\n/)) {
       const idx = line.indexOf(':');
-      if (idx <= 0) continue;
+      if (idx <= 0) {continue;}
       const key = line.slice(0, idx).trim();
       let value = line.slice(idx + 1).trim();
       // Remove surrounding quotes
