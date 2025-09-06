@@ -1,1 +1,376 @@
-[]
+[
+  {
+    "title": "Caso de Éxito: Implementación de Iluminación Eficiente en Huerta de Arriba",
+    "date": "2025-09-04T00:00:00.000Z",
+    "description": "'Caso de Éxito: Implementación de Iluminación Eficiente en Huerta de",
+    "slug": "caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba",
+    "category": "Electricidad",
+    "image": "/images/blog/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba.mdx",
+      "sourceFileName": "caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba"
+    },
+    "type": "Blog",
+    "url": "/blog/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba"
+  },
+  {
+    "title": "Caso de éxito: Sonorización integral en Pineda de la Sierra",
+    "date": "2025-09-04T00:00:00.000Z",
+    "description": "'Caso de éxito: Sonorización integral en Pineda de la Sierra — artículo",
+    "slug": "caso-de-exito-sonorizacion-en-pineda-de-la-sierra",
+    "category": "Sonido",
+    "image": "/images/blog/caso-de-exito-sonorizacion-en-pineda-de-la-sierra/caso-de-exito-sonorizacion-en-pineda-de-la-sierra-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/caso-de-exito-sonorizacion-en-pineda-de-la-sierra.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/caso-de-exito-sonorizacion-en-pineda-de-la-sierra.mdx",
+      "sourceFileName": "caso-de-exito-sonorizacion-en-pineda-de-la-sierra.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/caso-de-exito-sonorizacion-en-pineda-de-la-sierra"
+    },
+    "type": "Blog",
+    "url": "/blog/caso-de-exito-sonorizacion-en-pineda-de-la-sierra"
+  },
+  {
+    "title": "Caso de éxito: Implementación de WiFi municipal en Rabanera del Pinar",
+    "date": "2025-09-04T00:00:00.000Z",
+    "description": "'Caso de éxito: Implementación de WiFi municipal en Rabanera del Pinar",
+    "slug": "caso-de-exito-wifi-municipal-en-rabanera-del-pinar",
+    "category": "Informática",
+    "image": "/images/blog/caso-de-exito-wifi-municipal-en-rabanera-del-pinar/caso-de-exito-wifi-municipal-en-rabanera-del-pinar-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/caso-de-exito-wifi-municipal-en-rabanera-del-pinar.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/caso-de-exito-wifi-municipal-en-rabanera-del-pinar.mdx",
+      "sourceFileName": "caso-de-exito-wifi-municipal-en-rabanera-del-pinar.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/caso-de-exito-wifi-municipal-en-rabanera-del-pinar"
+    },
+    "type": "Blog",
+    "url": "/blog/caso-de-exito-wifi-municipal-en-rabanera-del-pinar"
+  },
+  {
+    "title": "Cómo elegir el sistema de videovigilancia ideal para tu negocio",
+    "date": "2025-09-05T00:00:00.000Z",
+    "description": "Cómo elegir el sistema de videovigilancia ideal para tu negocio — artículo",
+    "slug": "como-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio",
+    "category": "General",
+    "image": "/images/blog/como-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio/como-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/como-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/como-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio.mdx",
+      "sourceFileName": "como-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/como-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio"
+    },
+    "type": "Blog",
+    "url": "/blog/como-elegir-el-sistema-de-videovigilancia-ideal-para-tu-negocio"
+  },
+  {
+    "title": "Ventajas de la iluminación LED en instalaciones comerciales",
+    "date": "2024-12-31T00:00:00.000Z",
+    "description": "Descripción de beneficios técnicos, económicos y ambientales de migrar",
+    "slug": "iluminacion-led-comercial",
+    "category": "Electricidad",
+    "image": "/images/blog/iluminacion-led-comercial/iluminacion-led-comercial-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/iluminacion-led-comercial.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/iluminacion-led-comercial.mdx",
+      "sourceFileName": "iluminacion-led-comercial.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/iluminacion-led-comercial"
+    },
+    "type": "Blog",
+    "url": "/blog/iluminacion-led-comercial"
+  },
+  {
+    "title": "Instalaciones Eléctricas de Baja Tensión: Normativa y Buenas Prácticas",
+    "date": "2025-09-05T00:00:00.000Z",
+    "description": "'Instalaciones Eléctricas de Baja Tensión: Normativa y Buenas Prácticas",
+    "slug": "instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas",
+    "category": "General",
+    "image": "/images/blog/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas.mdx",
+      "sourceFileName": "instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas"
+    },
+    "type": "Blog",
+    "url": "/blog/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas"
+  },
+  {
+    "title": "Instalaciones Eléctricas Industriales: Diseño, Implementación y Mantenimiento",
+    "date": "2024-12-28T00:00:00.000Z",
+    "description": "Guía completa sobre diseño, instalación y mantenimiento de sistemas eléctricos",
+    "slug": "instalaciones-electricas-industriales",
+    "category": "Electricidad",
+    "image": "/images/blog/instalaciones-electricas-industriales/instalaciones-electricas-industriales-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/instalaciones-electricas-industriales.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/instalaciones-electricas-industriales.mdx",
+      "sourceFileName": "instalaciones-electricas-industriales.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/instalaciones-electricas-industriales"
+    },
+    "type": "Blog",
+    "url": "/blog/instalaciones-electricas-industriales"
+  },
+  {
+    "title": "'Mantenimiento Preventivo de Equipos Informáticos: Una Guía Esencial para Empresas",
+    "date": "2025-09-05T00:00:00.000Z",
+    "description": "'Mantenimiento Preventivo de Equipos Informáticos: Una Guía Esencial",
+    "slug": "mantenimiento-preventivo-de-equipos-informaticos",
+    "category": "General",
+    "image": "/images/blog/mantenimiento-preventivo-de-equipos-informaticos/mantenimiento-preventivo-de-equipos-informaticos-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/mantenimiento-preventivo-de-equipos-informaticos.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/mantenimiento-preventivo-de-equipos-informaticos.mdx",
+      "sourceFileName": "mantenimiento-preventivo-de-equipos-informaticos.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/mantenimiento-preventivo-de-equipos-informaticos"
+    },
+    "type": "Blog",
+    "url": "/blog/mantenimiento-preventivo-de-equipos-informaticos"
+  },
+  {
+    "title": "Redes Informáticas Gestionadas para PYMEs: WiFi, Switching y Seguridad",
+    "date": "2025-09-05T00:00:00.000Z",
+    "description": "'Redes Informáticas Gestionadas para PYMEs: WiFi, Switching y Seguridad",
+    "slug": "redes-informaticas-gestionadas-para-pymes-wifi-switching-y-seguridad",
+    "category": "General",
+    "image": "/images/blog/redes-informaticas-gestionadas-para-pymes-wifi-switching-y-seguridad/redes-informaticas-gestionadas-para-pymes-wifi-switching-y-seguridad-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/redes-informaticas-gestionadas-para-pymes-wifi-switching-y-seguridad.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/redes-informaticas-gestionadas-para-pymes-wifi-switching-y-seguridad.mdx",
+      "sourceFileName": "redes-informaticas-gestionadas-para-pymes-wifi-switching-y-seguridad.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/redes-informaticas-gestionadas-para-pymes-wifi-switching-y-seguridad"
+    },
+    "type": "Blog",
+    "url": "/blog/redes-informaticas-gestionadas-para-pymes-wifi-switching-y-seguridad"
+  },
+  {
+    "title": "'Seguridad de Red Empresarial: Estrategias para Proteger tu Infraestructura",
+    "date": "2024-12-30T00:00:00.000Z",
+    "description": "Guía completa sobre implementación de medidas de seguridad de red para",
+    "slug": "seguridad-red-empresarial",
+    "category": "Informática",
+    "image": "/images/blog/seguridad-red-empresarial/seguridad-red-empresarial-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/seguridad-red-empresarial.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/seguridad-red-empresarial.mdx",
+      "sourceFileName": "seguridad-red-empresarial.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/seguridad-red-empresarial"
+    },
+    "type": "Blog",
+    "url": "/blog/seguridad-red-empresarial"
+  },
+  {
+    "title": "Sistemas de Audio Profesional: Diseño e Instalación para Diferentes Aplicaciones",
+    "date": "2024-12-29T00:00:00.000Z",
+    "description": "Guía completa sobre diseño, instalación y configuración de sistemas de",
+    "slug": "sistemas-audio-profesional",
+    "category": "Sonido",
+    "image": "/images/blog/sistemas-audio-profesional/sistemas-audio-profesional-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/sistemas-audio-profesional.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/sistemas-audio-profesional.mdx",
+      "sourceFileName": "sistemas-audio-profesional.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/sistemas-audio-profesional"
+    },
+    "type": "Blog",
+    "url": "/blog/sistemas-audio-profesional"
+  },
+  {
+    "title": "Sistemas de sonido profesional para eventos corporativos",
+    "date": "2024-12-31T00:00:00.000Z",
+    "description": "Orientación para la selección e instalación de audio para eventos de",
+    "slug": "sonido-profesional-eventos-corporativos",
+    "category": "Sonido",
+    "image": "/images/blog/sonido-profesional-eventos-corporativos/sonido-profesional-eventos-corporativos-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/sonido-profesional-eventos-corporativos.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/sonido-profesional-eventos-corporativos.mdx",
+      "sourceFileName": "sonido-profesional-eventos-corporativos.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/sonido-profesional-eventos-corporativos"
+    },
+    "type": "Blog",
+    "url": "/blog/sonido-profesional-eventos-corporativos"
+  },
+  {
+    "title": "Tecnologías Emergentes en Videovigilancia: IA, 5G y el Futuro de la Seguridad",
+    "date": "2024-12-27T00:00:00.000Z",
+    "description": "Análisis de las últimas tecnologías en videovigilancia, incluyendo inteligencia",
+    "slug": "tecnologias-emergentes-videovigilancia",
+    "category": "Seguridad",
+    "image": "/images/blog/tecnologias-emergentes-videovigilancia/tecnologias-emergentes-videovigilancia-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/tecnologias-emergentes-videovigilancia.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/tecnologias-emergentes-videovigilancia.mdx",
+      "sourceFileName": "tecnologias-emergentes-videovigilancia.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/tecnologias-emergentes-videovigilancia"
+    },
+    "type": "Blog",
+    "url": "/blog/tecnologias-emergentes-videovigilancia"
+  },
+  {
+    "title": "Tendencias en seguridad electrónica para 2024",
+    "date": "2024-12-31T00:00:00.000Z",
+    "description": "Panorámica de innovaciones relevantes en seguridad y videovigilancia,",
+    "slug": "tendencias-seguridad-electronica-2024",
+    "category": "Seguridad",
+    "image": "/images/blog/tendencias-seguridad-electronica-2024/tendencias-seguridad-electronica-2024-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/tendencias-seguridad-electronica-2024.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/tendencias-seguridad-electronica-2024.mdx",
+      "sourceFileName": "tendencias-seguridad-electronica-2024.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/tendencias-seguridad-electronica-2024"
+    },
+    "type": "Blog",
+    "url": "/blog/tendencias-seguridad-electronica-2024"
+  },
+  {
+    "title": "Videovigilancia IP en comercios de Burgos: guía práctica 2025",
+    "date": "2025-09-03T00:00:00.000Z",
+    "description": "'Qué tener en cuenta para implantar un sistema de CCTV IP en tiendas",
+    "slug": "videovigilancia-ip-comercios-burgos-2025",
+    "category": "Seguridad",
+    "image": "/images/blog/videovigilancia-ip-comercios-burgos-2025/videovigilancia-ip-comercios-burgos-2025-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/videovigilancia-ip-comercios-burgos-2025.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/videovigilancia-ip-comercios-burgos-2025.mdx",
+      "sourceFileName": "videovigilancia-ip-comercios-burgos-2025.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/videovigilancia-ip-comercios-burgos-2025"
+    },
+    "type": "Blog",
+    "url": "/blog/videovigilancia-ip-comercios-burgos-2025"
+  },
+  {
+    "title": "Cómo elegir el sistema de videovigilancia ideal para tu negocio",
+    "date": "2024-12-31T00:00:00.000Z",
+    "description": "Guía completa para definir el alcance y criterios técnicos para elegir",
+    "slug": "videovigilancia-sistema-ideal",
+    "category": "Seguridad",
+    "image": "/images/blog/videovigilancia-sistema-ideal/videovigilancia-sistema-ideal-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/videovigilancia-sistema-ideal.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/videovigilancia-sistema-ideal.mdx",
+      "sourceFileName": "videovigilancia-sistema-ideal.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/videovigilancia-sistema-ideal"
+    },
+    "type": "Blog",
+    "url": "/blog/videovigilancia-sistema-ideal"
+  },
+  {
+    "title": "Configuración de redes WiFi empresariales: mejores prácticas",
+    "date": "2024-12-31T00:00:00.000Z",
+    "description": "Pautas para desplegar una red WiFi robusta y segura en empresa, incluyendo",
+    "slug": "wifi-empresarial-mejores-practicas",
+    "category": "Informática",
+    "image": "/images/blog/wifi-empresarial-mejores-practicas/wifi-empresarial-mejores-practicas-hero-001.webp",
+    "body": {
+      "raw": "",
+      "html": ""
+    },
+    "_id": "blog/wifi-empresarial-mejores-practicas.mdx",
+    "_raw": {
+      "sourceFilePath": "blog/wifi-empresarial-mejores-practicas.mdx",
+      "sourceFileName": "wifi-empresarial-mejores-practicas.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/wifi-empresarial-mejores-practicas"
+    },
+    "type": "Blog",
+    "url": "/blog/wifi-empresarial-mejores-practicas"
+  }
+]
