@@ -1,14 +1,14 @@
-name: Generar Artículo
+name: Generar ArtÃ­culo
 
 on:
   workflow_dispatch:
     inputs:
       topic:
-        description: 'Tema del artículo'
+        description: 'Tema del artÃ­culo'
         required: true
-        default: 'Nuevo artículo de prueba'
+        default: 'Nuevo artÃ­culo de prueba'
       style:
-        description: 'Estilo de la imagen (fotográfico/minimalista/...)'
+        description: 'Estilo de la imagen (fotogrÃ¡fico/minimalista/...)'
         required: false
         default: 'fotografico'
       accent:
@@ -20,11 +20,11 @@ on:
         required: false
         default: ''
       category:
-        description: 'Categoría del post'
+        description: 'CategorÃ­a del post'
         required: false
         default: 'General'
       images:
-        description: 'Número de imágenes a generar'
+        description: 'NÃºmero de imÃ¡genes a generar'
         required: false
         default: '1'
 
@@ -46,11 +46,11 @@ jobs:
           if [ -f tools/requirements.txt ]; then pip install -r tools/requirements.txt; fi
           pip install google-genai openai pyyaml python-slugify pillow
 
-      - name: Generar artículo
+      - name: Generar artÃ­culo
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          KIE_API_KEY: ${{ secrets.KIE_API_KEY }}
+          
         run: |
           python tools/generate_article.py \
             --topic "${{ github.event.inputs.topic }}" \
@@ -58,9 +58,8 @@ jobs:
             --accent "${{ github.event.inputs.accent }}" \
             --details "${{ github.event.inputs.details }}" \
             --category "${{ github.event.inputs.category }}" \
-            --images ${{ github.event.inputs.images }}
 
-      - name: Calcular slug del artículo
+      - name: Calcular slug del artÃ­culo
         id: slug
         env:
           TOPIC: ${{ github.event.inputs.topic }}
@@ -76,7 +75,7 @@ jobs:
           if [ -n "${KEY}" ]; then echo "HAS_GEMINI=true" >> $GITHUB_ENV; else echo "HAS_GEMINI=false" >> $GITHUB_ENV; fi
 
 
-      - name: Generar imágenes AI (paso dedicado)
+      - name: Generar imÃ¡genes AI (paso dedicado)
         if: ${{ env.HAS_GEMINI == 'true' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -95,10 +94,10 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Contenido: Nuevo artículo '${{ github.event.inputs.topic }}'"
-          title: "Contenido: Nuevo artículo '${{ github.event.inputs.topic }}'"
+          commit-message: "Contenido: Nuevo artÃ­culo '${{ github.event.inputs.topic }}'"
+          title: "Contenido: Nuevo artÃ­culo '${{ github.event.inputs.topic }}'"
           body: |
-            Este PR contiene un nuevo artículo generado automáticamente.
+            Este PR contiene un nuevo artÃ­culo generado automÃ¡ticamente.
             **Tema:** ${{ github.event.inputs.topic }}
           branch: "content/new-article-${{ github.run_id }}"
           delete-branch: true
