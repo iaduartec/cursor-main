@@ -1,7 +1,13 @@
 <<<<<<< ours
+<<<<<<< ours
 import Image from 'next/image';
 import { Monitor, Camera, Volume2, Zap, Shield, Clock, Users, MapPin, Phone } from 'lucide-react';
 =======
+=======
+'use client';
+
+import { Monitor, Camera, Volume2, Zap, Shield, Clock, Users, MapPin, Phone } from 'lucide-react';
+>>>>>>> theirs
 import dynamic from 'next/dynamic';
 >>>>>>> theirs
 import type { Metadata } from 'next';
