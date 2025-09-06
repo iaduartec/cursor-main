@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Link from 'next/link';
@@ -33,6 +34,16 @@ const cams: Cam[] = [
 ];
 
 export default function MapCamaras() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  if (!mounted) {
+    return <div className="w-full h-[480px] rounded-xl overflow-hidden border border-gray-100 dark:border-slate-700" />;
+  }
+
   const mapProps: MapProps = { center: [42.15, -3.35], zoom: 9 };
   return (
     <div className="w-full h-[480px] rounded-xl overflow-hidden border border-gray-100 dark:border-slate-700">
@@ -84,4 +95,3 @@ export default function MapCamaras() {
     </div>
   );
 }
-
