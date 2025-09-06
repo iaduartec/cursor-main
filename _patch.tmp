@@ -1,0 +1,31 @@
+*** Begin Patch
+*** Update File: .github/workflows/generate-article.yml
+@@
+       - name: Calcular slug del artículo
+         id: slug
+         env:
+           TOPIC: ${{ github.event.inputs.topic }}
+         run: |
+           slug=$(python -c "from slugify import slugify; import os; print(slugify(os.environ.get('TOPIC',''))[:80])")
+           echo "slug=$slug" >> "$GITHUB_OUTPUT"
++
++      - name: Detectar Gemini
++        id: has_gemini
++        env:
++          KEY: ${{ secrets.GEMINI_API_KEY }}
++        run: |
++          if [ -n "${KEY}" ]; then echo "HAS_GEMINI=true" >> $GITHUB_ENV; else echo "HAS_GEMINI=false" >> $GITHUB_ENV; fi
+@@
+-      - name: Generar imágenes AI (paso dedicado)
+-        if: ${{ secrets.GEMINI_API_KEY != '' }}
++      - name: Generar imágenes AI (paso dedicado)
++        if: ${{ env.HAS_GEMINI == 'true' }}
+         env:
+           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+         run: |
+           python tools/generate_ai_images.py \
+             --only-missing --min-bytes 1000 \
+             --filter "${{ steps.slug.outputs.slug }}" \
+             --style "${{ github.event.inputs.style }}" \
+             --accent "${{ github.event.inputs.accent }}"
+*** End Patch

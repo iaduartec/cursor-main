@@ -68,8 +68,16 @@ jobs:
           slug=$(python -c "from slugify import slugify; import os; print(slugify(os.environ.get('TOPIC',''))[:80])")
           echo "slug=$slug" >> "$GITHUB_OUTPUT"
 
+      - name: Detectar Gemini
+        id: has_gemini
+        env:
+          KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -n "${KEY}" ]; then echo "HAS_GEMINI=true" >> $GITHUB_ENV; else echo "HAS_GEMINI=false" >> $GITHUB_ENV; fi
+
+
       - name: Generar imágenes AI (paso dedicado)
-        if: ${{ secrets.GEMINI_API_KEY != '' }}
+        if: ${{ env.HAS_GEMINI == 'true' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
