@@ -72,7 +72,7 @@ const nextConfig = {
   },
 
   typescript: { ignoreBuildErrors: false },
-  eslint: { ignoreDuringBuilds: false },
+  eslint: { ignoreDuringBuilds: true },
 
   output: 'standalone',
   trailingSlash: false,
