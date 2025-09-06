@@ -117,7 +117,7 @@ function stockForCategory(category) {
     ['Electricidad', 'electricidad.jpeg'],
     ['Informática', 'servers.jpeg'],
     ['Informatica', 'servers.jpeg'],
-    ['Informtica', 'servers.jpeg'],
+    ['Informática', 'servers.jpeg'],
     ['Sonido', 'sonido.jpeg'],
     ['General', 'seguridad_red.jpeg'],
   ]);
