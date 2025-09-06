@@ -1,12 +1,21 @@
+<<<<<<< ours
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { Monitor, Camera, Volume2, Zap, Shield, Clock, Users, MapPin, Phone } from 'lucide-react';
 import dynamic from 'next/dynamic';
+=======
+'use client';
+
+import { Monitor, Camera, Volume2, Zap, Shield, Clock, Users, MapPin, Phone } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import type { Metadata } from 'next';
+>>>>>>> theirs
 
 const MapCamaras = dynamic(() => import('../components/MapCamaras'), { ssr: false });
 
 export const metadata: Metadata = {
   title: 'Inicio',
+<<<<<<< ours
   description: 'Duartec Instalaciones Informáticas - Soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos y Castilla y León.',
   openGraph: {
     title: 'Duartec Instalaciones Informáticas - Burgos',
@@ -340,5 +349,14 @@ export default function HomePage() {
           })}
       </script>
     </>
+=======
+};
+
+export default function Page() {
+  return (
+    <div>
+      <MapCamaras />
+    </div>
+>>>>>>> theirs
   );
 }
