@@ -75,7 +75,7 @@ jobs:
           set -euo pipefail
           FORCE_FLAG=""; [[ "${{ inputs.force }}" == "true" ]] && FORCE_FLAG="--force"
           ONLY_FLAG=""; [[ "${{ inputs.only_missing }}" == "true" ]] && ONLY_FLAG="--only-missing"
-          FILTER_FLAG=""; [[ -n "${{ inputs.filter }}" ]] && FILTER_FLAG="--filter '${{ inputs.filter }}'"
+          FILTER_FLAG=""; [[ -n "${{ inputs.filter }}" ]] && FILTER_FLAG="--filter \"${{ inputs.filter }}\""
           python tools/generate_ai_images.py \
             ${ONLY_FLAG} ${FORCE_FLAG} ${FILTER_FLAG} \
             --n "${{ inputs.n }}" \
@@ -91,7 +91,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Commit and push changes (optional)
-        if: ${{ inputs.commit == true }}
+        if: ${{ inputs.commit == 'true' }}
         run: |
           set -e
           git config user.name "github-actions[bot]"
@@ -103,4 +103,3 @@ jobs:
           fi
           git commit -m "chore(images): generate AI hero images"
           git push
-
