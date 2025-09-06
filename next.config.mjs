@@ -84,6 +84,6 @@ const nextConfig = {
   // Avoid workspace root inference warning with multiple lockfiles
   outputFileTracingRoot: path.join(process.cwd()),
 };
-
+--turbopack
 export default withContentlayer(nextConfig);
 
