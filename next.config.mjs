@@ -1,3 +1,5 @@
+import path from 'path';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configuración de imágenes
@@ -89,6 +91,13 @@ const nextConfig = {
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+
+    // Silencia dependencias opcionales no instaladas (OTel Jaeger)
+    config.resolve = config.resolve || {};
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      '@opentelemetry/exporter-jaeger': false,
+    };
 
     return config;
   },
