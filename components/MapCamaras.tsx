@@ -1,5 +1,3 @@
-<<<<<<< ours
-<<<<<<< ours
 "use client";
 
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
@@ -65,8 +63,17 @@ export default function MapCamaras() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <a href={`https://www.youtube.com/watch?v=${c.youtubeId}`} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline font-medium">Ver en YouTube</a>
-                    <Link href={`/streaming/${c.slug}`} className="text-accent hover:underline font-medium">Ver cámara</Link>
+                    <a
+                      href={`https://www.youtube.com/watch?v=${c.youtubeId}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline font-medium"
+                    >
+                      Ver en YouTube
+                    </a>
+                    <Link href={`/streaming/${c.slug}`} className="text-accent hover:underline font-medium">
+                      Ver cámara
+                    </Link>
                   </div>
                 </div>
               </Popup>
@@ -76,15 +83,5 @@ export default function MapCamaras() {
       </MapContainer>
     </div>
   );
-=======
-=======
->>>>>>> theirs
-'use client';
-
-export default function MapCamaras() {
-  return <div>Mapa de Cámaras</div>;
-<<<<<<< ours
->>>>>>> theirs
-=======
->>>>>>> theirs
 }
+
