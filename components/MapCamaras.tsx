@@ -1,4 +1,5 @@
 <<<<<<< ours
+<<<<<<< ours
 "use client";
 
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
@@ -76,9 +77,14 @@ export default function MapCamaras() {
     </div>
   );
 =======
+=======
+>>>>>>> theirs
 'use client';
 
 export default function MapCamaras() {
   return <div>Mapa de Cámaras</div>;
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 }
