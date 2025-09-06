@@ -10,16 +10,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Información de la empresa */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center mb-4">
               <Image 
                 src="/images/logo.png"
                 alt="Duartec"
-                width={56}
-                height={56}
-                className="h-14 w-auto"
+                width={80}
+                height={80}
+                className="h-20 w-auto"
                 loading="lazy"
               />
-              <div className="ml-2">
+              <div className="ml-2 hidden">
                 <div className="text-lg font-bold">Duartec</div>
                 <div className="text-sm text-gray-300">Instalaciones Informáticas</div>
               </div>

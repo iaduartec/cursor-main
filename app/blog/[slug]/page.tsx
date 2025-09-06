@@ -23,14 +23,14 @@ const canonicalSlugFor = (p: Blog): string => {
   return normalizeSlug(base);
 };
 
-// Color por categorÃ­a
+// Color por categoría
 const getCategoryColor = (category: string) => {
   switch (category) {
     case 'Seguridad':
       return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
     case 'Electricidad':
       return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-    case 'InformÃ¡tica':
+    case 'Informática':
       return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
     case 'Sonido':
       return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
@@ -39,7 +39,7 @@ const getCategoryColor = (category: string) => {
   }
 };
 
-// VersiÃ³n robusta de colores por categorÃ­a
+// Versión robusta de colores por categoría
 const getCategoryColor2 = (category: string) => {
   const c = (category || '').toLowerCase();
   if (c === 'seguridad' || c === 'security') {
@@ -48,7 +48,7 @@ const getCategoryColor2 = (category: string) => {
   if (c === 'electricidad' || c === 'electricity') {
     return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
   }
-  if (c === 'informÃ¡tica' || c === 'informatica' || c === 'it') {
+  if (c === 'informática' || c === 'informatica' || c === 'it') {
     return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
   }
   if (c === 'sonido' || c === 'audio') {
@@ -69,8 +69,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = allBlogs.find((p) => canonicalSlugFor(p) === incoming);
   if (!post) {
     return {
-      title: 'ArtÃ­culo no encontrado',
-      description: 'El artÃ­culo que buscas no existe.'
+      title: 'Artículo no encontrado',
+      description: 'El artículo que buscas no existe.'
     };
   }
 
@@ -218,14 +218,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </Link>
           </div>
           
-          {/* CategorÃ­a */}
+          {/* Categoría */}
           <div className="mb-6">
-            <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${getCategoryColor((current.category || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace('IT','InformÃ¡tica'))}`}>
+            <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${getCategoryColor((current.category || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace('IT','Informática'))}`}>
               {current.category}
             </span>
           </div>
 
-          {/* TÃ­tulo */}
+          {/* Título */}
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">
             {current.title}
           </h1>
@@ -248,7 +248,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
-      {/* Contenido del artÃ­culo */}
+      {/* Contenido del artículo */}
       <section className="max-w-4xl mx-auto py-16 px-4">
         <article className="prose prose-lg dark:prose-invert max-w-none">
           {hasCode ? (
@@ -258,7 +258,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           )}
         </article>
 
-        {/* ArtÃ­culos relacionados */}
+        {/* Artículos relacionados */}
         <RelatedPosts 
           currentPost={current}
           allPosts={allPosts}
@@ -271,7 +271,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             Â¿Necesitas ayuda con tu proyecto?
           </h3>
           <p className="text-lg mb-6 opacity-90">
-            Nuestros expertos estÃ¡n aquÃ­ para ayudarte con cualquier consulta tÃ©cnica
+            Nuestros expertos están aquí para ayudarte con cualquier consulta técnica
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
