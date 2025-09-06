@@ -144,8 +144,10 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     redirect(`/blog/${canonical}`);
   }
 
-  // Contentlayer typing marks body as Markdown in some setups; cast to access compiled MDX
-  const MDXContent = useMDXComponent((post as any).body.code);
+  // Contentlayer in production may provide only raw/html (no body.code)
+  const body: any = (post as any).body || {};
+  const hasCode = typeof body.code === 'string' && body.code.length > 0;
+  const MDXContent = hasCode ? useMDXComponent(body.code) : null as any;
   const mdxComponents = {
     a: (props: any) => {
       const { href = '', children, className, ...rest } = props || {};
@@ -247,7 +249,11 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       {/* Contenido del artÃ­culo */}
       <section className="max-w-4xl mx-auto py-16 px-4">
         <article className="prose prose-lg dark:prose-invert max-w-none">
-          <MDXContent components={mdxComponents} />
+          {hasCode ? (
+            <MDXContent components={mdxComponents} />
+          ) : (
+            <div dangerouslySetInnerHTML={{ __html: String(body.html || '') }} />
+          )}
         </article>
 
         {/* ArtÃ­culos relacionados */}
