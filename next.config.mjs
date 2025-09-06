@@ -82,10 +82,7 @@ const nextConfig = {
   reactStrictMode: true,
 
   // Avoid workspace root inference warning with multiple lockfiles
-  outputFileTracingRoot: path.join(process.cwd()),
+outputFileTracingRoot: path.join(process.cwd()),
 };
-module.exports = {
-  allowedDevOrigins: ['local-origin.dev', '*.local-origin.dev'],
-}
-export default withContentlayer(nextConfig);
 
+export default withContentlayer(nextConfig);
