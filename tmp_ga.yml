@@ -1,14 +1,14 @@
-﻿name: Generar ArtÃƒÂ­culo
+name: Generar ArtÃ­culo
 
 on:
   workflow_dispatch:
     inputs:
       topic:
-        description: 'Tema del artÃƒÂ­culo'
+        description: 'Tema del artÃ­culo'
         required: true
-        default: 'Nuevo artÃƒÂ­culo de prueba'
+        default: 'Nuevo artÃ­culo de prueba'
       style:
-        description: 'Estilo de la imagen (fotogrÃƒÂ¡fico/minimalista/...)'
+        description: 'Estilo de la imagen (fotogrÃ¡fico/minimalista/...)'
         required: false
         default: 'fotografico'
       accent:
@@ -20,7 +20,7 @@ on:
         required: false
         default: ''
       category:
-        description: 'CategorÃƒÂ­a del post'
+        description: 'CategorÃ­a del post'
         required: false
         default: 'General'
 
@@ -42,7 +42,7 @@ jobs:
           if [ -f tools/requirements.txt ]; then pip install -r tools/requirements.txt; fi
           pip install google-genai openai pyyaml python-slugify pillow
 
-      - name: Generar artÃƒÂ­culo
+      - name: Generar artÃ­culo
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -53,9 +53,9 @@ jobs:
             --style "${{ github.event.inputs.style }}" \
             --accent "${{ github.event.inputs.accent }}" \
             --details "${{ github.event.inputs.details }}" \
-            --category "${{ github.event.inputs.category }}" 
+            --category "${{ github.event.inputs.category }}" \
 
-      - name: Calcular slug del artÃƒÂ­culo
+      - name: Calcular slug del artÃ­culo
         id: slug
         env:
           TOPIC: ${{ github.event.inputs.topic }}
@@ -71,7 +71,7 @@ jobs:
           if [ -n "${KEY}" ]; then echo "HAS_GEMINI=true" >> $GITHUB_ENV; else echo "HAS_GEMINI=false" >> $GITHUB_ENV; fi
 
 
-      - name: Generar imÃƒÂ¡genes AI (paso dedicado)
+      - name: Generar imÃ¡genes AI (paso dedicado)
         if: ${{ env.HAS_GEMINI == 'true' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -90,10 +90,10 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Contenido: Nuevo artÃƒÂ­culo '${{ github.event.inputs.topic }}'"
-          title: "Contenido: Nuevo artÃƒÂ­culo '${{ github.event.inputs.topic }}'"
+          commit-message: "Contenido: Nuevo artÃ­culo '${{ github.event.inputs.topic }}'"
+          title: "Contenido: Nuevo artÃ­culo '${{ github.event.inputs.topic }}'"
           body: |
-            Este PR contiene un nuevo artÃƒÂ­culo generado automÃƒÂ¡ticamente.
+            Este PR contiene un nuevo artÃ­culo generado automÃ¡ticamente.
             **Tema:** ${{ github.event.inputs.topic }}
           branch: "content/new-article-${{ github.run_id }}"
           delete-branch: true
