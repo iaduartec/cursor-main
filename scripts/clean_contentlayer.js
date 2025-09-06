@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+// Remove stale Contentlayer artifacts to avoid stale indexes during builds.
+// This is safe on Vercel and local. Ignore errors if the folder doesn't exist.
+
+const fs = require('fs');
+const path = require('path');
+
+const targets = [
+  path.resolve('.contentlayer'),
+];
+
+for (const p of targets) {
+  try {
+    if (fs.existsSync(p)) {
+      fs.rmSync(p, { recursive: true, force: true });
+      console.log(`[clean] removed ${p}`);
+    }
+  } catch (e) {
+    console.warn(`[clean] failed to remove ${p}: ${e && e.message}`);
+  }
+}
+
+process.exit(0);
+

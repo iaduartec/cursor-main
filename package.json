@@ -17,7 +17,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/generate_missing_images_runner.js --only-missing --min-bytes 1000",
+    "prebuild": "node scripts/clean_contentlayer.js && node scripts/generate_missing_images_runner.js --only-missing --min-bytes 1000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
