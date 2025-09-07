@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, ArrowRight } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import BlogCategories from '../../components/BlogCategories';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export type BlogCard = {
   title: string;
@@ -18,27 +19,80 @@ export type BlogCard = {
 
 const getCategoryColor = (category: string) => {
   const c = (category || '').toLowerCase();
-  if (c === 'seguridad' || c === 'security') {return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';}
-  if (c === 'electricidad' || c === 'electricity') {return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';}
-  if (c === 'informática' || c === 'informatica' || c === 'it') {return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';}
-  if (c === 'sonido' || c === 'audio') {return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';}
+  if (c === 'seguridad' || c === 'security') return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+  if (c === 'electricidad' || c === 'electricity') return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
+  if (c === 'informática' || c === 'informatica' || c === 'it') return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+  if (c === 'sonido' || c === 'audio') return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
   return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
 };
 
-export default function BlogListClient({ posts }: { posts: BlogCard[] }) {
-  const [activeCategory, setActiveCategory] = useState('Todas');
+export default function BlogListClient({
+  posts,
+  total,
+  page,
+  pageSize,
+  categories,
+  activeCategory,
+  query,
+}: {
+  posts: BlogCard[];
+  total: number;
+  page: number;
+  pageSize: number;
+  categories: string[];
+  activeCategory: string;
+  query: string;
+}) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const categories = useMemo(() => {
-    const set = new Set<string>();
-    posts.forEach((p) => set.add(p.category));
-    return Array.from(set);
-  }, [posts]);
+  const [search, setSearch] = useState(query || '');
 
-  const filteredPosts = activeCategory === 'Todas' ? posts : posts.filter((p) => p.category === activeCategory);
+  useEffect(() => {
+    setSearch(query || '');
+  }, [query]);
+
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+
+  const setParams = (params: Record<string, string | undefined>) => {
+    const sp = new URLSearchParams(searchParams?.toString());
+    for (const [k, v] of Object.entries(params)) {
+      if (v === undefined || v === '') sp.delete(k);
+      else sp.set(k, v);
+    }
+    if (!('page' in params)) sp.set('page', '1');
+    router.push(`${pathname}?${sp.toString()}`);
+  };
+
+  const filteredPosts = posts; // server already applied filters
 
   return (
     <section className="max-w-6xl mx-auto py-16 px-4">
-      <BlogCategories categories={categories} activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+      <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mb-8">
+        <div className="w-full sm:w-auto">
+          <BlogCategories
+            categories={categories}
+            activeCategory={activeCategory}
+            onCategoryChange={(cat) => setParams({ category: cat === 'Todas' ? undefined : cat })}
+          />
+        </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setParams({ q: search || undefined });
+          }}
+          className="w-full sm:w-80"
+        >
+          <input
+            type="search"
+            placeholder="Buscar artículos..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-2 bg-white dark:bg-slate-800 text-sm"
+          />
+        </form>
+      </div>
 
       {filteredPosts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -78,11 +132,29 @@ export default function BlogListClient({ posts }: { posts: BlogCard[] }) {
         </div>
       ) : (
         <div className="text-center py-16">
-          <div className="text-gray-500 dark:text-gray-400 text-lg mb-4">
-            No hay artículos en la categoría &quot;{activeCategory}&quot;
-          </div>
-          <button onClick={() => setActiveCategory('Todas')} className="text-accent hover:text-accent-700 font-medium">
+          <div className="text-gray-500 dark:text-gray-400 text-lg mb-4">No hay artículos que coincidan con tu búsqueda</div>
+          <button onClick={() => setParams({ category: undefined, q: undefined })} className="text-accent hover:text-accent-700 font-medium">
             Ver todos los artículos
+          </button>
+        </div>
+      )}
+
+      {totalPages > 1 && (
+        <div className="mt-10 flex items-center justify-center gap-2">
+          <button
+            disabled={page <= 1}
+            onClick={() => setParams({ page: String(Math.max(1, page - 1)) })}
+            className={`px-3 py-2 rounded border text-sm ${page <= 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100 dark:hover:bg-slate-700'}`}
+          >
+            Anterior
+          </button>
+          <span className="text-sm text-gray-600 dark:text-gray-300">Página {page} de {totalPages}</span>
+          <button
+            disabled={page >= totalPages}
+            onClick={() => setParams({ page: String(Math.min(totalPages, page + 1)) })}
+            className={`px-3 py-2 rounded border text-sm ${page >= totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100 dark:hover:bg-slate-700'}`}
+          >
+            Siguiente
           </button>
         </div>
       )}

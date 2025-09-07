@@ -1,6 +1,6 @@
 import Breadcrumb from '../../components/Breadcrumb';
 import BlogListClient, { type BlogCard } from './BlogListClient';
-import { getAllPosts } from '../../lib/db-posts';
+import { getPostsPage, getDistinctCategories } from '../../lib/db-posts';
 
 const cleanSrc = (s?: string) => (s || '').replace(/[\r\n]+/g, '').trim();
 const normalizeSlug = (s: string) =>
@@ -16,19 +16,34 @@ const estimateReadTime = (text: string) => {
   return `${minutes} min`;
 };
 
-export default async function BlogPage() {
-  const dbPosts = await getAllPosts();
-  const posts: BlogCard[] = dbPosts
-    .map((p) => ({
-      title: p.title,
-      slug: normalizeSlug(p.slug),
-      category: p.category ?? 'General',
-      image: cleanSrc(p.image || '') || '/images/proyectos/CCTV.jpeg',
-      date: p.date.toISOString(),
-      readTime: estimateReadTime(p.content || ''),
-      excerpt: p.description || '',
-    }))
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const sp = await searchParams;
+  const pageParam = Array.isArray(sp?.page) ? sp?.page[0] : sp?.page;
+  const categoryParam = Array.isArray(sp?.category) ? sp?.category[0] : sp?.category;
+  const queryParam = Array.isArray(sp?.q) ? sp?.q[0] : sp?.q;
+
+  const page = Math.max(1, parseInt(String(pageParam || '1'), 10) || 1);
+  const pageSize = 9;
+  const activeCategory = categoryParam || 'Todas';
+  const query = queryParam ? String(queryParam) : '';
+
+  const { items, total } = await getPostsPage({ page, pageSize, category: activeCategory, q: query });
+  const posts: BlogCard[] = items.map((p) => ({
+    title: p.title,
+    slug: normalizeSlug(p.slug),
+    category: p.category ?? 'General',
+    image: cleanSrc(p.image || '') || '/images/proyectos/CCTV.jpeg',
+    date: p.date.toISOString(),
+    readTime: estimateReadTime(p.content || ''),
+    excerpt: p.description || '',
+  }));
+
+  const cats = await getDistinctCategories();
+  const categories = cats.length > 0 ? cats : Array.from(new Set(posts.map((p) => p.category))).filter(Boolean) as string[];
 
   return (
     <div className="min-h-screen">
@@ -44,8 +59,15 @@ export default async function BlogPage() {
         </div>
       </section>
 
-      <BlogListClient posts={posts} />
+      <BlogListClient
+        posts={posts}
+        total={total}
+        page={page}
+        pageSize={pageSize}
+        categories={categories}
+        activeCategory={activeCategory}
+        query={query}
+      />
     </div>
   );
 }
-
