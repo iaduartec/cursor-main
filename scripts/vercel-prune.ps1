@@ -1,82 +1,88 @@
-#!/usr/bin/env bash
-# Borra deployments de Vercel manteniendo los N más recientes por target.
-# Requisitos: bash, curl, jq
-set -euo pipefail
+param(
+  [string]$Project = $env:PROJECT,
+  [string]$Token   = $env:VERCEL_TOKEN,
+  [string]$TeamId  = $env:VERCEL_TEAM_ID,
+  [ValidateSet('', 'preview', 'production')]
+  [string]$Target  = $env:TARGET,
+  [int]$Keep       = $(if($env:KEEP){[int]$env:KEEP}else{2}),
+  [switch]$DryRun
+)
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+$env:VERCEL_TOKEN = "p7HcYTrsSueMuftX9dIceCaf"
+$env:PROJECT      = "cursor-main"
+$env:VERCEL_TEAM_ID = ""
+$env:TARGET       = "preview"
+$env:KEEP         = "2"
 
 
-: "${VERCEL_TOKEN:?Falta VERCEL_TOKEN}"
-: "${PROJECT:?Falta PROJECT}"
+if (-not $Project) { throw "Falta PROJECT" }
+if (-not $Token)   { throw "Falta VERCEL_TOKEN" }
 
-KEEP="${KEEP:-2}"            # cuántos mantener
-TARGET="${TARGET:-preview}"  # "", "preview" o "production"
-VERCEL_TEAM_ID="${VERCEL_TEAM_ID:-}"
+$Headers = @{ Authorization = "Bearer $Token" }
+$ListUrl = "https://api.vercel.com/v6/deployments"
+$DelUrl  = "https://api.vercel.com/v13/deployments"
 
-API_LIST="https://api.vercel.com/v6/deployments"
-API_DEL="https://api.vercel.com/v13/deployments"
-auth=(-H "Authorization: Bearer ${VERCEL_TOKEN}")
-
-qs="app=${PROJECT}&state=READY"
-[[ -n "$TARGET" ]] && qs="${qs}&target=${TARGET}"
-[[ -n "$VERCEL_TEAM_ID" ]] && qs="${qs}&teamId=${VERCEL_TEAM_ID}"
+# Query base
+$qs = @{ app = $Project; state = "READY" }
+if ($Target) { $qs.target = $Target }
+if ($TeamId) { $qs.teamId = $TeamId }
 
 # --- Listado con paginación ---
-uids=(); createds=()
-limit=200; until=""
-while :; do
-  url="${API_LIST}?${qs}&limit=${limit}"
-  [[ -n "$until" ]] && url="${url}&until=${until}"
-  resp="$(curl -s "$url" "${auth[@]}")" || { echo "Error al listar"; exit 1; }
+$limit = 200
+$until = $null
+$deployments = @()
+$more = $true
 
-  cnt=$(jq '.deployments|length' <<<"$resp")
-  (( cnt==0 )) && break
+while ($more) {
+  $params = $qs.Clone(); $params.limit = $limit
+  if ($until) { $params.until = $until }
 
-  mapfile -t page_uids < <(jq -r '.deployments[].uid' <<<"$resp")
-  mapfile -t page_createds < <(jq -r '.deployments[].createdAt' <<<"$resp")
-  uids+=("${page_uids[@]}")
-  createds+=("${page_createds[@]}")
+  $pairs = $params.GetEnumerator() | Sort-Object -Property Key | ForEach-Object { "$($_.Key)=$($_.Value)" }
+  $url = $ListUrl + "?" + ($pairs -join "&")
 
-  oldest="$(jq -r '[.deployments[].createdAt] | min // empty' <<<"$resp")"
-  [[ -z "$oldest" || $cnt -lt $limit ]] && break
-  until="$oldest"
-done
+  try {
+    $resp = Invoke-RestMethod -Uri $url -Headers $Headers -Method Get
+  } catch {
+    throw "Error al listar: $($_.Exception.Message)"
+  }
 
-total=${#uids[@]}
-(( total==0 )) && { echo "No hay deployments READY para ${PROJECT} (${TARGET:-todos})."; exit 0; }
+  if ($resp.deployments) {
+    $deployments += $resp.deployments
+    $oldest = ($resp.deployments | Measure-Object -Property createdAt -Minimum).Minimum
+    $more = ($resp.deployments.Count -ge $limit)
+    if ($more) { $until = $oldest } else { $until = $null }
+  } else {
+    $more = $false
+  }
+}
 
-# --- Ordena DESC por fecha y prepara borrado ---
-pairs=()
-for i in "${!uids[@]}"; do pairs+=("${createds[$i]} ${uids[$i]}"); done
-IFS=$'\n' read -r -d '' -a sorted < <(printf "%s\n" "${pairs[@]}" | sort -nr && printf '\0')
-sorted_uids=(); for line in "${sorted[@]}"; do sorted_uids+=("${line##* }"); done
+if ($deployments.Count -eq 0) { Write-Host "No hay deployments READY para $Project ($Target)."; exit 0 }
 
-(( KEEP<0 )) && KEEP=0
-del_uids=("${sorted_uids[@]:$KEEP}")
-keep_count=$(( total - ${#del_uids[@]} ))
+# --- Ordena DESC y decide qué borrar ---
+$sorted   = $deployments | Sort-Object -Property createdAt -Descending
+$keepCnt  = [Math]::Max([Math]::Min($Keep, $sorted.Count), 0)
+$toDelete = if ($sorted.Count -gt $keepCnt) { $sorted[$keepCnt..($sorted.Count-1)] } else { @() }
 
-echo "Proyecto: $PROJECT | Target: ${TARGET:-todos}"
-echo "Total READY: $total | Mantener: $keep_count | Borrar: ${#del_uids[@]}"
-echo "Muestra de IDs a borrar:"; printf "  - %s\n" "${del_uids[@]:0:10}"
+Write-Host ("Proyecto: {0} | Target: {1}" -f $Project, $(if($Target){$Target}else{'todos'}))
+Write-Host ("Total READY: {0} | Mantener: {1} | Borrar: {2}" -f $sorted.Count, $keepCnt, $toDelete.Count)
+Write-Host "Muestra de IDs a borrar:"
+$toDelete | Select-Object -First 10 | ForEach-Object { Write-Host ("  - {0}" -f $_.uid) }
 
-# --- Dry-run ---
-if [[ "${1:-}" == "--dry-run" ]]; then
-  echo "[DRY-RUN] No se ha borrado nada."
-  exit 0
-fi
+if ($DryRun) { Write-Host "[DRY-RUN] No se borra nada."; exit 0 }
 
-# --- Confirmación y borrado ---
-read -r -p "Escribe BORRAR para confirmar: " ans
-[[ "$ans" == "BORRAR" ]] || { echo "Cancelado."; exit 1; }
+$confirm = Read-Host "Escribe BORRAR para confirmar"
+if ($confirm -ne "BORRAR") { Write-Host "Cancelado."; exit 1 }
 
-ok=0; fail=0
-for id in "${del_uids[@]}"; do
-  url="${API_DEL}/${id}"
-  [[ -n "$VERCEL_TEAM_ID" ]] && url="${url}?teamId=${VERCEL_TEAM_ID}"
-  state="$(curl -s -X DELETE "$url" "${auth[@]}" | jq -r '.state // empty')"
-  if [[ -n "$state" ]]; then
-    ((ok++)); echo "✔ $id -> $state"
-  else
-    ((fail++)); echo "✖ $id -> error"
-  fi
-done
-
-echo "Hecho. Eliminados OK: $ok | Fallos: $fail"
+# --- Borrado ---
+$ok=0; $fail=0
+foreach ($d in $toDelete) {
+  $u = "$DelUrl/$($d.uid)"; if ($TeamId) { $u = "$u?teamId=$TeamId" }
+  try {
+    $r = Invoke-RestMethod -Uri $u -Headers $Headers -Method Delete
+    if ($r.state) { $ok++; Write-Host ("[OK] {0} -> {1}" -f $d.uid, $r.state) }
+    else { $fail++; Write-Host ("[ERR] {0} -> sin estado" -f $d.uid) }
+  } catch {
+    $fail++; Write-Host ("[ERR] {0} -> {1}" -f $d.uid, $_.Exception.Message)
+  }
+}
+Write-Host ("Hecho. Eliminados OK: {0} | Fallos: {1}" -f $ok, $fail)
