@@ -8,3 +8,4 @@ coverage/
 cursor-work/
 
 .vercel
+.env*.local
