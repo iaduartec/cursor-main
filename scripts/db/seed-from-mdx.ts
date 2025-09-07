@@ -1,8 +1,12 @@
-import 'dotenv/config';
-import { readFile, readdir } from 'node:fs/promises';
+import fs from 'node:fs';
 import path from 'node:path';
+import dotenv from 'dotenv';
+// Load .env.local first if present, then fall back to .env
+const envLocal = path.resolve(process.cwd(), '.env.local');
+if (fs.existsSync(envLocal)) dotenv.config({ path: envLocal });
+dotenv.config();
+import { readFile, readdir } from 'node:fs/promises';
 import matter from 'gray-matter';
-import { db } from '../../db/client';
 import { posts } from '../../db/schema';
 import { eq } from 'drizzle-orm';
 
@@ -23,6 +27,7 @@ async function getBlogFiles(dir: string) {
 }
 
 async function seed() {
+  const { db } = await import('../../db/client');
   const blogDir = path.join(process.cwd(), 'content', 'blog');
   const files = await getBlogFiles(blogDir);
   console.log(`Found ${files.length} blog files to seed`);
