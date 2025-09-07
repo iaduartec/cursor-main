@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Camera } from 'lucide-react';
 import { getAllStreams } from '../../lib/db-streams';
+import { unstable_cache } from 'next/cache';
 
 export const metadata: Metadata = {
   title: 'Streaming 24h - Cámaras en directo',
@@ -10,8 +11,10 @@ export const metadata: Metadata = {
     'Cámaras en directo 24 horas desde pueblos de Burgos: Santo Domingo de Silos, Rabanera del Pinar, Pineda de la Sierra y Huerta de Arriba.',
 };
 
+const getStreams = unstable_cache(async () => await getAllStreams(), ['streams-index'], { revalidate: 3600, tags: ['streams'] });
+
 export default async function StreamingIndexPage() {
-  const cams = await getAllStreams();
+  const cams = await getStreams();
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-br from-sky-50 to-blue-100 dark:from-slate-800 dark:to-slate-900 py-16 px-4">
@@ -52,4 +55,3 @@ export default async function StreamingIndexPage() {
     </div>
   );
 }
-
