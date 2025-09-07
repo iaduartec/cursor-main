@@ -1,5 +1,6 @@
 {
-  "installCommand": "npm install --legacy-peer-deps",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm build",
   "headers": [
     {
       "source": "/(.*)",
