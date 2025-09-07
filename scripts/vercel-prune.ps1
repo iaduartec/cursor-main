@@ -2,6 +2,7 @@ param(
   [string]$Project = $env:PROJECT,
   [string]$Token   = $env:VERCEL_TOKEN,
   [string]$TeamId  = $env:VERCEL_TEAM_ID,
+  [string]$State = $(if($env:STATE){$env:STATE}else{"READY"}),
   [ValidateSet('', 'preview', 'production')]
   [string]$Target  = $env:TARGET,
   [int]$Keep       = $(if($env:KEEP){[int]$env:KEEP}else{2}),
@@ -10,8 +11,9 @@ param(
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 $env:VERCEL_TOKEN = "p7HcYTrsSueMuftX9dIceCaf"
 $env:PROJECT      = "cursor-main"
+$env:STATE       = "ERROR"
 $env:VERCEL_TEAM_ID = ""
-$env:TARGET       = "preview"
+$env:TARGET       = ""
 $env:KEEP         = "2"
 
 
@@ -23,7 +25,9 @@ $ListUrl = "https://api.vercel.com/v6/deployments"
 $DelUrl  = "https://api.vercel.com/v13/deployments"
 
 # Query base
-$qs = @{ app = $Project; state = "READY" }
+$qs = @{ app = $Project }
+if ($State) { $qs.state = $State }
+if ($State) { $qs.state = $State }
 if ($Target) { $qs.target = $Target }
 if ($TeamId) { $qs.teamId = $TeamId }
 
