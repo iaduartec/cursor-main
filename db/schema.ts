@@ -60,3 +60,46 @@ export const streams = pgTable(
 
 export type Stream = typeof streams.$inferSelect;
 export type NewStream = typeof streams.$inferInsert;
+
+export const services = pgTable(
+  'services',
+  {
+    id: serial('id').primaryKey(),
+    slug: varchar('slug', { length: 255 }).notNull(),
+    title: varchar('title', { length: 255 }).notNull(),
+    description: text('description'),
+    image: varchar('image', { length: 1024 }),
+    areaServed: varchar('area_served', { length: 255 }),
+    hasOfferCatalog: boolean('has_offer_catalog').notNull().default(false),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => ({
+    slugIdx: uniqueIndex('services_slug_idx').on(table.slug),
+  })
+);
+
+export type Service = typeof services.$inferSelect;
+export type NewService = typeof services.$inferInsert;
+
+export const projects = pgTable(
+  'projects',
+  {
+    id: serial('id').primaryKey(),
+    slug: varchar('slug', { length: 255 }).notNull(),
+    title: varchar('title', { length: 255 }).notNull(),
+    description: text('description'),
+    content: text('content'),
+    image: varchar('image', { length: 1024 }),
+    category: varchar('category', { length: 100 }),
+    date: timestamp('date', { withTimezone: false }),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => ({
+    slugIdx: uniqueIndex('projects_slug_idx').on(table.slug),
+  })
+);
+
+export type Project = typeof projects.$inferSelect;
+export type NewProject = typeof projects.$inferInsert;
