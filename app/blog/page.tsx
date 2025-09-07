@@ -27,11 +27,23 @@ export default async function BlogPage({
   const queryParam = Array.isArray(sp?.q) ? sp?.q[0] : sp?.q;
 
   const page = Math.max(1, parseInt(String(pageParam || '1'), 10) || 1);
-  const pageSize = 9;
+  const pageSizeParam = Array.isArray(sp?.pageSize) ? sp?.pageSize[0] : sp?.pageSize;
+  const allowedSizes = [6, 9, 12, 18];
+  let pageSize = parseInt(String(pageSizeParam || '9'), 10);
+  if (!allowedSizes.includes(pageSize)) pageSize = 9;
+  const sortParam = Array.isArray(sp?.sort) ? sp?.sort[0] : sp?.sort;
+  let sortBy: 'date' | 'title' = 'date';
+  let sortDir: 'asc' | 'desc' = 'desc';
+  if (sortParam) {
+    if (sortParam === 'date-asc') { sortBy = 'date'; sortDir = 'asc'; }
+    if (sortParam === 'date-desc') { sortBy = 'date'; sortDir = 'desc'; }
+    if (sortParam === 'title-asc') { sortBy = 'title'; sortDir = 'asc'; }
+    if (sortParam === 'title-desc') { sortBy = 'title'; sortDir = 'desc'; }
+  }
   const activeCategory = categoryParam || 'Todas';
   const query = queryParam ? String(queryParam) : '';
 
-  const { items, total } = await getPostsPage({ page, pageSize, category: activeCategory, q: query });
+  const { items, total } = await getPostsPage({ page, pageSize, category: activeCategory, q: query, sortBy, sortDir });
   const posts: BlogCard[] = items.map((p) => ({
     title: p.title,
     slug: normalizeSlug(p.slug),
@@ -67,6 +79,7 @@ export default async function BlogPage({
         categories={categories}
         activeCategory={activeCategory}
         query={query}
+        sort={`${sortBy}-${sortDir}`}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import { db } from '../db/client';
 import { posts } from '../db/schema';
-import { and, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';
+import { and, asc, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';
 import type { Blog } from 'contentlayer/generated';
 import { allBlogs } from 'contentlayer/generated';
 
@@ -85,10 +85,12 @@ export type PostsPageParams = {
   pageSize?: number;
   category?: string | null;
   q?: string | null;
+  sortBy?: 'date' | 'title';
+  sortDir?: 'asc' | 'desc';
 };
 
 export async function getPostsPageFromDb(
-  { page = 1, pageSize = 9, category, q }: PostsPageParams
+  { page = 1, pageSize = 9, category, q, sortBy = 'date', sortDir = 'desc' }: PostsPageParams
 ): Promise<{ items: PostRow[]; total: number; page: number; pageSize: number }> {
   if (!hasDb()) return { items: [], total: 0, page, pageSize };
   const offset = Math.max(0, (page - 1) * pageSize);
@@ -133,7 +135,11 @@ export async function getPostsPageFromDb(
         published: posts.published,
       })
       .from(posts)
-      .orderBy(desc(posts.date))
+      .orderBy(
+        sortBy === 'title'
+          ? (sortDir === 'asc' ? asc(posts.title) : desc(posts.title))
+          : (sortDir === 'asc' ? asc(posts.date) : desc(posts.date))
+      )
       .limit(pageSize)
       .offset(offset);
     if (where) qsel = qsel.where(where as any);
@@ -231,7 +237,16 @@ export async function getPostsPage(params: PostsPageParams): Promise<{ items: Po
       (p) => p.title.toLowerCase().includes(needle) || (p.description || '').toLowerCase().includes(needle) || (p.content || '').toLowerCase().includes(needle)
     );
   }
-  filtered = filtered.sort((a, b) => b.date.getTime() - a.date.getTime());
+  const sortBy = params.sortBy || 'date';
+  const sortDir = params.sortDir || 'desc';
+  filtered = filtered.sort((a, b) => {
+    if (sortBy === 'title') {
+      const cmp = a.title.localeCompare(b.title);
+      return sortDir === 'asc' ? cmp : -cmp;
+    }
+    const cmp = a.date.getTime() - b.date.getTime();
+    return sortDir === 'asc' ? cmp : -cmp;
+  });
   const page = params.page || 1;
   const pageSize = params.pageSize || 9;
   const start = (page - 1) * pageSize;

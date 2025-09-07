@@ -34,6 +34,7 @@ export default function BlogListClient({
   categories,
   activeCategory,
   query,
+  sort,
 }: {
   posts: BlogCard[];
   total: number;
@@ -42,12 +43,15 @@ export default function BlogListClient({
   categories: string[];
   activeCategory: string;
   query: string;
+  sort: string;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const [search, setSearch] = useState(query || '');
+  const [sortValue, setSortValue] = useState(sort || 'date-desc');
+  const [sizeValue, setSizeValue] = useState(String(pageSize || 9));
 
   useEffect(() => {
     setSearch(query || '');
@@ -77,21 +81,43 @@ export default function BlogListClient({
             onCategoryChange={(cat) => setParams({ category: cat === 'Todas' ? undefined : cat })}
           />
         </div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setParams({ q: search || undefined });
-          }}
-          className="w-full sm:w-80"
-        >
-          <input
-            type="search"
-            placeholder="Buscar artículos..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-2 bg-white dark:bg-slate-800 text-sm"
-          />
-        </form>
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setParams({ q: search || undefined });
+            }}
+            className="w-full sm:w-80"
+          >
+            <input
+              type="search"
+              placeholder="Buscar artículos..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-2 bg-white dark:bg-slate-800 text-sm"
+            />
+          </form>
+          <select
+            value={sortValue}
+            onChange={(e) => { setSortValue(e.target.value); setParams({ sort: e.target.value }); }}
+            className="border border-gray-300 dark:border-slate-600 rounded-lg px-2 py-2 bg-white dark:bg-slate-800 text-sm"
+          >
+            <option value="date-desc">Más recientes</option>
+            <option value="date-asc">Más antiguos</option>
+            <option value="title-asc">Título A→Z</option>
+            <option value="title-desc">Título Z→A</option>
+          </select>
+          <select
+            value={sizeValue}
+            onChange={(e) => { setSizeValue(e.target.value); setParams({ pageSize: e.target.value }); }}
+            className="border border-gray-300 dark:border-slate-600 rounded-lg px-2 py-2 bg-white dark:bg-slate-800 text-sm"
+          >
+            <option value="6">6</option>
+            <option value="9">9</option>
+            <option value="12">12</option>
+            <option value="18">18</option>
+          </select>
+        </div>
       </div>
 
       {filteredPosts.length > 0 ? (
@@ -161,4 +187,3 @@ export default function BlogListClient({
     </section>
   );
 }
-
