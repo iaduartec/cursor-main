@@ -26,5 +26,10 @@
     }
   },
   "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "playwright.config.ts", "jest.config.js", "next.config.analyze.js"]
+    "exclude": [
+    "node_modules",
+    ".next",
+    "scripts/**/*",
+    "drizzle/**/*"
+  ]
 }
