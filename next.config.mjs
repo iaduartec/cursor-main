@@ -74,7 +74,6 @@ const nextConfig = {
   typescript: { ignoreBuildErrors: false },
   eslint: { ignoreDuringBuilds: true },
 
-  output: 'standalone',
   trailingSlash: false,
   basePath: '',
   assetPrefix: '',
@@ -85,5 +84,11 @@ const nextConfig = {
   // Avoid workspace root inference warning with multiple lockfiles
 outputFileTracingRoot: path.join(process.cwd()),
 };
+
+// Enable standalone output only on Vercel or when explicitly requested.
+const enableStandalone = process.env.VERCEL === '1' || process.env.ENABLE_STANDALONE === '1';
+if (enableStandalone) {
+  nextConfig.output = 'standalone';
+}
 
 export default withContentlayer(nextConfig);
