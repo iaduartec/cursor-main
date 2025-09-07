@@ -37,12 +37,12 @@
         "images:ai:force": "python tools/generate_ai_images.py --force --style photographic --accent blue",
         "gen:article": "python tools/generate_article.py --topic",
         "db:generate": "drizzle-kit generate",
-        "db:migrate": "tsx scripts/db/migrate-neon.ts",
+        "db:migrate": "tsx --require dotenv/config scripts/db/migrate-neon.ts",
         "db:seed": "tsx scripts/db/seed-from-mdx.ts",
         "db:seed:streams": "tsx scripts/db/seed-streams.ts"
     },
     "dependencies": {
-        "@neondatabase/serverless": "^1.0.1",
+        "@neondatabase/serverless": "^0.9.3",
         "@next/bundle-analyzer": "^15.0.0",
         "@svgr/webpack": "^8.1.0",
         "@types/react-dom": "^18.3.0",
@@ -51,7 +51,7 @@
         "contentlayer": "^0.3.4",
         "critters": "^0.0.23",
         "dotenv": "^16.4.5",
-        "drizzle-orm": "^0.36.0",
+        "drizzle-orm": "^0.39.0",
         "framer-motion": "^10.0.0",
         "gray-matter": "^4.0.3",
         "leaflet": "^1.9.4",
@@ -74,6 +74,7 @@
     "devDependencies": {
         "@eslint/eslintrc": "^3.1.0",
         "@eslint/js": "^8.57.1",
+        "@playwright/test": "1.55.0",
         "@tailwindcss/aspect-ratio": "^0.4.2",
         "@tailwindcss/container-queries": "^0.1.1",
         "@tailwindcss/forms": "^0.5.7",
@@ -122,17 +123,12 @@
         "@opentelemetry/semantic-conventions": "1.28.0"
     },
     "overrides": {
-        "@opentelemetry/semantic-conventions": "1.28.0",
-        "@opentelemetry/api": "1.4.1",
-        "esbuild": "0.18.20"
+        "@opentelemetry/semantic-conventions": "1.28.0"
     },
     "pnpm": {
-    "overrides": {
-      "@contentlayer/*": {
-        "esbuild": "0.18.20",
-        "@opentelemetry/api": "1.4.1"
-      }
+        "overrides": {
+            "@contentlayer/*>esbuild": "0.18.20",
+            "@contentlayer/*>@opentelemetry/api": "1.4.1"
+        }
     }
-  }
 }
-
