@@ -106,8 +106,7 @@
         "tsx": "^4.19.0"
     },
     "engines": {
-        "node": "22.x",
-        "npm": ">=8.0.0"
+        "node": "22.x"
     },
     "browserslist": {
         "production": [
