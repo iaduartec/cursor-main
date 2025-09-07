@@ -3,8 +3,9 @@
 # Requisitos: bash, curl, jq
 set -euo pipefail
 
-: "${p7HcYTrsSueMuftX9dIceCaf:?Falta VERCEL_TOKEN}"
-: "${cursor-main:?Falta PROJECT}"
+
+: "${VERCEL_TOKEN:?Falta VERCEL_TOKEN}"
+: "${PROJECT:?Falta PROJECT}"
 
 KEEP="${KEEP:-2}"            # cuántos mantener
 TARGET="${TARGET:-preview}"  # "", "preview" o "production"
