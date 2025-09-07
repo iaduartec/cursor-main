@@ -9,3 +9,7 @@ cursor-work/
 
 .vercel
 .env*.local
+
+pgsql/
+package-lock.json
+yarn.lock
