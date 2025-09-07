@@ -1,6 +1,6 @@
 import Breadcrumb from '../../components/Breadcrumb';
-import { allBlogs, type Blog } from 'contentlayer/generated';
 import BlogListClient, { type BlogCard } from './BlogListClient';
+import { getAllPosts } from '../../lib/db-posts';
 
 const cleanSrc = (s?: string) => (s || '').replace(/[\r\n]+/g, '').trim();
 const normalizeSlug = (s: string) =>
@@ -21,16 +21,17 @@ const estimateReadTime = (text: string) => {
   return `${minutes} min`;
 };
 
-export default function BlogPage() {
-  const posts: BlogCard[] = allBlogs
-    .map((p: Blog) => ({
+export default async function BlogPage() {
+  const dbPosts = await getAllPosts();
+  const posts: BlogCard[] = dbPosts
+    .map((p) => ({
       title: p.title,
-      slug: canonicalSlugFor(p),
+      slug: normalizeSlug(p.slug),
       category: p.category ?? 'General',
-      image: cleanSrc(p.image) || '/images/proyectos/CCTV.jpeg',
-      date: p.date,
-      readTime: estimateReadTime(p.body?.raw ?? ''),
-      excerpt: p.description,
+      image: cleanSrc(p.image || '') || '/images/proyectos/CCTV.jpeg',
+      date: p.date.toISOString(),
+      readTime: estimateReadTime(p.content || ''),
+      excerpt: p.description || '',
     }))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 

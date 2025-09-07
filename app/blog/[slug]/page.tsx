@@ -5,9 +5,9 @@ import { Calendar, ArrowLeft, Clock } from 'lucide-react';
 import { notFound, redirect } from 'next/navigation';
 import Breadcrumb from '../../../components/Breadcrumb';
 import RelatedPosts from '../../../components/RelatedPosts';
-import { allBlogs, type Blog } from 'contentlayer/generated';
-import { useMDXComponent } from 'next-contentlayer/hooks';
 import { unstable_cache } from 'next/cache';
+import { getAllPosts, getAllSlugs, getPostBySlug } from '../../../lib/db-posts';
+import { marked } from 'marked';
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -17,9 +17,8 @@ const normalizeSlug = (s: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-const canonicalSlugFor = (p: Blog): string => {
-  const raw = (p as any)?._raw?.flattenedPath as string | undefined;
-  const base = p.slug || (raw ? (raw.split('/').pop() || raw) : p.title);
+const canonicalSlugFor = (p: { slug?: string; title?: string }): string => {
+  const base = p.slug || p.title || '';
   return normalizeSlug(base);
 };
 

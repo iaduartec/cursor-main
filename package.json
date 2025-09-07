@@ -33,7 +33,10 @@
         "images:check": "node scripts/generate_missing_images_runner.js --only-missing --min-bytes 1000 --dry-run",
         "images:ai": "python tools/generate_ai_images.py --only-missing --style photographic --accent blue",
         "images:ai:force": "python tools/generate_ai_images.py --force --style photographic --accent blue",
-        "gen:article": "python tools/generate_article.py --topic"
+        "gen:article": "python tools/generate_article.py --topic",
+        "db:generate": "drizzle-kit generate",
+        "db:migrate": "tsx scripts/db/migrate.ts",
+        "db:seed": "tsx scripts/db/seed-from-mdx.ts"
     },
     "dependencies": {
         "22": "^0.0.0",
@@ -48,6 +51,9 @@
         "leaflet": "^1.9.4",
         "lucide-react": "^0.263.0",
         "next": "^15.5.2",
+        "@vercel/postgres": "^0.10.0",
+        "drizzle-orm": "^0.36.0",
+        "gray-matter": "^4.0.3",
         "next-contentlayer": "^0.3.4",
         "next-intl": "^3.0.0",
         "next-seo": "^6.0.0",
@@ -87,7 +93,9 @@
         "jest-environment-jsdom": "^29.0.0",
         "lint-staged": "^15.0.0",
         "playwright": "^1.40.0",
-        "prettier": "^3.0.0"
+        "prettier": "^3.0.0",
+        "drizzle-kit": "^0.30.0",
+        "tsx": "^4.19.0"
     },
     "engines": {
         "node": "20.x",
