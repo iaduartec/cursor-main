@@ -10,11 +10,6 @@ const normalizeSlug = (s: string) =>
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
-const canonicalSlugFor = (p: Blog): string => {
-  const raw = (p as any)?._raw?.flattenedPath as string | undefined;
-  const base = p.slug || (raw ? (raw.split('/').pop() || raw) : p.title);
-  return normalizeSlug(base);
-};
 const estimateReadTime = (text: string) => {
   const words = text ? text.trim().split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.round(words / 200));
@@ -53,3 +48,4 @@ export default async function BlogPage() {
     </div>
   );
 }
+

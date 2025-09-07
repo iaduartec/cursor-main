@@ -22,7 +22,6 @@ const canonicalSlugFor = (p: { slug?: string; title?: string }): string => {
   return normalizeSlug(base);
 };
 
-// Color por categoría
 const getCategoryColor = (category: string) => {
   switch (category) {
     case 'Seguridad':
@@ -38,24 +37,6 @@ const getCategoryColor = (category: string) => {
   }
 };
 
-// Versión robusta de colores por categoría
-const getCategoryColor2 = (category: string) => {
-  const c = (category || '').toLowerCase();
-  if (c === 'seguridad' || c === 'security') {
-    return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-  }
-  if (c === 'electricidad' || c === 'electricity') {
-    return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-  }
-  if (c === 'informática' || c === 'informatica' || c === 'it') {
-    return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-  }
-  if (c === 'sonido' || c === 'audio') {
-    return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
-  }
-  return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
-};
-
 const estimateReadTime = (text: string) => {
   const words = text ? text.trim().split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.round(words / 200));
@@ -65,7 +46,7 @@ const estimateReadTime = (text: string) => {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const incoming = normalizeSlug(slug);
-  const post = allBlogs.find((p) => canonicalSlugFor(p) === incoming);
+  const post = await getPostBySlug(incoming);
   if (!post) {
     return {
       title: 'Artículo no encontrado',
@@ -75,24 +56,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   return {
     title: `${post.title} - Duartec Blog`,
-    description: post.description,
+    description: post.description || undefined,
     openGraph: {
       title: post.title,
-      description: post.description,
+      description: post.description || undefined,
       images: post.image ? [cleanSrc(post.image)] : [],
     },
   };
 }
 
-// Pre-render all blog slugs at build time to avoid dynamic 500s
-// app/blog/[slug]/page.tsx
-
-/** 
- * Pre‑renderiza los slugs del blog con canonicalSlugFor. Evita problemas de codificación
- * de caracteres acentuados al generar las rutas estáticas.
- */
-export function generateStaticParams() {
-  return allBlogs.map((p) => ({ slug: canonicalSlugFor(p) }));
+export async function generateStaticParams() {
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 type BlogCard = {
@@ -117,26 +92,27 @@ const getBlogCards = unstable_cache(
     readTime: string;
     excerpt: string;
   }[]> => {
-    return allBlogs
-      .map((p: Blog) => ({
+    const all = await getAllPosts();
+    return all
+      .map((p) => ({
         title: p.title,
         slug: canonicalSlugFor(p),
         category: p.category ?? 'General',
-        image: cleanSrc(p.image) || '/images/proyectos/CCTV.jpeg',
-        date: p.date,
-        readTime: estimateReadTime(p.body?.raw ?? ''),
-        excerpt: p.description,
+        image: cleanSrc(p.image || '') || '/images/proyectos/CCTV.jpeg',
+        date: p.date.toISOString(),
+        readTime: estimateReadTime(p.content || ''),
+        excerpt: p.description || '',
       }))
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   },
-  ['blog-cards-v1'],
+  ['blog-cards-db-v1'],
   { revalidate: 3600, tags: ['blogs'] }
 );
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const incoming = normalizeSlug(slug);
-  const post = allBlogs.find((p) => canonicalSlugFor(p) === incoming);
+  const post = await getPostBySlug(incoming);
   if (!post) {
     notFound();
   }
@@ -145,57 +121,27 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     redirect(`/blog/${canonical}`);
   }
 
-  // Contentlayer in production may provide only raw/html (no body.code)
-  const body: any = (post as any).body || {};
-  const hasCode = typeof body.code === 'string' && body.code.length > 0;
-  const MDXContent = hasCode ? useMDXComponent(body.code) : null as any;
-  const mdxComponents = {
-    a: (props: any) => {
-      const { href = '', children, className, ...rest } = props || {};
-      const isExternal = /^https?:\/\//i.test(String(href));
-      return (
-        <a
-          href={href}
-          className={`text-accent hover:text-accent-700 underline ${className || ''}`}
-          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-          {...rest}
-        >
-          {children}
-        </a>
-      );
-    },
-    img: (props: any) => (
-      // Evita next/image en prerender MDX para reducir errores en SSR/export
-      // Usa <img> nativo con limpieza de URL
-      <img
-        src={cleanSrc(props.src)}
-        alt={props.alt || ''}
-        loading="lazy"
-        className={`rounded-xl my-6 w-full h-auto ${props.className || ''}`}
-      />
-    ),
-  };
-  const readTime = estimateReadTime((post as any).body.raw ?? '');
+  const html = (await marked.parse(post.content || '')) as string;
+  const readTime = estimateReadTime(post.content || '');
 
   const allPosts: BlogCard[] = await getBlogCards();
 
   const current: BlogCard = {
-    title: post!.title,
-    slug: canonicalSlugFor(post!),
-    category: post!.category ?? 'General',
-    image: post!.image ?? '/images/proyectos/CCTV.jpeg',
-    date: post!.date,
+    title: post.title,
+    slug: canonicalSlugFor(post),
+    category: post.category ?? 'General',
+    image: post.image || '/images/proyectos/CCTV.jpeg',
+    date: post.date.toISOString(),
     readTime,
-    excerpt: post!.description,
+    excerpt: post.description || '',
   };
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 py-20 px-4 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src={(current.image) || '/images/proyectos/CCTV.jpeg'}
+            src={current.image || '/images/proyectos/CCTV.jpeg'}
             alt={current.title}
             fill
             className="object-cover opacity-10"
@@ -206,9 +152,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             { label: 'Blog', href: '/blog' },
             { label: current.title }
           ]} />
-          
+
           <div className="flex items-center mb-6">
-            <Link 
+            <Link
               href="/blog"
               className="flex items-center text-accent hover:text-accent-700 transition-colors"
             >
@@ -216,27 +162,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               Volver al blog
             </Link>
           </div>
-          
-          {/* Categoría */}
+
           <div className="mb-6">
-            <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${getCategoryColor((current.category || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace('IT','Informática'))}`}>
+            <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${getCategoryColor((current.category || '') )}`}>
               {current.category}
             </span>
           </div>
 
-          {/* Título */}
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">
             {current.title}
           </h1>
 
-          {/* Metadatos */}
           <div className="flex items-center text-gray-600 dark:text-gray-300 space-x-6">
             <div className="flex items-center">
               <Calendar className="w-5 h-5 mr-2" />
-              <span>{new Date(current.date).toLocaleDateString('es-ES', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+              <span>{new Date(current.date).toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
               })}</span>
             </div>
             <div className="flex items-center">
@@ -247,27 +190,20 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
-      {/* Contenido del artículo */}
       <section className="max-w-4xl mx-auto py-16 px-4">
         <article className="prose prose-lg dark:prose-invert max-w-none">
-          {hasCode ? (
-            <MDXContent components={mdxComponents} />
-          ) : (
-            <div dangerouslySetInnerHTML={{ __html: String(body.html || '') }} />
-          )}
+          <div dangerouslySetInnerHTML={{ __html: html }} />
         </article>
 
-        {/* Artículos relacionados */}
-        <RelatedPosts 
+        <RelatedPosts
           currentPost={current}
           allPosts={allPosts}
           maxPosts={3}
         />
 
-        {/* CTA Section */}
         <div className="mt-16 bg-accent rounded-2xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-4">
-            Â¿Necesitas ayuda con tu proyecto?
+            ¿Necesitas ayuda con tu proyecto?
           </h3>
           <p className="text-lg mb-6 opacity-90">
             Nuestros expertos están aquí para ayudarte con cualquier consulta técnica
@@ -291,3 +227,4 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     </div>
   );
 }
+
