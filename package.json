@@ -37,7 +37,7 @@
         "images:ai:force": "python tools/generate_ai_images.py --force --style photographic --accent blue",
         "gen:article": "python tools/generate_article.py --topic",
         "db:generate": "drizzle-kit generate",
-        "db:migrate": "tsx scripts/db/migrate.ts",
+        "db:migrate": "tsx scripts/db/migrate-neon.ts",
         "db:seed": "tsx scripts/db/seed-from-mdx.ts",
         "db:seed:streams": "tsx scripts/db/seed-streams.ts"
     },
