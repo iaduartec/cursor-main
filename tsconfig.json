@@ -26,10 +26,5 @@
     }
   },
   "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
-    "exclude": [
-    "node_modules",
-    ".next",
-    "scripts/**/*",
-    "drizzle/**/*"
-  ]
+  "exclude": ["node_modules", ".next", "scripts/**/*", "drizzle/**/*", "tests/**/*", "e2e/**/*", "playwright.config.ts"]
 }
