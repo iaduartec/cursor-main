@@ -36,7 +36,8 @@
         "gen:article": "python tools/generate_article.py --topic",
         "db:generate": "drizzle-kit generate",
         "db:migrate": "tsx scripts/db/migrate.ts",
-        "db:seed": "tsx scripts/db/seed-from-mdx.ts"
+        "db:seed": "tsx scripts/db/seed-from-mdx.ts",
+        "db:seed:streams": "tsx scripts/db/seed-streams.ts"
     },
     "dependencies": {
         "22": "^0.0.0",
