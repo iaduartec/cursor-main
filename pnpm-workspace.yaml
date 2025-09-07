@@ -1,0 +1,7 @@
+onlyBuiltDependencies:
+  - bufferutil
+  - contentlayer
+  - esbuild
+  - protobufjs
+  - sharp
+  - unrs-resolver
