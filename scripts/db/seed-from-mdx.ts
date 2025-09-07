@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import matter from 'gray-matter';
@@ -76,4 +77,3 @@ seed().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { migrate } from 'drizzle-orm/vercel-postgres/migrator';
 import { db } from '../../db/client';
 
@@ -11,4 +12,3 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-
