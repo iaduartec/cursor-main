@@ -1,8 +1,8 @@
 {
+    "packageManager": "pnpm@9.6.0",
     "name": "duartec-web",
     "version": "1.0.0",
     "private": true,
-    "packageManager": "pnpm@9",
     "description": "Sitio web profesional de Duartec Instalaciones Informáticas - Soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos",
     "keywords": [
         "informática",
