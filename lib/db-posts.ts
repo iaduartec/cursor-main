@@ -1,8 +1,7 @@
 import { db } from '../db/client';
 import { posts } from '../db/schema';
 import { and, asc, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';
-import type { Blog } from 'contentlayer/generated';
-import { allBlogs } from 'contentlayer/generated';
+import { allBlogs, type Blog } from 'contentlayer/generated';
 
 export type PostRow = {
   id: number;
