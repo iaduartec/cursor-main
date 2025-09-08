@@ -5,10 +5,10 @@
     {
       "source": "/(.*)",
       "functions": {
-      "api/*.js": {
-      "regions": ["fra1"]
-    }
-  }
+        "api/*.js": {
+          "regions": ["fra1"]
+        }
+      },
       "headers": [
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
         { "key": "X-Frame-Options", "value": "DENY" },
