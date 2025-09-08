@@ -47,7 +47,23 @@ const Legal = defineDocumentType(() => ({
   },
 }));
 
+const Proyecto = defineDocumentType(() => ({
+  name: 'Proyecto',
+  filePathPattern: `proyectos/*.mdx`,
+  fields: {
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+    description: { type: 'string', required: false },
+    slug: { type: 'string', required: true },
+    category: { type: 'string', required: false },
+    image: { type: 'string', required: false },
+  },
+  computedFields: {
+    url: { type: 'string', resolve: (doc: any) => `/proyectos/${doc.slug}` },
+  },
+}));
+
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [Servicio, Blog, Legal],
+  documentTypes: [Servicio, Blog, Legal, Proyecto],
 });
