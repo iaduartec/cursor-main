@@ -13,9 +13,7 @@ models:
   - name: my gpt-5
     provider: openai
     model: gpt-5
-    apiKey: YOUR_API_KEY_HERE
-
-# Context providers define what information the assistant can access
+    apiKey: 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
 context:
   - provider: code
   - provider: docs
