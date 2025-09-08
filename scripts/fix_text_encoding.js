@@ -52,7 +52,7 @@ const regexFixes = [
 
 function shouldProcess(file) {
   const rel = path.relative(ROOT, file);
-  if (rel.startsWith('node_modules') || rel.startsWith('.next') || rel.startsWith('.git') || rel.startsWith('.contentlayer')) return false;
+  if (rel.startsWith('node_modules') || rel.startsWith('.next') || rel.startsWith('.git') || rel.startsWith('.contentlayer')) {return false;}
   return EXTS.has(path.extname(file));
 }
 
@@ -61,25 +61,25 @@ function walk(dir, out = []) {
   try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { return out; }
   for (const e of entries) {
     const p = path.join(dir, e.name);
-    if (e.isDirectory()) walk(p, out);
-    else if (e.isFile() && shouldProcess(p)) out.push(p);
+    if (e.isDirectory()) {walk(p, out);}
+    else if (e.isFile() && shouldProcess(p)) {out.push(p);}
   }
   return out;
 }
 
 function fixText(text) {
   let out = text;
-  for (const [from, to] of charMap.entries()) out = out.split(from).join(to);
-  for (const [from, to] of utf8Pairs.entries()) out = out.split(from).join(to);
-  for (const [from, to] of wordMap.entries()) out = out.split(from).join(to);
-  for (const { re, out: to } of regexFixes) out = out.replace(re, to);
+  for (const [from, to] of charMap.entries()) {out = out.split(from).join(to);}
+  for (const [from, to] of utf8Pairs.entries()) {out = out.split(from).join(to);}
+  for (const [from, to] of wordMap.entries()) {out = out.split(from).join(to);}
+  for (const { re, out: to } of regexFixes) {out = out.replace(re, to);}
   return out;
 }
 
 let changed = 0, files = 0;
 for (const dir of TARGET_DIRS) {
   const abs = path.join(ROOT, dir);
-  if (!fs.existsSync(abs)) continue;
+  if (!fs.existsSync(abs)) {continue;}
   for (const file of walk(abs)) {
     try {
       const prev = fs.readFileSync(file, 'utf8');

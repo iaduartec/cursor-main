@@ -72,7 +72,7 @@ function fixFile(fp) {
   const keys = ['title', 'description', 'date', 'slug', 'category', 'image'];
   for (const key of keys) {
     const v = fm[key];
-    if (v == null || String(v).length === 0) continue;
+    if (v == null || String(v).length === 0) {continue;}
     let outVal = String(v);
     // Quote all string values to avoid YAML parse errors with ':' and unicode
     if (key === 'date') {
@@ -112,7 +112,7 @@ function run(dir) {
   let changed = 0;
   for (const fp of files) {
     const newFp = fixFile(fp);
-    if (newFp !== fp) changed++;
+    if (newFp !== fp) {changed++;}
   }
   console.log(`[fix] done. processed ${files.length} file(s).`);
 }

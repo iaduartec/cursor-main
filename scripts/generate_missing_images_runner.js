@@ -19,10 +19,10 @@ const args = [scriptPath, ...passthrough];
 
 function parseFlag(name, fallback) {
   const idx = userArgs.findIndex(a => a === `--${name}`);
-  if (idx === -1) return fallback;
+  if (idx === -1) {return fallback;}
   const val = userArgs[idx + 1];
-  if (val === undefined || val.startsWith('--')) return true;
-  if (name === 'min-bytes') return parseInt(val, 10) || fallback;
+  if (val === undefined || val.startsWith('--')) {return true;}
+  if (name === 'min-bytes') {return parseInt(val, 10) || fallback;}
   return val;
 }
 
@@ -36,7 +36,7 @@ const filterText = parseFlag('filter', null);
 function tryRun(interpreter) {
   try {
     const res = spawnSync(interpreter, args, { stdio: 'inherit' });
-    if (res.error && res.error.code === 'ENOENT') return { ran: false };
+    if (res.error && res.error.code === 'ENOENT') {return { ran: false };}
     // Non-zero exit: on Vercel, do not fail the build; otherwise bubble up
     if (typeof res.status === 'number' && res.status !== 0) {
       const msg = `generate_missing_images failed with code ${res.status} using ${interpreter}`;
@@ -48,18 +48,18 @@ function tryRun(interpreter) {
     }
     return { ran: true };
   } catch (e) {
-    if (e && e.code === 'ENOENT') return { ran: false };
+    if (e && e.code === 'ENOENT') {return { ran: false };}
     // Any other unexpected error: do not break Vercel builds
     console.warn(`[WARN] Unexpected error running ${interpreter}: ${e && e.message}`);
-    if (!isVercel) process.exit(1);
+    if (!isVercel) {process.exit(1);}
     return { ran: false, skipped: true };
   }
 }
 
 if (!preferNode && fs.existsSync(scriptPath)) {
   let result = tryRun('python');
-  if (!result.ran) result = tryRun('python3');
-  if (result.ran) process.exit(0);
+  if (!result.ran) {result = tryRun('python3');}
+  if (result.ran) {process.exit(0);}
   console.warn('[WARN] Python not available, will try Node fallback (sharp).');
 }
 
@@ -78,16 +78,16 @@ const IMAGES_DIR = path.join(ROOT, 'public', 'images', 'blog');
 const STOCK_DIR = path.join(ROOT, 'public', 'images', 'proyectos');
 
 function extractFrontmatter(text) {
-  if (!text.startsWith('---')) return null;
+  if (!text.startsWith('---')) {return null;}
   const end = text.indexOf('\n---', 3);
-  if (end === -1) return null;
+  if (end === -1) {return null;}
   return text.slice(3, end).trim();
 }
 
 function extractField(fm, key) {
   const re = new RegExp(`^${key}:\\s*(.+)$`, 'm');
   const m = fm.match(re);
-  if (!m) return null;
+  if (!m) {return null;}
   let v = m[1].trim();
   if ((v.startsWith("'") && v.endsWith("'")) || (v.startsWith('"') && v.endsWith('"'))) {
     v = v.slice(1, -1);
@@ -179,7 +179,7 @@ async function createWebpPlaceholder(outPath) {
     if (onlyMissing && !needs) { skipped++; continue; }
     candidates++;
     console.log(`[GEN] ${path.basename(file)} -> ${path.relative(ROOT, target)}`);
-    if (dryRun) continue;
+    if (dryRun) {continue;}
     try {
       const stock = stockForCategory(category);
       if (stock) {
