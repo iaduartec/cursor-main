@@ -47,7 +47,7 @@ const wordMap = new Map([
 ]);
 
 const regexFixes = [
-  { re: /Inform\u001atica/g, out: 'Inform\u00E1tica' },
+  { re: new RegExp('Inform[\\x1a]tica', 'g'), out: 'Inform\u00E1tica' },
 ];
 
 function shouldProcess(file) {

@@ -72,12 +72,12 @@ function fixFile(fp) {
   const keys = ['title', 'description', 'date', 'slug', 'category', 'image'];
   for (const key of keys) {
     const v = fm[key];
-    if (v == null || String(v).length === 0) {continue;}
+    if (v === null || v === undefined || String(v).length === 0) {continue;}
     let outVal = String(v);
     // Quote all string values to avoid YAML parse errors with ':' and unicode
     if (key === 'date') {
       // keep ISO date as-is
-      outVal = outVal;
+      // No necesitamos reasignar el valor
     } else {
       // escape existing quotes
       outVal = `"${  outVal.replace(/\\/g, '\\\\').replace(/"/g, '\\"')  }"`;

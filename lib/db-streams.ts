@@ -1,6 +1,6 @@
 import { db } from '../db/client';
 import { streams } from '../db/schema';
-import { and, asc, desc, eq, ilike, or, SQL } from 'drizzle-orm';
+import { asc } from 'drizzle-orm';
 
 export type StreamRow = {
   id: number;

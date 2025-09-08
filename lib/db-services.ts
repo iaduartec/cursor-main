@@ -1,8 +1,7 @@
 import { db } from '../db/client';
 import { services } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';
-import type { Servicio } from 'contentlayer/generated';
-import { allServicios } from 'contentlayer/generated';
+import { allServicios, type Servicio } from 'contentlayer/generated';
 
 export type ServiceRow = {
   id: number;
