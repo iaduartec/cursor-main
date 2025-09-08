@@ -37,6 +37,22 @@ export type Legal = {
   url: string
 }
 
+export type Proyecto = {
+  /** File path relative to `contentDirPath` */
+  _id: string
+  _raw: Local.RawDocumentData
+  type: 'Proyecto'
+  title: string
+  date: IsoDateTimeString
+  description?: string | undefined
+  slug: string
+  category?: string | undefined
+  image?: string | undefined
+  /** Markdown file body */
+  body: Markdown
+  url: string
+}
+
 export type Servicio = {
   /** File path relative to `contentDirPath` */
   _id: string
@@ -63,8 +79,8 @@ export type Servicio = {
 export type AllTypes = DocumentTypes | NestedTypes
 export type AllTypeNames = DocumentTypeNames | NestedTypeNames
 
-export type DocumentTypes = Blog | Legal | Servicio
-export type DocumentTypeNames = 'Blog' | 'Legal' | 'Servicio'
+export type DocumentTypes = Blog | Legal | Proyecto | Servicio
+export type DocumentTypeNames = 'Blog' | 'Legal' | 'Proyecto' | 'Servicio'
 
 export type NestedTypes = never
 export type NestedTypeNames = never
@@ -74,6 +90,7 @@ export type DataExports = {
   allServicios: Servicio[]
   allBlogs: Blog[]
   allLegals: Legal[]
+  allProyectos: Proyecto[]
 }
 
 
@@ -95,6 +112,7 @@ declare global {
 export type DocumentTypeMap = {
   Blog: Blog
   Legal: Legal
+  Proyecto: Proyecto
   Servicio: Servicio
 }
 

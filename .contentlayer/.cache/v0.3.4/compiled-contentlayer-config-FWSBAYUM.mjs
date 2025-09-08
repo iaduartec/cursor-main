@@ -44,11 +44,26 @@ var Legal = defineDocumentType(() => ({
     url: { type: "string", resolve: (doc) => `/legal/${doc.slug}` }
   }
 }));
+var Proyecto = defineDocumentType(() => ({
+  name: "Proyecto",
+  filePathPattern: `proyectos/*.mdx`,
+  fields: {
+    title: { type: "string", required: true },
+    date: { type: "date", required: true },
+    description: { type: "string", required: false },
+    slug: { type: "string", required: true },
+    category: { type: "string", required: false },
+    image: { type: "string", required: false }
+  },
+  computedFields: {
+    url: { type: "string", resolve: (doc) => `/proyectos/${doc.slug}` }
+  }
+}));
 var contentlayer_config_default = makeSource({
   contentDirPath: "content",
-  documentTypes: [Servicio, Blog, Legal]
+  documentTypes: [Servicio, Blog, Legal, Proyecto]
 });
 export {
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-3OUMXSM3.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-FWSBAYUM.mjs.map
