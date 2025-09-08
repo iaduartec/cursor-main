@@ -1,0 +1,90 @@
+---
+title: Sistema de Backup Empresarial
+description: Implementación de sistema de backup y recuperación ante desastres con replicación local y en la nube.
+slug: sistema-backup-empresarial
+category: informatica
+image: /images/proyectos/server_backup.jpeg
+date: 2024-02-28
+---
+
+# Sistema de Backup Empresarial
+
+Implementación de sistema integral de backup y recuperación ante desastres con replicación local y en la nube para garantizar la continuidad del negocio.
+
+## Características del Proyecto
+
+### Alcance del Proyecto
+- **Cliente**: Hospital privado con 200 empleados
+- **Datos**: 50TB de información crítica
+- **Ubicación**: Burgos con réplica en Madrid
+- **Duración**: 3 semanas
+
+### Arquitectura de Backup
+
+#### Infraestructura Local
+- Servidor de backup Dell PowerEdge R740xd
+- Librería de cintas LTO-9 con 24 slots
+- Almacenamiento NAS Synology de 100TB
+- Red dedicada de backup 10Gbps
+
+#### Replicación en la Nube
+- Backup secundario en Azure
+- Cifrado AES-256 en tránsito y reposo
+- Deduplicación avanzada
+- Retención configurable por tipo de datos
+
+### Estrategia de Backup
+
+#### Backup Incremental
+- Backup completo semanal
+- Incrementales diarios automáticos
+- Backup en tiempo real para datos críticos
+- Verificación automática de integridad
+
+#### Clasificación de Datos
+- **Críticos**: RTO 1 hora, RPO 15 minutos
+- **Importantes**: RTO 4 horas, RPO 1 hora
+- **Normales**: RTO 24 horas, RPO 4 horas
+- **Archivos**: RTO 72 horas, RPO 24 horas
+
+## Servicios Implementados
+
+### Monitorización 24/7
+- Dashboard centralizado de estado
+- Alertas automáticas por email/SMS
+- Informes de éxito/fallo de backups
+- Métricas de rendimiento en tiempo real
+
+### Pruebas de Recuperación
+- Pruebas automáticas mensuales
+- Simulacros de desastre trimestrales
+- Documentación de procedimientos
+- Formación del personal IT
+
+### Gestión de Retención
+- Políticas automáticas por tipo de datos
+- Cumplimiento normativo GDPR
+- Eliminación segura de datos caducados
+- Auditoría completa de accesos
+
+## Beneficios Obtenidos
+
+- **Seguridad**: 99.99% de fiabilidad en recuperación
+- **Cumplimiento**: Normativas sanitarias y GDPR
+- **Eficiencia**: 70% reducción en tiempo de backup
+- **Tranquilidad**: Continuidad de negocio garantizada
+
+## Plan de Recuperación ante Desastres
+
+1. **Evaluación**: Análisis del incidente en 15 minutos
+2. **Activación**: Inicio de procedimientos automáticos
+3. **Recuperación**: Restauración de servicios críticos
+4. **Verificación**: Comprobación de integridad de datos
+5. **Normalización**: Vuelta a operación normal
+
+## Garantías y SLA
+
+- **Hardware**: 4 años de garantía NBD
+- **Software**: Licencias perpetuas incluidas
+- **RTO/RPO**: Objetivos garantizados por contrato
+- **Soporte**: 24/7 con escalado a fabricantes
