@@ -30,7 +30,7 @@ export default async function BlogPage({
   const pageSizeParam = Array.isArray(sp?.pageSize) ? sp?.pageSize[0] : sp?.pageSize;
   const allowedSizes = [6, 9, 12, 18];
   let pageSize = parseInt(String(pageSizeParam || '9'), 10);
-  if (!allowedSizes.includes(pageSize)) pageSize = 9;
+  if (!allowedSizes.includes(pageSize)) {pageSize = 9;}
   const sortParam = Array.isArray(sp?.sort) ? sp?.sort[0] : sp?.sort;
   let sortBy: 'date' | 'title' = 'date';
   let sortDir: 'asc' | 'desc' = 'desc';

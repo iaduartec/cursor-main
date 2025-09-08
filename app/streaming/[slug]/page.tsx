@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function StreamingCamPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const s = await getStreamBySlug(normalizeSlug(slug));
-  if (!s) notFound();
+  if (!s) {notFound();}
 
   const src = s.embedUrl || (s.youtubeId ? `https://www.youtube.com/embed/${s.youtubeId}` : '');
 

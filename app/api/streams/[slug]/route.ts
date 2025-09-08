@@ -15,12 +15,12 @@ function isAuthorized(req: NextRequest): boolean {
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const item = await getStreamBySlug(slug);
-  if (!item) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  if (!item) {return NextResponse.json({ error: 'Not found' }, { status: 404 });}
   return NextResponse.json(item);
 }
 
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
-  if (!isAuthorized(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!isAuthorized(req)) {return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });}
   const { slug } = await params;
   const patch = await req.json().catch(() => ({}));
   const now = new Date();
@@ -43,7 +43,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
 }
 
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
-  if (!isAuthorized(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!isAuthorized(req)) {return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });}
   const { slug } = await params;
   await db.delete(streams).where(eq(streams.slug, slug));
   revalidateTag('streams');

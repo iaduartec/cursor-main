@@ -3,7 +3,7 @@ import path from 'node:path';
 import dotenv from 'dotenv';
 // Load .env.local first if present, then fall back to .env
 const envLocal = path.resolve(process.cwd(), '.env.local');
-if (fs.existsSync(envLocal)) dotenv.config({ path: envLocal });
+if (fs.existsSync(envLocal)) {dotenv.config({ path: envLocal });}
 dotenv.config();
 import { readFile, readdir } from 'node:fs/promises';
 import matter from 'gray-matter';

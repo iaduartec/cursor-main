@@ -55,7 +55,7 @@ export default async function AdminServicesPage() {
             <th>Título</th>
             <th>Área</th>
             <th>Catálogo</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
         <tbody>

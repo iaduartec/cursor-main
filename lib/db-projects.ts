@@ -16,7 +16,7 @@ export type ProjectRow = {
 const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
 
 export async function getAllProjects(): Promise<ProjectRow[]> {
-  if (!hasDb()) return [];
+  if (!hasDb()) {return [];}
   try {
     const rows = await db
       .select({

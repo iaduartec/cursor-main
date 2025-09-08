@@ -1,0 +1,205 @@
+
+> duartec-web@1.0.0 lint C:\Users\kiri_\Documents\GitHub\cursor-main
+> eslint . --max-warnings=0
+
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\admin\posts\page.tsx
+  70:13  error    Empty components are self-closing         react/self-closing-comp
+  78:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\admin\projects\page.tsx
+  26:154  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  27:190  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  61:13   error    Empty components are self-closing         react/self-closing-comp
+  69:48   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\admin\services\page.tsx
+  58:13  error  Empty components are self-closing  react/self-closing-comp
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\admin\streams\page.tsx
+  76:13  error  Empty components are self-closing  react/self-closing-comp
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\api\streams\[slug]\route.ts
+  18:14  error    Expected { after 'if' condition           curly
+  23:27  error    Expected { after 'if' condition           curly
+  38:10  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  46:27  error    Expected { after 'if' condition           curly
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\blog\BlogListClient.tsx
+  22:46  error  Expected { after 'if' condition  curly
+  23:52  error  Expected { after 'if' condition  curly
+  24:65  error  Expected { after 'if' condition  curly
+  25:40  error  Expected { after 'if' condition  curly
+  65:40  error  Expected { after 'if' condition  curly
+  66:12  error  Expected { after 'else'          curly
+  68:30  error  Expected { after 'if' condition  curly
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\blog\[slug]\page.tsx
+  195:16  warning  Dangerous property 'dangerouslySetInnerHTML' found  react/no-danger
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\blog\page.tsx
+  33:41  error  Expected { after 'if' condition  curly
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\proyectos\[slug]\page.tsx
+  23:11  error    Expected { after 'if' condition                     curly
+  59:65  warning  Dangerous property 'dangerouslySetInnerHTML' found  react/no-danger
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\proyectos\page.tsx
+  41:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\servicios\[slug]\page.tsx
+  22:11  error  Expected { after 'if' condition  curly
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\app\streaming\[slug]\page.tsx
+  42:11  error  Expected { after 'if' condition  curly
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\content\blog\fix_blog_frontmatter_merge.js
+   24:12  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   24:12  error    'require' is not defined                 no-undef
+   25:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   25:14  error    'require' is not defined                 no-undef
+  142:5   warning  Unexpected console statement             no-console
+  150:7   warning  Unexpected console statement             no-console
+  169:3   warning  Unexpected console statement             no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\content\blog\fix_blog_slugs.js
+   18:12  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   18:12  error    'require' is not defined                 no-undef
+   19:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   19:14  error    'require' is not defined                 no-undef
+   99:7   warning  Unexpected console statement             no-console
+  102:3   warning  Unexpected console statement             no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\drizzle\neon-http.ts
+  12:3  warning  Unexpected console statement  no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\fix_blog_frontmatter.js
+   27:12  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   27:12  error    'require' is not defined                 no-undef
+   28:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   28:14  error    'require' is not defined                 no-undef
+  109:5   warning  Unexpected console statement             no-console
+  116:7   warning  Unexpected console statement             no-console
+  137:3   warning  Unexpected console statement             no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\fix_blog_frontmatter_merge.js
+   24:12  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   24:12  error    'require' is not defined                 no-undef
+   25:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   25:14  error    'require' is not defined                 no-undef
+  142:5   warning  Unexpected console statement             no-console
+  150:7   warning  Unexpected console statement             no-console
+  169:3   warning  Unexpected console statement             no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\fix_blog_slugs.js
+   18:12  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   18:12  error    'require' is not defined                 no-undef
+   19:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   19:14  error    'require' is not defined                 no-undef
+   99:7   warning  Unexpected console statement             no-console
+  102:3   warning  Unexpected console statement             no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\fix_blog_slugs_extended.js
+   22:12  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   22:12  error    'require' is not defined                 no-undef
+   23:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   23:14  error    'require' is not defined                 no-undef
+  114:7   warning  Unexpected console statement             no-console
+  123:9   warning  Unexpected console statement             no-console
+  129:3   warning  Unexpected console statement             no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\lib\db-posts.ts
+    5:1   error    'contentlayer/generated' import is duplicated  no-duplicate-imports
+   22:17  error    Expected { after 'if' condition                curly
+   48:17  error    Expected { after 'if' condition                curly
+   73:17  error    Expected { after 'if' condition                curly
+   95:17  error    Expected { after 'if' condition                curly
+   99:41  error    Expected { after 'if' condition                curly
+  104:37  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  105:36  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  105:49  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  105:57  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  106:39  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  107:12  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  115:17  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  116:16  error    Expected { after 'if' condition                curly
+  116:47  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  125:15  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  145:16  error    Expected { after 'if' condition                curly
+  145:43  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  155:17  error    Expected { after 'if' condition                curly
+  176:21  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  183:26  error    Expected { after 'if' condition                curly
+  190:20  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  201:12  error    Expected { after 'if' condition                curly
+  203:11  error    Expected { after 'if' condition                curly
+  209:20  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  219:25  error    Expected { after 'if' condition                curly
+  233:17  error    Expected { after 'if' condition                curly
+  259:35  error    Expected { after 'if' condition                curly
+  262:21  error    Expected { after 'if' condition                curly
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\lib\db-projects.ts
+  19:17  error  Expected { after 'if' condition  curly
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\lib\db-services.ts
+   4:15  error  'Servicio' is defined but never used           @typescript-eslint/no-unused-vars
+   5:1   error  'contentlayer/generated' import is duplicated  no-duplicate-imports
+  20:17  error  Expected { after 'if' condition                curly
+  44:13  error  Expected { after 'if' condition                curly
+  69:14  error  Expected { after 'if' condition                curly
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\lib\db-streams.ts
+   3:10  error  'and' is defined but never used    @typescript-eslint/no-unused-vars
+   3:20  error  'desc' is defined but never used   @typescript-eslint/no-unused-vars
+   3:26  error  'eq' is defined but never used     @typescript-eslint/no-unused-vars
+   3:30  error  'ilike' is defined but never used  @typescript-eslint/no-unused-vars
+   3:37  error  'or' is defined but never used     @typescript-eslint/no-unused-vars
+   3:41  error  'SQL' is defined but never used    @typescript-eslint/no-unused-vars
+  20:17  error  Expected { after 'if' condition    curly
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\middleware.ts
+  6:46  error  Expected { after 'if' condition  curly
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\next-env.d.ts
+  3:1  error  Do not use a triple slash reference for ./.next/types/routes.d.ts, use `import` style instead  @typescript-eslint/triple-slash-reference
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\scripts\db\migrate-neon.ts
+  18:3  warning  Unexpected console statement  no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\scripts\db\ping-neon.ts
+  9:3  warning  Unexpected console statement  no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\scripts\db\seed-from-mdx.ts
+   6:30  error    Expected { after 'if' condition  curly
+  11:10  error    'eq' is defined but never used   @typescript-eslint/no-unused-vars
+  33:3   warning  Unexpected console statement     no-console
+  77:5   warning  Unexpected console statement     no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\scripts\db\seed-projects.ts
+   6:30  error    Expected { after 'if' condition  curly
+  11:10  error    'eq' is defined but never used   @typescript-eslint/no-unused-vars
+  40:3   warning  Unexpected console statement     no-console
+  82:5   warning  Unexpected console statement     no-console
+  85:3   warning  Unexpected console statement     no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\scripts\db\seed-services.ts
+  40:3  warning  Unexpected console statement  no-console
+  78:5  warning  Unexpected console statement  no-console
+  81:3  warning  Unexpected console statement  no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\scripts\db\seed-streams.ts
+   5:30  error    Expected { after 'if' condition  curly
+  60:5   warning  Unexpected console statement     no-console
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\scripts\fix_blog_frontmatter_strict.js
+  75:11  error  Expected '===' and instead saw '=='  eqeqeq
+  80:16  error  'outVal' is assigned to itself       no-self-assign
+
+C:\Users\kiri_\Documents\GitHub\cursor-main\scripts\fix_text_encoding.js
+  50:9  error  Unexpected control character(s) in regular expression: \x1a  no-control-regex
+
+✖ 130 problems (81 errors, 49 warnings)
+  42 errors and 0 warnings potentially fixable with the `--fix` option.
+
+ ELIFECYCLE  Command failed with exit code 1.

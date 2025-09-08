@@ -17,7 +17,7 @@ export type StreamRow = {
 const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
 
 export async function getAllStreams(): Promise<StreamRow[]> {
-  if (!hasDb()) return fallbackStreams();
+  if (!hasDb()) {return fallbackStreams();}
   try {
     const rows = await db
       .select({

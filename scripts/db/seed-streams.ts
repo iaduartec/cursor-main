@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';
 const envLocal = path.resolve(process.cwd(), '.env.local');
-if (fs.existsSync(envLocal)) dotenv.config({ path: envLocal });
+if (fs.existsSync(envLocal)) {dotenv.config({ path: envLocal });}
 dotenv.config();
 
 import { streams } from '../../db/schema';
