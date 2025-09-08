@@ -6,8 +6,8 @@
   "category": "Electricidad",
   "image": "/images/blog/instalaciones-electricas-industriales/instalaciones-electricas-industriales-hero-001.webp",
   "body": {
-    "raw": "",
-    "html": ""
+    "raw": " \n## Introducción\n\nEn entornos industriales, las instalaciones eléctricas deben garantizar continuidad de suministro, seguridad y adaptabilidad a equipos de alta demanda. Aquí detallamos diseño, protecciones y prácticas de mantenimiento.\n\n## Diseño y dimensionamiento\n\n- Evaluación de cargas y selección de transformadores.\n- Diseño de cuadros y distribución con redundancia cuando procede.\n- Selección de dispositivos de protección y coordinación entre protecciones.\n\n## Mantenimiento predictivo y preventivo\n\nImplementar termografías, análisis de vibraciones y registros de consumo para anticipar fallos y optimizar paradas programadas.\n",
+    "html": "<h2>Introducción</h2>\n<p>En entornos industriales, las instalaciones eléctricas deben garantizar continuidad de suministro, seguridad y adaptabilidad a equipos de alta demanda. Aquí detallamos diseño, protecciones y prácticas de mantenimiento.</p>\n<h2>Diseño y dimensionamiento</h2>\n<ul>\n<li>Evaluación de cargas y selección de transformadores.</li>\n<li>Diseño de cuadros y distribución con redundancia cuando procede.</li>\n<li>Selección de dispositivos de protección y coordinación entre protecciones.</li>\n</ul>\n<h2>Mantenimiento predictivo y preventivo</h2>\n<p>Implementar termografías, análisis de vibraciones y registros de consumo para anticipar fallos y optimizar paradas programadas.</p>"
   },
   "_id": "blog/instalaciones-electricas-industriales.mdx",
   "_raw": {

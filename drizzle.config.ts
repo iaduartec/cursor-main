@@ -5,7 +5,7 @@ export default {
   out: './drizzle',
   dialect: 'postgresql',
   dbCredentials: {
-    // Prefer standard Vercel Postgres var; fallback to DATABASE_URL if set locally
+    // Supabase connection string
     url: process.env.POSTGRES_URL || process.env.DATABASE_URL || '',
   },
 } satisfies Config;

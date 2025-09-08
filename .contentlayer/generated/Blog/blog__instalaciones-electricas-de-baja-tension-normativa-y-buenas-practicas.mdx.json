@@ -6,8 +6,8 @@
   "category": "General",
   "image": "/images/blog/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas-hero-001.webp",
   "body": {
-    "raw": "",
-    "html": ""
+    "raw": " \n## Introducción\n\nLas instalaciones de baja tensión exigen una planificación rigurosa y cumplimiento normativo. Este artículo resume aspectos clave para asegurar seguridad, eficiencia y facilidad de mantenimiento.\n\n## Normativa y cumplimiento\n\n- Selección de protecciones diferenciales y magnetotérmicas según cargas.\n- Dimensionamiento de conductores conforme a normativa vigente.\n- Documentación de proyectos y certificados de instalación.\n\n## Mantenimiento y seguridad\n\nImplementa inspecciones periódicas, realiza ensayos y conserva registros para trazabilidad. Considera la sustitución de equipos obsoletos por versiones con mayor eficiencia y seguridad.\n\n",
+    "html": "<h2>Introducción</h2>\n<p>Las instalaciones de baja tensión exigen una planificación rigurosa y cumplimiento normativo. Este artículo resume aspectos clave para asegurar seguridad, eficiencia y facilidad de mantenimiento.</p>\n<h2>Normativa y cumplimiento</h2>\n<ul>\n<li>Selección de protecciones diferenciales y magnetotérmicas según cargas.</li>\n<li>Dimensionamiento de conductores conforme a normativa vigente.</li>\n<li>Documentación de proyectos y certificados de instalación.</li>\n</ul>\n<h2>Mantenimiento y seguridad</h2>\n<p>Implementa inspecciones periódicas, realiza ensayos y conserva registros para trazabilidad. Considera la sustitución de equipos obsoletos por versiones con mayor eficiencia y seguridad.</p>"
   },
   "_id": "blog/instalaciones-electricas-de-baja-tension-normativa-y-buenas-practicas.mdx",
   "_raw": {
