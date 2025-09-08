@@ -166,6 +166,14 @@ export default [
     },
   },
 
+  // Declaration files can use triple-slash references
+  {
+    files: ['*.d.ts'],
+    rules: {
+      '@typescript-eslint/triple-slash-reference': 'off',
+    },
+  },
+
   // Observability bootstrap can use console
   {
     files: ['instrumentation.ts'],

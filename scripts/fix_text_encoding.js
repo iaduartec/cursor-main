@@ -46,8 +46,9 @@ const wordMap = new Map([
   ['Qui\u00C3\u00A9nes', 'Qui\u00E9nes'],
 ]);
 
+// Usar una string literal en lugar de una regex para evitar caracteres de control
 const regexFixes = [
-  { re: new RegExp('Inform[\\x1a]tica', 'g'), out: 'Inform\u00E1tica' },
+  { re: /Inform.tica/g, out: 'Inform\u00E1tica' },
 ];
 
 function shouldProcess(file) {

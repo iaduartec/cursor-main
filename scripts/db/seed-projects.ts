@@ -8,7 +8,7 @@ dotenv.config();
 import { readFile, readdir } from 'node:fs/promises';
 import matter from 'gray-matter';
 import { projects } from '../../db/schema';
-import { eq } from 'drizzle-orm';
+// import { eq } from 'drizzle-orm'; // No se utiliza
 
 type ProjectFrontmatter = {
   title: string;
