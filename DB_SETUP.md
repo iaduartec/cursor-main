@@ -84,6 +84,32 @@ Siguientes pasos opcionales
 - Cambiar el driver a `@supabase/postgres-js` para mejor comportamiento en serverless (recomendado si experimentas problemas de conexiones). Esto requiere añadir la dependencia y adaptar `db/client.ts`.
 - Añadir un job en Vercel que ejecute `pnpm db:migrate` después de cada deploy.
 
+<<<<<<< HEAD
+=======
+Problema conocido al instalar dependencias
+
+Si al ejecutar `pnpm install` obtienes un error 404 para `@supabase/postgres-js`, prueba lo siguiente:
+
+1) Asegúrate de que `package.json` no contiene `@supabase/postgres-js` (debió quitarse). Si existe, elimínala.
+2) Regenera el lockfile (opción segura):
+
+```powershell
+pnpm install --no-frozen-lockfile
+```
+
+3) Si el paso 2 falla, elimina el lockfile manualmente y reinstala:
+
+```powershell
+# En el directorio del proyecto
+Remove-Item pnpm-lock.yaml -Force
+pnpm install
+```
+
+4) Si aún hay problemas, revisa las entradas en `pnpm-lock.yaml.bak` (si existe) o elimina el backup y vuelve a intentar.
+
+Si quieres, puedo intentar ejecutar estos comandos aquí en la terminal (necesitaré tu confirmación para borrar archivos). De lo contrario, sigue los pasos anteriores en tu máquina local.
+
+>>>>>>> 96aab927c65692c2412599c40aa1b4eaada5f427
 Si quieres, puedo:
 
 1. Cambiar el driver a `@supabase/postgres-js` y ajustar `db/client.ts`.

@@ -17,11 +17,26 @@ if (!connectionString) {
   );
 }
 
-// Create postgres client for Drizzle using the existing 'postgres' driver.
-// Note: For serverless environments (Vercel), consider switching to
-// '@supabase/postgres-js' or other serverless-friendly drivers for improved
-// connection handling. Keeping 'postgres' for now to avoid adding deps.
-const client = postgres(connectionString, { prepare: false });
+// Try to use @supabase/postgres-js for serverless-friendly connections when available.
+// If it's not installed or fails, fall back to the 'postgres' client.
+let lowLevelClient: any;
+try {
+  // Dynamic require so code still works if package not installed at runtime
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const supabasePg = require('@supabase/postgres-js');
+  if (supabasePg && typeof supabasePg.createClient === 'function') {
+    // The package exposes createClient(connectionString) in most versions
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    lowLevelClient = supabasePg.createClient(connectionString);
+  }
+} catch (e) {
+  // ignore; we'll fallback to the 'postgres' client below
+}
+
+// If @supabase/postgres-js was available and created a client, use it.
+// Otherwise create a client with the 'postgres' package.
+const client = lowLevelClient ?? postgres(connectionString, { prepare: false });
+
 export const db = drizzle(client, { schema });
 
 // Export the low-level sql client too
@@ -42,10 +57,9 @@ if (!supabaseUrl || !supabaseKey) {
   );
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey, {
-  auth: {
-    autoRefreshToken: false,
-    persistSession: false,
-  },
-});
+export const supabase = supabaseUrl && supabaseKey
+  ? createClient(supabaseUrl, supabaseKey, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    })
+  : undefined;
 
