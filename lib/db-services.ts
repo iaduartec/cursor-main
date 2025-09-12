@@ -15,12 +15,12 @@ export type ServiceRow = {
   hasOfferCatalog: boolean;
 };
 
-function fallbackServiceFromContentLayer(s: typeof allServicios[number]): ServiceRow {
+function fallbackServiceFromContentLayer(s: (typeof allServicios)[number]): ServiceRow {
   return {
     id: 0,
     slug: s.slug,
     title: s.title,
-    description: s.description,
+    description: s.description ?? null,
     image: s.image ?? null,
     areaServed: s.areaServed ?? null,
     hasOfferCatalog: Boolean(s.hasOfferCatalog),
@@ -38,14 +38,21 @@ export async function getAllServices(): Promise<ServiceRow[]> {
         .select()
         .from(services)
         .orderBy(asc(services.title));
-
       return rows as unknown as ServiceRow[];
     },
-    () => fallbackServices()
+    // 👇 valor, no función
+    fallbackServices()
   );
 }
 
 export async function getServiceBySlug(slug: string): Promise<ServiceRow | null> {
+  // Fallback ya evaluado (valor)
+  const fallback =
+    (() => {
+      const s = allServicios.find((x) => x.slug === slug);
+      return s ? fallbackServiceFromContentLayer(s) : null;
+    })();
+
   return withDb(
     async () => {
       const result = await db
@@ -54,12 +61,10 @@ export async function getServiceBySlug(slug: string): Promise<ServiceRow | null>
         .where(eq(services.slug, slug))
         .limit(1);
 
-      const row = result[0] as unknown as ServiceRow | undefined;
+      const row = (result[0] as unknown) as ServiceRow | undefined;
       return row ?? null;
     },
-    () => {
-      const s = allServicios.find((x) => x.slug === slug);
-      return s ? fallbackServiceFromContentLayer(s) : null;
-    }
+    // 👇 valor, no función
+    fallback
   );
 }
