@@ -5,7 +5,7 @@ import { allProyectos } from 'contentlayer/generated';
 import { withDb } from './db-utils';
 
 // Tipos de contenido desde contentlayer
-type ContentLayerProject = typeof allProyectos[number];
+type ContentLayerProject = (typeof allProyectos)[number];
 
 export type ProjectRow = {
   id: number;
@@ -22,9 +22,9 @@ function fallbackProjectFromContentLayer(p: ContentLayerProject): ProjectRow {
   return {
     id: 0,
     slug: p.slug,
-    title: p.title,
-    description: p.description,
-    content: p.body.raw,
+    title: p.title ?? p.slug,
+    description: p.description ?? null,
+    content: p.body?.raw ?? null,
     image: p.image ?? null,
     category: p.category ?? null,
     date: p.date ? new Date(p.date) : null,
@@ -42,9 +42,9 @@ export async function getAllProjects(): Promise<ProjectRow[]> {
         .select()
         .from(projects)
         .orderBy(desc(projects.date));
-      return rows;
+      return rows as unknown as ProjectRow[];
     },
-    fallbackProjects()
+    () => fallbackProjects()
   );
 }
 
@@ -53,7 +53,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectRow | null>
     const p = allProyectos.find((x) => x.slug === slug);
     return p ? fallbackProjectFromContentLayer(p) : null;
   };
-  
+
   return withDb(
     async () => {
       const result = await db
@@ -61,8 +61,8 @@ export async function getProjectBySlug(slug: string): Promise<ProjectRow | null>
         .from(projects)
         .where(eq(projects.slug, slug))
         .limit(1);
-      return result[0] ?? null;
+      return (result[0] as unknown as ProjectRow) ?? null;
     },
-    fallback()
+    () => fallback()
   );
 }
