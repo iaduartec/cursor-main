@@ -84,13 +84,11 @@ Siguientes pasos opcionales
 - Cambiar el driver a `@supabase/postgres-js` para mejor comportamiento en serverless (recomendado si experimentas problemas de conexiones). Esto requiere añadir la dependencia y adaptar `db/client.ts`.
 - Añadir un job en Vercel que ejecute `pnpm db:migrate` después de cada deploy.
 
-<<<<<<< HEAD
-=======
 Problema conocido al instalar dependencias
 
 Si al ejecutar `pnpm install` obtienes un error 404 para `@supabase/postgres-js`, prueba lo siguiente:
 
-1) Asegúrate de que `package.json` no contiene `@supabase/postgres-js` (debió quitarse). Si existe, elimínala.
+1) Asegúrate de que `package.json` no contiene `@supabase/postgres-js` (si existe, elimínala).
 2) Regenera el lockfile (opción segura):
 
 ```powershell
@@ -107,9 +105,44 @@ pnpm install
 
 4) Si aún hay problemas, revisa las entradas en `pnpm-lock.yaml.bak` (si existe) o elimina el backup y vuelve a intentar.
 
-Si quieres, puedo intentar ejecutar estos comandos aquí en la terminal (necesitaré tu confirmación para borrar archivos). De lo contrario, sigue los pasos anteriores en tu máquina local.
+Nota: en este proyecto implementamos un patrón de "require dinámico" en `db/client.ts` para evitar que la falta de un driver opcional rompa la instalación. Si prefieres instalar a fuerza `@supabase/postgres-js`, confirma y lo añadimos explícitamente.
 
->>>>>>> 96aab927c65692c2412599c40aa1b4eaada5f427
+Verificación rápida (comandos usados en esta migración)
+
+Estos son los comandos que usamos para validar la conexión y el estado de la base de datos sin depender de Next/Contentlayer:
+
+- Comprobar versión de Postgres (script oficial):
+
+```powershell
+pnpm exec tsx scripts/db/check-version.ts
+```
+
+- One-shot: obtener la versión vía el cliente del proyecto (sin HTTP):
+
+```powershell
+pnpm exec tsx scripts/run-db-ping-oneoff.ts
+```
+
+- Servidor temporal HTTP (opcional) que expone `/api/db-ping` en el puerto 4000:
+
+```powershell
+pnpm exec tsx scripts/temp-api-ping.ts
+# luego: curl http://127.0.0.1:4000/api/db-ping
+```
+
+Buenas prácticas y recordatorios
+
+- No comitees credenciales: usa `.env.local` para pruebas locales y configura variables en Vercel para deploy.
+- En Vercel, define `SUPABASE_DB_URL`, `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` como Environment Variables (Secret).
+- Si Contentlayer da errores de parseo MDX en Windows, revisa los frontmatters de los `.mdx` afectados; son warnings que pueden impedir la generación de `.contentlayer`.
+
+Si quieres, puedo:
+
+1. Cambiar el driver a `@supabase/postgres-js` y ajustar `db/client.ts`.
+2. Añadir scripts para automatizar dump/restore entre Neon y Supabase.
+3. Crear un pequeño endpoint/Admin para verificar la conexión y mostrar versión de DB.
+
+Dime qué quieres que implemente ahora y lo hago.
 Si quieres, puedo:
 
 1. Cambiar el driver a `@supabase/postgres-js` y ajustar `db/client.ts`.
