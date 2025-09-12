@@ -15,11 +15,52 @@ Por qué usar Supabase en Vercel
 
 Variables de entorno recomendadas
 
-- `SUPABASE_DB_URL` - URL de conexión Postgres (ej: provided by Supabase project). Usada por `db/client.ts`.
-- `SUPABASE_URL` - URL pública del proyecto Supabase (para el SDK JS).
-- `SUPABASE_SERVICE_ROLE_KEY` - clave de servicio para tareas administrativas (migraciones/seed). Guárala en Vercel como Environment Secret.
-- Alternativas/compatibilidad:
-  - `POSTGRES_URL` o `DATABASE_URL` siguen siendo compatibles (legacy). `db/client.ts` las acepta como fallback.
+- `SUPABASE_DB_URL` - URL de conexión Postgres (p. ej. la "Database URL" que provee Supabase). `db/client.ts` la usa con la mayor prioridad.
+- `POSTGRES_URL` - alternativa compatible usada por algunos scripts y por `db/client.ts` si `SUPABASE_DB_URL` no está definida.
+- `DATABASE_URL` - fallback genérico (por compatibilidad con otras infraestructuras).
+- `SUPABASE_URL` - URL pública del proyecto Supabase (para el SDK JS, p. ej. https://xyz.supabase.co).
+- `SUPABASE_SERVICE_ROLE_KEY` - clave de servicio (privada) necesaria para tareas administrativas y para inicializar el SDK con privilegios elevados. Guárala en Vercel como Environment Secret.
+- `SUPABASE_ANON_KEY` - clave pública/anon para el SDK cuando no se usa la service role. `db/client.ts` acepta `SUPABASE_SERVICE_ROLE_KEY` o `SUPABASE_ANON_KEY` para crear el cliente JS.
+
+Orden de precedencia en `db/client.ts` (qué variable se usa para la conexión SQL):
+1. `SUPABASE_DB_URL` (recomendado)
+2. `POSTGRES_URL`
+3. `DATABASE_URL`
+
+Nota de seguridad y despliegue
+- Nunca comitees las claves en el repositorio. Usa `.env.local` para pruebas locales y Secrets/Environment Variables en Vercel para deploy.
+- Para las operaciones administrativas (migrations, seed), usa `SUPABASE_SERVICE_ROLE_KEY` o una variable dedicada con permisos de escritura.
+
+Ejemplo de `.env.local` (local):
+
+```powershell
+# URL de conexión SQL (Postgres)
+SUPABASE_DB_URL=postgresql://postgres:password@db.host.supabase.co:5432/postgres
+
+# SDK Supabase (opcional, para Auth/Storage)
+SUPABASE_URL=https://xyz.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+Ejemplo de variables en Vercel (Environment Variables / Secrets):
+
+- `SUPABASE_DB_URL` = <Database URL from Supabase project>
+- `SUPABASE_URL` = <Supabase public URL>
+- `SUPABASE_SERVICE_ROLE_KEY` = <Service role key> (marca como Secret)
+
+Comportamiento del SDK y el driver
+- El archivo `db/client.ts` intenta usar en runtime el driver `@supabase/postgres-js` (serverless-friendly) mediante `require` dinámico; si no está instalado, hace fallback al paquete `postgres`.
+- Por eso el código no falla la instalación si `@supabase/postgres-js` no está en `package.json`. Si prefieres, puedes instalarlo explícitamente y ajustar `package.json` para forzar ese driver.
+
+Variables útiles para debugging
+- `NODE_ENV=development` para ejecutar `pnpm dev` localmente.
+- `SUPABASE_DB_URL` en una shell temporal para ejecutar scripts puntuales sin `.env.local`, por ejemplo:
+
+```powershell
+$env:SUPABASE_DB_URL="postgresql://..."
+pnpm exec tsx scripts/db/check-version.ts
+```
+
 
 Aplicar migraciones y poblar datos (Supabase)
 
