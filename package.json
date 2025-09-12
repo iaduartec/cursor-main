@@ -133,6 +133,6 @@
             "@contentlayer/*>esbuild": "0.18.20",
             "@contentlayer/*>@opentelemetry/api": "1.4.1"
         }
-    },
+    }
     
 }
