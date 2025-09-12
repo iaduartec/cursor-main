@@ -1,4 +1,3 @@
-﻿# keep Neon credentials secure: do not expose them to client-side code
 POSTGRES_URL="postgres://postgres.jkronymhmfqyuvswrvuh:vzzSH5m1Zw5dIZZS@aws-1-us-east-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x"
 POSTGRES_USER="postgres"
 POSTGRES_HOST="db.jkronymhmfqyuvswrvuh.supabase.co"
