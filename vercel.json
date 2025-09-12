@@ -1,11 +1,7 @@
 {
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm build",
-  "functions": {
-    "api/**/*.js": {
-      "regions": ["fra1"]
-    }
-  },
+  "regions": ["fra1"],
   "headers": [
     {
       "source": "/(.*)",
