@@ -10,23 +10,6 @@ import * as schema from './schema';
 // 3. DATABASE_URL (generic)
 const connectionString =
   process.env.SUPABASE_DB_URL || process.env.POSTGRES_URL || process.env.DATABASE_URL || '';
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-if (!connectionString) {
-  throw new Error(
-    'No se encontró URL de base de datos. Define SUPABASE_DB_URL, POSTGRES_URL o DATABASE_URL en las variables de entorno.'
-  );
-}
-
-// Create postgres client for Drizzle using the existing 'postgres' driver.
-// Note: For serverless environments (Vercel), consider switching to
-// '@supabase/postgres-js' or other serverless-friendly drivers for improved
-// connection handling. Keeping 'postgres' for now to avoid adding deps.
-const client = postgres(connectionString, { prepare: false });
-=======
->>>>>>> e956904b28f6623b4242bd9ca65da847c8f2b3d4
 
 if (!connectionString) {
   throw new Error(
@@ -54,10 +37,6 @@ try {
 // Otherwise create a client with the 'postgres' package.
 const client = lowLevelClient ?? postgres(connectionString, { prepare: false });
 
-<<<<<<< HEAD
-=======
->>>>>>> 96aab927c65692c2412599c40aa1b4eaada5f427
->>>>>>> e956904b28f6623b4242bd9ca65da847c8f2b3d4
 export const db = drizzle(client, { schema });
 
 // Export the low-level sql client too
