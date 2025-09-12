@@ -21,9 +21,17 @@ if (!connectionString) {
 // If it's not installed or fails, fall back to the 'postgres' client.
 let lowLevelClient: any;
 try {
-  // Dynamic require so code still works if package not installed at runtime
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const supabasePg = require('@supabase/postgres-js');
+  // Dynamic require so code still works if package not installed at runtime.
+  // Use eval('require') to avoid static analysis by bundlers that would
+  // attempt to resolve the module during client-side bundling.
+  let supabasePg: any;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    const req = eval('require');
+    supabasePg = req('@supabase/postgres-js');
+  } catch (err) {
+    // leave supabasePg undefined — we'll fallback below
+  }
   if (supabasePg && typeof supabasePg.createClient === 'function') {
     // The package exposes createClient(connectionString) in most versions
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
