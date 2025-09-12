@@ -1,4 +1,5 @@
-﻿node_modules/
+﻿.contentlayer/
+node_modules/
 .next/
 .out/
 .turbo/
