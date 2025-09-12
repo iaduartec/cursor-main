@@ -15,7 +15,6 @@
     ],
     "author": "Duartec Instalaciones Informáticas",
     "license": "MIT",
-    "prebuild": "node scripts/prebuild.mjs",
     "scripts": {
         "dev": "next dev",
         "preinstall": "node scripts/guard-pm.mjs",
@@ -123,16 +122,11 @@
             "last 1 safari version"
         ]
     },
-    "resolutions": {
-        "@opentelemetry/semantic-conventions": "1.28.0"
-    },
-    "overrides": {
-        "@opentelemetry/semantic-conventions": "1.28.0"
-    },
     "pnpm": {
         "overrides": {
             "@contentlayer/*>esbuild": "0.18.20",
-            "@contentlayer/*>@opentelemetry/api": "1.4.1"
+            "@contentlayer/*>@opentelemetry/api": "1.4.1",
+            "@opentelemetry/semantic-conventions": "1.28.0"
         }
     },
     "packageManager": "pnpm@9.6.0"
