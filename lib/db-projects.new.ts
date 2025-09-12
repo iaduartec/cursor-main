@@ -44,7 +44,7 @@ export async function getAllProjects(): Promise<ProjectRow[]> {
         .orderBy(desc(projects.date));
       return rows as unknown as ProjectRow[];
     },
-    () => fallbackProjects()
+    fallbackProjects()
   );
 }
 
@@ -63,6 +63,6 @@ export async function getProjectBySlug(slug: string): Promise<ProjectRow | null>
         .limit(1);
       return (result[0] as unknown as ProjectRow) ?? null;
     },
-    () => fallback()
+    fallback()
   );
 }
