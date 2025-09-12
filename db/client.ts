@@ -10,10 +10,13 @@ import * as schema from './schema';
 // 3. DATABASE_URL (generic)
 const connectionString =
   process.env.SUPABASE_DB_URL || process.env.POSTGRES_URL || process.env.DATABASE_URL || '';
+<<<<<<< HEAD
+=======
 <<<<<<<<< Temporary merge branch 1
 
 =========
 >>>>>>>>> Temporary merge branch 2
+>>>>>>> 89ca7579314764cd45b9560b288c6514fc283e0b
 if (!connectionString) {
   throw new Error(
     'No se encontró URL de base de datos. Define SUPABASE_DB_URL, POSTGRES_URL o DATABASE_URL en las variables de entorno.'
