@@ -10,6 +10,7 @@ import * as schema from './schema';
 // 3. DATABASE_URL (generic)
 const connectionString =
   process.env.SUPABASE_DB_URL || process.env.POSTGRES_URL || process.env.DATABASE_URL || '';
+<<<<<<< HEAD
 
 if (!connectionString) {
   throw new Error(
@@ -22,6 +23,36 @@ if (!connectionString) {
 // '@supabase/postgres-js' or other serverless-friendly drivers for improved
 // connection handling. Keeping 'postgres' for now to avoid adding deps.
 const client = postgres(connectionString, { prepare: false });
+=======
+
+if (!connectionString) {
+  throw new Error(
+    'No se encontró URL de base de datos. Define SUPABASE_DB_URL, POSTGRES_URL o DATABASE_URL en las variables de entorno.'
+  );
+}
+
+// Try to use @supabase/postgres-js for serverless-friendly connections when available.
+// If it's not installed or fails, fall back to the 'postgres' client.
+let lowLevelClient: any;
+try {
+  // Dynamic require so code still works if package not installed at runtime
+  // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-assignment
+  const supabasePg = require('@supabase/postgres-js');
+  if (supabasePg && typeof supabasePg.createClient === 'function') {
+    // The package exposes createClient(connectionString) in most versions
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    lowLevelClient = supabasePg.createClient(connectionString);
+  }
+} catch (e) {
+  // ignore; we'll fallback to the 'postgres' client below
+}
+
+// If @supabase/postgres-js was available and created a client, use it.
+// Otherwise create a client with the 'postgres' package.
+const client =
+  lowLevelClient ?? postgres(connectionString, { prepare: false });
+
+>>>>>>> 96aab927c65692c2412599c40aa1b4eaada5f427
 export const db = drizzle(client, { schema });
 
 // Export the low-level sql client too
