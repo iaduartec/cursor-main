@@ -1,14 +1,14 @@
 {
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm build",
+  "functions": {
+    "api/**/*.js": {
+      "regions": ["fra1"]
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
-      "functions": {
-        "api/*.js": {
-          "regions": ["fra1"]
-        }
-      },
       "headers": [
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
         { "key": "X-Frame-Options", "value": "DENY" },
@@ -19,15 +19,6 @@
     },
     {
       "source": "/_next/static/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/images/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
