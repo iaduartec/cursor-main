@@ -19,8 +19,26 @@ jobs:
           node-version: '22'
           cache: 'pnpm'   # cachea pnpm-lock.yaml
 
-      - name: Enable Corepack (pnpm via packageManager)
-        run: corepack enable
+      - name: Setup pnpm (lee package.json)
+        uses: pnpm/action-setup@v4
+        with:
+          version: auto     # instala la versión indicada en "packageManager"
+          run_install: false
+
+      - name: Check pnpm version (debug)
+        run: pnpm -v
 
       - name: Install dependencies
-        run: pnpm install --fro
+        run: pnpm install --frozen-lockfile
+
+      - name: Build project
+        run: pnpm build
+        env:
+          NODE_ENV: production
+
+      - name: Deploy to Vercel
+        run: pnpm dlx vercel --prod --yes
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
