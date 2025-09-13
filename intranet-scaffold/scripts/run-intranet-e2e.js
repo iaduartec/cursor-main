@@ -30,6 +30,8 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
   const cwd = path.resolve(__dirname, '..');
   console.log('Starting Next dev in', cwd);
   const env = Object.assign({}, process.env, { CONTENTLAYER_SKIP_TYPEGEN: '1', CONTENTLAYER_HIDE_WARNING: '1', SKIP_CONTENTLAYER: '1' });
+  // Ensure the runner picks up the same PORT (default 3000) so e2e-crud targets the correct base URL
+  env.PORT = env.PORT || '3000';
   const dev = spawn('pnpm', ['dev'], { cwd, stdio: 'inherit', env });
 
   // wait for server (fast check first: 10s)
@@ -66,7 +68,7 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
 
   // run e2e
   console.log('Running E2E script...');
-  const runner = spawn(process.execPath, [path.join(cwd, 'scripts', 'e2e-crud.js')], { cwd, stdio: 'inherit' });
+  const runner = spawn(process.execPath, [path.join(cwd, 'scripts', 'e2e-crud.js')], { cwd, stdio: 'inherit', env });
   runner.on('close', (code) => {
     console.log('E2E script finished with code', code);
     // shutdown dev
