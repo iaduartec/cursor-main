@@ -25,8 +25,8 @@
         - list [ref=e23]:
           - listitem [ref=e24]:
             - generic [ref=e25]:
-              - generic [ref=e26]: PW Test Title Updated
-              - generic [ref=e27]: pw-test-slug
+              - generic [ref=e26]: PW Test Title Updated 1757744115437
+              - generic [ref=e27]: pw-test-1757744115437
             - generic [ref=e28]:
               - button "Editar" [ref=e29]
               - button "Borrar" [active] [ref=e30]
@@ -39,7 +39,7 @@
       - heading "Confirmar borrado" [level=3] [ref=e38]
       - paragraph [ref=e39]:
         - text: ¿Borrar
-        - strong [ref=e40]: PW Test Title Updated
+        - strong [ref=e40]: PW Test Title Updated 1757744115437
         - text: "?"
       - generic [ref=e41]:
         - button "Cancelar" [ref=e42]

@@ -16,7 +16,8 @@ test('admin UI CRUD flow', async ({ page }) => {
   await expect(page.locator(`text=${title}`)).toHaveCount(1);
 
   // edit: find the item's Edit button within the row that contains the title
-  const row = page.locator(`:scope >> text=${title}`).first().locator('..').first();
+  const row = page.locator('li', { hasText: title }).first();
+  await expect(row).toBeVisible();
   await row.locator('button:has-text("Editar")').click();
   await page.fill('input[placeholder="Demo Project"]', titleUpdated);
   await page.click('button:has-text("Actualizar proyecto")');
@@ -24,10 +25,13 @@ test('admin UI CRUD flow', async ({ page }) => {
   await expect(page.locator(`text=${titleUpdated}`)).toHaveCount(1);
 
   // delete via modal: click Delete for the specific row, then confirm in modal
-  const rowUpdated = page.locator(`:scope >> text=${titleUpdated}`).first().locator('..').first();
+  const rowUpdated = page.locator('li', { hasText: titleUpdated }).first();
+  await expect(rowUpdated).toBeVisible();
   await rowUpdated.locator('button:has-text("Borrar")').click();
-  // Click the modal's Borrar button (the modal contains the text 'Confirmar borrado')
-  await page.click('button:has-text("Borrar")', { timeout: 5000 });
+  // Click the modal's Borrar button (modal visible)
+  const modal = page.locator('text=Confirmar borrado').first();
+  await expect(modal).toBeVisible();
+  await modal.locator('button:has-text("Borrar")').click();
   // confirm the item is gone
   await expect(page.locator(`text=${titleUpdated}`)).toHaveCount(0);
 });
