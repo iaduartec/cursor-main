@@ -1,0 +1,16 @@
+   Ôû▓ Next.js 15.5.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.132:3000
+   - Experiments (use with caution):
+     Ô£ô scrollRestoration
+
+ Ô£ô Starting...
+ Ô£ô Ready in 2.2s
+ Ôùï Compiling /admin ...
+ Ô£ô Compiled /admin in 1981ms (564 modules)
+ GET /admin 200 in 2443ms
+ Ô£ô Compiled / in 323ms (566 modules)
+ GET / 200 in 516ms
+ GET /admin 200 in 45ms
+ GET / 200 in 38ms
+ GET /admin 200 in 38ms

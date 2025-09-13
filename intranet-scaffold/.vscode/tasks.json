@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Intranet Dev",
+      "type": "shell",
+      "command": "pwsh",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}\\scripts\\dev\\start-dev.ps1"],
+      "problemMatcher": [],
+      "isBackground": false,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

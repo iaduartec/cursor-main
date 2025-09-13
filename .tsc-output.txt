@@ -1,0 +1,4 @@
+
+> duartec-web@1.0.0 type-check C:\Users\kiri_\Documents\GitHub\cursor-main
+> tsc --noEmit
+

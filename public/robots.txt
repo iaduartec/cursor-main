@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /404
+Disallow: /500
+
+# Host
+Host: https://duartec.es
+
+# Sitemaps
+Sitemap: https://duartec.es/sitemap.xml

@@ -1,0 +1,22 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "public/Nueva carpeta"
+    },
+    {
+      "path": "../GitHub/cursor-main"
+    }
+  ],
+  "settings": {
+    "git.ignoreLimitWarning": true,
+    "codingcopilot.modelResponseLanguage": "English",
+    "codingcopilot.modelDocumentLanguage": "English",
+    "codingcopilot.commitMessageLanguage": "en",
+    "liveServer.settings.multiRootWorkspaceName": "Nueva carpeta",
+    "powershell.cwd": "cursor-main",
+    "chatgpt.openOnStartup": true
+  },
+}

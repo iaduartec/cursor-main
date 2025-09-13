@@ -1,0 +1,569 @@
+/*
+Resumen generado automáticamente.
+
+app/globals.css
+
+2025-09-13T06:20:07.363Z
+
+——————————————————————————————
+Archivo .css: globals.css
+Tamaño: 10888 caracteres, 549 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+/* Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --color-primary: #1e293b;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-background: #ffffff;
+  --color-background-dark: #0f172a;
+  --color-text: #1e293b;
+  --color-text-dark: #f8fafc;
+  --color-gray-light: #f1f5f9;
+  --color-gray-dark: #334155;
+}
+
+/* Base font-family without cascade layers for wider support */
+html {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+}
+
+/* Dark mode variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0f172a;
+    --color-text: #f8fafc;
+  }
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+/* Smooth scrolling with fallback for older browsers */
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Fallback for browsers that don't support scroll-behavior */
+@supports not (scroll-behavior: smooth) {
+  html {
+    /* No scroll-behavior property for unsupported browsers */
+  }
+}
+
+body {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Text size adjustments for better accessibility */
+@supports (-webkit-text-size-adjust: 100%) {
+  html, :host { 
+    -webkit-text-size-adjust: 100%; 
+  }
+}
+
+@supports (text-size-adjust: 100%) {
+  html, :host { 
+    text-size-adjust: 100%; 
+  }
+}
+
+/* Skip to content link for accessibility */
+.skip-to-content {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 1000;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.skip-to-content:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Focus styles for better accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Button focus styles */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 0.375rem;
+}
+
+/* Provide vendor fallbacks for user-select ordering where applicable */
+* {
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Selection styles */
+::selection {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Link styles */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Button base styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* Card styles */
+.card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Dark mode card styles */
+.dark .card {
+  background: var(--color-background-dark);
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+.dark .card:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+/* Container utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Grid utilities */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.6s ease-out;
+}
+
+/* Loading spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  a {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-accent: #0000ff;
+    --color-accent-hover: #0000cc;
+  }
+  
+  .btn {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* Only apply scroll-behavior if the browser supports it */
+  @supports (scroll-behavior: smooth) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Estilos para el contenido del blog */
+.markdown-content {
+  @apply text-gray-800 dark:text-gray-200;
+}
+
+.markdown-content h1 {
+  @apply text-4xl font-bold mb-6 mt-8 text-blue-800 dark:text-white;
+}
+
+.markdown-content h2 {
+  @apply text-3xl font-bold mb-4 mt-8 text-blue-800 dark:text-white;
+}
+
+.markdown-content h3 {
+  @apply text-2xl font-semibold mb-3 mt-6 text-blue-800 dark:text-white;
+}
+
+.markdown-content h4 {
+  @apply text-xl font-semibold mb-3 mt-6 text-blue-800 dark:text-white;
+}
+
+.markdown-content p {
+  @apply mb-4 leading-relaxed;
+}
+
+.markdown-content ul {
+  @apply mb-4 pl-6;
+}
+
+.markdown-content ol {
+  @apply mb-4 pl-6;
+}
+
+.markdown-content li {
+  @apply mb-2;
+}
+
+.markdown-content strong {
+  @apply font-semibold text-gray-900 dark:text-white;
+}
+
+.markdown-content em {
+  @apply italic;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-blue-800 pl-4 py-2 my-6 bg-gray-50 dark:bg-slate-800 italic;
+}
+
+.markdown-content code {
+  @apply bg-gray-100 dark:bg-slate-700 px-2 py-1 rounded text-sm font-mono;
+}
+
+.markdown-content pre {
+  @apply bg-gray-100 dark:bg-slate-700 p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.markdown-content pre code {
+  @apply bg-transparent p-0;
+}
+
+.markdown-content a {
+  @apply text-blue-600 hover:text-blue-700 underline;
+}
+
+.markdown-content table {
+  @apply w-full border-collapse border border-gray-300 dark:border-slate-600 mb-4;
+}
+
+.markdown-content th {
+  @apply border border-gray-300 dark:border-slate-600 px-4 py-2 bg-gray-100 dark:bg-slate-700 font-semibold;
+}
+
+.markdown-content td {
+  @apply border border-gray-300 dark:border-slate-600 px-4 py-2;
+}
+
+.markdown-content hr {
+  @apply border-gray-300 dark:border-slate-600 my-8;
+}
+
+/* Estilos para las tarjetas del blog */
+.blog-card {
+  @apply bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-slate-700;
+}
+
+.blog-card:hover {
+  @apply transform -translate-y-1;
+}
+
+/* Estilos para las categorías */
+.category-badge {
+  @apply inline-block px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.category-seguridad {
+  @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200;
+}
+
+.category-electricidad {
+  @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200;
+}
+
+.category-informatica {
+  @apply bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200;
+}
+
+.category-sonido {
+  @apply bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200;
+}
+
+/* Estilos para el hero del blog */
+.blog-hero {
+  @apply relative bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 py-20 px-4 overflow-hidden;
+}
+
+.blog-hero-image {
+  @apply absolute inset-0 object-cover opacity-10;
+}
+
+.blog-hero-content {
+  @apply relative max-w-4xl mx-auto;
+}
+
+/* Estilos para el contenido del artículo */
+.article-content {
+  @apply max-w-4xl mx-auto py-16 px-4;
+}
+
+.article-prose {
+  @apply prose prose-lg dark:prose-invert max-w-none;
+}
+
+/* Estilos para el CTA del artículo */
+.article-cta {
+  @apply mt-16 bg-blue-600 rounded-2xl p-8 text-white text-center;
+}
+
+/* Estilos para el newsletter */
+.newsletter-section {
+  @apply mt-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white text-center;
+}
+
+/* Estilos para los metadatos */
+.article-metadata {
+  @apply flex items-center text-gray-600 dark:text-gray-300 space-x-6;
+}
+
+.metadata-item {
+  @apply flex items-center;
+}
+
+.metadata-icon {
+  @apply w-5 h-5 mr-2;
+}
+
+/* Estilos para la navegación del blog */
+.blog-navigation {
+  @apply flex items-center text-blue-600 hover:text-blue-700 transition-colors;
+}
+
+.blog-navigation-icon {
+  @apply w-5 h-5 mr-2;
+}
+
+/* Estilos para las imágenes del blog */
+.blog-image {
+  @apply relative h-48 overflow-hidden;
+}
+
+.blog-image img {
+  @apply object-cover hover:scale-105 transition-transform duration-300;
+}
+
+/* Estilos para el grid de artículos */
+.blog-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+/* Estilos para los extractos */
+.blog-excerpt {
+  @apply text-gray-600 dark:text-gray-300 mb-4 line-clamp-3;
+}
+
+/* Estilos para los botones de acción */
+.blog-action-button {
+  @apply inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors;
+}
+
+.blog-action-icon {
+  @apply w-4 h-4 ml-2;
+}

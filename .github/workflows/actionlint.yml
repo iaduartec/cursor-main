@@ -1,0 +1,25 @@
+﻿name: Lint Workflows
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install actionlint
+        run: |
+          curl -sSL https://github.com/rhysd/actionlint/releases/latest/download/actionlint_Linux_x86_64.tar.gz \
+          | tar -xz actionlint
+          sudo mv actionlint /usr/local/bin
+          actionlint -color
+
+      - name: Install yamllint
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yamllint
+          yamllint .github/workflows

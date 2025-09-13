@@ -1,0 +1,102 @@
+name: Generar ArtÃ­culo
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Tema del artÃ­culo'
+        required: true
+        default: 'Nuevo artÃ­culo de prueba'
+      style:
+        description: 'Estilo de la imagen (fotogrÃ¡fico/minimalista/...)'
+        required: false
+        default: 'fotografico'
+      accent:
+        description: 'Color de acento para la paleta'
+        required: false
+        default: 'azul'
+      details:
+        description: 'Detalles clave para la imagen'
+        required: false
+        default: ''
+      category:
+        description: 'CategorÃ­a del post'
+        required: false
+        default: 'General'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f tools/requirements.txt ]; then pip install -r tools/requirements.txt; fi
+          pip install google-genai openai pyyaml python-slugify pillow
+
+      - name: Generar artÃ­culo
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          
+        run: |
+          python tools/generate_article.py \
+            --topic "${{ github.event.inputs.topic }}" \
+            --style "${{ github.event.inputs.style }}" \
+            --accent "${{ github.event.inputs.accent }}" \
+            --details "${{ github.event.inputs.details }}" \
+            --category "${{ github.event.inputs.category }}" \
+
+      - name: Calcular slug del artÃ­culo
+        id: slug
+        env:
+          TOPIC: ${{ github.event.inputs.topic }}
+        run: |
+          slug=$(python -c "from slugify import slugify; import os; print(slugify(os.environ.get('TOPIC',''))[:80])")
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+
+      - name: Detectar Gemini
+        id: has_gemini
+        env:
+          KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -n "${KEY}" ]; then echo "HAS_GEMINI=true" >> $GITHUB_ENV; else echo "HAS_GEMINI=false" >> $GITHUB_ENV; fi
+
+
+      - name: Generar imÃ¡genes AI (paso dedicado)
+        if: ${{ env.HAS_GEMINI == 'true' }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python tools/generate_ai_images.py \
+            --only-missing --min-bytes 1000 \
+            --filter "${{ steps.slug.outputs.slug }}" \
+            --style "${{ github.event.inputs.style }}" \
+            --accent "${{ github.event.inputs.accent }}"
+
+      - name: Generar placeholders faltantes (seguridad)
+        run: |
+          python tools/generate_missing_images.py --only-missing --min-bytes 1000
+
+      - name: Crear Pull Request con los cambios
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Contenido: Nuevo artÃ­culo '${{ github.event.inputs.topic }}'"
+          title: "Contenido: Nuevo artÃ­culo '${{ github.event.inputs.topic }}'"
+          body: |
+            Este PR contiene un nuevo artÃ­culo generado automÃ¡ticamente.
+            **Tema:** ${{ github.event.inputs.topic }}
+          branch: "content/new-article-${{ github.run_id }}"
+          delete-branch: true
+          add-paths: |
+            content/blog/*.mdx
+            public/images/blog/

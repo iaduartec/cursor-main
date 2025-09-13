@@ -1,0 +1,6 @@
+﻿node_modules/
+.next/
+.out/
+.turbo/
+coverage/
+.DS_Store

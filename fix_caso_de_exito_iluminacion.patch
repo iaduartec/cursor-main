@@ -1,0 +1,24 @@
+*** Begin Patch
+*** Update File: content/blog/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba.mdx
+@@
+----
+-slug: caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba
+----
+----
+-title: 'Caso de Éxito: Implementación de Iluminación Eficiente en Huerta de Arriba'
+-description: 'Caso de Éxito: Implementación de Iluminación Eficiente en Huerta de
+-  Arriba — artículo técnico'
+-date: '2025-09-04'
+-slug: caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba
+-category: Electricidad
+-image: /images/blog/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba-hero-001.webp
+----
++---
++title: 'Caso de Éxito: Implementación de Iluminación Eficiente en Huerta de Arriba'
++description: 'Caso de Éxito: Implementación de Iluminación Eficiente en Huerta de Arriba — artículo técnico'
++date: '2025-09-04'
++slug: caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba
++category: Electricidad
++image: /images/blog/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba/caso-de-exito-iluminacion-eficiente-en-huerta-de-arriba-hero-001.webp
++---
+*** End Patch
