@@ -16,7 +16,8 @@
     "author": "Duartec Instalaciones Informáticas",
     "license": "MIT",
     "scripts": {
-        "dev": "next dev",
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
         "preinstall": "node scripts/guard-pm.mjs",
         "prebuild": "node scripts/prebuild.mjs",
         "build": "pnpm db:migrate && next build",
