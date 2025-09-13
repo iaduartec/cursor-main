@@ -1,0 +1,45 @@
+{
+    "Name": "docker_labs-vscode-installer-desktop-extension_default",
+    "Id": "4b16a106c763a7d441736714cb46b18b9dea8227a387ae0cf70655574d2e2f5d",
+    "Created": "2025-09-13T02:21:32.427431452Z",
+    "Scope": "local",
+    "Driver": "bridge",
+    "EnableIPv4": true,
+    "EnableIPv6": false,
+    "IPAM": {
+        "Driver": "default",
+        "Options": null,
+        "Config": [
+            {
+                "Subnet": "172.18.0.0/16",
+                "Gateway": "172.18.0.1"
+            }
+        ]
+    },
+    "Internal": false,
+    "Attachable": false,
+    "Ingress": false,
+    "ConfigFrom": {
+        "Network": ""
+    },
+    "ConfigOnly": false,
+    "Containers": {
+        "7604ae019eab517b7c76e912850af5c7aac08cb9d3e7639dd94b0293e20e3f0a": {
+            "Name": "docker_labs-vscode-installer-desktop-extension-service",
+            "EndpointID": "d2694e4b21e575b928bfccf60e42a8eed4b1b4fca22406dd4df171aa977a17a9",
+            "MacAddress": "aa:4e:85:50:4e:f1",
+            "IPv4Address": "172.18.0.2/16",
+            "IPv6Address": ""
+        }
+    },
+    "Options": {
+        "com.docker.network.enable_ipv4": "true",
+        "com.docker.network.enable_ipv6": "false"
+    },
+    "Labels": {
+        "com.docker.compose.config-hash": "fd5c1cb2bec2baadb464059c2e1a26a627856f56cedb88a917f37d3b21531496",
+        "com.docker.compose.network": "default",
+        "com.docker.compose.project": "docker_labs-vscode-installer-desktop-extension",
+        "com.docker.compose.version": "2.39.2"
+    }
+}
