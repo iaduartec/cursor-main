@@ -68,3 +68,10 @@ Comandos útiles
 - Migraciones: `pnpm db:migrate`
 - Seed blog/streams: `pnpm db:seed` / `pnpm db:seed:streams`
 
+## Operación de squash + backup (historial sobrescrito)
+
+- Fecha: 2025-09-13T
+- Acción: Se creó una rama de respaldo `main-backup-<timestamp>` y se generó un commit único (squash) con el estado actual del árbol de `main`.
+- Resultado: Se forzó `git push --force origin main` local -> remoto. El historial remoto fue reemplazado por el nuevo commit squasheado.
+- Notas: Si necesitas recuperar el historial completo, restaura desde la rama `main-backup-<timestamp>` disponible en el repositorio remoto.
+

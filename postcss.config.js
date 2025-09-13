@@ -11,7 +11,7 @@ Tamaño: 83 caracteres, 7 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-module.exports = {
+export default {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
