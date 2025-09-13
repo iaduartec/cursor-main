@@ -8,8 +8,16 @@ import * as schema from './schema';
 // 1. SUPABASE_DB_URL (recommended for Supabase projects)
 // 2. POSTGRES_URL (used in this repo scripts)
 // 3. DATABASE_URL (generic)
+// Support legacy/local env var names (some environments use cxz_ prefix).
 const connectionString =
-  process.env.SUPABASE_DB_URL || process.env.POSTGRES_URL || process.env.DATABASE_URL || '';
+  process.env.SUPABASE_DB_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.DATABASE_URL ||
+  // fallbacks for local/dev .env that uses cxz_ prefixes
+  process.env.cxz_POSTGRES_URL ||
+  process.env.cxz_POSTGRES_PRISMA_URL ||
+  process.env.cxz_POSTGRES_URL_NON_POOLING ||
+  '';
 
 if (!connectionString) {
   throw new Error(
@@ -52,8 +60,14 @@ export { client as sql };
 
 // Supabase client (JS) for auth/storage/other APIs. Prefer using
 // SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_ANON_KEY) set in Vercel.
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || '';
+// Accept cxz_ prefixed env vars commonly used in local .env files as fallbacks
+const supabaseUrl = process.env.SUPABASE_URL || process.env.cxz_SUPABASE_URL || process.env.cxz_NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ||
+  process.env.SUPABASE_ANON_KEY ||
+  process.env.cxz_SUPABASE_SERVICE_ROLE_KEY ||
+  process.env.cxz_NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  '';
 
 if (!supabaseUrl || !supabaseKey) {
   // Don't crash - some environments may not need the JS client. Log a helpful warning.
