@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Log de limpieza y reescritura de historial
 # Fecha: 13/09/2025
 
@@ -12,3 +13,16 @@ Advertencia:
 - Revisa dependencias y vulnerabilidades reportadas por GitHub tras el push.
 
 ¡Historial limpio y repo actualizada!
+=======
+# Log de limpieza de ramas y tags remotos
+# Fecha: 13/09/2025
+
+Acciones realizadas:
+- Intento de eliminación de rama remota: copilot/fix-029a2e78-34cc-4952-8837-221c6d9fc1b1
+  Resultado: Fallido (remote ref does not exist)
+
+No se detectaron tags remotos para eliminar.
+
+# Nota sobre merges
+- Los merges en el historial no se han reescrito. Eliminar merges del historial requiere rebase interactivo y puede causar problemas en repos compartidas. Se recomienda solo borrar ramas fusionadas.
+>>>>>>> 2fd9bb5c25b1df9e4283fcd2739140fadf7dde19
