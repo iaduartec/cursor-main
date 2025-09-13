@@ -8,7 +8,10 @@ process.on('uncaughtException', (err) => {
 });
 
 (async ()=>{
-  const base = 'http://127.0.0.1:3000';
+  // Allow overriding the target base URL via env vars for flexibility in CI/local
+  const envBase = process.env.BASE_URL;
+  const envPort = process.env.PORT || process.env.E2E_PORT;
+  const base = envBase || `http://127.0.0.1:${envPort || 3005}`;
   const hdr = { 'Content-Type': 'application/json' };
 
   // wait-for helper: try GET /api/projects until it responds or timeout
