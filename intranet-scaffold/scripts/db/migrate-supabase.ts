@@ -1,3 +1,4 @@
+#!/usr/bin/env tsx
 /**
 Resumen generado automáticamente.
 
@@ -11,7 +12,6 @@ Tamaño: 1439 caracteres, 43 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-#!/usr/bin/env tsx
 import "dotenv/config";
 import fs from "fs";
 import path from "path";

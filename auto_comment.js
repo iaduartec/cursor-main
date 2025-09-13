@@ -133,7 +133,16 @@ function wrapComment(ext, text) {
   }
 
   return (original) => {
-    return `${cfg.blockStart}\n${text}\n${cfg.blockEnd}\n` + original;
+    // Check for shebang in any file type
+    const lines = original.split("\n");
+    const hasShebang = lines[0]?.startsWith("#!");
+    if (hasShebang) {
+      const header = lines.shift() + "\n";
+      const block = `${cfg.blockStart}\n${text}\n${cfg.blockEnd}\n`;
+      return header + block + lines.join("\n");
+    } else {
+      return `${cfg.blockStart}\n${text}\n${cfg.blockEnd}\n` + original;
+    }
   };
 }
 
