@@ -13,10 +13,12 @@ export default function AdminProjects() {
 
   useEffect(() => {
     let mounted = true;
+    setLoading(true);
     fetch('/api/projects')
       .then(r => r.json())
       .then(data => { if (mounted) setProjects(data); })
-      .catch(err => { console.error(err); if (mounted) setError(String(err)); });
+      .catch(err => { console.error(err); if (mounted) setError(String(err)); })
+      .finally(() => { if (mounted) setLoading(false); });
     return () => { mounted = false; };
   }, []);
 
@@ -26,7 +28,6 @@ export default function AdminProjects() {
     setLoading(true);
     try {
       if (editing) {
-        // update
         const res = await fetch(`/api/projects/${editing.id}`, { method: 'PUT', body: JSON.stringify({ slug, title }), headers: { 'Content-Type': 'application/json' }});
         if (res.ok) {
           const updated = await res.json();
@@ -38,7 +39,6 @@ export default function AdminProjects() {
           throw new Error(txt || 'Failed to update');
         }
       } else {
-        // create
         const res = await fetch('/api/projects', { method: 'POST', body: JSON.stringify({ slug, title }) , headers: { 'Content-Type': 'application/json' }});
         if (res.ok) {
           const p = await res.json();
@@ -64,7 +64,6 @@ export default function AdminProjects() {
   }
 
   async function deleteProject(id: number) {
-    // No blocking confirm() here so E2E or automated scripts won't be interrupted.
     setError(null);
     setLoading(true);
     try {
@@ -89,25 +88,65 @@ export default function AdminProjects() {
   }
 
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Admin - Projects</h1>
-      {error && <div style={{ color: 'red', marginBottom: 8 }}>{error}</div>}
-      <form onSubmit={createOrUpdateProject} style={{ marginBottom: 16 }}>
-        <input placeholder="Slug" value={slug} onChange={e => setSlug(e.target.value)} disabled={loading} />
-        <input placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} disabled={loading} />
-        <button type="submit" disabled={loading}>{loading ? 'Working...' : (editing ? 'Update' : 'Create')}</button>
-        {editing && <button type="button" onClick={cancelEdit} style={{ marginLeft: 8 }} disabled={loading}>Cancel</button>}
+    <div className="max-w-4xl mx-auto p-6">
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-semibold">Admin — Proyectos</h1>
+        <div className="text-sm text-gray-500">E2E-friendly (no blocking confirms)</div>
+      </div>
+
+      {error && (
+        <div className="mb-4 p-3 bg-red-50 text-red-800 border border-red-100 rounded">{error}</div>
+      )}
+
+      <form onSubmit={createOrUpdateProject} className="bg-white p-4 rounded shadow mb-6 grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="md:col-span-1">
+          <label className="block text-sm font-medium text-gray-700">Slug</label>
+          <input className="mt-1 block w-full border rounded px-3 py-2" placeholder="demo-slug" value={slug} onChange={e => setSlug(e.target.value)} disabled={loading} />
+        </div>
+        <div className="md:col-span-2">
+          <label className="block text-sm font-medium text-gray-700">Title</label>
+          <input className="mt-1 block w-full border rounded px-3 py-2" placeholder="Demo Project" value={title} onChange={e => setTitle(e.target.value)} disabled={loading} />
+        </div>
+
+        <div className="md:col-span-3 flex items-center gap-3 mt-2">
+          <button type="submit" className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-60" disabled={loading}>
+            {loading ? (
+              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+            ) : null}
+            {editing ? 'Actualizar proyecto' : 'Crear proyecto'}
+          </button>
+          {editing && <button type="button" onClick={cancelEdit} className="px-3 py-2 border rounded" disabled={loading}>Cancelar</button>}
+        </div>
       </form>
 
-      <ul>
-        {projects.map(p => (
-          <li key={p.id} style={{ marginBottom: 8 }}>
-            <strong>{p.title}</strong> — {p.slug} {' '}
-            <button onClick={() => startEdit(p)} style={{ marginLeft: 8 }} disabled={loading}>Edit</button>
-            <button onClick={() => deleteProject(p.id)} style={{ marginLeft: 8, color: 'red' }} disabled={loading}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <section className="bg-white rounded shadow divide-y">
+        <div className="p-4 flex items-center justify-between">
+          <h2 className="text-lg font-medium">Listado de proyectos</h2>
+          <div className="text-sm text-gray-500">{projects.length} items</div>
+        </div>
+
+        {loading && projects.length === 0 ? (
+          <div className="p-8 text-center text-gray-500">Cargando proyectos…</div>
+        ) : (
+          <ul>
+            {projects.map(p => (
+              <li key={p.id} className="p-4 flex items-center justify-between">
+                <div>
+                  <div className="font-semibold">{p.title}</div>
+                  <div className="text-sm text-gray-500">{p.slug}</div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button onClick={() => startEdit(p)} className="px-3 py-1 border rounded text-sm" disabled={loading}>Editar</button>
+                  <button onClick={() => deleteProject(p.id)} className="px-3 py-1 bg-red-600 text-white rounded text-sm" disabled={loading}>Borrar</button>
+                </div>
+              </li>
+            ))}
+            {projects.length === 0 && (
+              <li className="p-6 text-center text-gray-500">No hay proyectos — crea uno arriba.</li>
+            )}
+          </ul>
+        )}
+      </section>
     </div>
   );
 }
