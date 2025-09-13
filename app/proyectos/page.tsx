@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
-import { getAllProjects } from '../../lib/db-projects';
+import { getAllProjects } from '../../lib/db-projects.new';
 
 export const metadata: Metadata = {
   title: 'Proyectos - Duartec Instalaciones Informáticas',
@@ -14,6 +14,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function ProyectosPage() {
   const proyectos = await getAllProjects();
+  // Use fallback from contentlayer if DB query fails (handled inside getAllProjects)
 
   return (
     <div className="min-h-screen">

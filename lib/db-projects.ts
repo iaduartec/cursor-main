@@ -1,6 +1,7 @@
 import { db } from '../db/client';
 import { projects } from '../db/schema';
 import { desc, eq } from 'drizzle-orm';
+import { hasDb } from './db-utils';
 
 export type ProjectRow = {
   id: number;
@@ -13,10 +14,11 @@ export type ProjectRow = {
   date: Date | null;
 };
 
-const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
-
 export async function getAllProjects(): Promise<ProjectRow[]> {
-  if (!hasDb()) {return [];}
+  if (!hasDb()) {
+    console.warn('No DB config detected (hasDb=false). Falling back to empty projects list.');
+    return [];
+  }
   try {
     const rows = await db
       .select({
