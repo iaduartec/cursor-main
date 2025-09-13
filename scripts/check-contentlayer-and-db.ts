@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import { allProyectos } from 'contentlayer/generated';
 import { getAllProjects } from '../lib/db-projects.new';
 
 (async ()=>{
