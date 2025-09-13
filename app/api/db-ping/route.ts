@@ -1,8 +1,7 @@
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server'
 import { sql } from '../../../db/client'
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   try {
     // Drizzle client exposes a low-level SQL client as `sql` in this repo
     const rows = await sql`select version() as version limit 1`

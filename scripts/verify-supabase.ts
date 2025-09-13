@@ -1,6 +1,5 @@
 // scripts/verify-supabase.ts
 import postgres from 'postgres';
-import { posts, services, projects, streams } from '../db/schema';
 
 async function verifySupabaseConnection() {
   console.log('🔍 Verificando conexión a Supabase...\n');

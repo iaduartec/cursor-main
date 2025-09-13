@@ -6,10 +6,6 @@
 
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const ROOT = process.cwd();
 
@@ -74,7 +70,7 @@ async function summarize(content, relPath) {
     temperature: 0.2,
   };
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+  const res = await globalThis.fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${OPENAI_API_KEY}`,

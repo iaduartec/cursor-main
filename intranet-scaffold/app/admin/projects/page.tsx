@@ -30,10 +30,12 @@ export default function AdminProjects() {
   useEffect(() => {
     // read injected token (only present in non-production dev/test)
     try {
-      // @ts-ignore
+      // @ts-expect-error - Accessing debug token from window in dev/test environment
       const t = typeof window !== 'undefined' ? (window as any).__INTRANET_DEBUG_TOKEN : null;
       if (t) {setClientToken(String(t));}
-    } catch (e) {}
+    } catch {
+      // Ignore errors when accessing debug token
+    }
   }, []);
 
   async function createOrUpdateProject(e: any) {
@@ -62,7 +64,7 @@ export default function AdminProjects() {
           try {
             const json = await res.json();
             msg = json?.error || JSON.stringify(json) || msg;
-          } catch (_) {
+          } catch {
             const txt = await res.text();
             msg = txt || msg;
           }
@@ -79,7 +81,7 @@ export default function AdminProjects() {
           try {
             const json = await res.json();
             msg = json?.error || JSON.stringify(json) || msg;
-          } catch (_) {
+          } catch {
             const txt = await res.text();
             msg = txt || msg;
           }
