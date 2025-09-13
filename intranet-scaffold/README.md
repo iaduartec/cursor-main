@@ -150,3 +150,55 @@ Notas:
 - El panel es un ejemplo mínimo; en producción deberías proteger la ruta con autenticación.
 - Si tu entorno no tiene DB, la API `/api/projects` usará la conexión a la base configurada; si prefieres poblar desde MDX, usa `pnpm run db:seed`.
 
+# Intranet scaffold — E2E local quickstart
+
+This README explains how to run the intranet scaffold dev server with an in-memory database for fast local E2E testing, and how to run the supplied Node-based E2E script.
+
+## Why use in-memory DB
+- Fast, ephemeral tests that don't require a real Postgres instance.
+- Good for CI where you want isolated runs.
+- NOTE: data won't persist after the dev process exits.
+
+## Start dev with in-memory DB (PowerShell)
+
+Open a PowerShell and run:
+
+```powershell
+cd c:\Users\kiri_\cursor-main\intranet-scaffold
+$env:USE_IN_MEMORY_DB='1'
+$env:SKIP_CONTENTLAYER='1' # optional: speeds dev start if you don't need contentlayer
+$env:PORT='3005'
+pnpm dev
+```
+
+This will start the Next dev server on port 3005 and configure the project to use an in-memory SQLite DB for tests/migrations (drizzle config uses SQLite in-memory when `USE_IN_MEMORY_DB=1`).
+
+## Run the Node E2E script (in another shell)
+
+```powershell
+cd c:\Users\kiri_\cursor-main\intranet-scaffold
+$env:PORT='3005'
+$env:USE_IN_MEMORY_DB='1'
+node scripts/e2e-crud.js
+```
+
+The script will wait for `/api/projects` to respond and then perform create/list/update/delete operations against the in-memory DB.
+
+## Revert to Postgres
+
+Unset `USE_IN_MEMORY_DB` and set `DATABASE_URL` or `POSTGRES_URL` before starting `pnpm dev` if you want to connect to a real DB:
+
+```powershell
+cd c:\Users\kiri_\cursor-main\intranet-scaffold
+Remove-Item Env:\USE_IN_MEMORY_DB
+$env:DATABASE_URL='postgres://user:pw@localhost:5432/db'
+pnpm dev
+```
+
+## Notes and caveats
+- `drizzle.config.ts` was updated to emit an SQLite config for `USE_IN_MEMORY_DB=1` and keep the Postgres config otherwise.
+- In-memory mode is intended for local/debugging/CI only. For production or persistent testing, use a real Postgres instance.
+- If you need a persistent local DB for development, change `drizzle.config.ts` to use a file-based sqlite URL (e.g. `file:./dev.sqlite`).
+
+If you want I can also add an npm script that automates start → wait → e2e → shutdown or integrate this into CI. Which would you prefer next?
+
