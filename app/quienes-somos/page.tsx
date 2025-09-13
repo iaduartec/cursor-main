@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/quienes-somos/page.tsx
+
+2025-09-13T06:20:07.365Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 10235 caracteres, 194 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Users, Award, MapPin, Clock, Phone } from 'lucide-react';

@@ -1,4 +1,17 @@
-#!/usr/bin/env node
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/scripts/run-intranet-e2e.js
+
+2025-09-13T06:20:07.377Z
+
+——————————————————————————————
+Archivo .js: run-intranet-e2e.js
+Tamaño: 4021 caracteres, 103 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+// (Shebang removed; script executed via `node` to avoid TS 18026 warning when analyzed)
 const { spawn } = require('child_process');
 const path = require('path');
 // Use global fetch (Node 18+/22). If not available, throw a helpful error.
@@ -19,14 +32,14 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
       }
       console.log('waitForServer: got', res.status);
     } catch (e) {
-      if (attempt % 5 === 0) console.log('waitForServer attempt', attempt, 'failed', e && e.message);
+      if (attempt % 5 === 0) {console.log('waitForServer attempt', attempt, 'failed', e && e.message);}
     }
     await new Promise(r => setTimeout(r, 500));
   }
   throw new Error('Server did not respond within timeout');
 }
 
-(async ()=>{
+(async () => {
   const cwd = path.resolve(__dirname, '..');
   console.log('Starting Next dev in', cwd);
   const env = Object.assign({}, process.env, { CONTENTLAYER_SKIP_TYPEGEN: '1', CONTENTLAYER_HIDE_WARNING: '1', SKIP_CONTENTLAYER: '1' });
@@ -41,7 +54,7 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
     if (fs.existsSync(repoRootEnv)) {
       const parsed = dotenv.parse(fs.readFileSync(repoRootEnv));
       for (const k of Object.keys(parsed)) {
-        if (typeof env[k] === 'undefined') env[k] = parsed[k];
+        if (typeof env[k] === 'undefined') {env[k] = parsed[k];}
       }
       console.log('Merged vars from .env.local into orchestrator env');
     }

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/e2e/admin-ui.spec.ts
+
+2025-09-13T06:20:07.375Z
+
+——————————————————————————————
+Archivo .ts: admin-ui.spec.ts
+Tamaño: 1573 caracteres, 34 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { test, expect } from '@playwright/test';
 
 test('admin UI CRUD flow', async ({ page }) => {
@@ -23,7 +36,7 @@ test('admin UI CRUD flow', async ({ page }) => {
   const bodyText = await postResp.text();
   console.log('POST /api/projects status=', status, 'body=', bodyText);
   // expect created
-  if (status !== 201) throw new Error(`Unexpected POST status ${status}: ${bodyText}`);
+  if (status !== 201) {throw new Error(`Unexpected POST status ${status}: ${bodyText}`);}
   await page.waitForSelector(`text=${title}`);
   await expect(page.locator(`text=${title}`)).toHaveCount(1);
 

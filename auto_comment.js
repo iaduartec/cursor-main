@@ -1,4 +1,16 @@
-#!/usr/bin/env node
+/**
+Resumen generado automáticamente.
+
+auto_comment.js
+
+2025-09-13T06:20:07.367Z
+
+——————————————————————————————
+Archivo .js: auto_comment.js
+Tamaño: 5708 caracteres, 170 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 /**
  * Inserta un resumen al inicio de cada archivo como comentario.
  * Ajusta OPENAI_API_KEY y el modelo. Revisa EXT_MAP para añadir más extensiones.
@@ -27,7 +39,7 @@ const EXT_MAP = {
   ".jsx": { blockStart: "/**", blockEnd: "*/" },
   ".mjs": { blockStart: "/**", blockEnd: "*/" },
   ".cjs": { blockStart: "/**", blockEnd: "*/" },
-  ".json": { blockStart: "/*", blockEnd: "*/" }, // comentario válido aunque JSON no lo soporte formalmente
+  // ".json": { blockStart: "/*", blockEnd: "*/" }, // JSON no soporta comentarios, se comenta esta línea
   ".md": { blockStart: "<!--", blockEnd: "-->" },
   ".py": { blockStart: '"""', blockEnd: '"""' },
   ".rb": { blockStart: "=begin", blockEnd: "=end" },
@@ -58,7 +70,18 @@ function* walk(dir) {
 }
 
 async function summarize(content, relPath) {
-  if (!OPENAI_API_KEY) throw new Error("Falta OPENAI_API_KEY");
+  // If no API key is provided, return a basic fallback summary
+  if (!OPENAI_API_KEY) {
+    const ext = path.extname(relPath);
+    const fileName = path.basename(relPath);
+    const lines = content.split('\n').length;
+    const size = content.length;
+    
+    return `Archivo ${ext || 'sin extensión'}: ${fileName}
+Tamaño: ${size} caracteres, ${lines} líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.`;
+  }
 
   const prompt = [
     "Resume el archivo en español, 3–6 líneas máximas, estilo técnico claro.",
@@ -110,7 +133,16 @@ function wrapComment(ext, text) {
   }
 
   return (original) => {
-    return `${cfg.blockStart}\n${text}\n${cfg.blockEnd}\n` + original;
+    // Check for shebang in any file type
+    const lines = original.split("\n");
+    const hasShebang = lines[0]?.startsWith("#!");
+    if (hasShebang) {
+      const header = lines.shift() + "\n";
+      const block = `${cfg.blockStart}\n${text}\n${cfg.blockEnd}\n`;
+      return header + block + lines.join("\n");
+    } else {
+      return `${cfg.blockStart}\n${text}\n${cfg.blockEnd}\n` + original;
+    }
   };
 }
 

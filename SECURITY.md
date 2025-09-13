@@ -1,3 +1,16 @@
+<!--
+Resumen generado automáticamente.
+
+SECURITY.md
+
+2025-09-13T06:20:07.357Z
+
+——————————————————————————————
+Archivo .md: SECURITY.md
+Tamaño: 619 caracteres, 22 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
 # Security Policy
 
 ## Supported Versions

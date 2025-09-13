@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/app/api/_debug/env/route.ts
+
+2025-09-13T06:20:07.373Z
+
+——————————————————————————————
+Archivo .ts: route.ts
+Tamaño: 1200 caracteres, 38 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { NextResponse } from 'next/server';
 import { getDb } from '../../../../lib/db';
 
@@ -5,11 +18,11 @@ function checkDebugAccess(req: Request) {
   const token = process.env.INTRANET_DEBUG_TOKEN;
   if (token) {
     const provided = req.headers.get('x-debug-token') || '';
-    if (provided !== token) return false;
+    if (provided !== token) {return false;}
     return true;
   }
   // If no token configured, only allow outside production
-  if (process.env.NODE_ENV === 'production') return false;
+  if (process.env.NODE_ENV === 'production') {return false;}
   return true;
 }
 
@@ -27,7 +40,7 @@ export async function GET(req: Request) {
       }
       const sql = getDb();
       hasState = !!(sql && (sql as any).__state);
-    } catch (e) {
+    } catch {
       // getDb may throw if DB not configured; still return env info
     }
     return NextResponse.json({ USE_IN_MEMORY_DB: envVal ?? null, usingInMemory, hasState });

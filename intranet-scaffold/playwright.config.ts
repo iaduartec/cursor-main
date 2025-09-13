@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/playwright.config.ts
+
+2025-09-13T06:20:07.376Z
+
+——————————————————————————————
+Archivo .ts: playwright.config.ts
+Tamaño: 605 caracteres, 28 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { defineConfig } from '@playwright/test';
 import path from 'path';
 

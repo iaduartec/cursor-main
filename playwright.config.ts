@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+playwright.config.ts
+
+2025-09-13T06:20:07.381Z
+
+——————————————————————————————
+Archivo .ts: playwright.config.ts
+Tamaño: 2392 caracteres, 87 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { defineConfig, devices } from '@playwright/test';
 
 /**

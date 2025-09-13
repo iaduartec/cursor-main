@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+lib/db-services.new.ts
+
+2025-09-13T06:20:07.379Z
+
+——————————————————————————————
+Archivo .ts: db-services.new.ts
+Tamaño: 1621 caracteres, 67 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { db } from '../db/client';
 import { services } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/admin/streams/page.tsx
+
+2025-09-13T06:20:07.360Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 4003 caracteres, 100 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db } from '../../../db/client';
 import { streams } from '../../../db/schema';

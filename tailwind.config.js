@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+tailwind.config.js
+
+2025-09-13T06:20:07.387Z
+
+——————————————————————————————
+Archivo .js: tailwind.config.js
+Tamaño: 5286 caracteres, 171 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [

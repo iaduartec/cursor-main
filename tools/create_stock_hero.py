@@ -1,3 +1,16 @@
+"""
+Resumen generado automáticamente.
+
+tools/create_stock_hero.py
+
+2025-09-13T06:20:07.387Z
+
+——————————————————————————————
+Archivo .py: create_stock_hero.py
+Tamaño: 2546 caracteres, 86 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
 #!/usr/bin/env python3
 """
 Crear/forzar imagen hero a partir de una foto stock por categoría para un post.

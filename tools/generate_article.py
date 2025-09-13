@@ -1,3 +1,16 @@
+"""
+Resumen generado automáticamente.
+
+tools/generate_article.py
+
+2025-09-13T06:20:07.389Z
+
+——————————————————————————————
+Archivo .py: generate_article.py
+Tamaño: 7072 caracteres, 195 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
 #!/usr/bin/env python3
 """
 Generador de artículos (solo texto) para el blog.

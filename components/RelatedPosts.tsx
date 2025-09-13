@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+components/RelatedPosts.tsx
+
+2025-09-13T06:20:07.368Z
+
+——————————————————————————————
+Archivo .tsx: RelatedPosts.tsx
+Tamaño: 3056 caracteres, 89 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, ArrowRight } from 'lucide-react';

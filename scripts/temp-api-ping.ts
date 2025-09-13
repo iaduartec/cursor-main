@@ -1,10 +1,23 @@
+/**
+Resumen generado automáticamente.
+
+scripts/temp-api-ping.ts
+
+2025-09-13T06:20:07.386Z
+
+——————————————————————————————
+Archivo .ts: temp-api-ping.ts
+Tamaño: 1139 caracteres, 31 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import http from 'http';
 import { sql } from '../db/client';
 
 const PORT = process.env.TEMP_API_PING_PORT ? Number(process.env.TEMP_API_PING_PORT) : 4000;
 
 const server = http.createServer(async (req, res) => {
-  if (!req.url) return res.end();
+  if (!req.url) {return res.end();}
   if (req.url === '/api/db-ping') {
     try {
       const result = await sql`select version()`;

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/api/streams/[slug]/route.ts
+
+2025-09-13T06:20:07.361Z
+
+——————————————————————————————
+Archivo .ts: route.ts
+Tamaño: 2037 caracteres, 53 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { NextRequest, NextResponse } from 'next/server';
 import { getStreamBySlug } from '../../../../lib/db-streams';
 import { db } from '../../../../db/client';

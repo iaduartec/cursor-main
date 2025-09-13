@@ -1,4 +1,17 @@
 #!/usr/bin/env tsx
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/scripts/db/migrate-supabase.ts
+
+2025-09-13T06:20:07.377Z
+
+——————————————————————————————
+Archivo .ts: migrate-supabase.ts
+Tamaño: 1439 caracteres, 43 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import "dotenv/config";
 import fs from "fs";
 import path from "path";
@@ -16,8 +29,8 @@ async function main() {
   const candidate1 = path.resolve(process.cwd(), "intranet-scaffold", "drizzle", "migrations", "0001_init.sql");
   const candidate2 = path.resolve(process.cwd(), "drizzle", "migrations", "0001_init.sql");
   let migrationPath = "";
-  if (fs.existsSync(candidate1)) migrationPath = candidate1;
-  else if (fs.existsSync(candidate2)) migrationPath = candidate2;
+  if (fs.existsSync(candidate1)) {migrationPath = candidate1;}
+  else if (fs.existsSync(candidate2)) {migrationPath = candidate2;}
   else {
     console.error("Migration SQL not found. Checked:", candidate1, candidate2);
     process.exit(1);

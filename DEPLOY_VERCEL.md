@@ -1,3 +1,16 @@
+<!--
+Resumen generado automáticamente.
+
+DEPLOY_VERCEL.md
+
+2025-09-13T06:20:07.355Z
+
+——————————————————————————————
+Archivo .md: DEPLOY_VERCEL.md
+Tamaño: 2388 caracteres, 57 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
 Guía rápida para desplegar este proyecto en Vercel
 
 Resumen mínimo

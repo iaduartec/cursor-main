@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+fix_blog_frontmatter_merge.js
+
+2025-09-13T06:20:07.371Z
+
+——————————————————————————————
+Archivo .js: fix_blog_frontmatter_merge.js
+Tamaño: 6247 caracteres, 173 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 #!/usr/bin/env node
 /*
  * Fix MDX front matter and slugs robustly.

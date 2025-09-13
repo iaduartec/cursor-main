@@ -1,3 +1,16 @@
+<!--
+Resumen generado automáticamente.
+
+DEV_NOTES.md
+
+2025-09-13T06:20:07.355Z
+
+——————————————————————————————
+Archivo .md: DEV_NOTES.md
+Tamaño: 2403 caracteres, 54 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
 Desarrollo y despliegue: Node 22, DB y standalone
 
 Resumen rápido

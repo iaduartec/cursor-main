@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+lib/db-projects.new.ts
+
+2025-09-13T06:20:07.379Z
+
+——————————————————————————————
+Archivo .ts: db-projects.new.ts
+Tamaño: 1736 caracteres, 69 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { db } from '../db/client';
 import { projects } from '../db/schema';
 import { desc, eq } from 'drizzle-orm';

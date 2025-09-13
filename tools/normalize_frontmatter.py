@@ -1,3 +1,16 @@
+"""
+Resumen generado automáticamente.
+
+tools/normalize_frontmatter.py
+
+2025-09-13T06:20:07.390Z
+
+——————————————————————————————
+Archivo .py: normalize_frontmatter.py
+Tamaño: 4812 caracteres, 108 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
 #!/usr/bin/env python3
 """Normaliza frontmatter YAML en archivos .mdx dentro de content/ y servicios/.
 - Intenta parsear el frontmatter; si OK, vuelve a escribirlo usando yaml.safe_dump para estandarizar.

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/legal/cookies/page.tsx
+
+2025-09-13T06:20:07.364Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 11013 caracteres, 191 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
