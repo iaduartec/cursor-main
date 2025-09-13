@@ -32,13 +32,36 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
   const env = Object.assign({}, process.env, { CONTENTLAYER_SKIP_TYPEGEN: '1', CONTENTLAYER_HIDE_WARNING: '1', SKIP_CONTENTLAYER: '1' });
   const dev = spawn('pnpm', ['dev'], { cwd, stdio: 'inherit', env });
 
-  // wait for server
+  // wait for server (fast check first: 10s)
   try {
-    await waitForServer('http://127.0.0.1:3000', 60000);
+  await waitForServer('http://127.0.0.1:3000', 15000);
   } catch (e) {
-    console.error('Server did not start:', e && e.message);
-    dev.kill('SIGINT');
-    process.exit(1);
+    console.warn('Initial wait failed:', e && e.message, '- attempting recovery');
+    try { dev.kill('SIGINT'); } catch (er) {}
+    // remove .next to force fresh build
+    const fs = require('fs');
+    const nextDir = require('path').join(cwd, '.next');
+    try {
+      if (fs.existsSync(nextDir)) {
+        console.log('Removing .next to recover build...');
+        fs.rmSync(nextDir, { recursive: true, force: true });
+      }
+    } catch (rmErr) { console.warn('Failed to remove .next', rmErr && rmErr.message); }
+
+    // restart dev and wait longer
+    console.log('Restarting dev server and waiting up to 60s...');
+    const dev2 = spawn('pnpm', ['dev'], { cwd, stdio: 'inherit', env });
+    try {
+      await waitForServer('http://127.0.0.1:3000', 60000);
+      // replace dev handle for shutdown later
+      dev.kill && dev.kill('SIGINT');
+      // use dev2 for shutdown
+      dev = dev2; // eslint-disable-line no-param-reassign
+    } catch (e2) {
+      console.error('Recovery failed:', e2 && e2.message);
+      try { dev2.kill('SIGINT'); } catch (er) {}
+      process.exit(1);
+    }
   }
 
   // run e2e
