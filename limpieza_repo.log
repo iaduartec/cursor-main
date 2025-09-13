@@ -1,0 +1,14 @@
+# Log de limpieza y reescritura de historial
+# Fecha: 13/09/2025
+
+Acciones realizadas:
+- Rebase interactivo desde el primer commit (865bf0696532c9b37cf460d3130b5c6d5b1503ea) para eliminar merges innecesarios.
+- Resolución de conflictos durante el rebase (si los hubo).
+- Push forzado al remoto con --force-with-lease.
+
+Advertencia:
+- El historial de la rama main ha sido sobrescrito. Si tienes clones antiguos, deberás sincronizar con el nuevo historial (git fetch --all, git reset --hard origin/main).
+- Esta operación es segura porque eres el único colaborador.
+- Revisa dependencias y vulnerabilidades reportadas por GitHub tras el push.
+
+¡Historial limpio y repo actualizada!
