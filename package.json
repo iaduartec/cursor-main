@@ -18,6 +18,7 @@
     "scripts": {
     "dev": "next dev",
     "dev:turbo": "next dev --turbo",
+    "dev:scaffold": "pnpm --filter ./intranet-scaffold... dev",
         "preinstall": "node scripts/guard-pm.mjs",
         "prebuild": "node scripts/prebuild.mjs",
         "build": "pnpm db:migrate && next build",
