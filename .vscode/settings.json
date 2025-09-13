@@ -18,5 +18,6 @@
   "github.copilot.nextEditSuggestions.fixes": true,
 
   // Sin retraso: aparece al instante
-  "editor.inlineSuggest.minShowDelay": 0
+  "editor.inlineSuggest.minShowDelay": 0,
+  "github.copilot.chat.completionContext.typescript.mode": "on"
 }

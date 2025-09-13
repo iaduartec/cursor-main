@@ -1,0 +1,23 @@
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="39.529202">
+<testsuite name="projects.spec.ts" timestamp="2025-09-13T11:04:38.216Z" hostname="chromium" tests="1" failures="1" skipped="0" time="31.887" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="31.887">
+<failure message="projects.spec.ts:3:1 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [chromium] › projects.spec.ts:3:1 › projects CRUD via API (in-memory) ────────────────────────────
+
+    Error: expect(received).toBeTruthy()
+
+    Received: false
+
+      10 |     await new Promise((r) => setTimeout(r, 1000));
+      11 |   }
+    > 12 |   expect(ready && ready.ok()).toBeTruthy();
+         |                               ^
+      13 |
+      14 |   // Create a project
+      15 |   const slug = `pwtest-${Date.now()}`;
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:12:31
+]]>
+</failure>
+</testcase>
+</testsuite>
+</testsuites>
