@@ -14,14 +14,4 @@ export default defineConfig({
   projects: [
     { name: 'chromium', use: { browserName: 'chromium' } },
   ],
-  webServer: {
-    command: 'pnpm dev',
-    cwd: path.resolve(__dirname),
-    env: {
-      USE_IN_MEMORY_DB: '1',
-      INTRANET_DEBUG_TOKEN: 'test-token',
-    },
-    timeout: 60_000,
-    reuseExistingServer: true,
-  },
 });

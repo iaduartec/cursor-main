@@ -6,7 +6,10 @@ test('admin UI CRUD flow', async ({ page }) => {
   const title = `PW Test Title ${uid}`;
   const titleUpdated = `PW Test Title Updated ${uid}`;
 
-  await page.goto('/admin/projects');
+  await page.goto('/admin/projects', { waitUntil: 'networkidle' });
+
+  // wait until form inputs are enabled (avoid race with initial loading state)
+  await page.waitForSelector('input[placeholder="demo-slug"]:not([disabled])', { timeout: 10000 });
 
   // create
   await page.fill('input[placeholder="demo-slug"]', slug);
