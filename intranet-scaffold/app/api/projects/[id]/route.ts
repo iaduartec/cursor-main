@@ -1,13 +1,29 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '../../../../lib/db';
 
+function checkAdminAccess(req: Request) {
+  const token = process.env.INTRANET_DEBUG_TOKEN;
+  if (token) {
+    const provided = req.headers.get('x-debug-token') || '';
+    return provided === token;
+  }
+  if (process.env.NODE_ENV === 'production') return false;
+  return true;
+}
+
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   const resolvedParams: any = await params;
   const id = Number(resolvedParams.id);
+  if (!checkAdminAccess(req)) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
   try {
     const body = await req.json();
     const { slug, title, description, hero_image } = body;
     const sql = getDb();
+    if (!slug || !title) {
+      return NextResponse.json({ error: 'slug and title are required' }, { status: 422 });
+    }
     const updated = await sql`
       UPDATE projects SET slug = ${slug}, title = ${title}, description = ${description}, hero_image = ${hero_image}
       WHERE id = ${id}
@@ -43,6 +59,9 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 export async function DELETE(_req: Request, { params }: { params: { id: string } }) {
   const resolvedParams: any = await params;
   const id = Number(resolvedParams.id);
+  if (!checkAdminAccess(_req)) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
   try {
     const sql = getDb();
     await sql`DELETE FROM projects WHERE id = ${id}`;

@@ -1,6 +1,17 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '../../../lib/db';
 
+function checkAdminAccess(req: Request) {
+  const token = process.env.INTRANET_DEBUG_TOKEN;
+  if (token) {
+    const provided = req.headers.get('x-debug-token') || '';
+    return provided === token;
+  }
+  // if no token configured, allow in non-production
+  if (process.env.NODE_ENV === 'production') return false;
+  return true;
+}
+
 export async function GET() {
   try {
     const sql = getDb();
@@ -17,10 +28,25 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  if (!checkAdminAccess(req)) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
   try {
     const body = await req.json();
     const { slug, title, description, hero_image } = body;
+    if (!slug || !title) {
+      return NextResponse.json({ error: 'slug and title are required' }, { status: 422 });
+    }
+    // basic slug sanity
+    if (!/^[a-z0-9-_]+$/i.test(slug)) {
+      return NextResponse.json({ error: 'slug contains invalid characters' }, { status: 422 });
+    }
     const sql = getDb();
+    // uniqueness check
+    const exists = await sql`SELECT id FROM projects WHERE slug = ${slug}`;
+    if (exists && exists.length > 0) {
+      return NextResponse.json({ error: 'slug already exists' }, { status: 409 });
+    }
     const inserted = await sql`
       INSERT INTO projects (slug, title, description, hero_image)
       VALUES (${slug}, ${title}, ${description}, ${hero_image})
