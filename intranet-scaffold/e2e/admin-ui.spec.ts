@@ -23,7 +23,7 @@ test('admin UI CRUD flow', async ({ page }) => {
   const bodyText = await postResp.text();
   console.log('POST /api/projects status=', status, 'body=', bodyText);
   // expect created
-  if (status !== 201) throw new Error(`Unexpected POST status ${status}: ${bodyText}`);
+  if (status !== 201) {throw new Error(`Unexpected POST status ${status}: ${bodyText}`);}
   await page.waitForSelector(`text=${title}`);
   await expect(page.locator(`text=${title}`)).toHaveCount(1);
 

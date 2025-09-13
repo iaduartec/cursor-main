@@ -8,7 +8,7 @@ async function waitForReady(url, token, timeout = 60000) {
     try {
       const res = await fetch(url, { headers: { 'x-debug-token': token } });
       const json = await res.json();
-      if (json && json.ready) return true;
+      if (json && json.ready) {return true;}
     } catch (e) {
       // ignore
     }
@@ -62,7 +62,7 @@ async function run() {
     // ensure deleted
     await page.waitForTimeout(500);
     const count = await page.locator(`text=${titleUpdated}`).count();
-    if (count !== 0) throw new Error('Item not deleted');
+    if (count !== 0) {throw new Error('Item not deleted');}
 
     await browser.close();
     console.log('E2E flow completed successfully');

@@ -7,7 +7,7 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
-(async ()=>{
+(async () => {
   // Allow overriding the target base URL via env vars for flexibility in CI/local
   const envBase = process.env.BASE_URL;
   const envPort = process.env.PORT || process.env.E2E_PORT;
@@ -29,7 +29,7 @@ process.on('uncaughtException', (err) => {
         console.log(`waitForServer: got ${r.status}`);
       } catch (e) {
         // log each attempt to help debug connection issues
-        if (attempt % 4 === 0) console.log(`waitForServer: attempt ${attempt} failed: ${e && e.message ? e.message : e}`);
+        if (attempt % 4 === 0) {console.log(`waitForServer: attempt ${attempt} failed: ${e && e.message ? e.message : e}`);}
       }
       await new Promise(res => setTimeout(res, 500));
     }
@@ -50,7 +50,7 @@ process.on('uncaughtException', (err) => {
     console.log(JSON.stringify(list, null, 2));
 
     console.log('\nUPDATE');
-    const id = created.id;
+    const {id} = created;
     res = await fetch(`${base}/api/projects/${id}`, { method: 'PUT', headers: hdr, body: JSON.stringify({ slug: 'test-slug-copilot-upd', title: 'Updated Title' }) });
     const updated = await res.json();
     console.log(JSON.stringify(updated, null, 2));

@@ -6,11 +6,11 @@
       let q = '';
       for (let i = 0; i < strings.length; i++) {
         q += strings[i];
-        if (i < values.length) q += values[i];
+        if (i < values.length) {q += values[i];}
       }
       const nq = q.replace(/\s+/g,' ').trim().toLowerCase();
       if (nq.startsWith('select') && nq.includes('from projects')) {
-        return state.projects.slice().sort((a,b)=> (b.created_at||0)-(a.created_at||0));
+        return state.projects.slice().sort((a,b) => (b.created_at||0)-(a.created_at||0));
       }
       if (nq.includes('insert into projects')) {
         const [slug, title, description, hero_image] = values;
@@ -25,22 +25,22 @@
         const title = values[1];
         const description = values[2];
         const hero_image = values[3];
-        const idx = state.projects.findIndex(p=>p.id===Number(id));
-        if (idx===-1) return [];
+        const idx = state.projects.findIndex(p => p.id===Number(id));
+        if (idx===-1) {return [];}
         const updated = Object.assign({}, state.projects[idx], { slug: slug ?? state.projects[idx].slug, title: title ?? state.projects[idx].title, description: description ?? state.projects[idx].description, hero_image: hero_image ?? state.projects[idx].hero_image });
         state.projects[idx] = updated;
         return [updated];
       }
       if (nq.includes('delete from projects')) {
         const id = values[0];
-        const idx = state.projects.findIndex(p=>p.id===Number(id));
-        if (idx!==-1) state.projects.splice(idx,1);
+        const idx = state.projects.findIndex(p => p.id===Number(id));
+        if (idx!==-1) {state.projects.splice(idx,1);}
         return { ok: true };
       }
       return [];
     };
     sqlTag.__state = state;
-    sqlTag.end = async ()=>{};
+    sqlTag.end = async () => {};
     return sqlTag;
   }
 
@@ -55,7 +55,7 @@
   console.log(JSON.stringify(list, null, 2));
 
   console.log('\nUPDATE');
-  const id = created.id;
+  const {id} = created;
   const updated = (await sql`UPDATE projects SET slug = ${ 'demo-slug-upd' }, title = ${ 'Updated demo' }, description = ${ null }, hero_image = ${ null } WHERE id = ${ id } RETURNING id, slug, title, description, hero_image, created_at`)[0];
   console.log(JSON.stringify(updated, null, 2));
 

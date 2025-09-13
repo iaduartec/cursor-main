@@ -19,14 +19,14 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
       }
       console.log('waitForServer: got', res.status);
     } catch (e) {
-      if (attempt % 5 === 0) console.log('waitForServer attempt', attempt, 'failed', e && e.message);
+      if (attempt % 5 === 0) {console.log('waitForServer attempt', attempt, 'failed', e && e.message);}
     }
     await new Promise(r => setTimeout(r, 500));
   }
   throw new Error('Server did not respond within timeout');
 }
 
-(async ()=>{
+(async () => {
   const cwd = path.resolve(__dirname, '..');
   console.log('Starting Next dev in', cwd);
   const env = Object.assign({}, process.env, { CONTENTLAYER_SKIP_TYPEGEN: '1', CONTENTLAYER_HIDE_WARNING: '1', SKIP_CONTENTLAYER: '1' });
@@ -41,7 +41,7 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
     if (fs.existsSync(repoRootEnv)) {
       const parsed = dotenv.parse(fs.readFileSync(repoRootEnv));
       for (const k of Object.keys(parsed)) {
-        if (typeof env[k] === 'undefined') env[k] = parsed[k];
+        if (typeof env[k] === 'undefined') {env[k] = parsed[k];}
       }
       console.log('Merged vars from .env.local into orchestrator env');
     }

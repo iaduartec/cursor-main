@@ -21,9 +21,9 @@ export default function AdminProjects() {
     setLoading(true);
     fetch('/api/projects')
       .then(r => r.json())
-      .then(data => { if (mounted) setProjects(data); })
-      .catch(err => { console.error(err); if (mounted) setError(String(err)); })
-      .finally(() => { if (mounted) setLoading(false); });
+      .then(data => { if (mounted) {setProjects(data);} })
+      .catch(err => { console.error(err); if (mounted) {setError(String(err));} })
+      .finally(() => { if (mounted) {setLoading(false);} });
     return () => { mounted = false; };
   }, []);
 
@@ -32,7 +32,7 @@ export default function AdminProjects() {
     try {
       // @ts-ignore
       const t = typeof window !== 'undefined' ? (window as any).__INTRANET_DEBUG_TOKEN : null;
-      if (t) setClientToken(String(t));
+      if (t) {setClientToken(String(t));}
     } catch (e) {}
   }, []);
 
@@ -48,7 +48,7 @@ export default function AdminProjects() {
         return;
       }
       const headers: Record<string,string> = { 'Content-Type': 'application/json' };
-      if (clientToken) headers['x-debug-token'] = clientToken;
+      if (clientToken) {headers['x-debug-token'] = clientToken;}
       if (editing) {
         const res = await fetch(`/api/projects/${editing.id}`, { method: 'PUT', body: JSON.stringify({ slug, title }), headers });
         if (res.ok) {
@@ -105,7 +105,7 @@ export default function AdminProjects() {
     setLoading(true);
     try {
       const headers: Record<string,string> = {};
-      if (clientToken) headers['x-debug-token'] = clientToken;
+      if (clientToken) {headers['x-debug-token'] = clientToken;}
       const res = await fetch(`/api/projects/${id}`, { method: 'DELETE', headers });
       if (res.ok) {
         setProjects(prev => prev.filter(p => p.id !== id));
@@ -156,7 +156,7 @@ export default function AdminProjects() {
         <div className="md:col-span-3 flex items-center gap-3 mt-2">
           <button type="submit" className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-60" disabled={loading}>
             {loading ? (
-              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" /></svg>
             ) : null}
             {editing ? 'Actualizar proyecto' : 'Crear proyecto'}
           </button>
@@ -216,7 +216,7 @@ export default function AdminProjects() {
             <p className="mb-4">¿Borrar <strong>{showConfirm.title}</strong>?</p>
             <div className="flex justify-end gap-2">
               <button onClick={() => setShowConfirm(null)} className="px-3 py-2 border rounded">Cancelar</button>
-              <button onClick={async () => { const id = showConfirm!.id; setShowConfirm(null); await deleteProject(id); }} className="px-3 py-2 bg-red-600 text-white rounded">Borrar</button>
+              <button onClick={async () => { const {id} = (showConfirm!); setShowConfirm(null); await deleteProject(id); }} className="px-3 py-2 bg-red-600 text-white rounded">Borrar</button>
             </div>
           </div>
         </div>

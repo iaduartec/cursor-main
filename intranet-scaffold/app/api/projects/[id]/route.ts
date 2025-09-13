@@ -7,7 +7,7 @@ function checkAdminAccess(req: Request) {
     const provided = req.headers.get('x-debug-token') || '';
     return provided === token;
   }
-  if (process.env.NODE_ENV === 'production') return false;
+  if (process.env.NODE_ENV === 'production') {return false;}
   return true;
 }
 

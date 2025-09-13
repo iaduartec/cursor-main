@@ -1,10 +1,10 @@
 // scripts/db/check-version.ts
 // Small helper to check DB connectivity and version via exported client
-;(async () => {
+(async () => {
   try {
     const mod = await import('../../db/client')
     const exported = (mod as any).default ?? mod
-    const sql = exported.sql
+    const {sql} = exported
     if (typeof sql !== 'function') {
       console.error('El cliente sql exportado no es una función. exports:', Object.keys(exported))
       process.exit(2)

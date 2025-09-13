@@ -5,10 +5,10 @@ function checkDebugAccess(req: Request) {
   const token = process.env.INTRANET_DEBUG_TOKEN;
   if (token) {
     const provided = req.headers.get('x-debug-token') || '';
-    if (provided !== token) return false;
+    if (provided !== token) {return false;}
     return true;
   }
-  if (process.env.NODE_ENV === 'production') return false;
+  if (process.env.NODE_ENV === 'production') {return false;}
   return true;
 }
 
