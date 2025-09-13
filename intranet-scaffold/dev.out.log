@@ -1,0 +1,14 @@
+
+> duartec-intranet@0.1.0 dev C:\Users\kiri_\cursor-main\intranet-scaffold
+> next dev
+
+   ▲ Next.js 15.5.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.132:3000
+   - Experiments (use with caution):
+     ✓ scrollRestoration
+
+ ✓ Starting...
+Warning: Contentlayer might not work as expected on Windows
+Contentlayer config change detected. Updating type definitions and data...
+[?25h
