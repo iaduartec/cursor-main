@@ -4,6 +4,10 @@ import postgres from "postgres";
 // in-memory adapter used for local E2E when USE_IN_MEMORY_DB=1 is set.
 let sql: any = null;
 
+declare global {
+  var __inMemorySqlAdapter: any | undefined;
+}
+
 function createInMemoryAdapter() {
   const state = {
     projects: [] as any[],
@@ -84,7 +88,13 @@ export function getDb() {
   if (!sql) {
     // If requested, use in-memory adapter (useful for local dev/E2E)
     if (process.env.USE_IN_MEMORY_DB === '1' || process.env.USE_IN_MEMORY_DB === 'true') {
-      sql = createInMemoryAdapter();
+      // Preserve adapter instance across HMR / module reloads in Next dev
+      if (typeof globalThis.__inMemorySqlAdapter !== 'undefined') {
+        sql = globalThis.__inMemorySqlAdapter;
+      } else {
+        sql = createInMemoryAdapter();
+        try { globalThis.__inMemorySqlAdapter = sql; } catch (e) { /* ignore */ }
+      }
       return sql;
     }
 
