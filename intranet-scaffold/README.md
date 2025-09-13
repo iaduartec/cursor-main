@@ -70,6 +70,30 @@ pnpm dev
 - Las migraciones se aplican con `scripts/db/migrate-supabase.ts` que busca el fichero SQL `drizzle/migrations/0001_init.sql`.
 - `scripts/db/seed-from-mdx.ts` y `scripts/db/seed-projects.ts` son utilidades para poblar la BBDD a partir del contenido de `content/`.
 
+### Levantar una base local con Docker
+
+Incluimos un `docker-compose.yml` para pruebas locales que arranca Postgres.
+
+```pwsh
+cd intranet-scaffold
+docker compose up -d
+```
+
+O usar el helper PowerShell (establece `DATABASE_URL` en la sesión):
+
+```pwsh
+cd intranet-scaffold
+.\scripts\db\run-local-db.ps1
+```
+
+Después de levantar la DB local, puedes ejecutar migraciones y seed:
+
+```pwsh
+pnpm run db:migrate
+pnpm run db:seed
+```
+
+
 ## Desarrollo y testing recomendados
 
 - Usa `pnpm run type-check` para comprobar tipos.
