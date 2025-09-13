@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '../../../../../lib/db';
+import { getDb } from '../../../../lib/db';
 
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   const id = Number(params.id);
