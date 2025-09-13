@@ -1,15 +1,11 @@
 {
-  "editor.stickyScroll.defaultModel": "outlineModel",
-  "css.validate": false,
-  "less.validate": false,
-  "scss.validate": false,
-  "css.customData": [
-    ".vscode/css_custom_data.json"
-  ],
-  "python.testing.pytestArgs": [
-    "app"
-  ],
-  "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true,
-  "chatgpt.commentCodeLensEnabled": true
+  "github.copilot.enable": true,
+  "editor.inlineSuggest.showToolbar": false,
+  "editor.inlineSuggest.syntaxHighlightingEnabled": true,
+  "editor.inlineSuggest.minShowDelay": 0,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.nextEditSuggestions.fixes": true,
+  "editor.inlineSuggest.edits.allowCodeShifting": true,
+  "editor.inlineSuggest.edits.renderSideBySide": "auto"
 }
+
