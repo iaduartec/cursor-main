@@ -6,12 +6,6 @@ test('admin UI CRUD flow', async ({ page }) => {
   const title = `PW Test Title ${uid}`;
   const titleUpdated = `PW Test Title Updated ${uid}`;
 
-  // inject debug token before any script runs so client will include x-debug-token header
-  await page.addInitScript(() => {
-    // @ts-ignore
-    window.__INTRANET_DEBUG_TOKEN = 'test-token';
-  });
-
   await page.goto('/admin/projects', { waitUntil: 'networkidle' });
 
   // wait until form inputs are enabled (avoid race with initial loading state)
