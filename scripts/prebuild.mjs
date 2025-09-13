@@ -30,4 +30,5 @@ function runIfExists(file, args = []) {
 runIfExists("scripts/fix_text_encoding.js");
 // Use the CommonJS variant to avoid ESM parsing errors when node treats .js as ESM
 runIfExists("scripts/clean_contentlayer.cjs");
-runIfExists("scripts/generate_missing_images_runner.js", ["--only-missing", "--min-bytes", "1000"]);
+// Force Node fallback to avoid running local Python that may have incompatible headers
+runIfExists("scripts/generate_missing_images_runner.cjs", ["--only-missing", "--min-bytes", "1000", "--skip-python"]);
