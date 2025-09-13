@@ -32,6 +32,30 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
   const env = Object.assign({}, process.env, { CONTENTLAYER_SKIP_TYPEGEN: '1', CONTENTLAYER_HIDE_WARNING: '1', SKIP_CONTENTLAYER: '1' });
   // Ensure the runner picks up the same PORT (default 3000) so e2e-crud targets the correct base URL
   env.PORT = env.PORT || '3000';
+
+  // If a .env.local exists in the repo root, load and merge it so child processes inherit DB params.
+  try {
+    const fs = require('fs');
+    const dotenv = require('dotenv');
+    const repoRootEnv = require('path').join(cwd, '..', '.env.local');
+    if (fs.existsSync(repoRootEnv)) {
+      const parsed = dotenv.parse(fs.readFileSync(repoRootEnv));
+      for (const k of Object.keys(parsed)) {
+        if (typeof env[k] === 'undefined') env[k] = parsed[k];
+      }
+      console.log('Merged vars from .env.local into orchestrator env');
+    }
+  } catch (e) {
+    console.warn('Failed to load .env.local:', e && e.message ? e.message : e);
+  }
+
+  // If a real DB URL is present, prefer it; otherwise enable in-memory DB for local E2E.
+  const hasDbUrl = env.SUPABASE_DB_URL || env.DATABASE_URL || env.POSTGRES_URL;
+  if (!hasDbUrl) {
+    env.USE_IN_MEMORY_DB = env.USE_IN_MEMORY_DB || '1';
+  } else {
+    console.log('Database URL detected in environment; running against real DB');
+  }
   const dev = spawn('pnpm', ['dev'], { cwd, stdio: 'inherit', env });
 
   // wait for server (fast check first: 10s)

@@ -1,3 +1,33 @@
+# Intranet scaffold — E2E local instructions
+
+This folder contains a small Next.js scaffold used for intranet/admin development and a simple E2E orchestrator.
+
+To run the CRUD E2E locally without a real Postgres database, use the in-memory DB mode. The repository includes a convenience script from the repo root.
+
+From the repository root (PowerShell):
+
+```powershell
+# runs the orchestrator which starts the dev server, waits for /api/projects, runs the CRUD E2E, and shuts down
+pnpm intranet:e2e:memory
+```
+
+What the command does:
+- sets USE_IN_MEMORY_DB=1 and SKIP_CONTENTLAYER=1 for the run
+- starts Next dev inside `intranet-scaffold`
+- waits until `GET /api/projects` responds 200
+- runs the CRUD E2E runner (POST → GET → PUT → GET → DELETE → GET)
+- shuts down the dev server and returns the runner exit code
+
+If you prefer to run the orchestrator manually from inside the scaffold folder:
+
+```powershell
+cd intranet-scaffold
+$env:USE_IN_MEMORY_DB = '1'
+$env:SKIP_CONTENTLAYER = '1'
+pnpm intranet:e2e
+```
+
+If something hangs or you get `Server did not respond within timeout`, try removing the `.next` directory and re-running; the orchestrator already attempts a recovery by removing `.next` and restarting.
 # Duartec Intranet (Scaffold)
 
 Scaffold inicial para la intranet: panel admin y CRUD para Servicios, Proyectos, Streams y Blog.

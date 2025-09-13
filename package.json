@@ -44,6 +44,7 @@
         "db:seed:services": "tsx scripts/db/seed-services.ts",
     "db:seed:streams": "tsx scripts/db/seed-streams.ts",
     "intranet:e2e": "pnpm --filter ./intranet-scaffold... intranet:e2e"
+    ,"intranet:e2e:memory": "pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/run-intranet-e2e-root.ps1"
     },
     "dependencies": {
         "@neondatabase/serverless": "^1.0.1",

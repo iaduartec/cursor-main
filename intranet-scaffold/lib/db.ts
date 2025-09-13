@@ -81,6 +81,12 @@ function createInMemoryAdapter() {
   } as any;
 
   adapter.end = async function () { /* no-op */ };
+  // Attach internal state for debugging/inspection when running in-memory DB
+  try {
+    (adapter as any).__state = state;
+  } catch (e) {
+    // ignore if read-only
+  }
   return adapter;
 }
 
