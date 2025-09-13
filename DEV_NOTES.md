@@ -59,6 +59,10 @@ Avisos y advertencias conocidas (seguras)
 Comandos útiles
 
 - Desarrollo: `pnpm dev`
+ - Desarrollo (ligero, sin Contentlayer): `pnpm dev:light`  # equivalente a SKIP_CONTENTLAYER=1
+   - Alternativa: `cross-env SKIP_CONTENTLAYER=1 pnpm dev`
+- Ejecutar Playwright condicionalmente: `pnpm test:e2e:maybe` (usa SKIP_PLAYWRIGHT=1 para omitir)
+- Omitir Playwright: `cross-env SKIP_PLAYWRIGHT=1 pnpm test:e2e:maybe`
 - Build prod: `pnpm build`
 - Type-check: `pnpm type-check`
 - Migraciones: `pnpm db:migrate`

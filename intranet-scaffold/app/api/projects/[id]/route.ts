@@ -62,6 +62,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     }
     return NextResponse.json(updated[0]);
   } catch (err: any) {
+    console.error('API /api/projects/[id] PUT error:', err);
     if (err && /Database URL not configured/i.test(err.message)) {
       return NextResponse.json({ error: 'DB not configured' }, { status: 503 });
     }
@@ -80,6 +81,7 @@ export async function DELETE(_req: Request, { params }: { params: { id: string }
     await sql`DELETE FROM projects WHERE id = ${id}`;
     return NextResponse.json({ ok: true });
   } catch (err: any) {
+    console.error('API /api/projects/[id] DELETE error:', err);
     if (err && /Database URL not configured/i.test(err.message)) {
       return NextResponse.json({ error: 'DB not configured' }, { status: 503 });
     }

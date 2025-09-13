@@ -17,6 +17,8 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx}',
     './content/**/*.{mdx,md}',
+    // include intranet-scaffold app and components so Tailwind generates classes used there
+    './intranet-scaffold/**/*.{js,ts,jsx,tsx,md,mdx}',
   ],
   darkMode: 'class',
   theme: {
