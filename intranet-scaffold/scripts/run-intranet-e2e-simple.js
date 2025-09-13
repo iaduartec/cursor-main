@@ -29,9 +29,11 @@ async function main() {
     });
     child.stderr.on('data', (d) => process.stderr.write('[next-err] ' + d));
 
-    // wait up to 40s for Ready
+    // wait for Ready (configurable via INTRANET_E2E_TIMEOUT ms)
+    const nextReadyTimeoutMs = parseInt(process.env.INTRANET_E2E_TIMEOUT || '40000', 10);
+    console.log('Waiting up to', nextReadyTimeoutMs, 'ms for Next dev Ready signal');
     const start = Date.now();
-    while (!readySignal && Date.now() - start < 40000) {
+    while (!readySignal && Date.now() - start < nextReadyTimeoutMs) {
         await new Promise((r) => setTimeout(r, 500));
     }
     if (!readySignal) {
@@ -41,14 +43,16 @@ async function main() {
     }
 
     // poll readiness endpoint
-    const maxPoll = 60;
+    // Number of seconds to poll readiness (INTRANET_E2E_POLL_MAX)
+    const maxPoll = parseInt(process.env.INTRANET_E2E_POLL_MAX || '60', 10);
     let ok = false;
     for (let i = 0; i < maxPoll; i++) {
         try {
+            console.log('poll attempt', i + 1, 'of', maxPoll);
             const r = await fetch('http://127.0.0.1:3000/api/_debug/ready');
             console.log('ready status', r.status);
             const txt = await r.text();
-            console.log('ready body', txt);
+            console.log('ready body', txt.substring(0, 2000));
             if (r.ok) { ok = true; break; }
         } catch (e) {
             // ignore
