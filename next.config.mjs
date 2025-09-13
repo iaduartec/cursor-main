@@ -1,5 +1,15 @@
 import path from 'path';
-import { withContentlayer } from 'next-contentlayer';
+let withContentlayer = (c) => c;
+if (process.env.SKIP_CONTENTLAYER !== '1') {
+  try {
+    // Dynamically import to avoid side-effects when skipping
+    // eslint-disable-next-line global-require
+    ({ withContentlayer } = await import('next-contentlayer'));
+  } catch (err) {
+    // If import fails, fall back to identity function
+    withContentlayer = (c) => c;
+  }
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -91,4 +101,8 @@ if (enableStandalone) {
   nextConfig.output = 'standalone';
 }
 
-export default withContentlayer(nextConfig);
+// Allow disabling Contentlayer (useful for Windows dev in subprojects)
+const skipContentlayer = process.env.SKIP_CONTENTLAYER === '1';
+const finalConfig = skipContentlayer ? nextConfig : withContentlayer(nextConfig);
+
+export default finalConfig;

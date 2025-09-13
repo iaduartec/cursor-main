@@ -1,0 +1,12 @@
+
+> duartec-intranet@0.1.0 dev C:\Users\kiri_\cursor-main\intranet-scaffold
+> node scripts/dev-no-contentlayer.js
+
+ ÔÜá Port 3000 is in use by process 24548, using available port 3002 instead.
+   Ôû▓ Next.js 15.5.3
+   - Local:        http://localhost:3002
+   - Network:      http://192.168.1.132:3002
+   - Experiments (use with caution):
+     Ô£ô scrollRestoration
+
+ Ô£ô Starting...

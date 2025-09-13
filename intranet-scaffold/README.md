@@ -62,8 +62,6 @@ pnpm dev
 
 ## Notas sobre Contentlayer y Windows
 
-- Contentlayer puede emitir warnings en Windows relacionados con typegen o con rutas de import dinámicas. Normalmente esto no impide que Next arranque, pero si ves errores recurrentes puedes probar a setear `CONTENTLAYER_SKIP_TYPEGEN=1` durante el dev.
-- Asegúrate de que existe `contentlayer.config.ts` en la raíz de `intranet-scaffold` si vas a usar MDX dentro de ese subproyecto.
 
 ## Migraciones y seed
 
@@ -72,6 +70,29 @@ pnpm dev
 
 ### Levantar una base local con Docker
 
+
+Alternativa recomendada (script incluido):
+
+En Windows PowerShell puedes arrancar el dev server del scaffold con el script incluido:
+
+```powershell
+cd intranet-scaffold
+pnpm dev
+```
+
+El script `scripts/dev-no-contentlayer.js` ya establece las variables de entorno necesarias y además activa `SKIP_CONTENTLAYER=1` para evitar que el wrapper `next-contentlayer` se aplique durante el dev local en Windows.
+
+Si prefieres arrancar manualmente desde PowerShell sin el script, exporta estas variables primero:
+
+```powershell
+$env:CONTENTLAYER_SKIP_TYPEGEN='1'
+$env:CONTENTLAYER_HIDE_WARNING='1'
+$env:SKIP_CONTENTLAYER='1'
+cd intranet-scaffold
+pnpm dev
+```
+
+Con esto Next arrancará en un puerto disponible (por defecto 3000; si está ocupado usará otro puerto y lo imprimirá en la terminal).
 Incluimos un `docker-compose.yml` para pruebas locales que arranca Postgres.
 
 ```pwsh
