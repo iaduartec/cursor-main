@@ -14,7 +14,16 @@ test('admin UI CRUD flow', async ({ page }) => {
   // create
   await page.fill('input[placeholder="demo-slug"]', slug);
   await page.fill('input[placeholder="Demo Project"]', title);
-  await page.click('button:has-text("Crear proyecto")');
+  // click create and wait for the POST response so we can assert status
+  const [postResp] = await Promise.all([
+    page.waitForResponse(r => r.url().includes('/api/projects') && r.request().method() === 'POST', { timeout: 10000 }),
+    page.click('button:has-text("Crear proyecto")'),
+  ]);
+  const status = postResp.status();
+  const bodyText = await postResp.text();
+  console.log('POST /api/projects status=', status, 'body=', bodyText);
+  // expect created
+  if (status !== 201) throw new Error(`Unexpected POST status ${status}: ${bodyText}`);
   await page.waitForSelector(`text=${title}`);
   await expect(page.locator(`text=${title}`)).toHaveCount(1);
 
