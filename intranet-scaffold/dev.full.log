@@ -6,3 +6,8 @@
 
  Ô£ô Starting...
  Ô£ô Ready in 2.2s
+ Ôùï Compiling / ...
+ Ô£ô Compiled / in 1935ms (564 modules)
+ GET / 200 in 2337ms
+ Ô£ô Compiled /admin in 445ms (566 modules)
+ GET /admin 200 in 636ms
