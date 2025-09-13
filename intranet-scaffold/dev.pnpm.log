@@ -52,3 +52,95 @@ warn - https://tailwindcss.com/docs/content-configuration
  GET /admin 200 in 2752ms
  Ô£ô Compiled / in 248ms (609 modules)
  GET / 200 in 413ms
+ Ô£ô Compiled in 744ms (357 modules)
+ Ôùï Compiling /api/projects ...
+ Ô£ô Compiled /api/projects in 700ms (392 modules)
+ GET /api/projects 200 in 802ms
+ GET / 200 in 72ms
+ POST /api/projects 201 in 10ms
+ GET /api/projects 200 in 8ms
+ Ô£ô Compiled /api/projects/[id] in 188ms (394 modules)
+Error: Route "/api/projects/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at PUT (app\api\projects\[id]\route.ts:5:28)
+  3 |
+  4 | export async function PUT(req: Request, { params }: { params: { id: string } }) {
+> 5 |   const id = Number(params.id);
+    |                            ^
+  6 |   try {
+  7 |     const body = await req.json();
+  8 |     const { slug, title, description, hero_image } = body;
+ PUT /api/projects/1 404 in 305ms
+ GET /api/projects 200 in 58ms
+ GET / 200 in 169ms
+Error: Route "/api/projects/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at DELETE (app\api\projects\[id]\route.ts:26:28)
+  24 |
+  25 | export async function DELETE(_req: Request, { params }: { params: { id: string } }) {
+> 26 |   const id = Number(params.id);
+     |                            ^
+  27 |   try {
+  28 |     const sql = getDb();
+  29 |     await sql`DELETE FROM projects WHERE id = ${id}`;
+ DELETE /api/projects/1 200 in 38ms
+ GET /api/projects 200 in 7ms
+ GET /api/projects 200 in 9ms
+ GET /api/projects 200 in 12ms
+ POST /api/projects 201 in 9ms
+ GET /api/projects 200 in 9ms
+Error: Route "/api/projects/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at PUT (app\api\projects\[id]\route.ts:5:28)
+  3 |
+  4 | export async function PUT(req: Request, { params }: { params: { id: string } }) {
+> 5 |   const id = Number(params.id);
+    |                            ^
+  6 |   try {
+  7 |     const body = await req.json();
+  8 |     const { slug, title, description, hero_image } = body;
+ PUT /api/projects/1 200 in 47ms
+ GET /api/projects 200 in 8ms
+Error: Route "/api/projects/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at DELETE (app\api\projects\[id]\route.ts:26:28)
+  24 |
+  25 | export async function DELETE(_req: Request, { params }: { params: { id: string } }) {
+> 26 |   const id = Number(params.id);
+     |                            ^
+  27 |   try {
+  28 |     const sql = getDb();
+  29 |     await sql`DELETE FROM projects WHERE id = ${id}`;
+ DELETE /api/projects/1 200 in 35ms
+ GET /api/projects 200 in 8ms
+ Ô£ô Compiled in 121ms (394 modules)
+ Ô£ô Compiled in 116ms (394 modules)
+ GET / 200 in 64ms
+ Ô£ô Compiled in 649ms (357 modules)
+ Ôùï Compiling /api/projects ...
+ Ô£ô Compiled /api/projects in 655ms (392 modules)
+ GET /api/projects 200 in 742ms
+ GET / 200 in 139ms
+ GET /api/projects 200 in 8ms
+ POST /api/projects 201 in 8ms
+ GET /api/projects 200 in 8ms
+ Ô£ô Compiled /api/projects/[id] in 118ms (394 modules)
+Error: Route "/api/projects/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at PUT (app\api\projects\[id]\route.ts:5:28)
+  3 |
+  4 | export async function PUT(req: Request, { params }: { params: { id: string } }) {
+> 5 |   const id = Number(params.id);
+    |                            ^
+  6 |   try {
+  7 |     const body = await req.json();
+  8 |     const { slug, title, description, hero_image } = body;
+ PUT /api/projects/1 404 in 204ms
+ GET /api/projects 200 in 45ms
+ GET / 200 in 128ms
+Error: Route "/api/projects/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at DELETE (app\api\projects\[id]\route.ts:39:28)
+  37 |
+  38 | export async function DELETE(_req: Request, { params }: { params: { id: string } }) {
+> 39 |   const id = Number(params.id);
+     |                            ^
+  40 |   try {
+  41 |     const sql = getDb();
+  42 |     await sql`DELETE FROM projects WHERE id = ${id}`;
+ DELETE /api/projects/1 200 in 35ms
+ GET /api/projects 200 in 8ms
