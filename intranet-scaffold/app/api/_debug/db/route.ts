@@ -1,17 +1,26 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '../../../../lib/db';
 
-export async function GET() {
+function checkDebugAccess(req: Request) {
+  const token = process.env.INTRANET_DEBUG_TOKEN;
+  if (token) {
+    const provided = req.headers.get('x-debug-token') || '';
+    if (provided !== token) return false;
+    return true;
+  }
+  if (process.env.NODE_ENV === 'production') return false;
+  return true;
+}
+
+export async function GET(req: Request) {
+  if (!checkDebugAccess(req)) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
   try {
-    // Only allowed when the in-memory DB is active
-    if (!(process.env.USE_IN_MEMORY_DB === '1' || process.env.USE_IN_MEMORY_DB === 'true')) {
-      return NextResponse.json({ error: 'Debug endpoint only available in in-memory mode' }, { status: 403 });
-    }
     const sql = getDb();
-    // the adapter exposes __state for debugging
     const state = (sql && (sql as any).__state) || null;
     return NextResponse.json({ state });
   } catch (err: any) {
-    return NextResponse.json({ error: err?.message ?? 'Internal Error' }, { status: 500 });
+    return NextResponse.json({ error: String(err) || 'Internal Error' }, { status: 500 });
   }
 }

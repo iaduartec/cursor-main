@@ -1,7 +1,22 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '../../../../lib/db';
 
-export async function GET() {
+function checkDebugAccess(req: Request) {
+  const token = process.env.INTRANET_DEBUG_TOKEN;
+  if (token) {
+    const provided = req.headers.get('x-debug-token') || '';
+    if (provided !== token) return false;
+    return true;
+  }
+  // If no token configured, only allow outside production
+  if (process.env.NODE_ENV === 'production') return false;
+  return true;
+}
+
+export async function GET(req: Request) {
+  if (!checkDebugAccess(req)) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
   try {
     const envVal = process.env.USE_IN_MEMORY_DB;
     let usingInMemory = false;
