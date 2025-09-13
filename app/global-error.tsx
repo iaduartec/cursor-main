@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/global-error.tsx
+
+2025-09-13T06:20:07.362Z
+
+——————————————————————————————
+Archivo .tsx: global-error.tsx
+Tamaño: 1866 caracteres, 54 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 'use client';
 
 import { useEffect } from 'react';

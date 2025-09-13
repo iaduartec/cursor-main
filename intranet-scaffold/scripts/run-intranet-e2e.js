@@ -1,4 +1,17 @@
-#!/usr/bin/env node
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/scripts/run-intranet-e2e.js
+
+2025-09-13T06:20:07.377Z
+
+——————————————————————————————
+Archivo .js: run-intranet-e2e.js
+Tamaño: 4021 caracteres, 103 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+// (Shebang removed; script executed via `node` to avoid TS 18026 warning when analyzed)
 const { spawn } = require('child_process');
 const path = require('path');
 // Use global fetch (Node 18+/22). If not available, throw a helpful error.

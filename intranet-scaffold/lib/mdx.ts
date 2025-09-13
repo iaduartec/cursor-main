@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/lib/mdx.ts
+
+2025-09-13T06:20:07.376Z
+
+——————————————————————————————
+Archivo .ts: mdx.ts
+Tamaño: 763 caracteres, 24 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/legal/aviso-legal/page.tsx
+
+2025-09-13T06:20:07.363Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 6912 caracteres, 123 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';

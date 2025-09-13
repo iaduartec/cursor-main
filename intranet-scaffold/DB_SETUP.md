@@ -1,3 +1,16 @@
+<!--
+Resumen generado automáticamente.
+
+intranet-scaffold/DB_SETUP.md
+
+2025-09-13T06:20:07.372Z
+
+——————————————————————————————
+Archivo .md: DB_SETUP.md
+Tamaño: 530 caracteres, 30 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
 # Duartec Intranet - DB Setup
 
 Este repositorio usa Supabase Postgres y Drizzle ORM.

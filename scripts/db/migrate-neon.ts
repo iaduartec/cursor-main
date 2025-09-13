@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+scripts/db/migrate-neon.ts
+
+2025-09-13T06:20:07.384Z
+
+——————————————————————————————
+Archivo .ts: migrate-neon.ts
+Tamaño: 697 caracteres, 24 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 // scripts/db/migrate-neon.ts
 import { config } from 'dotenv'
 config({ path: '.env.local' }) // 👈 fuerza .env.local

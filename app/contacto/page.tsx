@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/contacto/page.tsx
+
+2025-09-13T06:20:07.362Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 9619 caracteres, 197 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { Metadata } from 'next';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 

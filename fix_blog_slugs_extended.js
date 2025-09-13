@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+fix_blog_slugs_extended.js
+
+2025-09-13T06:20:07.372Z
+
+——————————————————————————————
+Archivo .js: fix_blog_slugs_extended.js
+Tamaño: 4745 caracteres, 134 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 #!/usr/bin/env node
 /*
  * Extended blog slug fixer.

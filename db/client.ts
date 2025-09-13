@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+db/client.ts
+
+2025-09-13T06:20:07.370Z
+
+——————————————————————————————
+Archivo .ts: client.ts
+Tamaño: 3569 caracteres, 88 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { createClient } from '@supabase/supabase-js';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';

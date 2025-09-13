@@ -1,3 +1,16 @@
+"""
+Resumen generado automáticamente.
+
+tools/fill_images_commons.py
+
+2025-09-13T06:20:07.389Z
+
+——————————————————————————————
+Archivo .py: fill_images_commons.py
+Tamaño: 5873 caracteres, 194 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
 #!/usr/bin/env python3
 """
 Busca imágenes libres en Wikimedia Commons para cada artículo del blog

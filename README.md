@@ -1,3 +1,16 @@
+<!--
+Resumen generado automáticamente.
+
+README.md
+
+2025-09-13T06:20:07.356Z
+
+——————————————————————————————
+Archivo .md: README.md
+Tamaño: 7951 caracteres, 343 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
 # Duartec Instalaciones Informáticas
 
 Sitio web profesional y moderno para Duartec (Burgos, España) basado en Next.js 14+, TypeScript, Tailwind CSS y las mejores prácticas de desarrollo web.

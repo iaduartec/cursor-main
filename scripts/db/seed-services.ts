@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+scripts/db/seed-services.ts
+
+2025-09-13T06:20:07.385Z
+
+——————————————————————————————
+Archivo .ts: seed-services.ts
+Tamaño: 2417 caracteres, 88 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import fs from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';

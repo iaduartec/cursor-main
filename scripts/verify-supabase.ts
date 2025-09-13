@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+scripts/verify-supabase.ts
+
+2025-09-13T06:20:07.387Z
+
+——————————————————————————————
+Archivo .ts: verify-supabase.ts
+Tamaño: 1724 caracteres, 48 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 // scripts/verify-supabase.ts
 import postgres from 'postgres';
 import { posts, services, projects, streams } from '../db/schema';

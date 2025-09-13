@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/api/debug/blogs/route.ts
+
+2025-09-13T06:20:07.361Z
+
+——————————————————————————————
+Archivo .ts: route.ts
+Tamaño: 832 caracteres, 21 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { NextResponse } from 'next/server';
 import { getPostsPage, getAllPosts } from '../../../../lib/db-posts';
 

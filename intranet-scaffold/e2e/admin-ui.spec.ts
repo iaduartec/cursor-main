@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/e2e/admin-ui.spec.ts
+
+2025-09-13T06:20:07.375Z
+
+——————————————————————————————
+Archivo .ts: admin-ui.spec.ts
+Tamaño: 1573 caracteres, 34 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { test, expect } from '@playwright/test';
 
 test('admin UI CRUD flow', async ({ page }) => {

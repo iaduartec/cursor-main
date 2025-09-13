@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/scripts/demo-crud.js
+
+2025-09-13T06:20:07.377Z
+
+——————————————————————————————
+Archivo .js: demo-crud.js
+Tamaño: 3434 caracteres, 75 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 // Demo CRUD against an in-memory adapter (standalone)
 (async function(){
   function createInMemoryAdapter() {

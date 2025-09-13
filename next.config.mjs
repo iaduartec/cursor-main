@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+next.config.mjs
+
+2025-09-13T06:20:07.380Z
+
+——————————————————————————————
+Archivo .mjs: next.config.mjs
+Tamaño: 3136 caracteres, 109 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import path from 'path';
 let withContentlayer = (c) => c;
 if (process.env.SKIP_CONTENTLAYER !== '1') {

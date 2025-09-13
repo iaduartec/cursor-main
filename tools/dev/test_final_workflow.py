@@ -1,3 +1,16 @@
+"""
+Resumen generado automáticamente.
+
+tools/dev/test_final_workflow.py
+
+2025-09-13T06:20:07.389Z
+
+——————————————————————————————
+Archivo .py: test_final_workflow.py
+Tamaño: 5680 caracteres, 183 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
 #!/usr/bin/env python3
 """
 Script de prueba final para verificar que el workflow completo funciona.

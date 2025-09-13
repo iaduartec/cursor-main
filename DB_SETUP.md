@@ -1,3 +1,16 @@
+<!--
+Resumen generado automáticamente.
+
+DB_SETUP.md
+
+2025-09-13T06:20:07.355Z
+
+——————————————————————————————
+Archivo .md: DB_SETUP.md
+Tamaño: 7962 caracteres, 195 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
 Uso de Supabase (optimizado para Vercel)
 
 Resumen

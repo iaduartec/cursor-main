@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+drizzle.config.ts
+
+2025-09-13T06:20:07.371Z
+
+——————————————————————————————
+Archivo .ts: drizzle.config.ts
+Tamaño: 717 caracteres, 27 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import type { Config } from 'drizzle-kit';
 
 const useInMemory = Boolean(process.env.USE_IN_MEMORY_DB && process.env.USE_IN_MEMORY_DB !== '0');
