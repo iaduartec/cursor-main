@@ -34,9 +34,9 @@ export default function AdminProjects() {
     setLoading(true);
     fetch('/api/projects')
       .then(r => r.json())
-      .then(data => { if (mounted) {setProjects(data);} })
-      .catch(err => { console.error(err); if (mounted) {setError(String(err));} })
-      .finally(() => { if (mounted) {setLoading(false);} });
+      .then(data => { if (mounted) { setProjects(data); } })
+      .catch(err => { console.error(err); if (mounted) { setError(String(err)); } })
+      .finally(() => { if (mounted) { setLoading(false); } });
     return () => { mounted = false; };
   }, []);
 
@@ -44,7 +44,7 @@ export default function AdminProjects() {
     // read injected token (only present in non-production dev/test)
     try {
       const t = typeof window !== 'undefined' ? (window as any).__INTRANET_DEBUG_TOKEN : null;
-      if (t) {setClientToken(String(t));}
+      if (t) { setClientToken(String(t)); }
     } catch {
       // Ignore errors when accessing debug token
     }
@@ -61,8 +61,8 @@ export default function AdminProjects() {
         setLoading(false);
         return;
       }
-      const headers: Record<string,string> = { 'Content-Type': 'application/json' };
-      if (clientToken) {headers['x-debug-token'] = clientToken;}
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (clientToken) { headers['x-debug-token'] = clientToken; }
       if (editing) {
         const res = await fetch(`/api/projects/${editing.id}`, { method: 'PUT', body: JSON.stringify({ slug, title }), headers });
         if (res.ok) {
@@ -71,6 +71,16 @@ export default function AdminProjects() {
           setEditing(null);
           setTitle(''); setSlug('');
         } else {
+          // Handle conflict (409) gracefully
+          if (res.status === 409) {
+            let msg = 'Slug already exists';
+            try {
+              const json = await res.json();
+              msg = json?.error || msg;
+            } catch { /* ignore */ }
+            setError(msg);
+            return;
+          }
           // try to parse JSON error body first
           let msg = 'Failed to update';
           try {
@@ -83,12 +93,25 @@ export default function AdminProjects() {
           throw new Error(msg);
         }
       } else {
-        const res = await fetch('/api/projects', { method: 'POST', body: JSON.stringify({ slug, title }) , headers });
+        const res = await fetch('/api/projects', { method: 'POST', body: JSON.stringify({ slug, title }), headers });
         if (res.ok) {
           const p = await res.json();
           setProjects(prev => [p, ...prev]);
           setTitle(''); setSlug('');
         } else {
+          // Handle common validation/conflict responses gracefully
+          if (res.status === 409) {
+            // slug already exists
+            let msg = 'Slug already exists';
+            try {
+              const json = await res.json();
+              msg = json?.error || msg;
+            } catch {
+              // ignore parse errors
+            }
+            setError(msg);
+            return;
+          }
           let msg = 'Failed to create';
           try {
             const json = await res.json();
@@ -118,8 +141,8 @@ export default function AdminProjects() {
     setError(null);
     setLoading(true);
     try {
-      const headers: Record<string,string> = {};
-      if (clientToken) {headers['x-debug-token'] = clientToken;}
+      const headers: Record<string, string> = {};
+      if (clientToken) { headers['x-debug-token'] = clientToken; }
       const res = await fetch(`/api/projects/${id}`, { method: 'DELETE', headers });
       if (res.ok) {
         setProjects(prev => prev.filter(p => p.id !== id));
@@ -139,7 +162,7 @@ export default function AdminProjects() {
   const filtered = projects.filter(p => p.title.toLowerCase().includes(search.toLowerCase()) || p.slug.toLowerCase().includes(search.toLowerCase()));
   const total = filtered.length;
   const pages = Math.max(1, Math.ceil(total / perPage));
-  const visible = filtered.slice((page-1)*perPage, page*perPage);
+  const visible = filtered.slice((page - 1) * perPage, page * perPage);
 
   function cancelEdit() {
     setEditing(null);
@@ -215,8 +238,8 @@ export default function AdminProjects() {
           <div className="p-4 flex items-center justify-between">
             <div className="text-sm text-gray-500">Página {page} de {pages}</div>
             <div className="flex items-center gap-2">
-              <button onClick={() => setPage(p => Math.max(1, p-1))} className="px-3 py-1 border rounded" disabled={page === 1}>Anterior</button>
-              <button onClick={() => setPage(p => Math.min(pages, p+1))} className="px-3 py-1 border rounded" disabled={page === pages}>Siguiente</button>
+              <button onClick={() => setPage(p => Math.max(1, p - 1))} className="px-3 py-1 border rounded" disabled={page === 1}>Anterior</button>
+              <button onClick={() => setPage(p => Math.min(pages, p + 1))} className="px-3 py-1 border rounded" disabled={page === pages}>Siguiente</button>
             </div>
           </div>
         </div>
@@ -230,7 +253,7 @@ export default function AdminProjects() {
             <p className="mb-4">¿Borrar <strong>{showConfirm.title}</strong>?</p>
             <div className="flex justify-end gap-2">
               <button onClick={() => setShowConfirm(null)} className="px-3 py-2 border rounded">Cancelar</button>
-              <button onClick={async () => { const {id} = (showConfirm!); setShowConfirm(null); await deleteProject(id); }} className="px-3 py-2 bg-red-600 text-white rounded">Borrar</button>
+              <button onClick={async () => { const { id } = (showConfirm!); setShowConfirm(null); await deleteProject(id); }} className="px-3 py-2 bg-red-600 text-white rounded">Borrar</button>
             </div>
           </div>
         </div>
