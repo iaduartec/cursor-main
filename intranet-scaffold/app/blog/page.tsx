@@ -8,11 +8,14 @@ export default function BlogListPage() {
       <h1>Blog</h1>
       <ul>
         {posts.map((post, idx) => (
-          <li key={idx}>
+          <li key={idx} style={{ marginBottom: 24 }}>
             <Link href={`/blog/${post.frontmatter.slug}`}>
-              {post.frontmatter.title}
+              <strong>{post.frontmatter.title}</strong>
             </Link>
             <span style={{ marginLeft: 8, color: '#888' }}>{post.frontmatter.date}</span>
+            {post.frontmatter.description && (
+              <p style={{ margin: '4px 0 0 0', color: '#555' }}>{post.frontmatter.description}</p>
+            )}
           </li>
         ))}
       </ul>
