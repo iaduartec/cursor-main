@@ -86,8 +86,16 @@ export default defineConfig({
     // },
   ],
 
-  /* Run your local dev server before starting the tests */
-  /* We start the dev server in globalSetup to make readiness explicit and avoid races. */
-  globalSetup: './tests/e2e/global-setup.ts',
-  globalTeardown: './tests/e2e/global-teardown.ts',
+  /* Run your local dev server before starting the tests using a small start script in intranet-scaffold. */
+  webServer: {
+    command: 'node intranet-scaffold/scripts/start-next-dev.js',
+    url: 'http://127.0.0.1:3000',
+    reuseExistingServer: !process.env.CI,
+    timeout: 180 * 1000,
+    env: {
+      USE_IN_MEMORY_DB: '1',
+      SKIP_CONTENTLAYER: '1',
+      INTRANET_DEBUG_TOKEN: 'test-token-123',
+    },
+  },
 });

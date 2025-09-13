@@ -52,7 +52,7 @@ export default async function globalSetup() {
   }
 
   // After Next signals Ready, poll the readiness endpoint until it returns ok
-  const maxPoll = 30; // seconds
+  const maxPoll = 120; // seconds (increase to allow full compilation)
   for (let i = 0; i < maxPoll; i++) {
     try {
       const res = await fetch('http://127.0.0.1:3000/api/_debug/ready');
