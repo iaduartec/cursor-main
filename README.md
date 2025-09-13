@@ -125,6 +125,10 @@ npm run dev          # Servidor de desarrollo
 npm run build        # Build de producción
 npm run start        # Servidor de producción
 
+# Git Operations
+npm run git:pull        # Git pull inteligente con verificaciones
+npm run git:pull:dry-run # Preview de git pull sin ejecutar
+
 # Testing
 npm run test         # Tests unitarios
 npm run test:e2e     # Tests end-to-end
@@ -140,6 +144,31 @@ npm run type-check   # Verificación de tipos
 npm run analyze      # Análisis de bundle
 npm run sitemap      # Generar sitemap
 ```
+
+## 🔄 Operaciones Git
+
+El repositorio incluye un sistema inteligente de git pull con verificaciones de seguridad:
+
+```bash
+# Pull con verificaciones de seguridad
+npm run git:pull
+
+# Ver qué haría sin ejecutar
+npm run git:pull:dry-run
+
+# Uso directo del script
+node scripts/git-pull.js --help
+```
+
+### Características del Git Pull
+
+- ✅ Verificación de estado del repositorio
+- ✅ Detección de cambios no committeados
+- ✅ Identificación automática de rama
+- ✅ Hooks post-pull para dependencias
+- ✅ Manejo inteligente de conflictos
+
+Para más detalles, consulta la [Guía de Git Pull](docs/GIT_PULL_GUIDE.md).
 
 ## 📄 Gestión de Contenido
 
