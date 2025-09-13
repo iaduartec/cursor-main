@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+components/Breadcrumb.tsx
+
+2025-09-13T06:20:07.367Z
+
+——————————————————————————————
+Archivo .tsx: Breadcrumb.tsx
+Tamaño: 1136 caracteres, 44 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
 

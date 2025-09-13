@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+lib/db-utils.ts
+
+2025-09-13T06:20:07.380Z
+
+——————————————————————————————
+Archivo .ts: db-utils.ts
+Tamaño: 1932 caracteres, 50 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { db } from '../db/client';
 
 // Detecta si hay configuración de base de datos disponible en el entorno.

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+tmp_home.tsx
+
+2025-09-13T06:20:07.387Z
+
+——————————————————————————————
+Archivo .tsx: tmp_home.tsx
+Tamaño: 13796 caracteres, 293 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { Metadata } from 'next';
 import { Monitor, Camera, Volume2, Zap, Shield, Clock, Users, MapPin, Phone } from 'lucide-react';
 

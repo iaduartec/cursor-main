@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+middleware.ts
+
+2025-09-13T06:20:07.380Z
+
+——————————————————————————————
+Archivo .ts: middleware.ts
+Tamaño: 601 caracteres, 21 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(req: NextRequest) {

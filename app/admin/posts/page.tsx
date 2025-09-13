@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/admin/posts/page.tsx
+
+2025-09-13T06:20:07.359Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 3890 caracteres, 94 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db } from '../../../db/client';
 import { posts } from '../../../db/schema';

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/scripts/e2e-crud.js
+
+2025-09-13T06:20:07.377Z
+
+——————————————————————————————
+Archivo .js: e2e-crud.js
+Tamaño: 2895 caracteres, 76 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 // Better diagnostics: log unhandled errors
 process.on('unhandledRejection', (reason) => {
   console.error('UNHANDLED REJECTION', reason);

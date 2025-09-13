@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/blog/[slug]/page.tsx
+
+2025-09-13T06:20:07.361Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 7543 caracteres, 231 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';

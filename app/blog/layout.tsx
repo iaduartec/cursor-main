@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/blog/layout.tsx
+
+2025-09-13T06:20:07.362Z
+
+——————————————————————————————
+Archivo .tsx: layout.tsx
+Tamaño: 756 caracteres, 25 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

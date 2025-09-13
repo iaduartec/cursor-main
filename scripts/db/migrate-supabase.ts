@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+scripts/db/migrate-supabase.ts
+
+2025-09-13T06:20:07.384Z
+
+——————————————————————————————
+Archivo .ts: migrate-supabase.ts
+Tamaño: 750 caracteres, 26 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 // scripts/db/migrate-supabase.ts
 import { config } from 'dotenv'
 config({ path: '.env.local' }) // 👈 fuerza .env.local

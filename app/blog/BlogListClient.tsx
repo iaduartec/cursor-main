@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/blog/BlogListClient.tsx
+
+2025-09-13T06:20:07.361Z
+
+——————————————————————————————
+Archivo .tsx: BlogListClient.tsx
+Tamaño: 7641 caracteres, 190 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 'use client';
 
 import Link from 'next/link';

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/error.tsx
+
+2025-09-13T06:20:07.362Z
+
+——————————————————————————————
+Archivo .tsx: error.tsx
+Tamaño: 2470 caracteres, 71 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 'use client';
 
 import { useEffect } from 'react';

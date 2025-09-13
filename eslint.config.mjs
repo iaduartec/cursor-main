@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+eslint.config.mjs
+
+2025-09-13T06:20:07.371Z
+
+——————————————————————————————
+Archivo .mjs: eslint.config.mjs
+Tamaño: 5162 caracteres, 185 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
 import path from 'node:path';

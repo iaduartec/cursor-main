@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+scripts/db/check-version.ts
+
+2025-09-13T06:20:07.384Z
+
+——————————————————————————————
+Archivo .ts: check-version.ts
+Tamaño: 642 caracteres, 21 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 // scripts/db/check-version.ts
 // Small helper to check DB connectivity and version via exported client
 (async () => {

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/lib/db.ts
+
+2025-09-13T06:20:07.375Z
+
+——————————————————————————————
+Archivo .ts: db.ts
+Tamaño: 4101 caracteres, 122 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import postgres from "postgres";
 
 // Provide either a real Postgres client (postgres) or a lightweight

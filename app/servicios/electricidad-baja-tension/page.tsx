@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/servicios/electricidad-baja-tension/page.tsx
+
+2025-09-13T06:20:07.366Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 5052 caracteres, 98 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Zap, Shield, Wrench, FileCheck, ArrowLeft } from 'lucide-react';

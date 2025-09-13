@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+lib/db-posts.ts
+
+2025-09-13T06:20:07.379Z
+
+——————————————————————————————
+Archivo .ts: db-posts.ts
+Tamaño: 8477 caracteres, 273 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { db } from '../db/client';
 import { posts } from '../db/schema';
 import { and, asc, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';

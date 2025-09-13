@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+__tests__/pages/Home.test.tsx
+
+2025-09-13T06:20:07.358Z
+
+——————————————————————————————
+Archivo .tsx: Home.test.tsx
+Tamaño: 1061 caracteres, 36 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { render, screen } from '@testing-library/react';
 import Home from '../../app/page';
 

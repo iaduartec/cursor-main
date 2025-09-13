@@ -1,3 +1,16 @@
+<!--
+Resumen generado automáticamente.
+
+intranet-scaffold/README.md
+
+2025-09-13T06:20:07.373Z
+
+——————————————————————————————
+Archivo .md: README.md
+Tamaño: 8739 caracteres, 269 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
 # Intranet scaffold — E2E local instructions
 
 This folder contains a small Next.js scaffold used for intranet/admin development and a simple E2E orchestrator.

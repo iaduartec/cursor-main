@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/app/admin/page.tsx
+
+2025-09-13T06:20:07.373Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 510 caracteres, 14 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 export default function AdminPage() {
   return (
     <main style={{ padding: 24 }}>
