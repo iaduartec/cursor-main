@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllProjects, getProjectBySlug } from '../../../lib/db-projects';
+import { getAllProjects, getProjectBySlug } from '../../../lib/db-projects.new';
 import { marked } from 'marked';
 
 const normalizeSlug = (s: string) =>
