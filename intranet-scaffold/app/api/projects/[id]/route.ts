@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server';
 import { getDb } from '../../../../lib/db';
 
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
-  const id = Number(params.id);
+  const resolvedParams: any = await params;
+  const id = Number(resolvedParams.id);
   try {
     const body = await req.json();
     const { slug, title, description, hero_image } = body;
@@ -13,15 +14,19 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
       RETURNING id, slug, title, description, hero_image, created_at
     `;
     if (!updated || updated.length === 0) {
-      // Fallback: if nothing was updated by id, try updating by slug (useful for tests that send slug)
+      // Fallback: if nothing was updated by id, try to find the record by slug and update by that id.
       if (slug) {
-        const updatedBySlug = await sql`\
-          UPDATE projects SET slug = ${slug}, title = ${title}, description = ${description}, hero_image = ${hero_image}\
-          WHERE slug = ${slug}\
-          RETURNING id, slug, title, description, hero_image, created_at\
-        `;
-        if (updatedBySlug && updatedBySlug.length > 0) {
-          return NextResponse.json(updatedBySlug[0]);
+        const found = await sql`SELECT id FROM projects WHERE slug = ${slug}`;
+        const foundId = found && found[0] && found[0].id;
+        if (foundId) {
+          const updatedByFoundId = await sql`\
+            UPDATE projects SET slug = ${slug}, title = ${title}, description = ${description}, hero_image = ${hero_image}\
+            WHERE id = ${foundId}\
+            RETURNING id, slug, title, description, hero_image, created_at\
+          `;
+          if (updatedByFoundId && updatedByFoundId.length > 0) {
+            return NextResponse.json(updatedByFoundId[0]);
+          }
         }
       }
       return NextResponse.json({ message: 'Not found' }, { status: 404 });
@@ -36,7 +41,8 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 }
 
 export async function DELETE(_req: Request, { params }: { params: { id: string } }) {
-  const id = Number(params.id);
+  const resolvedParams: any = await params;
+  const id = Number(resolvedParams.id);
   try {
     const sql = getDb();
     await sql`DELETE FROM projects WHERE id = ${id}`;
