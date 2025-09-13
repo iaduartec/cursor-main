@@ -8,7 +8,8 @@
     "start": "next start",
     "db:migrate": "tsx --require dotenv/config scripts/db/migrate-supabase.ts",
     "db:seed": "tsx scripts/db/seed-from-mdx.ts",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "intranet:e2e": "node ./scripts/run-intranet-e2e.js"
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",

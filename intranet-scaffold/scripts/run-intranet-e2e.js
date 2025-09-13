@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 const { spawn } = require('child_process');
-const fetch = require('node-fetch');
 const path = require('path');
+// Use global fetch (Node 18+/22). If not available, throw a helpful error.
+if (typeof fetch !== 'function') {
+  throw new Error('Global fetch is not available in this Node runtime. Please use Node 18+ or install a fetch polyfill.');
+}
 
 async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
   const start = Date.now();
