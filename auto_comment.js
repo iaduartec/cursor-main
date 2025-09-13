@@ -61,7 +61,7 @@ function* walk(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const e of entries) {
     if (e.isDirectory()) {
-      if (IGNORE_DIRS.has(e.name)) continue;
+      if (IGNORE_DIRS.has(e.name)) {continue;}
       yield* walk(path.join(dir, e.name));
     } else if (e.isFile()) {
       yield path.join(dir, e.name);
@@ -88,7 +88,7 @@ Contenido detectado basado en extensión y estructura básica.`;
     "Incluye: propósito, puntos clave, dependencias externas si son evidentes, y efectos/side-effects.",
     "No inventes; si no hay suficiente contexto, di que es limitado.",
     `Ruta: ${relPath}`,
-    "Contenido:\n```\n" + content.slice(0, 6000) + "\n```",
+    `Contenido:\n\`\`\`\n${  content.slice(0, 6000)  }\n\`\`\``,
   ].join("\n\n");
 
   const body = {
@@ -116,18 +116,18 @@ Contenido detectado basado en extensión y estructura básica.`;
 
 function wrapComment(ext, text) {
   const cfg = EXT_MAP[ext];
-  if (!cfg) return null;
+  if (!cfg) {return null;}
 
   if (ext === ".sh") {
     // Evita romper shebang; usaremos bloque a partir de la 2ª línea
     return (original) => {
       const lines = original.split("\n");
       const hasShebang = lines[0]?.startsWith("#!");
-      const header = hasShebang ? lines.shift() + "\n" : "";
+      const header = hasShebang ? `${lines.shift()  }\n` : "";
       const block =
-        `${cfg.blockStart} <<'${cfg.blockEnd}'\n` +
-        text +
-        `\n${cfg.blockEnd}\n`;
+        `${cfg.blockStart} <<'${cfg.blockEnd}'\n${ 
+        text 
+        }\n${cfg.blockEnd}\n`;
       return header + block + lines.join("\n");
     };
   }
@@ -137,11 +137,11 @@ function wrapComment(ext, text) {
     const lines = original.split("\n");
     const hasShebang = lines[0]?.startsWith("#!");
     if (hasShebang) {
-      const header = lines.shift() + "\n";
+      const header = `${lines.shift()  }\n`;
       const block = `${cfg.blockStart}\n${text}\n${cfg.blockEnd}\n`;
       return header + block + lines.join("\n");
     } else {
-      return `${cfg.blockStart}\n${text}\n${cfg.blockEnd}\n` + original;
+      return `${cfg.blockStart}\n${text}\n${cfg.blockEnd}\n${  original}`;
     }
   };
 }
@@ -151,20 +151,20 @@ async function main() {
   for (const abs of walk(ROOT)) {
     const rel = path.relative(ROOT, abs);
     const ext = path.extname(abs);
-    if (!EXT_MAP[ext]) continue;
-    if (SKIP_FILES.has(path.basename(abs))) continue;
+    if (!EXT_MAP[ext]) {continue;}
+    if (SKIP_FILES.has(path.basename(abs))) {continue;}
 
     const stat = fs.statSync(abs);
-    if (stat.size > MAX_BYTES) continue;
+    if (stat.size > MAX_BYTES) {continue;}
 
     const source = fs.readFileSync(abs, "utf8");
 
     // Evitar duplicar si ya tiene un bloque al principio
     const alreadyHasHeader = source.slice(0, 200).includes("Resumen generado");
-    if (alreadyHasHeader) continue;
+    if (alreadyHasHeader) {continue;}
 
-    const commentWrapper = wrapComment(ext, `Resumen generado automáticamente.\n\n${rel}\n\n${new Date().toISOString()}\n\n${"—".repeat(30)}\n` + (await summarize(source, rel)));
-    if (!commentWrapper) continue;
+    const commentWrapper = wrapComment(ext, `Resumen generado automáticamente.\n\n${rel}\n\n${new Date().toISOString()}\n\n${"—".repeat(30)}\n${  await summarize(source, rel)}`);
+    if (!commentWrapper) {continue;}
 
     const updated = commentWrapper(source);
 

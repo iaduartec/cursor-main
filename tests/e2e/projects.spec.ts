@@ -6,7 +6,7 @@ test('projects CRUD via API (in-memory)', async ({ request }) => {
   let ready;
   for (let i = 0; i < max; i++) {
     ready = await request.get('/api/_debug/ready');
-    if (ready.ok()) break;
+    if (ready.ok()) {break;}
     await new Promise((r) => setTimeout(r, 1000));
   }
   expect(ready && ready.ok()).toBeTruthy();

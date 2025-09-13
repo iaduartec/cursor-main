@@ -24,10 +24,10 @@ async function main() {
 
     let readySignal = false;
     child.stdout.on('data', (d) => {
-        process.stdout.write('[next] ' + d);
-        if (!readySignal && /Ready/.test(d)) readySignal = true;
+        process.stdout.write(`[next] ${  d}`);
+        if (!readySignal && /Ready/.test(d)) {readySignal = true;}
     });
-    child.stderr.on('data', (d) => process.stderr.write('[next-err] ' + d));
+    child.stderr.on('data', (d) => process.stderr.write(`[next-err] ${  d}`));
 
     // wait for Ready (configurable via INTRANET_E2E_TIMEOUT ms)
     const nextReadyTimeoutMs = parseInt(process.env.INTRANET_E2E_TIMEOUT || '40000', 10);
@@ -68,7 +68,7 @@ async function main() {
 
     // perform CRUD
     try {
-        const slug = 'e2e-' + Date.now();
+        const slug = `e2e-${  Date.now()}`;
         const payload = { slug, title: 'E2E simple test', description: 'auto', hero_image: '' };
         const p = await fetch('http://127.0.0.1:3000/api/projects', {
             method: 'POST', headers: { 'Content-Type': 'application/json', 'x-debug-token': env.INTRANET_DEBUG_TOKEN }, body: JSON.stringify(payload)
@@ -76,17 +76,17 @@ async function main() {
         console.log('post status', p.status);
         const created = await p.json().catch(() => null);
         console.log('post body', created);
-        if (p.status !== 201 || !created || !created.id) throw new Error('POST failed');
+        if (p.status !== 201 || !created || !created.id) {throw new Error('POST failed');}
 
         const list = await fetch('http://127.0.0.1:3000/api/projects');
         console.log('list status', list.status);
         const items = await list.json().catch(() => []);
         const found = (items || []).find((x) => x.slug === slug);
-        if (!found) throw new Error('Created item not found in list');
+        if (!found) {throw new Error('Created item not found in list');}
 
         const del = await fetch(`http://127.0.0.1:3000/api/projects/${created.id}`, { method: 'DELETE' });
         console.log('delete status', del.status);
-        if (!del.ok) throw new Error('Delete failed');
+        if (!del.ok) {throw new Error('Delete failed');}
 
         console.log('E2E simple flow succeeded');
         child.kill();
