@@ -35,38 +35,36 @@
                   - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e38] [cursor=pointer]:
                     - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
                     - img [ref=e39] [cursor=pointer]
-              - generic [ref=e47]:
-                - paragraph [ref=e48]: "Cannot find module 'C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\.next\\server\\middleware-manifest.json' Require stack: - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\server\\next-server.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\server\\dev\\next-dev-server.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\server\\next.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\server\\lib\\start-server.js"
-                - button "Show More" [ref=e50] [cursor=pointer]
-            - generic [ref=e53]:
-              - paragraph [ref=e54]:
+              - paragraph [ref=e48]: "ENOENT: no such file or directory, open 'C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\.next\\server\\app\\admin\\projects\\page.js'"
+            - generic [ref=e51]:
+              - paragraph [ref=e52]:
                 - text: Call Stack
-                - generic [ref=e55]: "21"
-              - button "Show 21 ignore-listed frame(s)" [ref=e56] [cursor=pointer]:
-                - text: Show 21 ignore-listed frame(s)
-                - img [ref=e57] [cursor=pointer]
-          - generic [ref=e59]:
-            - generic [ref=e60]: "1"
-            - generic [ref=e61]: "2"
-        - contentinfo [ref=e62]:
-          - region "Error feedback" [ref=e63]:
-            - paragraph [ref=e64]:
-              - link "Was this helpful?" [ref=e65] [cursor=pointer]:
+                - generic [ref=e53]: "26"
+              - button "Show 26 ignore-listed frame(s)" [ref=e54] [cursor=pointer]:
+                - text: Show 26 ignore-listed frame(s)
+                - img [ref=e55] [cursor=pointer]
+          - generic [ref=e57]:
+            - generic [ref=e58]: "1"
+            - generic [ref=e59]: "2"
+        - contentinfo [ref=e60]:
+          - region "Error feedback" [ref=e61]:
+            - paragraph [ref=e62]:
+              - link "Was this helpful?" [ref=e63] [cursor=pointer]:
                 - /url: https://nextjs.org/telemetry#error-feedback
-            - button "Mark as helpful" [ref=e66] [cursor=pointer]:
-              - img [ref=e67] [cursor=pointer]
-            - button "Mark as not helpful" [ref=e70] [cursor=pointer]:
-              - img [ref=e71] [cursor=pointer]
-    - generic [ref=e77] [cursor=pointer]:
-      - button "Open Next.js Dev Tools" [ref=e78] [cursor=pointer]:
-        - img [ref=e79] [cursor=pointer]
-      - generic [ref=e82] [cursor=pointer]:
-        - button "Open issues overlay" [ref=e83] [cursor=pointer]:
-          - generic [ref=e84] [cursor=pointer]:
-            - generic [ref=e85] [cursor=pointer]: "0"
-            - generic [ref=e86] [cursor=pointer]: "1"
-          - generic [ref=e87] [cursor=pointer]: Issue
-        - button "Collapse issues badge" [ref=e88] [cursor=pointer]:
-          - img [ref=e89] [cursor=pointer]
-  - alert [ref=e91]
+            - button "Mark as helpful" [ref=e64] [cursor=pointer]:
+              - img [ref=e65] [cursor=pointer]
+            - button "Mark as not helpful" [ref=e68] [cursor=pointer]:
+              - img [ref=e69] [cursor=pointer]
+    - generic [ref=e75] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=e76] [cursor=pointer]:
+        - img [ref=e77] [cursor=pointer]
+      - generic [ref=e80] [cursor=pointer]:
+        - button "Open issues overlay" [ref=e81] [cursor=pointer]:
+          - generic [ref=e82] [cursor=pointer]:
+            - generic [ref=e83] [cursor=pointer]: "0"
+            - generic [ref=e84] [cursor=pointer]: "1"
+          - generic [ref=e85] [cursor=pointer]: Issue
+        - button "Collapse issues badge" [ref=e86] [cursor=pointer]:
+          - img [ref=e87] [cursor=pointer]
+  - alert [ref=e89]
 ```
