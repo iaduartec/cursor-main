@@ -122,3 +122,31 @@ pnpm run db:seed
 
 Si quieres, puedo añadir un script `dev:detach` que arranque Next en background de forma controlada, o preparar un `Makefile`/`tasks.json` para VS Code con las tareas más comunes.
 
+## Panel de administración - Proyectos
+
+La intranet incluye una interfaz básica para gestionar proyectos en `/admin/projects`.
+
+Qué puedes hacer:
+- Listar proyectos (consumido desde `/api/projects`).
+- Crear un nuevo proyecto (formulario: slug + title) — POST `/api/projects`.
+- Editar un proyecto existente — PUT `/api/projects/:id`.
+- Borrar un proyecto — DELETE `/api/projects/:id`.
+
+Uso rápido:
+
+1. Abrir el panel en desarrollo:
+
+```pwsh
+# dentro de la carpeta intranet-scaffold
+pnpm dev
+# abrir en el navegador: http://localhost:3000/admin/projects
+```
+
+2. Crear: rellena `Slug` y `Title` y pulsa `Create`.
+3. Editar: pulsa `Edit` en un proyecto, ajusta campos y pulsa `Update`.
+4. Borrar: pulsa `Delete` en un proyecto y confirma.
+
+Notas:
+- El panel es un ejemplo mínimo; en producción deberías proteger la ruta con autenticación.
+- Si tu entorno no tiene DB, la API `/api/projects` usará la conexión a la base configurada; si prefieres poblar desde MDX, usa `pnpm run db:seed`.
+
