@@ -301,7 +301,7 @@ npm run test:coverage
 
 - **Netlify**: Compatible con Next.js
 - **AWS Amplify**: Soporte nativo
-- **Docker**: Configuración incluida
+- (Docker) configuración previa eliminada; usa Vercel, Netlify o tu proveedor preferido
 
 ### Variables de Entorno de Producción
 
