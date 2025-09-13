@@ -1,17 +1,7 @@
-/**
-Resumen generado automáticamente.
-
-scripts/db/migrate-supabase.ts
-
-2025-09-13T06:20:07.384Z
-
-——————————————————————————————
-Archivo .ts: migrate-supabase.ts
-Tamaño: 750 caracteres, 26 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
-// scripts/db/migrate-supabase.ts
+﻿/**
+ * scripts/db/migrate-supabase.ts
+ * Modified to be tolerant when no DATABASE_URL/POSTGRES_URL is present (CI/static deploys)
+ */
 import { config } from 'dotenv'
 config({ path: '.env.local' }) // 👈 fuerza .env.local
 import postgres from 'postgres'
@@ -21,7 +11,8 @@ import { migrate } from 'drizzle-orm/postgres-js/migrator'
 async function main() {
   const url = process.env.POSTGRES_URL || process.env.DATABASE_URL
   if (!url) {
-    throw new Error('Falta POSTGRES_URL o DATABASE_URL en .env.local')
+    console.warn('⚠️  No POSTGRES_URL or DATABASE_URL found in .env.local — skipping DB migrations')
+    return
   }
 
   const sql = postgres(url, { prepare: false })

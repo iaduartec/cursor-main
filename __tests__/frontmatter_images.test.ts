@@ -44,7 +44,8 @@ describe("Frontmatter images", () => {
         failures.push(file + ": missing image field in frontmatter");
         continue;
       }
-      const rel = image.replace(/^[/\\]/, ""); // strip leading slash or backslash
+      // strip single leading slash or backslash if present
+      const rel = image.startsWith('/') || image.startsWith('\\') ? image.slice(1) : image;
       const onDisk = path.join(publicDir, rel);
       if (!fs.existsSync(onDisk)) {
         failures.push(file + ": image path not found -> " + onDisk);
