@@ -1,50 +1,92 @@
 # Page snapshot
 
 ```yaml
-- generic [ref=e1]:
-  - generic [ref=e2]:
+- generic:
+  - generic [active]:
     - generic [ref=e3]:
-      - heading "Admin — Proyectos" [level=1] [ref=e4]
-      - generic [ref=e5]: E2E-friendly (no blocking confirms)
-    - generic [ref=e6]:
-      - generic [ref=e7]:
-        - generic [ref=e8]: Slug
-        - textbox "demo-slug" [ref=e9]
-      - generic [ref=e10]:
-        - generic [ref=e11]: Title
-        - textbox "Demo Project" [ref=e12]
-      - button "Crear proyecto" [ref=e14]
-    - generic [ref=e15]:
-      - generic [ref=e16]:
-        - heading "Listado de proyectos" [level=2] [ref=e17]
-        - generic [ref=e18]: 1 items
-      - generic [ref=e19]:
-        - generic [ref=e20]:
-          - textbox "Buscar" [ref=e21]
-          - generic [ref=e22]: Mostrando 1 de 1
-        - list [ref=e23]:
-          - listitem [ref=e24]:
-            - generic [ref=e25]:
-              - generic [ref=e26]: PW Test Title Updated 1757744115437
-              - generic [ref=e27]: pw-test-1757744115437
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - navigation [ref=e6]:
+            - button "previous" [disabled] [ref=e7]:
+              - img "previous" [ref=e8]
+            - generic [ref=e10]:
+              - generic [ref=e11]: 1/
+              - generic [ref=e12]: "1"
+            - button "next" [disabled] [ref=e13]:
+              - img "next" [ref=e14]
+          - img
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - img [ref=e18]
+            - generic "Latest available version is detected (15.5.3)." [ref=e20]: Next.js 15.5.3
+            - generic [ref=e21]: Webpack
+          - img
+      - dialog "Build Error" [ref=e23]:
+        - generic [ref=e26]:
+          - generic [ref=e27]:
             - generic [ref=e28]:
-              - button "Editar" [ref=e29]
-              - button "Borrar" [active] [ref=e30]
-        - generic [ref=e31]:
-          - generic [ref=e32]: Página 1 de 1
-          - generic [ref=e33]:
-            - button "Anterior" [disabled] [ref=e34]
-            - button "Siguiente" [disabled] [ref=e35]
-    - generic [ref=e37]:
-      - heading "Confirmar borrado" [level=3] [ref=e38]
-      - paragraph [ref=e39]:
-        - text: ¿Borrar
-        - strong [ref=e40]: PW Test Title Updated 1757744115437
-        - text: "?"
-      - generic [ref=e41]:
-        - button "Cancelar" [ref=e42]
-        - button "Borrar" [ref=e43]
-  - button "Open Next.js Dev Tools" [ref=e49] [cursor=pointer]:
-    - img [ref=e50] [cursor=pointer]
-  - alert [ref=e53]
+              - generic [ref=e30]: Build Error
+              - generic [ref=e31]:
+                - button "Copy Error Info" [ref=e32] [cursor=pointer]:
+                  - img [ref=e33] [cursor=pointer]
+                - link "Go to related documentation" [ref=e35] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/messages/module-not-found
+                  - img [ref=e36] [cursor=pointer]
+                - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e38] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
+                  - img [ref=e39] [cursor=pointer]
+            - paragraph [ref=e48]: "Module not found: Can't resolve '@/styles/globals.css'"
+          - generic [ref=e50]:
+            - generic [ref=e52]:
+              - img [ref=e54]
+              - generic [ref=e57]: ./pages/_app.tsx (1:1)
+              - button "Open in editor" [ref=e58] [cursor=pointer]:
+                - img [ref=e60] [cursor=pointer]
+            - generic [ref=e63]:
+              - generic [ref=e64]: Module not found
+              - generic [ref=e65]: ": Can't resolve '"
+              - generic [ref=e66]: "@/styles/globals.css"
+              - generic [ref=e67]: "'"
+              - generic [ref=e68]: ">"
+              - generic [ref=e69]: 1 |
+              - generic [ref=e71]: import
+              - generic [ref=e73]: "'@/styles/globals.css'"
+              - generic [ref=e74]: ;
+              - generic [ref=e76]: "|"
+              - generic [ref=e78]: ^
+              - generic [ref=e80]: 2 |
+              - generic [ref=e82]: import
+              - generic [ref=e83]: "type {"
+              - generic [ref=e84]: AppProps
+              - generic [ref=e85]: "}"
+              - generic [ref=e86]: from
+              - generic [ref=e88]: "'next/app'"
+              - generic [ref=e89]: ;
+              - generic [ref=e91]: 3 |
+              - generic [ref=e93]: 4 |
+              - generic [ref=e95]: export
+              - generic [ref=e97]: default
+              - generic [ref=e99]: function
+              - generic [ref=e101]: App
+              - generic [ref=e102]: "({"
+              - generic [ref=e103]: Component
+              - generic [ref=e104]: ","
+              - generic [ref=e105]: "pageProps }"
+              - generic [ref=e106]: ":"
+              - generic [ref=e108]: AppProps
+              - generic [ref=e109]: ") {"
+              - link "https://nextjs.org/docs/messages/module-not-found" [ref=e111] [cursor=pointer]:
+                - /url: https://nextjs.org/docs/messages/module-not-found
+        - generic [ref=e112]:
+          - generic [ref=e113]: "1"
+          - generic [ref=e114]: "2"
+    - generic [ref=e119] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=e120] [cursor=pointer]:
+        - img [ref=e121] [cursor=pointer]
+      - button "Open issues overlay" [ref=e125] [cursor=pointer]:
+        - generic [ref=e126] [cursor=pointer]:
+          - generic [ref=e127] [cursor=pointer]: "0"
+          - generic [ref=e128] [cursor=pointer]: "1"
+        - generic [ref=e129] [cursor=pointer]: Issue
+  - alert [ref=e130]
 ```
