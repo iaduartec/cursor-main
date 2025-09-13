@@ -21,72 +21,52 @@
             - generic "Latest available version is detected (15.5.3)." [ref=e20]: Next.js 15.5.3
             - generic [ref=e21]: Webpack
           - img
-      - dialog "Build Error" [ref=e23]:
-        - generic [ref=e26]:
-          - generic [ref=e27]:
-            - generic [ref=e28]:
-              - generic [ref=e30]: Build Error
-              - generic [ref=e31]:
-                - button "Copy Error Info" [ref=e32] [cursor=pointer]:
-                  - img [ref=e33] [cursor=pointer]
-                - link "Go to related documentation" [ref=e35] [cursor=pointer]:
-                  - /url: https://nextjs.org/docs/messages/module-not-found
-                  - img [ref=e36] [cursor=pointer]
-                - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e38] [cursor=pointer]:
-                  - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
-                  - img [ref=e39] [cursor=pointer]
-            - paragraph [ref=e48]: "Module not found: Can't resolve '@/styles/globals.css'"
-          - generic [ref=e50]:
-            - generic [ref=e52]:
-              - img [ref=e54]
-              - generic [ref=e57]: ./pages/_app.tsx (1:1)
-              - button "Open in editor" [ref=e58] [cursor=pointer]:
-                - img [ref=e60] [cursor=pointer]
-            - generic [ref=e63]:
-              - generic [ref=e64]: Module not found
-              - generic [ref=e65]: ": Can't resolve '"
-              - generic [ref=e66]: "@/styles/globals.css"
-              - generic [ref=e67]: "'"
-              - generic [ref=e68]: ">"
-              - generic [ref=e69]: 1 |
-              - generic [ref=e71]: import
-              - generic [ref=e73]: "'@/styles/globals.css'"
-              - generic [ref=e74]: ;
-              - generic [ref=e76]: "|"
-              - generic [ref=e78]: ^
-              - generic [ref=e80]: 2 |
-              - generic [ref=e82]: import
-              - generic [ref=e83]: "type {"
-              - generic [ref=e84]: AppProps
-              - generic [ref=e85]: "}"
-              - generic [ref=e86]: from
-              - generic [ref=e88]: "'next/app'"
-              - generic [ref=e89]: ;
-              - generic [ref=e91]: 3 |
-              - generic [ref=e93]: 4 |
-              - generic [ref=e95]: export
-              - generic [ref=e97]: default
-              - generic [ref=e99]: function
-              - generic [ref=e101]: App
-              - generic [ref=e102]: "({"
-              - generic [ref=e103]: Component
-              - generic [ref=e104]: ","
-              - generic [ref=e105]: "pageProps }"
-              - generic [ref=e106]: ":"
-              - generic [ref=e108]: AppProps
-              - generic [ref=e109]: ") {"
-              - link "https://nextjs.org/docs/messages/module-not-found" [ref=e111] [cursor=pointer]:
-                - /url: https://nextjs.org/docs/messages/module-not-found
-        - generic [ref=e112]:
-          - generic [ref=e113]: "1"
-          - generic [ref=e114]: "2"
-    - generic [ref=e119] [cursor=pointer]:
-      - button "Open Next.js Dev Tools" [ref=e120] [cursor=pointer]:
-        - img [ref=e121] [cursor=pointer]
-      - button "Open issues overlay" [ref=e125] [cursor=pointer]:
-        - generic [ref=e126] [cursor=pointer]:
-          - generic [ref=e127] [cursor=pointer]: "0"
-          - generic [ref=e128] [cursor=pointer]: "1"
-        - generic [ref=e129] [cursor=pointer]: Issue
-  - alert [ref=e130]
+      - generic [ref=e22]:
+        - dialog "Runtime Error" [ref=e23]:
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e28]:
+                - generic [ref=e30]: Runtime Error
+                - generic [ref=e31]:
+                  - button "Copy Error Info" [ref=e32] [cursor=pointer]:
+                    - img [ref=e33] [cursor=pointer]
+                  - button "No related documentation found" [disabled] [ref=e35]:
+                    - img [ref=e36]
+                  - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e38] [cursor=pointer]:
+                    - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
+                    - img [ref=e39] [cursor=pointer]
+              - generic [ref=e47]:
+                - paragraph [ref=e48]: "Cannot find module 'C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\.next\\server\\app\\admin\\projects\\page.js' Require stack: - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\server\\require.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\server\\load-components.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\build\\utils.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\build\\swc\\options.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\build\\swc\\index.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\build\\analysis\\parse-module.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\build\\analysis\\get-page-static-info.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\server\\lib\\router-server.js - C:\\Users\\kiri_\\cursor-main\\intranet-scaffold\\node_modules\\.pnpm\\next@15.5.3_@opentelemetry+api@1.9.0_@playwright+test@1.55.0_react-dom@18.3.1_react@18.3.1__react@18.3.1\\node_modules\\next\\dist\\server\\lib\\start-server.js"
+                - button "Show More" [ref=e50] [cursor=pointer]
+            - generic [ref=e53]:
+              - paragraph [ref=e54]:
+                - text: Call Stack
+                - generic [ref=e55]: "24"
+              - button "Show 24 ignore-listed frame(s)" [ref=e56] [cursor=pointer]:
+                - text: Show 24 ignore-listed frame(s)
+                - img [ref=e57] [cursor=pointer]
+          - generic [ref=e59]:
+            - generic [ref=e60]: "1"
+            - generic [ref=e61]: "2"
+        - contentinfo [ref=e62]:
+          - region "Error feedback" [ref=e63]:
+            - paragraph [ref=e64]:
+              - link "Was this helpful?" [ref=e65] [cursor=pointer]:
+                - /url: https://nextjs.org/telemetry#error-feedback
+            - button "Mark as helpful" [ref=e66] [cursor=pointer]:
+              - img [ref=e67] [cursor=pointer]
+            - button "Mark as not helpful" [ref=e70] [cursor=pointer]:
+              - img [ref=e71] [cursor=pointer]
+    - generic [ref=e77] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=e78] [cursor=pointer]:
+        - img [ref=e79] [cursor=pointer]
+      - generic [ref=e82] [cursor=pointer]:
+        - button "Open issues overlay" [ref=e83] [cursor=pointer]:
+          - generic [ref=e84] [cursor=pointer]:
+            - generic [ref=e85] [cursor=pointer]: "0"
+            - generic [ref=e86] [cursor=pointer]: "1"
+          - generic [ref=e87] [cursor=pointer]: Issue
+        - button "Collapse issues badge" [ref=e88] [cursor=pointer]:
+          - img [ref=e89] [cursor=pointer]
+  - alert [ref=e91]
 ```

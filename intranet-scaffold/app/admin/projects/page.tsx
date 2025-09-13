@@ -41,6 +41,12 @@ export default function AdminProjects() {
     setError(null);
     setLoading(true);
     try {
+      // simple client-side validation to avoid server 422
+      if (!slug || !title) {
+        setError('Slug and title are required');
+        setLoading(false);
+        return;
+      }
       const headers: Record<string,string> = { 'Content-Type': 'application/json' };
       if (clientToken) headers['x-debug-token'] = clientToken;
       if (editing) {
@@ -51,8 +57,16 @@ export default function AdminProjects() {
           setEditing(null);
           setTitle(''); setSlug('');
         } else {
-          const txt = await res.text();
-          throw new Error(txt || 'Failed to update');
+          // try to parse JSON error body first
+          let msg = 'Failed to update';
+          try {
+            const json = await res.json();
+            msg = json?.error || JSON.stringify(json) || msg;
+          } catch (_) {
+            const txt = await res.text();
+            msg = txt || msg;
+          }
+          throw new Error(msg);
         }
       } else {
         const res = await fetch('/api/projects', { method: 'POST', body: JSON.stringify({ slug, title }) , headers });
@@ -61,8 +75,15 @@ export default function AdminProjects() {
           setProjects(prev => [p, ...prev]);
           setTitle(''); setSlug('');
         } else {
-          const txt = await res.text();
-          throw new Error(txt || 'Failed to create');
+          let msg = 'Failed to create';
+          try {
+            const json = await res.json();
+            msg = json?.error || JSON.stringify(json) || msg;
+          } catch (_) {
+            const txt = await res.text();
+            msg = txt || msg;
+          }
+          throw new Error(msg);
         }
       }
     } catch (err: any) {
