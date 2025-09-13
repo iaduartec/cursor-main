@@ -22,6 +22,6 @@ export default defineConfig({
       INTRANET_DEBUG_TOKEN: 'test-token',
     },
     timeout: 60_000,
-    reuseExistingServer: false,
+    reuseExistingServer: true,
   },
 });
