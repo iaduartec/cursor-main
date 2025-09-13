@@ -11,7 +11,7 @@ Tamaño: 4021 caracteres, 103 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-#!/usr/bin/env node
+// (Shebang removed; script executed via `node` to avoid TS 18026 warning when analyzed)
 const { spawn } = require('child_process');
 const path = require('path');
 // Use global fetch (Node 18+/22). If not available, throw a helpful error.

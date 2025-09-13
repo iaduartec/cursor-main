@@ -11,7 +11,7 @@ Tamaño: 524 caracteres, 16 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-#!/usr/bin/env node
+// (Shebang removed; script invoked via `node` in package.json to avoid TS 18026 warning)
 const { spawn } = require('child_process');
 
 // Set env vars to reduce Contentlayer activity on Windows
