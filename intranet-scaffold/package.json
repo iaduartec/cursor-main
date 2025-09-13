@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "node scripts/dev-no-contentlayer.js",
+    "dev": "node scripts/dev-no-contentlayer.js",
     "build": "pnpm db:migrate && next build",
     "start": "next start",
     "db:migrate": "tsx --require dotenv/config scripts/db/migrate-supabase.ts",
     "db:seed": "tsx scripts/db/seed-from-mdx.ts",
     "type-check": "tsc --noEmit",
     "intranet:e2e": "node ./scripts/run-intranet-e2e.js",
-    "intranet:e2e:ui": "npx playwright test e2e/admin-ui.spec.ts --project=chromium --timeout=60000"
+    "intranet:e2e:ui": "npx playwright test --config=playwright.config.ts"
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
@@ -26,6 +26,7 @@
     "tsx": "^4.19.0"
   },
   "devDependencies": {
+    "@playwright/test": "1.55.0",
     "typescript": "^5.0.0"
   },
   "pnpm": {}
