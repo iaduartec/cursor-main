@@ -8,7 +8,7 @@ process.on('uncaughtException', (err) => {
 });
 
 (async ()=>{
-  const base = 'http://localhost:3000';
+  const base = 'http://127.0.0.1:3000';
   const hdr = { 'Content-Type': 'application/json' };
 
   // wait-for helper: try GET /api/projects until it responds or timeout
@@ -34,8 +34,8 @@ process.on('uncaughtException', (err) => {
   }
 
   try {
-    console.log('Waiting for server...');
-    await waitForServer(15000);
+  console.log('Waiting for server...');
+  await waitForServer(30000);
     console.log('CREATE');
     let res = await fetch(`${base}/api/projects`, { method: 'POST', headers: hdr, body: JSON.stringify({ slug: 'test-slug-copilot', title: 'Test Project from Copilot' }) });
     const created = await res.json();
