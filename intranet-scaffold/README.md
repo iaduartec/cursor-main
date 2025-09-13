@@ -42,6 +42,26 @@ CI: the root package.json exposes `intranet:e2e:ci` which runs the E2E in-memory
 pnpm intranet:e2e:ci
 ```
 
+Debug endpoints protection
+-------------------------
+
+The debug endpoints under `/api/_debug/*` are now protected. Two behaviors apply:
+
+ - If you set `INTRANET_DEBUG_TOKEN` in your environment (or in `.env.local`), requests must include the header `x-debug-token: <the-token>` to access the endpoints.
+ - If `INTRANET_DEBUG_TOKEN` is not set, the endpoints are only available when `NODE_ENV !== 'production'` (dev mode).
+
+Examples (PowerShell):
+
+```powershell
+# call readiness (tokenless, dev mode)
+Invoke-RestMethod http://127.0.0.1:3000/api/_debug/ready
+
+# call with token
+$headers = @{ 'x-debug-token' = 'mi-secret-token' }
+Invoke-RestMethod -Headers $headers http://127.0.0.1:3000/api/_debug/db
+```
+
+
 # Duartec Intranet (Scaffold)
 
 Scaffold inicial para la intranet: panel admin y CRUD para Servicios, Proyectos, Streams y Blog.
