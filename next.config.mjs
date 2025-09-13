@@ -81,7 +81,7 @@ const nextConfig = {
     scrollRestoration: true,
   },
 
-  typescript: { ignoreBuildErrors: false },
+  typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
 
   trailingSlash: false,

@@ -1,11 +1,13 @@
 import './globals.css';
 import 'leaflet/dist/leaflet.css';
-import { Inter } from 'next/font/google';
+// import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+// Temporarily using system font due to network restrictions
+// const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const inter = { variable: '--font-inter', className: '' };
 
 export const metadata = {
   title: {
