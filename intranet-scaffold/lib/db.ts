@@ -33,7 +33,7 @@ function createInMemoryAdapter() {
     let q = '';
     for (let i = 0; i < strings.length; i++) {
       q += strings[i];
-      if (i < values.length) q += values[i];
+      if (i < values.length) {q += values[i];}
     }
     const nq = q.replace(/\s+/g, ' ').trim().toLowerCase();
 
@@ -70,7 +70,7 @@ function createInMemoryAdapter() {
       const description = values[2];
       const hero_image = values[3];
       const idx = state.projects.findIndex(p => p.id === Number(id));
-      if (idx === -1) return [];
+      if (idx === -1) {return [];}
       const updated = Object.assign({}, state.projects[idx], {
         slug: slug ?? state.projects[idx].slug,
         title: title ?? state.projects[idx].title,
@@ -85,7 +85,7 @@ function createInMemoryAdapter() {
     if (nq.includes('delete from projects')) {
       const id = values[0];
       const idx = state.projects.findIndex(p => p.id === Number(id));
-      if (idx !== -1) state.projects.splice(idx, 1);
+      if (idx !== -1) {state.projects.splice(idx, 1);}
       return { ok: true };
     }
 
@@ -118,7 +118,7 @@ export function getDb() {
     }
 
     const dbUrl = process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.cxz_POSTGRES_URL;
-    if (!dbUrl) throw new Error("Database URL not configured. Set SUPABASE_DB_URL or DATABASE_URL.");
+    if (!dbUrl) {throw new Error("Database URL not configured. Set SUPABASE_DB_URL or DATABASE_URL.");}
     sql = postgres(dbUrl, { ssl: 'require' });
   }
   return sql;

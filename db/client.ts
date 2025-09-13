@@ -50,7 +50,7 @@ try {
     // eslint-disable-next-line @typescript-eslint/no-implied-eval
     const req = eval('require');
     supabasePg = req('@supabase/postgres-js');
-  } catch (err) {
+  } catch {
     // leave supabasePg undefined — we'll fallback below
   }
   if (supabasePg && typeof supabasePg.createClient === 'function') {
@@ -58,7 +58,7 @@ try {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     lowLevelClient = supabasePg.createClient(connectionString);
   }
-} catch (e) {
+} catch {
   // ignore; we'll fallback to the 'postgres' client below
 }
 

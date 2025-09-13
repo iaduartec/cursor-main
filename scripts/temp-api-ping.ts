@@ -17,7 +17,7 @@ import { sql } from '../db/client';
 const PORT = process.env.TEMP_API_PING_PORT ? Number(process.env.TEMP_API_PING_PORT) : 4000;
 
 const server = http.createServer(async (req, res) => {
-  if (!req.url) return res.end();
+  if (!req.url) {return res.end();}
   if (req.url === '/api/db-ping') {
     try {
       const result = await sql`select version()`;

@@ -29,8 +29,8 @@ async function main() {
   const candidate1 = path.resolve(process.cwd(), "intranet-scaffold", "drizzle", "migrations", "0001_init.sql");
   const candidate2 = path.resolve(process.cwd(), "drizzle", "migrations", "0001_init.sql");
   let migrationPath = "";
-  if (fs.existsSync(candidate1)) migrationPath = candidate1;
-  else if (fs.existsSync(candidate2)) migrationPath = candidate2;
+  if (fs.existsSync(candidate1)) {migrationPath = candidate1;}
+  else if (fs.existsSync(candidate2)) {migrationPath = candidate2;}
   else {
     console.error("Migration SQL not found. Checked:", candidate1, candidate2);
     process.exit(1);

@@ -21,7 +21,7 @@ function checkAdminAccess(req: Request) {
     return provided === token;
   }
   // if no token configured, allow in non-production
-  if (process.env.NODE_ENV === 'production') return false;
+  if (process.env.NODE_ENV === 'production') {return false;}
   return true;
 }
 
