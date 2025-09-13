@@ -21,12 +21,12 @@ async function main() {
 
     let ready = false;
     child.stdout.on('data', (d) => {
-      process.stdout.write('[next] ' + d);
+      process.stdout.write(`[next] ${  d}`);
       if (!ready && /Ready/.test(d)) {
         ready = true;
       }
     });
-    child.stderr.on('data', (d) => process.stderr.write('[next-err] ' + d));
+    child.stderr.on('data', (d) => process.stderr.write(`[next-err] ${  d}`));
 
     // Wait up to 40s for Ready
     const start = Date.now();
@@ -50,7 +50,7 @@ async function main() {
     }
 
     try {
-      const payload = { slug: 'spawn-test-' + Date.now(), title: 'Spawn test' };
+      const payload = { slug: `spawn-test-${  Date.now()}`, title: 'Spawn test' };
       const p = await fetch('http://127.0.0.1:3000/api/projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-debug-token': 'test-token-123' },
