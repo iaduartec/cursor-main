@@ -221,7 +221,11 @@ export async function getAllSlugs(): Promise<string[]> {
 
 export async function getPostsPage(params: PostsPageParams): Promise<{ items: PostRow[]; total: number; page: number; pageSize: number }>{
   const dbResult = await getPostsPageFromDb(params);
-  if (dbResult.items.length > 0 || hasDb()) {
+  // If DB returned items, use them. If there is no DB configured, use the DB result
+  // (empty) so callers keep the same shape. However, if a DB is configured but
+  // returns no items, we should fallback to Contentlayer (local MDX files) so
+  // the site still shows posts during development or when the DB is empty.
+  if (dbResult.items.length > 0 || !hasDb()) {
     return dbResult;
   }
   // Fallback emulate pagination with contentlayer
