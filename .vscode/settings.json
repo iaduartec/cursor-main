@@ -1,31 +1,18 @@
 {
-  // ==== GitHub Copilot ====
+  // Activa Copilot para todos los lenguajes
   "github.copilot.enable": {
-    "*": true, // Activa Copilot en todos los lenguajes
-    "plaintext": false, // Evita sugerencias en texto plano
-    "markdown": true, // Permite en Markdown (útil para docs)
-    "scminput": false // Desactiva en mensajes de commit
+    "*": true
   },
-  // ==== Sugerencias Inline ====
+  // Sugerencias inline sin barra, con colores
   "editor.inlineSuggest.fontFamily": "monospace",
   "editor.inlineSuggest.showToolbar": "never",
   "editor.inlineSuggest.syntaxHighlightingEnabled": true,
-  "editor.inlineSuggest.minShowDelay": 0,
-  "editor.inlineSuggest.opacity": 0.8, // Opacidad del texto fantasma
-  // ==== Copilot Next Edit Suggestions ====
+  // Next Edit Suggestions
   "github.copilot.nextEditSuggestions.enabled": true,
   "editor.inlineSuggest.edits.allowCodeShifting": "always",
   "editor.inlineSuggest.edits.renderSideBySide": "auto",
+  // Arreglos basados en diagnósticos (imports, etc.)
   "github.copilot.nextEditSuggestions.fixes": true,
-  // ==== Calidad de vida en el editor ====
-  "editor.quickSuggestions": {
-    "other": true,
-    "comments": false,
-    "strings": true
-  },
-  "editor.suggest.showInlineDetails": true,
-  "editor.suggest.showIcons": true,
-  "editor.suggestSelection": "recentlyUsed",
-  "editor.tabCompletion": "on",
-  "editor.suggest.preview": true
+  // Sin retraso: aparece al instante
+  "editor.inlineSuggest.minShowDelay": 0
 }
