@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -14,7 +18,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "types": ["jest", "node"],
+    "types": [
+      "vitest",
+      "node"
+    ],
     "plugins": [
       {
         "name": "next"
@@ -22,9 +29,25 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ]
     }
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", ".next", "scripts/**/*", "drizzle/**/*", "tests/**/*", "e2e/**/*", "playwright.config.ts", "intranet-scaffold/**/*"]
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "scripts/**/*",
+    "drizzle/**/*",
+    "tests/**/*",
+    "e2e/**/*",
+    "playwright.config.ts",
+    "intranet-scaffold/**/*"
+  ]
 }
