@@ -145,7 +145,7 @@ pnpm dev
 - Las migraciones se aplican con `scripts/db/migrate-supabase.ts` que busca el fichero SQL `drizzle/migrations/0001_init.sql`.
 - `scripts/db/seed-from-mdx.ts` y `scripts/db/seed-projects.ts` son utilidades para poblar la BBDD a partir del contenido de `content/`.
 
-### Levantar una base local con Docker
+### Levantar una base local (DESACTUALIZADO)
 
 
 Alternativa recomendada (script incluido):
@@ -278,4 +278,6 @@ pnpm dev
 - If you need a persistent local DB for development, change `drizzle.config.ts` to use a file-based sqlite URL (e.g. `file:./dev.sqlite`).
 
 If you want I can also add an npm script that automates start → wait → e2e → shutdown or integrate this into CI. Which would you prefer next?
+
+
 
