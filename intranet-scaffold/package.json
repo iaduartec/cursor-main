@@ -11,15 +11,17 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "next": "^15.5.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "drizzle-orm": "^0.44.5",
-    "postgres": "^3.4.7",
+    "@mdx-js/react": "^3.1.1",
     "@supabase/supabase-js": "^2.57.2",
     "contentlayer": "^0.3.4",
-    "gray-matter": "^4.0.3",
     "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.44.5",
+    "gray-matter": "^4.0.3",
+    "next": "^15.5.3",
+    "next-mdx-remote": "^5.0.0",
+    "postgres": "^3.4.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "tsx": "^4.19.0"
   },
   "devDependencies": {
