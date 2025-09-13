@@ -4,15 +4,13 @@
     "rootDir": "C:/Users/kiri_/cursor-main/tests/e2e",
     "forbidOnly": false,
     "fullyParallel": true,
-    "globalSetup": null,
-    "globalTeardown": null,
+    "globalSetup": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\global-setup.ts",
+    "globalTeardown": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\global-teardown.ts",
     "globalTimeout": 0,
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {
-      "actualWorkers": 1
-    },
+    "metadata": {},
     "preserveOutput": "always",
     "reporter": [
       [
@@ -42,9 +40,7 @@
         "outputDir": "C:/Users/kiri_/cursor-main/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
+        "metadata": {},
         "id": "chromium",
         "name": "chromium",
         "testDir": "C:/Users/kiri_/cursor-main/tests/e2e",
@@ -58,9 +54,7 @@
         "outputDir": "C:/Users/kiri_/cursor-main/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
+        "metadata": {},
         "id": "firefox",
         "name": "firefox",
         "testDir": "C:/Users/kiri_/cursor-main/tests/e2e",
@@ -74,9 +68,7 @@
         "outputDir": "C:/Users/kiri_/cursor-main/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
+        "metadata": {},
         "id": "webkit",
         "name": "webkit",
         "testDir": "C:/Users/kiri_/cursor-main/tests/e2e",
@@ -90,9 +82,7 @@
         "outputDir": "C:/Users/kiri_/cursor-main/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
+        "metadata": {},
         "id": "Mobile Chrome",
         "name": "Mobile Chrome",
         "testDir": "C:/Users/kiri_/cursor-main/tests/e2e",
@@ -106,9 +96,7 @@
         "outputDir": "C:/Users/kiri_/cursor-main/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
+        "metadata": {},
         "id": "Mobile Safari",
         "name": "Mobile Safari",
         "testDir": "C:/Users/kiri_/cursor-main/tests/e2e",
@@ -124,92 +112,37 @@
     "updateSourceMethod": "patch",
     "version": "1.55.0",
     "workers": 12,
-    "webServer": {
-      "command": "pnpm --filter ./intranet-scaffold... dev",
-      "url": "http://127.0.0.1:3000",
-      "reuseExistingServer": true,
-      "timeout": 180000,
-      "env": {
-        "USE_IN_MEMORY_DB": "1",
-        "SKIP_CONTENTLAYER": "1"
-      }
-    }
+    "webServer": null
   },
-  "suites": [
+  "suites": [],
+  "errors": [
     {
-      "title": "projects.spec.ts",
-      "file": "projects.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "projects CRUD via API (in-memory)",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 180000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 31887,
-                  "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:12:31",
-                    "location": {
-                      "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 31,
-                      "line": 12
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mPromise\u001b[39m((r) \u001b[33m=>\u001b[39m setTimeout(r\u001b[33m,\u001b[39m \u001b[35m1000\u001b[39m))\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m   expect(ready \u001b[33m&&\u001b[39m ready\u001b[33m.\u001b[39mok())\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m\n \u001b[90m 14 |\u001b[39m   \u001b[90m// Create a project\u001b[39m\n \u001b[90m 15 |\u001b[39m   \u001b[36mconst\u001b[39m slug \u001b[33m=\u001b[39m \u001b[32m`pwtest-${Date.now()}`\u001b[39m\u001b[33m;\u001b[39m\u001b[0m"
-                  },
-                  "errors": [
-                    {
-                      "location": {
-                        "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 31,
-                        "line": 12
-                      },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mPromise\u001b[39m((r) \u001b[33m=>\u001b[39m setTimeout(r\u001b[33m,\u001b[39m \u001b[35m1000\u001b[39m))\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m   expect(ready \u001b[33m&&\u001b[39m ready\u001b[33m.\u001b[39mok())\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m\n \u001b[90m 14 |\u001b[39m   \u001b[90m// Create a project\u001b[39m\n \u001b[90m 15 |\u001b[39m   \u001b[36mconst\u001b[39m slug \u001b[33m=\u001b[39m \u001b[32m`pwtest-${Date.now()}`\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:12:31\u001b[22m"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2025-09-13T11:04:39.085Z",
-                  "annotations": [],
-                  "attachments": [],
-                  "errorLocation": {
-                    "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 31,
-                    "line": 12
-                  }
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "3a2958b1096c5d9a8472-e3d09e1429780ea4830f",
-          "file": "projects.spec.ts",
-          "line": 3,
-          "column": 1
-        }
-      ]
+      "message": "ReferenceError: __dirname is not defined in ES module scope",
+      "stack": "ReferenceError: __dirname is not defined in ES module scope\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\global-setup.ts:5:26",
+      "location": {
+        "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\global-setup.ts",
+        "column": 26,
+        "line": 5
+      },
+      "snippet": "\u001b[90m   at \u001b[39mglobal-setup.ts:5\n\n\u001b[0m \u001b[90m 3 |\u001b[39m \u001b[36mimport\u001b[39m fs \u001b[36mfrom\u001b[39m \u001b[32m'fs'\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 4 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m \u001b[36mconst\u001b[39m cwd \u001b[33m=\u001b[39m path\u001b[33m.\u001b[39mresolve(__dirname\u001b[33m,\u001b[39m \u001b[32m'../../intranet-scaffold'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m\n \u001b[90m 7 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m globalSetup() {\n \u001b[90m 8 |\u001b[39m   \u001b[90m// Ensure tests run against the in-memory DB by default\u001b[39m\u001b[0m"
+    },
+    {
+      "message": "ReferenceError: __dirname is not defined",
+      "stack": "ReferenceError: __dirname is not defined\n    at globalTeardown (C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\global-teardown.ts:5:32)",
+      "location": {
+        "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\global-teardown.ts",
+        "column": 32,
+        "line": 5
+      },
+      "snippet": "\u001b[90m   at \u001b[39mglobal-teardown.ts:5\n\n\u001b[0m \u001b[90m 3 |\u001b[39m\n \u001b[90m 4 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m globalTeardown() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m   \u001b[36mconst\u001b[39m pidPath \u001b[33m=\u001b[39m path\u001b[33m.\u001b[39mresolve(__dirname\u001b[33m,\u001b[39m \u001b[32m'../../intranet-scaffold/.playwright-dev.pid'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m   \u001b[36mtry\u001b[39m {\n \u001b[90m 7 |\u001b[39m     \u001b[36mif\u001b[39m (fs\u001b[33m.\u001b[39mexistsSync(pidPath)) {\n \u001b[90m 8 |\u001b[39m       \u001b[36mconst\u001b[39m pid \u001b[33m=\u001b[39m \u001b[33mNumber\u001b[39m(fs\u001b[33m.\u001b[39mreadFileSync(pidPath\u001b[33m,\u001b[39m \u001b[32m'utf8'\u001b[39m))\u001b[33m;\u001b[39m\u001b[0m"
     }
   ],
-  "errors": [],
   "stats": {
-    "startTime": "2025-09-13T11:04:31.668Z",
-    "duration": 39529.202,
+    "startTime": "2025-09-13T11:11:09.064Z",
+    "duration": 61.348000000000184,
     "expected": 0,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 0,
     "flaky": 0
   }
 }
