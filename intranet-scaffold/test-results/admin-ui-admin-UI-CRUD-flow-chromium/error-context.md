@@ -1,0 +1,50 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Admin — Proyectos" [level=1] [ref=e4]
+      - generic [ref=e5]: E2E-friendly (no blocking confirms)
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: Slug
+        - textbox "demo-slug" [ref=e9]
+      - generic [ref=e10]:
+        - generic [ref=e11]: Title
+        - textbox "Demo Project" [ref=e12]
+      - button "Crear proyecto" [ref=e14]
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - heading "Listado de proyectos" [level=2] [ref=e17]
+        - generic [ref=e18]: 1 items
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - textbox "Buscar" [ref=e21]
+          - generic [ref=e22]: Mostrando 1 de 1
+        - list [ref=e23]:
+          - listitem [ref=e24]:
+            - generic [ref=e25]:
+              - generic [ref=e26]: PW Test Title Updated
+              - generic [ref=e27]: pw-test-slug
+            - generic [ref=e28]:
+              - button "Editar" [ref=e29]
+              - button "Borrar" [active] [ref=e30]
+        - generic [ref=e31]:
+          - generic [ref=e32]: Página 1 de 1
+          - generic [ref=e33]:
+            - button "Anterior" [disabled] [ref=e34]
+            - button "Siguiente" [disabled] [ref=e35]
+    - generic [ref=e37]:
+      - heading "Confirmar borrado" [level=3] [ref=e38]
+      - paragraph [ref=e39]:
+        - text: ¿Borrar
+        - strong [ref=e40]: PW Test Title Updated
+        - text: "?"
+      - generic [ref=e41]:
+        - button "Cancelar" [ref=e42]
+        - button "Borrar" [ref=e43]
+  - button "Open Next.js Dev Tools" [ref=e49] [cursor=pointer]:
+    - img [ref=e50] [cursor=pointer]
+  - alert [ref=e53]
+```
