@@ -39,13 +39,6 @@ process.on('uncaughtException', (err) => {
   try {
   console.log('Waiting for server...');
   await waitForServer(30000);
-    // Debug: print server-exposed env and in-memory DB state (if available)
-    try {
-      const envDebug = await fetch(`${base}/api/_debug/env`).then(r => r.json()).catch(e => ({ error: e.message }));
-      console.log('DEBUG /api/_debug/env ->', JSON.stringify(envDebug, null, 2));
-      const dbDebug = await fetch(`${base}/api/_debug/db`).then(r => r.json()).catch(e => ({ error: e.message }));
-      console.log('DEBUG /api/_debug/db ->', JSON.stringify(dbDebug, null, 2));
-    } catch (e) { console.log('Debug endpoints error', e && e.message ? e.message : e); }
     console.log('CREATE');
     let res = await fetch(`${base}/api/projects`, { method: 'POST', headers: hdr, body: JSON.stringify({ slug: 'test-slug-copilot', title: 'Test Project from Copilot' }) });
     const created = await res.json();

@@ -28,6 +28,20 @@ pnpm intranet:e2e
 ```
 
 If something hangs or you get `Server did not respond within timeout`, try removing the `.next` directory and re-running; the orchestrator already attempts a recovery by removing `.next` and restarting.
+
+Readiness and CI
+-----------------
+
+There is a lightweight readiness endpoint useful for CI and orchestration:
+
+ - GET /api/_debug/ready — returns { ready: true } when the in-memory adapter is available or when a simple DB check (SELECT 1) succeeds against a real DB.
+
+CI: the root package.json exposes `intranet:e2e:ci` which runs the E2E in-memory mode under `CI=1`:
+
+```bash
+pnpm intranet:e2e:ci
+```
+
 # Duartec Intranet (Scaffold)
 
 Scaffold inicial para la intranet: panel admin y CRUD para Servicios, Proyectos, Streams y Blog.
