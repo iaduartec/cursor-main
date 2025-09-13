@@ -18,7 +18,7 @@ export async function GET() {
     const rows = await sql`SELECT id, slug, title, description, hero_image, created_at FROM projects ORDER BY created_at DESC`;
     return NextResponse.json(rows);
   } catch (err: any) {
-      console.error('API /api/projects GET error:', err);
+    console.error('API /api/projects GET error:', err);
     // If DB is not configured (common in local dev), return empty list instead of 500
     if (err && /Database URL not configured/i.test(err.message)) {
       return NextResponse.json([]);
