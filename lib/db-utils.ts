@@ -2,15 +2,24 @@ import { db } from '../db/client';
 
 // Detecta si hay configuración de base de datos disponible en el entorno.
 // Soporta nombres estándar y también los prefijos `cxz_` usados en .env local.
-export const hasDb = () => Boolean(
-  process.env.SUPABASE_DB_URL ||
-  process.env.POSTGRES_URL ||
-  process.env.POSTGRES_URL_NON_POOLING ||
-  process.env.DATABASE_URL ||
-  process.env.cxz_POSTGRES_URL ||
-  process.env.cxz_POSTGRES_PRISMA_URL ||
-  process.env.cxz_POSTGRES_URL_NON_POOLING
-);
+export const hasDb = () => {
+  // In development, avoid attempting DB connections unless explicitly enabled.
+  // Set ENABLE_DB_IN_DEV=1 or FORCE_DB_CONNECT=1 to override in local dev.
+  const isProd = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1' || Boolean(process.env.VERCEL_ENV);
+  if (!isProd && process.env.ENABLE_DB_IN_DEV !== '1' && process.env.FORCE_DB_CONNECT !== '1') {
+    return false;
+  }
+
+  return Boolean(
+    process.env.SUPABASE_DB_URL ||
+    process.env.POSTGRES_URL ||
+    process.env.POSTGRES_URL_NON_POOLING ||
+    process.env.DATABASE_URL ||
+    process.env.cxz_POSTGRES_URL ||
+    process.env.cxz_POSTGRES_PRISMA_URL ||
+    process.env.cxz_POSTGRES_URL_NON_POOLING
+  );
+};
 
 export async function withDb<T>(
   operation: () => Promise<T>,
