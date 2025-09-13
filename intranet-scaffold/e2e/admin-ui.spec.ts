@@ -1,26 +1,33 @@
 import { test, expect } from '@playwright/test';
 
 test('admin UI CRUD flow', async ({ page }) => {
-  // assume dev server running at http://localhost:3000 and token exposed
-  await page.goto('http://localhost:3000/admin/projects');
+  const uid = Date.now();
+  const slug = `pw-test-${uid}`;
+  const title = `PW Test Title ${uid}`;
+  const titleUpdated = `PW Test Title Updated ${uid}`;
+
+  await page.goto('/admin/projects');
 
   // create
-  await page.fill('input[placeholder="demo-slug"]', 'pw-test-slug');
-  await page.fill('input[placeholder="Demo Project"]', 'PW Test Title');
+  await page.fill('input[placeholder="demo-slug"]', slug);
+  await page.fill('input[placeholder="Demo Project"]', title);
   await page.click('button:has-text("Crear proyecto")');
-  await page.waitForSelector('text=PW Test Title');
-  const created = await page.locator('text=PW Test Title').first().innerText();
-  expect(created).toContain('PW Test Title');
+  await page.waitForSelector(`text=${title}`);
+  await expect(page.locator(`text=${title}`)).toHaveCount(1);
 
-  // edit
-  await page.click('button:has-text("Editar")');
-  await page.fill('input[placeholder="Demo Project"]', 'PW Test Title Updated');
+  // edit: find the item's Edit button within the row that contains the title
+  const row = page.locator(`:scope >> text=${title}`).first().locator('..').first();
+  await row.locator('button:has-text("Editar")').click();
+  await page.fill('input[placeholder="Demo Project"]', titleUpdated);
   await page.click('button:has-text("Actualizar proyecto")');
-  await page.waitForSelector('text=PW Test Title Updated');
+  await page.waitForSelector(`text=${titleUpdated}`);
+  await expect(page.locator(`text=${titleUpdated}`)).toHaveCount(1);
 
-  // delete via modal
-  await page.click('button:has-text("Borrar")');
-  await page.click('button:has-text("Borrar")', { strict: false });
-  await page.waitForTimeout(500); // small wait for deletion
-  await expect(page.locator('text=PW Test Title Updated')).toHaveCount(0);
+  // delete via modal: click Delete for the specific row, then confirm in modal
+  const rowUpdated = page.locator(`:scope >> text=${titleUpdated}`).first().locator('..').first();
+  await rowUpdated.locator('button:has-text("Borrar")').click();
+  // Click the modal's Borrar button (the modal contains the text 'Confirmar borrado')
+  await page.click('button:has-text("Borrar")', { timeout: 5000 });
+  // confirm the item is gone
+  await expect(page.locator(`text=${titleUpdated}`)).toHaveCount(0);
 });
