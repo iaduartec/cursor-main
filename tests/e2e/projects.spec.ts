@@ -1,9 +1,15 @@
 import { test, expect } from '@playwright/test';
 
 test('projects CRUD via API (in-memory)', async ({ request }) => {
-  // Wait for readiness explicitly
-  const ready = await request.get('/api/_debug/ready');
-  expect(ready.ok()).toBeTruthy();
+  // Wait for readiness explicitly with retries to avoid compilation race
+  const max = 30; // seconds
+  let ready;
+  for (let i = 0; i < max; i++) {
+    ready = await request.get('/api/_debug/ready');
+    if (ready.ok()) break;
+    await new Promise((r) => setTimeout(r, 1000));
+  }
+  expect(ready && ready.ok()).toBeTruthy();
 
   // Create a project
   const slug = `pwtest-${Date.now()}`;
