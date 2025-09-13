@@ -46,6 +46,7 @@
     "intranet:e2e": "pnpm --filter ./intranet-scaffold... intranet:e2e",
     "intranet:e2e:memory": "pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/run-intranet-e2e-root.ps1",
     "intranet:e2e:ci": "cross-env CI=1 pnpm intranet:e2e:memory",
+    "intranet:e2e:ui": "pnpm --filter ./intranet-scaffold... intranet:e2e:ui",
     "demo:crud": "node intranet-scaffold/scripts/demo-crud.js"
     },
     "dependencies": {

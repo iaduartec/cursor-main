@@ -10,6 +10,11 @@ export default function AdminProjects() {
   const [editing, setEditing] = useState<Project | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [perPage] = useState(10);
+  const [showConfirm, setShowConfirm] = useState<{ id: number; title: string } | null>(null);
+  const [clientToken, setClientToken] = useState<string | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -22,13 +27,24 @@ export default function AdminProjects() {
     return () => { mounted = false; };
   }, []);
 
+  useEffect(() => {
+    // read injected token (only present in non-production dev/test)
+    try {
+      // @ts-ignore
+      const t = typeof window !== 'undefined' ? (window as any).__INTRANET_DEBUG_TOKEN : null;
+      if (t) setClientToken(String(t));
+    } catch (e) {}
+  }, []);
+
   async function createOrUpdateProject(e: any) {
     e.preventDefault();
     setError(null);
     setLoading(true);
     try {
+      const headers: Record<string,string> = { 'Content-Type': 'application/json' };
+      if (clientToken) headers['x-debug-token'] = clientToken;
       if (editing) {
-        const res = await fetch(`/api/projects/${editing.id}`, { method: 'PUT', body: JSON.stringify({ slug, title }), headers: { 'Content-Type': 'application/json' }});
+        const res = await fetch(`/api/projects/${editing.id}`, { method: 'PUT', body: JSON.stringify({ slug, title }), headers });
         if (res.ok) {
           const updated = await res.json();
           setProjects(prev => prev.map(p => p.id === updated.id ? updated : p));
@@ -39,7 +55,7 @@ export default function AdminProjects() {
           throw new Error(txt || 'Failed to update');
         }
       } else {
-        const res = await fetch('/api/projects', { method: 'POST', body: JSON.stringify({ slug, title }) , headers: { 'Content-Type': 'application/json' }});
+        const res = await fetch('/api/projects', { method: 'POST', body: JSON.stringify({ slug, title }) , headers });
         if (res.ok) {
           const p = await res.json();
           setProjects(prev => [p, ...prev]);
@@ -67,7 +83,9 @@ export default function AdminProjects() {
     setError(null);
     setLoading(true);
     try {
-      const res = await fetch(`/api/projects/${id}`, { method: 'DELETE' });
+      const headers: Record<string,string> = {};
+      if (clientToken) headers['x-debug-token'] = clientToken;
+      const res = await fetch(`/api/projects/${id}`, { method: 'DELETE', headers });
       if (res.ok) {
         setProjects(prev => prev.filter(p => p.id !== id));
       } else {
@@ -81,6 +99,12 @@ export default function AdminProjects() {
       setLoading(false);
     }
   }
+
+  // search + pagination derived list
+  const filtered = projects.filter(p => p.title.toLowerCase().includes(search.toLowerCase()) || p.slug.toLowerCase().includes(search.toLowerCase()));
+  const total = filtered.length;
+  const pages = Math.max(1, Math.ceil(total / perPage));
+  const visible = filtered.slice((page-1)*perPage, page*perPage);
 
   function cancelEdit() {
     setEditing(null);
@@ -125,28 +149,57 @@ export default function AdminProjects() {
           <div className="text-sm text-gray-500">{projects.length} items</div>
         </div>
 
-        {loading && projects.length === 0 ? (
-          <div className="p-8 text-center text-gray-500">Cargando proyectos…</div>
-        ) : (
-          <ul>
-            {projects.map(p => (
-              <li key={p.id} className="p-4 flex items-center justify-between">
-                <div>
-                  <div className="font-semibold">{p.title}</div>
-                  <div className="text-sm text-gray-500">{p.slug}</div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button onClick={() => startEdit(p)} className="px-3 py-1 border rounded text-sm" disabled={loading}>Editar</button>
-                  <button onClick={() => deleteProject(p.id)} className="px-3 py-1 bg-red-600 text-white rounded text-sm" disabled={loading}>Borrar</button>
-                </div>
-              </li>
-            ))}
-            {projects.length === 0 && (
-              <li className="p-6 text-center text-gray-500">No hay proyectos — crea uno arriba.</li>
-            )}
-          </ul>
-        )}
+        <div className="p-4">
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <input aria-label="Buscar" placeholder="Buscar por título o slug" value={search} onChange={e => { setSearch(e.target.value); setPage(1); }} className="border rounded px-3 py-2 w-full max-w-md" />
+            <div className="text-sm text-gray-500">Mostrando {visible.length} de {total}</div>
+          </div>
+
+          {loading && projects.length === 0 ? (
+            <div className="p-8 text-center text-gray-500">Cargando proyectos…</div>
+          ) : (
+            <ul>
+              {visible.map(p => (
+                <li key={p.id} className="p-4 flex items-center justify-between">
+                  <div>
+                    <div className="font-semibold">{p.title}</div>
+                    <div className="text-sm text-gray-500">{p.slug}</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button onClick={() => startEdit(p)} className="px-3 py-1 border rounded text-sm" disabled={loading}>Editar</button>
+                    <button onClick={() => setShowConfirm({ id: p.id, title: p.title })} className="px-3 py-1 bg-red-600 text-white rounded text-sm" disabled={loading}>Borrar</button>
+                  </div>
+                </li>
+              ))}
+              {total === 0 && (
+                <li className="p-6 text-center text-gray-500">No hay proyectos — crea uno arriba.</li>
+              )}
+            </ul>
+          )}
+
+          <div className="p-4 flex items-center justify-between">
+            <div className="text-sm text-gray-500">Página {page} de {pages}</div>
+            <div className="flex items-center gap-2">
+              <button onClick={() => setPage(p => Math.max(1, p-1))} className="px-3 py-1 border rounded" disabled={page === 1}>Anterior</button>
+              <button onClick={() => setPage(p => Math.min(pages, p+1))} className="px-3 py-1 border rounded" disabled={page === pages}>Siguiente</button>
+            </div>
+          </div>
+        </div>
       </section>
+
+      {/* Non-blocking confirm modal */}
+      {showConfirm ? (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40">
+          <div className="bg-white p-6 rounded shadow max-w-md w-full">
+            <h3 className="text-lg font-medium mb-2">Confirmar borrado</h3>
+            <p className="mb-4">¿Borrar <strong>{showConfirm.title}</strong>?</p>
+            <div className="flex justify-end gap-2">
+              <button onClick={() => setShowConfirm(null)} className="px-3 py-2 border rounded">Cancelar</button>
+              <button onClick={async () => { const id = showConfirm!.id; setShowConfirm(null); await deleteProject(id); }} className="px-3 py-2 bg-red-600 text-white rounded">Borrar</button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
