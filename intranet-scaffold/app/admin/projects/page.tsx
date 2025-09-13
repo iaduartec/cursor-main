@@ -30,7 +30,6 @@ export default function AdminProjects() {
   useEffect(() => {
     // read injected token (only present in non-production dev/test)
     try {
-      // @ts-expect-error - Accessing debug token from window in dev/test environment
       const t = typeof window !== 'undefined' ? (window as any).__INTRANET_DEBUG_TOKEN : null;
       if (t) {setClientToken(String(t));}
     } catch {

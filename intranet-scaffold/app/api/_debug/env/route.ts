@@ -27,7 +27,7 @@ export async function GET(req: Request) {
       }
       const sql = getDb();
       hasState = !!(sql && (sql as any).__state);
-    } catch (e) {
+    } catch {
       // getDb may throw if DB not configured; still return env info
     }
     return NextResponse.json({ USE_IN_MEMORY_DB: envVal ?? null, usingInMemory, hasState });
