@@ -28,5 +28,6 @@ function runIfExists(file, args = []) {
 }
 
 runIfExists("scripts/fix_text_encoding.js");
-runIfExists("scripts/clean_contentlayer.js");
+// Use the CommonJS variant to avoid ESM parsing errors when node treats .js as ESM
+runIfExists("scripts/clean_contentlayer.cjs");
 runIfExists("scripts/generate_missing_images_runner.js", ["--only-missing", "--min-bytes", "1000"]);
