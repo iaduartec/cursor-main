@@ -86,14 +86,15 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
+  /* Run your local dev server before starting the tests. Use the intranet-scaffold dev to keep the scaffold isolated. */
   webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3000',
+    command: 'pnpm --filter ./intranet-scaffold... dev',
+    url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
+    timeout: 180 * 1000,
+    env: {
+      USE_IN_MEMORY_DB: '1',
+      SKIP_CONTENTLAYER: '1',
+    },
   },
-
-  /* Global setup and teardown */
-  globalSetup: require.resolve('./tests/e2e/global-setup.ts'),
-  globalTeardown: require.resolve('./tests/e2e/global-teardown.ts'),
 });

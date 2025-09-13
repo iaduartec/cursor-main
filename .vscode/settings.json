@@ -1,11 +1,22 @@
 {
-  "github.copilot.enable": true,
-  "editor.inlineSuggest.showToolbar": false,
-  "editor.inlineSuggest.syntaxHighlightingEnabled": true,
-  "editor.inlineSuggest.minShowDelay": 0,
-  "github.copilot.nextEditSuggestions.enabled": true,
-  "github.copilot.nextEditSuggestions.fixes": true,
-  "editor.inlineSuggest.edits.allowCodeShifting": true,
-  "editor.inlineSuggest.edits.renderSideBySide": "auto"
-}
+  // Activa Copilot para todos los lenguajes
+  "github.copilot.enable": { "*": true },
 
+  // Sugerencias inline sin barra, con colores
+  "editor.inlineSuggest.fontFamily": "monospace",
+  "editor.inlineSuggest.showToolbar": "never",
+  "editor.inlineSuggest.syntaxHighlightingEnabled": true,
+
+  // Next Edit Suggestions
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "editor.inlineSuggest.edits.allowCodeShifting": "always",
+
+  // [Inferencia] En Cursor/VS Code, usa "horizontal" para ver propuestas grandes en paralelo cuando se pueda
+    "editor.inlineSuggest.edits.renderSideBySide": "auto",
+
+  // Arreglos basados en diagnósticos (imports, etc.)
+  "github.copilot.nextEditSuggestions.fixes": true,
+
+  // Sin retraso: aparece al instante
+  "editor.inlineSuggest.minShowDelay": 0
+}
