@@ -1,3 +1,16 @@
+"""
+Resumen generado automáticamente.
+
+tools/dev/debug_images.py
+
+2025-09-13T06:20:07.388Z
+
+——————————————————————————————
+Archivo .py: debug_images.py
+Tamaño: 5219 caracteres, 140 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
 #!/usr/bin/env python3
 """
 Script de diagnóstico para probar la generación de imágenes.

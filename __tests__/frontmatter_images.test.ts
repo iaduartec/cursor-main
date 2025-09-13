@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+__tests__/frontmatter_images.test.ts
+
+2025-09-13T06:20:07.358Z
+
+——————————————————————————————
+Archivo .ts: frontmatter_images.test.ts
+Tamaño: 2019 caracteres, 64 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import fs from 'fs';
 import path from 'path';
 

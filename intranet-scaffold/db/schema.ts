@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/db/schema.ts
+
+2025-09-13T06:20:07.375Z
+
+——————————————————————————————
+Archivo .ts: schema.ts
+Tamaño: 1386 caracteres, 37 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { pgTable, serial, text, varchar, timestamp } from "drizzle-orm/pg-core";
 
 export const projects = pgTable("projects", {

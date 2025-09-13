@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/layout.tsx
+
+2025-09-13T06:20:07.363Z
+
+——————————————————————————————
+Archivo .tsx: layout.tsx
+Tamaño: 3466 caracteres, 103 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import './globals.css';
 import 'leaflet/dist/leaflet.css';
 import { Inter } from 'next/font/google';

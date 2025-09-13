@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/scripts/run-intranet-e2e.js
+
+2025-09-13T06:20:07.377Z
+
+——————————————————————————————
+Archivo .js: run-intranet-e2e.js
+Tamaño: 4021 caracteres, 103 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 #!/usr/bin/env node
 const { spawn } = require('child_process');
 const path = require('path');

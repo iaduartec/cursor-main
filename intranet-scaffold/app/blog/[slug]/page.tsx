@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/app/blog/[slug]/page.tsx
+
+2025-09-13T06:20:07.374Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 625 caracteres, 22 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 // Ensure the correct path and file exist for mdx.ts and getPost export
 import { getPostSerialized } from '../../../lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc';

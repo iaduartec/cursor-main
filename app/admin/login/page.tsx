@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/admin/login/page.tsx
+
+2025-09-13T06:20:07.359Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 637 caracteres, 12 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 export default function AdminLoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-6">

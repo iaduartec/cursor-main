@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+fix_blog_slugs.js
+
+2025-09-13T06:20:07.371Z
+
+——————————————————————————————
+Archivo .js: fix_blog_slugs.js
+Tamaño: 3591 caracteres, 105 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 #!/usr/bin/env node
 /*
  * This utility scans every MDX file under the `content/blog` directory

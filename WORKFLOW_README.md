@@ -1,3 +1,16 @@
+<!--
+Resumen generado automáticamente.
+
+WORKFLOW_README.md
+
+2025-09-13T06:20:07.358Z
+
+——————————————————————————————
+Archivo .md: WORKFLOW_README.md
+Tamaño: 3939 caracteres, 146 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
 # Workflow de Generación de Artículos
 
 Este workflow automatiza la generación de artículos para el blog usando IA (OpenAI y Gemini).

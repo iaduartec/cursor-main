@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/app/admin/projects/page.tsx
+
+2025-09-13T06:20:07.373Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 9183 caracteres, 206 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 "use client";
 import { useEffect, useState } from "react";
 

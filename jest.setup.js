@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+jest.setup.js
+
+2025-09-13T06:20:07.378Z
+
+——————————————————————————————
+Archivo .js: jest.setup.js
+Tamaño: 2023 caracteres, 98 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import '@testing-library/jest-dom';
 
 // Mock de Next.js router

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+drizzle/neon-http.ts
+
+2025-09-13T06:20:07.371Z
+
+——————————————————————————————
+Archivo .ts: neon-http.ts
+Tamaño: 506 caracteres, 19 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 // scripts/db/migrate-neon.ts
 import 'dotenv/config'
 import { neon } from '@neondatabase/serverless'

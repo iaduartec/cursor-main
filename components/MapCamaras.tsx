@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+components/MapCamaras.tsx
+
+2025-09-13T06:20:07.368Z
+
+——————————————————————————————
+Archivo .tsx: MapCamaras.tsx
+Tamaño: 3471 caracteres, 98 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 "use client";
 
 import { useEffect, useState } from 'react';

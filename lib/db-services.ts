@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+lib/db-services.ts
+
+2025-09-13T06:20:07.379Z
+
+——————————————————————————————
+Archivo .ts: db-services.ts
+Tamaño: 1753 caracteres, 71 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 // lib/db-services.ts
 import { db } from '../db/client';
 import { services } from '../db/schema';

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+scripts/generate_missing_images_runner.js
+
+2025-09-13T06:20:07.386Z
+
+——————————————————————————————
+Archivo .js: generate_missing_images_runner.js
+Tamaño: 7314 caracteres, 203 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 #!/usr/bin/env node
 // Lightweight wrapper to run the Python placeholder generator when available.
 // On environments without Python (e.g., Vercel build), it logs a warning and exits 0.

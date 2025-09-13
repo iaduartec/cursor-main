@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+scripts/db/seed-streams.ts
+
+2025-09-13T06:20:07.385Z
+
+——————————————————————————————
+Archivo .ts: seed-streams.ts
+Tamaño: 2110 caracteres, 68 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import fs from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';

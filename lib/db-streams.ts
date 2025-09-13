@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+lib/db-streams.ts
+
+2025-09-13T06:20:07.380Z
+
+——————————————————————————————
+Archivo .ts: db-streams.ts
+Tamaño: 2069 caracteres, 68 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { db } from '../db/client';
 import { streams } from '../db/schema';
 import { asc } from 'drizzle-orm';

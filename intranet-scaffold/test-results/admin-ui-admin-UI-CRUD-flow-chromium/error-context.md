@@ -1,3 +1,16 @@
+<!--
+Resumen generado automáticamente.
+
+intranet-scaffold/test-results/admin-ui-admin-UI-CRUD-flow-chromium/error-context.md
+
+2025-09-13T06:20:07.378Z
+
+——————————————————————————————
+Archivo .md: error-context.md
+Tamaño: 1733 caracteres, 50 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
 # Page snapshot
 
 ```yaml

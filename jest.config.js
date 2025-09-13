@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+jest.config.js
+
+2025-09-13T06:20:07.378Z
+
+——————————————————————————————
+Archivo .js: jest.config.js
+Tamaño: 1242 caracteres, 48 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({

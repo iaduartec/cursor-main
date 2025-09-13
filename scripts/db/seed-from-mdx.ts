@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+scripts/db/seed-from-mdx.ts
+
+2025-09-13T06:20:07.385Z
+
+——————————————————————————————
+Archivo .ts: seed-from-mdx.ts
+Tamaño: 2288 caracteres, 85 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import fs from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';

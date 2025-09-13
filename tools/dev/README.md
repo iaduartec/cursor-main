@@ -1,3 +1,16 @@
+<!--
+Resumen generado automáticamente.
+
+tools/dev/README.md
+
+2025-09-13T06:20:07.388Z
+
+——————————————————————————————
+Archivo .md: README.md
+Tamaño: 616 caracteres, 10 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
 Estos scripts son utilidades locales para pruebas y diagnóstico. No se usan en los workflows de GitHub ni en el despliegue.
 
 - `test_workflow.py`: Verifica dependencias y estructura local

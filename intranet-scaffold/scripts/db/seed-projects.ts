@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/scripts/db/seed-projects.ts
+
+2025-09-13T06:20:07.377Z
+
+——————————————————————————————
+Archivo .ts: seed-projects.ts
+Tamaño: 1947 caracteres, 61 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 #!/usr/bin/env tsx
 
 import "dotenv/config";

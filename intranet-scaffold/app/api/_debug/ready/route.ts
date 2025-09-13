@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+intranet-scaffold/app/api/_debug/ready/route.ts
+
+2025-09-13T06:20:07.373Z
+
+——————————————————————————————
+Archivo .ts: route.ts
+Tamaño: 1021 caracteres, 34 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { NextResponse } from 'next/server';
 import { getDb } from '../../../../lib/db';
 

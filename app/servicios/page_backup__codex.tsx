@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/servicios/page_backup__codex.tsx
+
+2025-09-13T06:20:07.366Z
+
+——————————————————————————————
+Archivo .tsx: page_backup__codex.tsx
+Tamaño: 4638 caracteres, 118 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Monitor, Camera, Volume2, Zap, ArrowRight } from 'lucide-react';

@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/api/db-ping/route.ts
+
+2025-09-13T06:20:07.360Z
+
+——————————————————————————————
+Archivo .ts: route.ts
+Tamaño: 506 caracteres, 14 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { sql } from '../../../db/client'

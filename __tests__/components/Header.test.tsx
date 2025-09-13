@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+__tests__/components/Header.test.tsx
+
+2025-09-13T06:20:07.358Z
+
+——————————————————————————————
+Archivo .tsx: Header.test.tsx
+Tamaño: 832 caracteres, 28 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import { render, screen } from '@testing-library/react';
 import Header from '../../components/header';
 

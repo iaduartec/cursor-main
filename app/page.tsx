@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/page.tsx
+
+2025-09-13T06:20:07.364Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 16337 caracteres, 341 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { Monitor, Camera, Volume2, Zap, Shield, Clock, Users, MapPin, Phone } from 'lucide-react';

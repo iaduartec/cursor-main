@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+db/schema.ts
+
+2025-09-13T06:20:07.370Z
+
+——————————————————————————————
+Archivo .ts: schema.ts
+Tamaño: 3596 caracteres, 106 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import {
   boolean,
   index,

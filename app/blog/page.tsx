@@ -1,3 +1,16 @@
+/**
+Resumen generado automáticamente.
+
+app/blog/page.tsx
+
+2025-09-13T06:20:07.362Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 3551 caracteres, 87 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
 import Breadcrumb from '../../components/Breadcrumb';
 import BlogListClient, { type BlogCard } from './BlogListClient';
 import { getPostsPage, getDistinctCategories } from '../../lib/db-posts';
