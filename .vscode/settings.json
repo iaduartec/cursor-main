@@ -1,7 +1,10 @@
 {
   // Activa Copilot para todos los lenguajes
   "github.copilot.enable": {
-    "*": true
+    "*": true,
+    "plaintext": true,
+    "markdown": false,
+    "scminput": false
   },
   // Sugerencias inline sin barra, con colores
   "editor.inlineSuggest.fontFamily": "monospace",
