@@ -32,3 +32,5 @@ runIfExists("scripts/fix_text_encoding.js");
 runIfExists("scripts/clean_contentlayer.cjs");
 // Force Node fallback to avoid running local Python that may have incompatible headers
 runIfExists("scripts/generate_missing_images_runner.cjs", ["--only-missing", "--min-bytes", "1000", "--skip-python"]);
+// Validate MDX frontmatter early to fail fast on Vercel builds
+runIfExists("scripts/validate-mdx-frontmatter.cjs");
