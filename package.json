@@ -36,7 +36,7 @@
     "images:ai:force": "python tools/generate_ai_images.py --force --style photographic --accent blue",
     "gen:article": "python tools/generate_article.py --topic",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "tsx --require dotenv/config scripts/db/migrate-supabase.ts",
+    "db:migrate": "node scripts/db/migrate-simple.js",
     "db:seed": "tsx scripts/db/seed-from-mdx.ts",
     "db:seed:projects": "tsx scripts/db/seed-projects.ts",
     "db:seed:services": "tsx scripts/db/seed-services.ts",
