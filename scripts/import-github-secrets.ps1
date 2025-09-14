@@ -83,7 +83,7 @@ foreach ($secretName in $toUpload.Keys) {
         }
         Write-Host "$secretName subido correctamente."
     } catch {
-        Write-Error "Excepción subiendo $secretName: $($_.Exception.Message)"
+        Write-Error ("Excepción subiendo {0}: {1}" -f $secretName, $_.Exception.Message)
         exit 1
     }
 }
