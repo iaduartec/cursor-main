@@ -1,9 +1,6 @@
 {
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm build",
-  "nodeVersion": "22.x",
-  "framework": "nextjs",
-  "frameworkVersion": "15.x",
   "regions": [
     "fra1"
   ],
