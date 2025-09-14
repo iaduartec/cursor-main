@@ -62,4 +62,4 @@ pnpm install
 ## 📄 Licencia
 
 Este proyecto está bajo licencia **MIT**.
-Consulta el archivo [LICENSE](./LICENSE) para más detalles. 
+Consulta el archivo [LICENSE](./LICENSE) para más detalles. # Vercel deployment trigger
