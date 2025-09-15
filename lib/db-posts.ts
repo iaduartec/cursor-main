@@ -5,6 +5,7 @@
  * available, but falls back to Contentlayer (`allBlogs`) for local/dev and
  * static generation scenarios.
  */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { db } from '../db/client';
 import { posts } from '../db/schema';
 import { and, asc, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';
