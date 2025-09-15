@@ -18,7 +18,9 @@ import postgres from "postgres";
 let sql: any = null;
 
 declare global {
-  var __inMemorySqlAdapter: any | undefined;
+  // Preserve adapter instance across HMR; use let to satisfy ESLint (no-var)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let __inMemorySqlAdapter: any | undefined;
 }
 
 function createInMemoryAdapter() {
