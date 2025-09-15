@@ -37,7 +37,9 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
   const { slug } = await params;
   const patch = await req.json().catch(() => ({}));
   const now = new Date();
-  const res = await db
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const typedDb = db as any;
+  const res = await typedDb
     .update(streams)
     .set({
       name: patch.name,
@@ -58,7 +60,9 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   if (!isAuthorized(req)) {return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });}
   const { slug } = await params;
-  await db.delete(streams).where(eq(streams.slug, slug));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const typedDb = db as any;
+  await typedDb.delete(streams).where(eq(streams.slug, slug));
   revalidateTag('streams');
   return NextResponse.json({ ok: true });
 }

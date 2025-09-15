@@ -17,7 +17,9 @@ import { services } from '../../../db/schema';
 import { eq, asc } from 'drizzle-orm';
 
 async function getItems() {
-  return await db.select().from(services).orderBy(asc(services.title));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const typedDb = db as any;
+  return await typedDb.select().from(services).orderBy(asc(services.title));
 }
 
 export default async function AdminServicesPage() {
@@ -32,7 +34,9 @@ export default async function AdminServicesPage() {
     const areaServed = String(formData.get('areaServed') || '');
     const hasOfferCatalog = formData.get('hasOfferCatalog') ? true : false;
     const now = new Date();
-    await db
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const typedDb = db as any;
+    await typedDb
       .insert(services)
       .values({ slug, title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, createdAt: now, updatedAt: now })
       .onConflictDoUpdate({ target: services.slug, set: { title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, updatedAt: now } });
@@ -43,7 +47,9 @@ export default async function AdminServicesPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-    await db.delete(services).where(eq(services.slug, slug));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const typedDb = db as any;
+  await typedDb.delete(services).where(eq(services.slug, slug));
     revalidateTag('services');
     revalidatePath('/admin/services');
   }

@@ -31,7 +31,9 @@ export default async function AdminStreamsPage() {
     const description = String(formData.get('description') || '');
     const isLive = formData.get('isLive') ? true : false;
     const now = new Date();
-    await db
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const typedDb = db as any;
+    await typedDb
       .insert(streams)
       .values({
         slug,
@@ -57,7 +59,9 @@ export default async function AdminStreamsPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-    await db.delete(streams).where(eq(streams.slug, slug));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const typedDb = db as any;
+    await typedDb.delete(streams).where(eq(streams.slug, slug));
     revalidateTag('streams');
     revalidatePath('/streaming');
     revalidatePath('/admin/streams');

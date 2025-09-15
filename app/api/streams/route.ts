@@ -39,7 +39,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Missing slug or name' }, { status: 400 });
   }
   const now = new Date();
-  await db
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const typedDb = db as any;
+  await typedDb
     .insert(streams)
     .values({
       slug,
