@@ -22,7 +22,7 @@ import * as schema from './schema';
 // 2. POSTGRES_URL (used in this repo scripts)
 // 3. DATABASE_URL (generic)
 // Support legacy/local env var names (some environments use cxz_ prefix).
-const connectionString =
+const rawConnectionString =
   process.env.SUPABASE_DB_URL ||
   process.env.POSTGRES_URL ||
   process.env.DATABASE_URL ||
@@ -32,43 +32,77 @@ const connectionString =
   process.env.cxz_POSTGRES_URL_NON_POOLING ||
   '';
 
+// Trim accidental surrounding quotes which sometimes appear when env vars
+// are injected with quotes (e.g. '"postgres://..."'). This prevents
+// URL parsing errors like ERR_INVALID_URL.
+const connectionString = rawConnectionString.replace(/^"|"$/g, '').trim();
+
+const skipDb = process.env.USE_IN_MEMORY_DB === '1' || process.env.SKIP_DB === '1';
+
 if (!connectionString) {
   throw new Error(
     'No se encontró URL de base de datos. Define SUPABASE_DB_URL, POSTGRES_URL o DATABASE_URL en las variables de entorno.'
   );
 }
 
-// Try to use @supabase/postgres-js for serverless-friendly connections when available.
-// If it's not installed or fails, fall back to the 'postgres' client.
-let lowLevelClient: any;
-try {
-  // Dynamic require so code still works if package not installed at runtime.
-  // Use eval('require') to avoid static analysis by bundlers that would
-  // attempt to resolve the module during client-side bundling.
-  let supabasePg: any;
+// If the environment requested skipping DB access, export a lightweight
+// fake `db` that behaves like a thenable query returning empty results.
+// This avoids runtime errors during static generation while keeping the
+// import surface stable.
+let client: unknown = undefined;
+let dbExport: unknown = undefined;
+if (!skipDb) {
+  // Try to use @supabase/postgres-js for serverless-friendly connections when available.
+  // If it's not installed or fails, fall back to the 'postgres' client.
+  let lowLevelClient: unknown;
   try {
-     
+    // Dynamic require so code still works if package not installed at runtime.
     const req = eval('require');
-    supabasePg = req('@supabase/postgres-js');
+    const supabasePg = (() => {
+      try { return req('@supabase/postgres-js'); } catch { return undefined; }
+    })();
+    if (supabasePg && typeof supabasePg.createClient === 'function') {
+      lowLevelClient = supabasePg.createClient(connectionString);
+    }
   } catch {
-    // leave supabasePg undefined — we'll fallback below
+    // ignore; we'll fallback to the 'postgres' client below
   }
-  if (supabasePg && typeof supabasePg.createClient === 'function') {
-    // The package exposes createClient(connectionString) in most versions
-     
-    lowLevelClient = supabasePg.createClient(connectionString);
+
+  // If @supabase/postgres-js was available and created a client, use it.
+  // Otherwise create a client with the 'postgres' package.
+  client = lowLevelClient ?? postgres(connectionString, { prepare: false });
+
+  dbExport = drizzle(client, { schema });
+} else {
+  // Minimal thenable query used as a chainable stub. When awaited it resolves
+  // to an empty array. This covers typical usage patterns like
+  // `await db.select(...).from(...).where(...);` and count queries.
+  class FakeQuery {
+    from() { return this; }
+    where() { return this; }
+    orderBy() { return this; }
+    limit() { return this; }
+    offset() { return this; }
+    groupBy() { return this; }
+    then(onfulfilled?: (value: unknown) => unknown): Promise<unknown> {
+      if (typeof onfulfilled === 'function') {
+        try { onfulfilled([] as unknown); } catch (_) { /* ignore */ }
+      }
+      return Promise.resolve([] as unknown);
+    }
   }
-} catch {
-  // ignore; we'll fallback to the 'postgres' client below
+
+  const fakeDb = {
+    select: () => new FakeQuery(),
+    // count-like queries expect an array with value field; return empty array.
+  };
+
+  dbExport = fakeDb;
 }
 
-// If @supabase/postgres-js was available and created a client, use it.
-// Otherwise create a client with the 'postgres' package.
-const client = lowLevelClient ?? postgres(connectionString, { prepare: false });
+export const db = dbExport;
 
-export const db = drizzle(client, { schema });
-
-// Export the low-level sql client too
+// Export the low-level sql client too (may be undefined when DB is skipped)
 export { client as sql };
 
 // Supabase client (JS) for auth/storage/other APIs. Prefer using
