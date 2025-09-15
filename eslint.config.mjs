@@ -196,4 +196,12 @@ export default [
       'no-console': 'off',
     },
   },
+  // Allow generated/type and tooling files to use `any` and console for scripts
+  {
+    files: ['tools/**/*.{js,ts,tsx}', 'types/**/*.{ts,d.ts}'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-console': 'off',
+    },
+  },
 ];
