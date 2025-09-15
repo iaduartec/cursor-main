@@ -16,7 +16,7 @@ let withContentlayer = (c) => c;
 if (process.env.SKIP_CONTENTLAYER !== '1') {
   try {
     // Dynamically import to avoid side-effects when skipping
-    // eslint-disable-next-line global-require
+     
     ({ withContentlayer } = await import('next-contentlayer'));
   } catch (err) {
     // If import fails, fall back to identity function

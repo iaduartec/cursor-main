@@ -128,7 +128,9 @@ export default [
   // Node-oriented JS files (config and scripts)
   {
     files: [
-      'scripts/**/*.js',
+      // scripts in various extensions and the intranet scaffold folder
+      'scripts/**/*.{js,cjs,mjs,ts}',
+      'intranet-scaffold/**/*.{js,cjs,mjs,ts}',
       'next.config.*',
       'tailwind.config.js',
       'jest.config.js',

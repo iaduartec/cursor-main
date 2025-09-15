@@ -50,11 +50,11 @@ export async function withDb<T>(
     const causeCode = (error && (error as any).code) ? (error as any).code : undefined;
     const isNetworkError = /getaddrinfo|ENOTFOUND|EAI_AGAIN/i.test(msg) || causeCode === 'ENOTFOUND';
     if (isNetworkError) {
-      // eslint-disable-next-line no-console
+       
       console.warn('Database unavailable (network error). Falling back to contentlayer. Message:', msg);
     } else {
       // Para otros errores, imprimir un mensaje más corto pero sin el stack completo.
-      // eslint-disable-next-line no-console
+       
       console.warn('Database operation failed, falling back to contentlayer. Message:', msg);
     }
     return fallback;
