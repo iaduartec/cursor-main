@@ -24,9 +24,14 @@ const server = http.createServer(async (req, res) => {
       const version = result && result.rows && result.rows[0] ? result.rows[0].version || result.rows[0] : result.rows[0];
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ ok: true, version }));
-    } catch (err: any) {
+    } catch (err) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: false, error: String(err.message || err) }));
+      // err may be unknown shape; coerce to string safely
+      const maybeErr = err as unknown;
+      const msg = typeof maybeErr === 'object' && maybeErr !== null && 'message' in (maybeErr as Record<string, unknown>)
+        ? String((maybeErr as Record<string, unknown>).message)
+        : String(maybeErr);
+      res.end(JSON.stringify({ ok: false, error: String(msg) }));
     }
     return;
   }

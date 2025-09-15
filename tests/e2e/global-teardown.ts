@@ -11,15 +11,15 @@ export default async function globalTeardown() {
     if (fs.existsSync(pidPath)) {
       const pid = Number(fs.readFileSync(pidPath, 'utf8'));
       if (pid) {
-        try {
-          process.kill(pid);
-        } catch (e) {
-          // ignore
-        }
+          try {
+            process.kill(pid);
+          } catch {
+            // ignore
+          }
       }
       fs.unlinkSync(pidPath);
     }
-  } catch (e) {
+  } catch {
     // ignore
   }
 }

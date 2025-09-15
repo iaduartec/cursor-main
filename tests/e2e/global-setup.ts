@@ -45,6 +45,9 @@ export default async function globalSetup() {
 
   // Wait up to 40s for Next to emit Ready
   const start = Date.now();
+  // The readiness flag is flipped from an async stdout handler; disable this
+  // rule because static analysis cannot see cross-callback mutations.
+  // eslint-disable-next-line no-unmodified-loop-condition
   while (!signaledReady && Date.now() - start < 40000) {
     await new Promise((r) => setTimeout(r, 500));
   }
@@ -60,7 +63,7 @@ export default async function globalSetup() {
       const res = await fetch('http://127.0.0.1:3000/api/_debug/ready');
       if (res.ok) {return;}
       // if not ok, continue polling
-    } catch (_e) {
+    } catch {
       // ignore network errors while server finalizes
     }
     await new Promise((r) => setTimeout(r, 1000));

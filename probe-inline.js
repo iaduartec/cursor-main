@@ -1,4 +1,8 @@
 const fs = require('fs');
+/* eslint-disable @typescript-eslint/no-require-imports, no-undef, no-console, no-empty, @typescript-eslint/no-unused-vars */
+const fs = require('fs');
+const path = require('path');
+const { spawnSync } = require('child_process');
 const postgres = require('postgres');
 function mask(u){try{ const s = u.split('@'); if(s.length>1){ const left = s[0]; const parts = left.split('//'); const creds = parts[1].split(':'); return `${parts[0]}//${creds[0]}:*****@${s[1]}`; } return u }catch(e){return u}}
 const raw = fs.readFileSync('.env','utf8');
