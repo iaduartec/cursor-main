@@ -13,7 +13,7 @@ Contenido detectado basado en extensión y estructura básica.
 */
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db } from '../../../db/client';
-import { projects } from '../../../db/schema';
+import { projects, type NewProject } from '../../../db/schema';
 import { eq, desc } from 'drizzle-orm';
 
 async function getItems() {
@@ -40,8 +40,8 @@ export default async function AdminProjectsPage() {
     const typedDb = db as any;
     await typedDb
       .insert(projects)
-  .values({ slug, title, description: description || null, content: content || null, image: image || null, category: category || null, date: date ? new Date(String(date)) : null, createdAt: now, updatedAt: now })
-  .onConflictDoUpdate({ target: projects.slug, set: { title, description: description || null, content: content || null, image: image || null, category: category || null, date: date ? new Date(String(date)) : null, updatedAt: now } });
+  .values({ slug, title, description: description || null, content: content || null, image: image || null, category: category || null, date: date ? new Date(String(date)) : null, createdAt: now, updatedAt: now } as NewProject)
+  .onConflictDoUpdate({ target: projects.slug, set: { title, description: description || null, content: content || null, image: image || null, category: category || null, date: date ? new Date(String(date)) : null, updatedAt: now } as Partial<NewProject> });
     revalidateTag('projects');
     revalidatePath('/admin/projects');
   }
