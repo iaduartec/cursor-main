@@ -33,6 +33,8 @@ async function main() {
     const nextReadyTimeoutMs = parseInt(process.env.INTRANET_E2E_TIMEOUT || '40000', 10);
     console.log('Waiting up to', nextReadyTimeoutMs, 'ms for Next dev Ready signal');
     const start = Date.now();
+    // readySignal is intentionally mutated from the stdout handler above
+    // eslint-disable-next-line no-unmodified-loop-condition
     while (!readySignal && Date.now() - start < nextReadyTimeoutMs) {
         await new Promise((r) => setTimeout(r, 500));
     }
@@ -46,6 +48,7 @@ async function main() {
     // Number of seconds to poll readiness (INTRANET_E2E_POLL_MAX)
     const maxPoll = parseInt(process.env.INTRANET_E2E_POLL_MAX || '60', 10);
     let ok = false;
+    // eslint-disable-next-line no-unmodified-loop-condition
     for (let i = 0; i < maxPoll; i++) {
         try {
             console.log('poll attempt', i + 1, 'of', maxPoll);
@@ -54,8 +57,8 @@ async function main() {
             const txt = await r.text();
             console.log('ready body', txt.substring(0, 2000));
             if (r.ok) { ok = true; break; }
-        } catch (e) {
-            // ignore
+        } catch (_e) {
+            // ignore network errors while polling readiness
         }
         await new Promise((r) => setTimeout(r, 1000));
     }
