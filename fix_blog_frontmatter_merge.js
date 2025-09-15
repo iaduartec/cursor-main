@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
 Resumen generado automáticamente.
 
@@ -11,7 +12,6 @@ Tamaño: 6247 caracteres, 173 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-#!/usr/bin/env node
 /*
  * Fix MDX front matter and slugs robustly.
  *

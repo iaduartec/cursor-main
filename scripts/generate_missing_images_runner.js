@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
 Resumen generado automáticamente.
 
@@ -11,7 +12,6 @@ Tamaño: 7314 caracteres, 203 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-#!/usr/bin/env node
 // Lightweight wrapper to run the Python placeholder generator when available.
 // On environments without Python (e.g., Vercel build), it logs a warning and exits 0.
 

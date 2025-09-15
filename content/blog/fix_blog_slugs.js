@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
 Resumen generado automáticamente.
 
@@ -11,7 +12,6 @@ Tamaño: 3591 caracteres, 105 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-#!/usr/bin/env node
 /*
  * This utility scans every MDX file under the `content/blog` directory
  * and ensures that the `slug` field in the front‑matter contains only
