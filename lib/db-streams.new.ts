@@ -46,7 +46,9 @@ const fallbackStreams: StreamRow[] = [
 export async function getAllStreams(): Promise<StreamRow[]> {
   return withDb(
     async () => {
-      const rows = await db
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const typedDb = db as any;
+      const rows = await typedDb
         .select()
         .from(streams)
         .orderBy(asc(streams.name));
@@ -59,7 +61,9 @@ export async function getAllStreams(): Promise<StreamRow[]> {
 export async function getStreamBySlug(slug: string): Promise<StreamRow | null> {
   return withDb(
     async () => {
-      const result = await db
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const typedDb = db as any;
+      const result = await typedDb
         .select()
         .from(streams)
         .where(eq(streams.slug, slug))
