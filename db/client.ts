@@ -103,14 +103,15 @@ if (!skipDb) {
   dbExport = fakeDb;
 }
 
-// The exports are typed as `any` intentionally to avoid cascading type errors
-// during the incremental migration. We'll tighten these later.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const db: any = dbExport;
+// The exports use `unknown` for now to avoid cascading type errors while
+// we incrementally migrate to precise Drizzle/Supabase types. Replacing
+// `any` with `unknown` keeps the import surface safe and removes the
+// `no-explicit-any` lint noise; we'll tighten these to concrete types
+// in a follow-up PR once callers are updated.
+export const db: unknown = dbExport;
 
 // Export the low-level sql client too (may be undefined when DB is skipped)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const sql: any = client as any;
+export const sql: unknown = client as unknown;
 
 // Supabase client (JS) for auth/storage/other APIs. Prefer using
 // SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_ANON_KEY) set in Vercel.
