@@ -182,12 +182,12 @@ export default function AdminProjects() {
 
       <form onSubmit={createOrUpdateProject} className="bg-white p-4 rounded shadow mb-6 grid grid-cols-1 md:grid-cols-3 gap-3">
         <div className="md:col-span-1">
-          <label className="block text-sm font-medium text-gray-700">Slug</label>
-          <input className="mt-1 block w-full border rounded px-3 py-2" placeholder="demo-slug" value={slug} onChange={e => setSlug(e.target.value)} disabled={loading} />
+          <label htmlFor="project-slug" className="block text-sm font-medium text-gray-700">Slug</label>
+          <input id="project-slug" className="mt-1 block w-full border rounded px-3 py-2" placeholder="demo-slug" value={slug} onChange={e => setSlug(e.target.value)} disabled={loading} />
         </div>
         <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">Title</label>
-          <input className="mt-1 block w-full border rounded px-3 py-2" placeholder="Demo Project" value={title} onChange={e => setTitle(e.target.value)} disabled={loading} />
+          <label htmlFor="project-title" className="block text-sm font-medium text-gray-700">Title</label>
+          <input id="project-title" className="mt-1 block w-full border rounded px-3 py-2" placeholder="Demo Project" value={title} onChange={e => setTitle(e.target.value)} disabled={loading} />
         </div>
 
         <div className="md:col-span-3 flex items-center gap-3 mt-2">

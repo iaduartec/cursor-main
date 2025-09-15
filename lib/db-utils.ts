@@ -47,15 +47,9 @@ export async function withDb<T>(
   } catch (error) {
     // Si es un error de red común (host no resuelto, DNS, etc.), emitir un warning conciso.
     const err = error as unknown;
-    function hasMessage(e: unknown): e is { message: string } {
-      return !!e && typeof (e as any).message === 'string';
-    }
-    function hasCode(e: unknown): e is { code: string } {
-      return !!e && typeof (e as any).code === 'string';
-    }
-
-    const msg = hasMessage(err) ? err.message : String(err);
-    const causeCode = hasCode(err) ? err.code : undefined;
+    const r = err as Record<string, unknown> | null;
+    const msg = r && typeof r.message === 'string' ? (r.message as string) : String(err);
+    const causeCode = r && typeof r.code === 'string' ? (r.code as string) : undefined;
     const isNetworkError = /getaddrinfo|ENOTFOUND|EAI_AGAIN/i.test(msg) || causeCode === 'ENOTFOUND';
     if (isNetworkError) {
        
