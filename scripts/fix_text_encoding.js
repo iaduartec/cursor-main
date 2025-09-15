@@ -6,8 +6,8 @@ function findFiles(dir, ext = '.mdx') {
   for (const name of fs.readdirSync(dir)) {
     const full = path.join(dir, name);
     const stat = fs.statSync(full);
-    if (stat.isDirectory()) out.push(...findFiles(full, ext));
-    else if (stat.isFile() && full.endsWith(ext)) out.push(full);
+    if (stat.isDirectory()) {out.push(...findFiles(full, ext));}
+    else if (stat.isFile() && full.endsWith(ext)) {out.push(full);}
   }
   return out;
 }

@@ -77,7 +77,7 @@ function main() {
     const fixed = [];
     for (const f of files) {
         const res = tryParse(f);
-        if (res.ok) continue;
+        if (res.ok) {continue;}
         failures.push({ file: f, error: String(res.error) });
     }
 
@@ -92,9 +92,9 @@ function main() {
             const changed = applyFixes(item.file);
             if (changed) {
                 // re-parse to confirm
-                const ok = tryParse(item.file).ok;
-                if (ok) fixed.push(item.file);
-                else console.warn(`Could not fix: ${item.file}`);
+                const {ok} = tryParse(item.file);
+                if (ok) {fixed.push(item.file);}
+                else {console.warn(`Could not fix: ${item.file}`);}
             } else {
                 console.warn(`No automatic fix applied for: ${item.file}`);
             }
@@ -106,16 +106,16 @@ function main() {
     console.log(`Automated fixes applied to ${fixed.length} files.`);
     if (fixed.length) {
         console.log('Files fixed:');
-        for (const f of fixed) console.log(' -', path.relative(ROOT, f));
+        for (const f of fixed) {console.log(' -', path.relative(ROOT, f));}
     }
 
     const stillFailing = [];
     for (const f of files) {
-        if (!tryParse(f).ok) stillFailing.push(f);
+        if (!tryParse(f).ok) {stillFailing.push(f);}
     }
     console.log(`Remaining failures: ${stillFailing.length}`);
-    for (const f of stillFailing.slice(0, 30)) console.log(' x', path.relative(ROOT, f));
-    if (stillFailing.length > 30) console.log('...');
+    for (const f of stillFailing.slice(0, 30)) {console.log(' x', path.relative(ROOT, f));}
+    if (stillFailing.length > 30) {console.log('...');}
 }
 
 main();

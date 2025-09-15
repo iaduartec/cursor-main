@@ -6,8 +6,8 @@ function findMdxFiles(dir) {
   for (const name of fs.readdirSync(dir)) {
     const full = path.join(dir, name);
     const stat = fs.statSync(full);
-    if (stat.isDirectory()) out.push(...findMdxFiles(full));
-    else if (stat.isFile() && full.endsWith('.mdx')) out.push(full);
+    if (stat.isDirectory()) {out.push(...findMdxFiles(full));}
+    else if (stat.isFile() && full.endsWith('.mdx')) {out.push(full);}
   }
   return out;
 }
@@ -24,12 +24,12 @@ for (const file of files) {
   const raw = fs.readFileSync(file);
   const s = raw.toString('utf8');
   const lines = s.split(/\r?\n/);
-  if (lines[0].trim() !== '---') continue;
+  if (lines[0].trim() !== '---') {continue;}
   let end = -1;
   for (let i = 1; i < Math.min(lines.length, 40); i++) {
     if (lines[i].trim() === '---') { end = i; break; }
   }
-  if (end === -1) continue;
+  if (end === -1) {continue;}
   // inspect each char in frontmatter
   let bad = false;
   for (let i = 1; i < end+1; i++) {
@@ -53,5 +53,5 @@ for (const file of files) {
       bad = true;
     }
   }
-  if (bad) console.log(`-- problem found in ${file}`);
+  if (bad) {console.log(`-- problem found in ${file}`);}
 }
