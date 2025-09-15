@@ -47,7 +47,11 @@ function fallbackServices(): ServiceRow[] {
 export async function getAllServices(): Promise<ServiceRow[]> {
   return withDb(
     async () => {
-      const rows = await db
+      // Local cast to allow incremental typing migration for this module.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const typedDb = db as any;
+
+      const rows = await typedDb
         .select()
         .from(services)
         .orderBy(asc(services.title));
@@ -68,7 +72,10 @@ export async function getServiceBySlug(slug: string): Promise<ServiceRow | null>
 
   return withDb(
     async () => {
-      const result = await db
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const typedDb = db as any;
+
+      const result = await typedDb
         .select()
         .from(services)
         .where(eq(services.slug, slug))
