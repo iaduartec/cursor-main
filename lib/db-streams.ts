@@ -12,24 +12,12 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 import { db } from '../db/client';
-import { streams } from '../db/schema';
+import { streams, type Stream } from '../db/schema';
 import { asc } from 'drizzle-orm';
-
-export type StreamRow = {
-  id: number;
-  slug: string;
-  name: string;
-  description: string | null;
-  provider: string;
-  youtubeId: string | null;
-  embedUrl: string | null;
-  image: string | null;
-  isLive: boolean;
-};
 
 const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
 
-export async function getAllStreams(): Promise<StreamRow[]> {
+export async function getAllStreams(): Promise<Stream[]> {
   if (!hasDb()) {return fallbackStreams();}
   try {
     // Local typed cast for incremental typing migration.
@@ -50,19 +38,19 @@ export async function getAllStreams(): Promise<StreamRow[]> {
       })
       .from(streams)
       .orderBy(asc(streams.name));
-    return rows as unknown as StreamRow[];
+    return rows as unknown as Stream[];
   } catch (e) {
     console.error('DB getAllStreams error', e);
     return fallbackStreams();
   }
 }
 
-export async function getStreamBySlug(slug: string): Promise<StreamRow | null> {
+export async function getStreamBySlug(slug: string): Promise<Stream | null> {
   const s = (await getAllStreams()).find((x) => x.slug === slug);
   return s || null;
 }
 
-function fallbackStreams(): StreamRow[] {
+function fallbackStreams(): Stream[] {
   const list = [
     { slug: 'silos', name: 'Santo Domingo de Silos', youtubeId: 'czwL7LgjyjU' },
     { slug: 'rabanera-del-pinar', name: 'Rabanera del Pinar', youtubeId: '2FLLNsHmgxc' },
@@ -79,6 +67,8 @@ function fallbackStreams(): StreamRow[] {
     embedUrl: s.youtubeId ? `https://www.youtube.com/embed/${s.youtubeId}` : null,
     image: s.youtubeId ? `https://img.youtube.com/vi/${s.youtubeId}/hqdefault.jpg` : null,
     isLive: true,
-  }));
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  } as Stream));
 }
 

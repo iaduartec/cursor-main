@@ -14,7 +14,7 @@ Contenido detectado basado en extensión y estructura básica.
 import { NextRequest, NextResponse } from 'next/server';
 import { getStreamBySlug } from '../../../../lib/db-streams';
 import { db } from '../../../../db/client';
-import { streams } from '../../../../db/schema';
+import { streams, type NewStream } from '../../../../db/schema';
 import { eq } from 'drizzle-orm';
 import { revalidateTag } from 'next/cache';
 
@@ -41,7 +41,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
   const typedDb = db as any;
   const res = await typedDb
     .update(streams)
-    .set({
+    .set(({
       name: patch.name,
       description: patch.description ?? null,
       provider: patch.provider,
@@ -50,7 +50,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
       image: patch.image ?? null,
       isLive: typeof patch.isLive === 'boolean' ? patch.isLive : undefined,
       updatedAt: now,
-    } as any)
+    } as Partial<NewStream>))
     .where(eq(streams.slug, slug));
 
   revalidateTag('streams');

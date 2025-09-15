@@ -13,22 +13,12 @@ Contenido detectado basado en extensión y estructura básica.
 */
 // lib/db-services.ts
 import { db } from '../db/client';
-import { services } from '../db/schema';
+import { services, type Service } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';
 import { allServicios } from 'contentlayer/generated';
 import { withDb } from './db-utils';
 
-export type ServiceRow = {
-  id: number;
-  slug: string;
-  title: string;
-  description: string | null;
-  image: string | null;
-  areaServed: string | null;
-  hasOfferCatalog: boolean;
-};
-
-function fallbackServiceFromContentLayer(s: (typeof allServicios)[number]): ServiceRow {
+function fallbackServiceFromContentLayer(s: (typeof allServicios)[number]): Service {
   return {
     id: 0,
     slug: s.slug,
@@ -37,14 +27,16 @@ function fallbackServiceFromContentLayer(s: (typeof allServicios)[number]): Serv
     image: s.image ?? null,
     areaServed: s.areaServed ?? null,
     hasOfferCatalog: Boolean(s.hasOfferCatalog),
-  };
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  } as Service;
 }
 
-function fallbackServices(): ServiceRow[] {
+function fallbackServices(): Service[] {
   return allServicios.map(fallbackServiceFromContentLayer);
 }
 
-export async function getAllServices(): Promise<ServiceRow[]> {
+export async function getAllServices(): Promise<Service[]> {
   return withDb(
     async () => {
       // Local cast to allow incremental typing migration for this module.
@@ -55,14 +47,14 @@ export async function getAllServices(): Promise<ServiceRow[]> {
         .select()
         .from(services)
         .orderBy(asc(services.title));
-      return rows as unknown as ServiceRow[];
+      return rows as unknown as Service[];
     },
     // 👇 valor, no función
     fallbackServices()
   );
 }
 
-export async function getServiceBySlug(slug: string): Promise<ServiceRow | null> {
+export async function getServiceBySlug(slug: string): Promise<Service | null> {
   // Fallback ya evaluado (valor)
   const fallback =
     (() => {
@@ -81,7 +73,7 @@ export async function getServiceBySlug(slug: string): Promise<ServiceRow | null>
         .where(eq(services.slug, slug))
         .limit(1);
 
-      const row = (result[0] as unknown) as ServiceRow | undefined;
+      const row = (result[0] as unknown) as Service | undefined;
       return row ?? null;
     },
     // 👇 valor, no función

@@ -20,7 +20,7 @@ if (fs.existsSync(envLocal)) {dotenv.config({ path: envLocal });}
 dotenv.config();
 import { readFile, readdir } from 'node:fs/promises';
 import matter from 'gray-matter';
-import { posts } from '../../db/schema';
+import { posts, type NewPost } from '../../db/schema';
 // import { eq } from 'drizzle-orm'; // No se utiliza
 
 type Frontmatter = {
@@ -60,7 +60,7 @@ async function seed() {
     const date = new Date(fm.date as string);
     const now = new Date();
 
-    // Upsert by slug
+    // Upsert by slug (cast to NewPost for per-file typing)
     await typedDb
       .insert(posts)
       .values({
@@ -74,10 +74,10 @@ async function seed() {
         published: true,
         updatedAt: now,
         createdAt: now,
-      })
+      } as NewPost)
       .onConflictDoUpdate({
         target: posts.slug,
-        set: {
+        set: ({
           title: fm.title,
           description: fm.description ?? null,
           content,
@@ -86,7 +86,7 @@ async function seed() {
           date,
           published: true,
           updatedAt: now,
-        },
+        } as Partial<NewPost>),
       });
 
     console.log(`Upserted post: ${fm.slug}`);

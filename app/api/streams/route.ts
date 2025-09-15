@@ -14,7 +14,7 @@ Contenido detectado basado en extensión y estructura básica.
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllStreams } from '../../../lib/db-streams';
 import { db } from '../../../db/client';
-import { streams } from '../../../db/schema';
+import { streams, type NewStream } from '../../../db/schema';
 import { revalidateTag } from 'next/cache';
 
 function isAuthorized(req: NextRequest): boolean {
@@ -54,10 +54,10 @@ export async function POST(req: NextRequest) {
       isLive: Boolean(isLive),
       createdAt: now,
       updatedAt: now,
-    })
+    } as NewStream)
     .onConflictDoUpdate({
       target: streams.slug,
-      set: {
+      set: ({
         name,
         description: description ?? null,
         provider,
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
         image: image ?? null,
         isLive: Boolean(isLive),
         updatedAt: now,
-      },
+      } as Partial<NewStream>),
     });
 
   revalidateTag('streams');

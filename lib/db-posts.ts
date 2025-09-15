@@ -7,21 +7,12 @@
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { db } from '../db/client';
-import { posts } from '../db/schema';
+import { posts, type Post } from '../db/schema';
 import { and, asc, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';
 import { allBlogs, type Blog } from 'contentlayer/generated';
 
-export type PostRow = {
-  id: number;
-  slug: string;
-  title: string;
-  description: string | null;
-  content: string;
-  category: string | null;
-  image: string | null;
-  date: Date;
-  published: boolean;
-};
+// Use the Post type inferred from the Drizzle schema
+
 
 const hasDb = () => {
   if (process.env.USE_IN_MEMORY_DB === '1' || process.env.SKIP_DB === '1') {
@@ -42,7 +33,7 @@ type BlogRaw = Blog & {
 // tighten types later if needed.
 const drizzleDb: any = db as any;
 
-export async function getAllPostsFromDb(): Promise<PostRow[]> {
+export async function getAllPostsFromDb(): Promise<Post[]> {
   if (!hasDb()) { return []; }
   try {
     const rows = await drizzleDb
@@ -60,14 +51,14 @@ export async function getAllPostsFromDb(): Promise<PostRow[]> {
       .from(posts)
       .orderBy(desc(posts.date));
 
-    return rows as unknown as PostRow[];
+    return rows as unknown as Post[];
   } catch (e) {
     console.error('DB getAllPostsFromDb error', e);
     return [];
   }
 }
 
-export async function getPostBySlugFromDb(slug: string): Promise<PostRow | null> {
+export async function getPostBySlugFromDb(slug: string): Promise<Post | null> {
   if (!hasDb()) { return null; }
   try {
     const [row] = await drizzleDb
@@ -85,7 +76,7 @@ export async function getPostBySlugFromDb(slug: string): Promise<PostRow | null>
       .from(posts)
       .where(eq(posts.slug, slug))
       .limit(1);
-    return (row as unknown as PostRow) || null;
+    return (row as unknown as Post) || null;
   } catch (e) {
     console.error('DB getPostBySlugFromDb error', e);
     return null;
@@ -114,7 +105,7 @@ export type PostsPageParams = {
 
 export async function getPostsPageFromDb(
   { page = 1, pageSize = 9, category, q, sortBy = 'date', sortDir = 'desc' }: PostsPageParams
-): Promise<{ items: PostRow[]; total: number; page: number; pageSize: number }> {
+): Promise<{ items: Post[]; total: number; page: number; pageSize: number }> {
   if (!hasDb()) { return { items: [], total: 0, page, pageSize }; }
   const offset = Math.max(0, (page - 1) * pageSize);
 
@@ -167,7 +158,7 @@ export async function getPostsPageFromDb(
       .limit(pageSize)
       .offset(offset);
     if (where) { qsel = qsel.where(where as any); }
-    const rows: PostRow[] = await qsel;
+    const rows: Post[] = await qsel;
     return { items: rows, total, page, pageSize };
   } catch (e) {
     console.error('DB page error', e);
@@ -203,7 +194,7 @@ const canonicalSlugFor = (p: Blog): string => {
   return normalizeSlug(base);
 };
 
-export async function getAllPosts(): Promise<PostRow[]> {
+export async function getAllPosts(): Promise<Post[]> {
   const dbRows = await getAllPostsFromDb();
   if (dbRows.length > 0) { return dbRows; }
   // Fallback to Contentlayer
@@ -217,10 +208,12 @@ export async function getAllPosts(): Promise<PostRow[]> {
     image: p.image ?? null,
     date: new Date(p.date),
     published: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   }));
 }
 
-export async function getPostBySlug(slug: string): Promise<PostRow | null> {
+export async function getPostBySlug(slug: string): Promise<Post | null> {
   const norm = normalizeSlug(slug);
   const row = await getPostBySlugFromDb(norm);
   if (row) { return row; }
@@ -236,6 +229,8 @@ export async function getPostBySlug(slug: string): Promise<PostRow | null> {
     image: p.image ?? null,
     date: new Date(p.date),
     published: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   };
 }
 
@@ -245,7 +240,7 @@ export async function getAllSlugs(): Promise<string[]> {
   return allBlogs.map((p) => canonicalSlugFor(p));
 }
 
-export async function getPostsPage(params: PostsPageParams): Promise<{ items: PostRow[]; total: number; page: number; pageSize: number }> {
+export async function getPostsPage(params: PostsPageParams): Promise<{ items: Post[]; total: number; page: number; pageSize: number }> {
   const dbResult = await getPostsPageFromDb(params);
   // If DB has items and is configured, prefer DB results.
   if (hasDb() && dbResult.items.length > 0) { return dbResult; }
