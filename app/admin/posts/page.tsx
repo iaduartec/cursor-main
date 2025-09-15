@@ -13,7 +13,7 @@ Contenido detectado basado en extensión y estructura básica.
 */
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db } from '../../../db/client';
-import { posts } from '../../../db/schema';
+import { posts, type NewPost } from '../../../db/schema';
 import { eq, desc } from 'drizzle-orm';
 
 async function getItems() {
@@ -43,10 +43,10 @@ export default async function AdminPostsPage() {
     const typedDb = db as any;
     await typedDb
       .insert(posts)
-      .values({ slug, title, description: description || null, category: category || null, image: image || null, content, date, published: true, createdAt: now, updatedAt: now })
+      .values({ slug, title, description: description || null, category: category || null, image: image || null, content, date, published: true, createdAt: now, updatedAt: now } as NewPost)
       .onConflictDoUpdate({
         target: posts.slug,
-        set: { title, description: description || null, category: category || null, image: image || null, content, date, published: true, updatedAt: now },
+        set: { title, description: description || null, category: category || null, image: image || null, content, date, published: true, updatedAt: now } as Partial<NewPost>,
       });
     revalidateTag('blogs');
     revalidatePath('/blog');
