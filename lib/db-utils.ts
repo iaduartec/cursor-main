@@ -11,7 +11,7 @@ Tamaño: 1932 caracteres, 50 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-import { db } from '../db/client';
+// `db` import removed - utilities use runtime detection and fallbacks via hasDb/withDb
 
 // Detecta si hay configuración de base de datos disponible en el entorno.
 // Soporta nombres estándar y también los prefijos `cxz_` usados en .env local.
@@ -46,8 +46,16 @@ export async function withDb<T>(
     return await operation();
   } catch (error) {
     // Si es un error de red común (host no resuelto, DNS, etc.), emitir un warning conciso.
-    const msg = (error && (error as any).message) ? (error as any).message : String(error);
-    const causeCode = (error && (error as any).code) ? (error as any).code : undefined;
+    const err = error as unknown;
+    function hasMessage(e: unknown): e is { message: string } {
+      return !!e && typeof (e as any).message === 'string';
+    }
+    function hasCode(e: unknown): e is { code: string } {
+      return !!e && typeof (e as any).code === 'string';
+    }
+
+    const msg = hasMessage(err) ? err.message : String(err);
+    const causeCode = hasCode(err) ? err.code : undefined;
     const isNetworkError = /getaddrinfo|ENOTFOUND|EAI_AGAIN/i.test(msg) || causeCode === 'ENOTFOUND';
     if (isNetworkError) {
        
