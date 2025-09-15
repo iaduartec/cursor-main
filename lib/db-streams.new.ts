@@ -12,24 +12,12 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 import { db } from '../db/client';
-import { streams } from '../db/schema';
+import { streams, type Stream } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';
 import { withDb } from './db-utils';
 
-export type StreamRow = {
-  id: number;
-  slug: string;
-  name: string;
-  description: string | null;
-  provider: string;
-  youtubeId: string | null;
-  embedUrl: string | null;
-  image: string | null;
-  isLive: boolean;
-};
-
 // Datos de respaldo en caso de que la BD no esté disponible
-const fallbackStreams: StreamRow[] = [
+const fallbackStreams: Stream[] = [
   {
     id: 1,
     slug: 'camara-24h',
@@ -40,10 +28,12 @@ const fallbackStreams: StreamRow[] = [
     embedUrl: null,
     image: '/images/webcam.jpg',
     isLive: true,
-  },
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  } as Stream,
 ];
 
-export async function getAllStreams(): Promise<StreamRow[]> {
+export async function getAllStreams(): Promise<Stream[]> {
   return withDb(
     async () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -52,13 +42,13 @@ export async function getAllStreams(): Promise<StreamRow[]> {
         .select()
         .from(streams)
         .orderBy(asc(streams.name));
-      return rows;
+      return rows as Stream[];
     },
     fallbackStreams
   );
 }
 
-export async function getStreamBySlug(slug: string): Promise<StreamRow | null> {
+export async function getStreamBySlug(slug: string): Promise<Stream | null> {
   return withDb(
     async () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -68,7 +58,7 @@ export async function getStreamBySlug(slug: string): Promise<StreamRow | null> {
         .from(streams)
         .where(eq(streams.slug, slug))
         .limit(1);
-      return result[0] ?? null;
+      return (result[0] as Stream) ?? null;
     },
     fallbackStreams.find((s) => s.slug === slug) ?? null
   );

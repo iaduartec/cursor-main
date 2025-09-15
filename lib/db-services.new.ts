@@ -12,7 +12,7 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 import { db } from '../db/client';
-import { services } from '../db/schema';
+import { services, type Service } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';
 import { allServicios } from 'contentlayer/generated';
 import { withDb } from './db-utils';
@@ -20,17 +20,7 @@ import { withDb } from './db-utils';
 // Tipos de contenido desde contentlayer
 type ContentLayerService = typeof allServicios[number];
 
-export type ServiceRow = {
-  id: number;
-  slug: string;
-  title: string;
-  description: string | null;
-  image: string | null;
-  areaServed: string | null;
-  hasOfferCatalog: boolean;
-};
-
-function fallbackServiceFromContentLayer(s: ContentLayerService): ServiceRow {
+function fallbackServiceFromContentLayer(s: ContentLayerService): Service {
   return {
     id: 0,
     slug: s.slug,
@@ -39,14 +29,16 @@ function fallbackServiceFromContentLayer(s: ContentLayerService): ServiceRow {
     image: s.image ?? null,
     areaServed: s.areaServed ?? null,
     hasOfferCatalog: Boolean(s.hasOfferCatalog),
-  };
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  } as Service;
 }
 
-function fallbackServices(): ServiceRow[] {
+function fallbackServices(): Service[] {
   return allServicios.map(fallbackServiceFromContentLayer);
 }
 
-export async function getAllServices(): Promise<ServiceRow[]> {
+export async function getAllServices(): Promise<Service[]> {
   return withDb(
     async () => {
       // Local typed cast for incremental typing migration.
@@ -57,18 +49,18 @@ export async function getAllServices(): Promise<ServiceRow[]> {
         .select()
         .from(services)
         .orderBy(asc(services.title));
-      return rows;
+      return rows as Service[];
     },
     fallbackServices()
   );
 }
 
-export async function getServiceBySlug(slug: string): Promise<ServiceRow | null> {
+export async function getServiceBySlug(slug: string): Promise<Service | null> {
   const fallback = () => {
     const s = allServicios.find((x) => x.slug === slug);
     return s ? fallbackServiceFromContentLayer(s) : null;
   };
-  
+
   return withDb(
     async () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -79,7 +71,7 @@ export async function getServiceBySlug(slug: string): Promise<ServiceRow | null>
         .from(services)
         .where(eq(services.slug, slug))
         .limit(1);
-      return result[0] ?? null;
+      return (result[0] as Service) ?? null;
     },
     fallback()
   );

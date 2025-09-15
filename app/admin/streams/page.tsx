@@ -13,7 +13,7 @@ Contenido detectado basado en extensión y estructura básica.
 */
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db } from '../../../db/client';
-import { streams } from '../../../db/schema';
+import { streams, type NewStream } from '../../../db/schema';
 import { getAllStreams } from '../../../lib/db-streams';
 import { eq } from 'drizzle-orm';
 
@@ -46,10 +46,10 @@ export default async function AdminStreamsPage() {
         isLive,
         createdAt: now,
         updatedAt: now,
-      })
+      } as NewStream)
       .onConflictDoUpdate({
         target: streams.slug,
-        set: { name, provider, youtubeId: youtubeId || null, embedUrl: embedUrl || null, image: image || null, description: description || null, isLive, updatedAt: now },
+        set: { name, provider, youtubeId: youtubeId || null, embedUrl: embedUrl || null, image: image || null, description: description || null, isLive, updatedAt: now } as Partial<NewStream>,
       });
     revalidateTag('streams');
     revalidatePath('/streaming');
