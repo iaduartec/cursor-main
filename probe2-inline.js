@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports, no-undef, no-console, no-empty, @typescript-eslint/no-unused-vars */
 const fs = require('fs');
 const postgres = require('postgres');
 function mask(u){try{ const s = u.split('@'); if(s.length>1){ const left = s[0]; const parts = left.split('//'); const creds = parts[1].split(':'); return `${parts[0]}//${creds[0]}:*****@${s[1]}`; } return u }catch(e){return u}}
