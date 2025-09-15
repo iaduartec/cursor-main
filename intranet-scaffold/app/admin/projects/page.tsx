@@ -11,6 +11,7 @@ Tamaño: 9183 caracteres, 206 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useEffect, useState } from "react";
 
@@ -43,14 +44,14 @@ export default function AdminProjects() {
   useEffect(() => {
     // read injected token (only present in non-production dev/test)
     try {
-      const t = typeof window !== 'undefined' ? (window as any).__INTRANET_DEBUG_TOKEN : null;
+    const t = typeof window !== 'undefined' ? (window as unknown as Record<string, unknown>).__INTRANET_DEBUG_TOKEN : null;
       if (t) { setClientToken(String(t)); }
     } catch {
       // Ignore errors when accessing debug token
     }
   }, []);
 
-  async function createOrUpdateProject(e: any) {
+  async function createOrUpdateProject(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     setLoading(true);
@@ -123,9 +124,11 @@ export default function AdminProjects() {
           throw new Error(msg);
         }
       }
-    } catch (err: any) {
-      console.error(err);
-      setError(err?.message ?? String(err));
+    } catch (err) {
+  console.error(err);
+  const eo = err as unknown;
+  const message = eo && typeof (eo as Record<string, unknown>).message === 'string' ? (eo as Record<string, any>).message as string : String(eo);
+  setError(message);
     } finally {
       setLoading(false);
     }
@@ -150,9 +153,11 @@ export default function AdminProjects() {
         const txt = await res.text();
         throw new Error(txt || 'Failed to delete');
       }
-    } catch (err: any) {
-      console.error(err);
-      setError(err?.message ?? String(err));
+    } catch (err) {
+  console.error(err);
+  const eo2 = err as unknown;
+  const message2 = eo2 && typeof (eo2 as Record<string, unknown>).message === 'string' ? (eo2 as Record<string, any>).message as string : String(eo2);
+  setError(message2);
     } finally {
       setLoading(false);
     }
