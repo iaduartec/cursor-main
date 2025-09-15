@@ -18,7 +18,7 @@ const envLocal = path.resolve(process.cwd(), '.env.local');
 if (fs.existsSync(envLocal)) {dotenv.config({ path: envLocal });}
 dotenv.config();
 
-import { streams } from '../../db/schema';
+import { streams, type NewStream } from '../../db/schema';
 
 type SeedStream = {
   slug: string;
@@ -58,10 +58,10 @@ async function run() {
         isLive: true,
         createdAt: now,
         updatedAt: now,
-      })
+      } as NewStream)
       .onConflictDoUpdate({
         target: streams.slug,
-        set: {
+        set: ({
           name: s.name,
           description: s.description || null,
           provider: s.provider || 'youtube',
@@ -70,7 +70,7 @@ async function run() {
           image: image || null,
           isLive: true,
           updatedAt: now,
-        },
+        } as Partial<NewStream>),
       });
     console.log(`Upserted stream: ${s.slug}`);
   }

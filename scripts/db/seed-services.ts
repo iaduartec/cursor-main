@@ -22,7 +22,7 @@ if (fs.existsSync(envLocal)) {
 dotenv.config();
 import { readFile, readdir } from 'node:fs/promises';
 import matter from 'gray-matter';
-import { services } from '../../db/schema';
+import { services, type NewService } from '../../db/schema';
 
 type ServiceFrontmatter = {
   title: string;
@@ -77,17 +77,17 @@ async function seed() {
         hasOfferCatalog: fm.hasOfferCatalog ?? false,
         createdAt: now,
         updatedAt: now,
-      })
+      } as NewService)
       .onConflictDoUpdate({
         target: services.slug,
-        set: {
+        set: ({
           title: fm.title,
           description: fm.description ?? null,
           image: fm.image ?? null,
           areaServed: fm.areaServed ?? null,
           hasOfferCatalog: fm.hasOfferCatalog ?? false,
           updatedAt: now,
-        },
+        } as Partial<NewService>),
       });
 
     console.log(`Upserted service: ${fm.slug}`);

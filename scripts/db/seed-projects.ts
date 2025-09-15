@@ -20,7 +20,7 @@ if (fs.existsSync(envLocal)) {dotenv.config({ path: envLocal });}
 dotenv.config();
 import { readFile, readdir } from 'node:fs/promises';
 import matter from 'gray-matter';
-import { projects } from '../../db/schema';
+import { projects, type NewProject } from '../../db/schema';
 // import { eq } from 'drizzle-orm'; // No se utiliza
 
 type ProjectFrontmatter = {
@@ -67,7 +67,7 @@ async function seed() {
     const date = new Date(fm.date as string);
     const now = new Date();
 
-    // Upsert by slug
+    // Upsert by slug (cast inserted objects to NewProject to get per-file typing)
     await typedDb
       .insert(projects)
       .values({
@@ -80,10 +80,10 @@ async function seed() {
         date,
         createdAt: now,
         updatedAt: now,
-      })
+      } as NewProject)
       .onConflictDoUpdate({
         target: projects.slug,
-        set: {
+        set: ({
           title: fm.title,
           description: fm.description ?? null,
           content,
@@ -91,7 +91,7 @@ async function seed() {
           image: fm.image ?? null,
           date,
           updatedAt: now,
-        },
+        } as Partial<NewProject>),
       });
 
     console.log(`Upserted project: ${fm.slug}`);
