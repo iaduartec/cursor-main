@@ -11,6 +11,7 @@ Tamaño: 5708 caracteres, 170 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
+/* eslint-disable no-console, no-undef */
 /**
  * Inserta un resumen al inicio de cada archivo como comentario.
  * Ajusta OPENAI_API_KEY y el modelo. Revisa EXT_MAP para añadir más extensiones.
@@ -21,7 +22,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const _filename = fileURLToPath(import.meta.url);
-const _dirname = path.dirname(_filename);
+// dirname not used but we keep file context comment for future maintainers
+// const _dirname = path.dirname(_filename);
 
 const ROOT = process.cwd();
 
