@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
 Resumen generado automáticamente.
 
@@ -11,7 +12,6 @@ Tamaño: 567 caracteres, 25 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-#!/usr/bin/env node
 // Remove stale Contentlayer artifacts to avoid stale indexes during builds.
 // This is safe on Vercel and local. Ignore errors if the folder doesn't exist.
 
