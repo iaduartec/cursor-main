@@ -23,7 +23,7 @@ describe('Header Component', () => {
 
   it('renders contact information', () => {
     render(<Header />);
-    expect(screen.getByText('947 256 430')).toBeInTheDocument();
-    expect(screen.getByText('info@duartec.es')).toBeInTheDocument();
+    expect(screen.getByTestId('header-phone')).toHaveTextContent('947 256 430');
+    expect(screen.getByTestId('header-email')).toHaveTextContent('info@duartec.es');
   });
 });

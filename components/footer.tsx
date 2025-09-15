@@ -96,13 +96,13 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-accent" />
                 <a href="tel:+34947256430" className="text-gray-300 hover:text-accent transition-colors">
-                  947 256 430
+                  <span data-testid="footer-phone">947 256 430</span>
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-accent" />
                 <a href="mailto:info@duartec.es" className="text-gray-300 hover:text-accent transition-colors">
-                  info@duartec.es
+                  <span data-testid="footer-email">info@duartec.es</span>
                 </a>
               </div>
               <div className="flex items-center gap-2">

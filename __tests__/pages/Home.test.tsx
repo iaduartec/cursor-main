@@ -15,18 +15,19 @@ vi.mock('next/navigation', () => ({
 describe('Home Page', () => {
   it('renders hero section', () => {
     render(<Home />);
-    expect(screen.getByText('Soluciones integrales en informática, videovigilancia, sonido y electricidad')).toBeInTheDocument();
+    // page content may include repeated text in layout; assert at least one occurrence
+    expect(screen.getAllByText('Soluciones integrales en informática, videovigilancia, sonido y electricidad').length).toBeGreaterThan(0);
   });
 
   it('renders main services', () => {
     render(<Home />);
-    expect(screen.getByText('Informática')).toBeInTheDocument();
+    expect(screen.getAllByText('Informática').length).toBeGreaterThan(0);
     // Los otros servicios están en el footer, no en la página principal
   });
 
   it('renders call to action', () => {
     render(<Home />);
-    expect(screen.getByText('Solicita información')).toBeInTheDocument();
+    expect(screen.getAllByText('Solicita información').length).toBeGreaterThan(0);
   });
 
   it('renders service area information', () => {

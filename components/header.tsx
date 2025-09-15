@@ -37,11 +37,11 @@ export default function Header() {
           <div className="flex items-center gap-4 mb-2 sm:mb-0">
             <a href="tel:+34947256430" className="flex items-center gap-1 hover:underline">
               <Phone className="w-4 h-4" />
-              <span>947 256 430</span>
+              <span data-testid="header-phone">947 256 430</span>
             </a>
             <a href="mailto:info@duartec.es" className="flex items-center gap-1 hover:underline">
               <Mail className="w-4 h-4" />
-              <span>info@duartec.es</span>
+              <span data-testid="header-email">info@duartec.es</span>
             </a>
           </div>
           <div className="text-xs">Horario: L-V 9:00-18:00 | Emergencias 24/7</div>

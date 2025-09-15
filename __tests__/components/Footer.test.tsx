@@ -20,8 +20,8 @@ describe('Footer Component', () => {
 
   it('renders contact information', () => {
     render(<Footer />);
-    expect(screen.getByText('947 256 430')).toBeInTheDocument();
-    expect(screen.getByText('info@duartec.es')).toBeInTheDocument();
+    expect(screen.getByTestId('footer-phone')).toHaveTextContent('947 256 430');
+    expect(screen.getByTestId('footer-email')).toHaveTextContent('info@duartec.es');
   });
 
   it('renders copyright notice', () => {
