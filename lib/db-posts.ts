@@ -23,7 +23,9 @@ export type PostRow = {
 };
 
 const hasDb = () => {
-  if (process.env.USE_IN_MEMORY_DB === '1' || process.env.SKIP_DB === '1') return false;
+  if (process.env.USE_IN_MEMORY_DB === '1' || process.env.SKIP_DB === '1') {
+    return false;
+  }
   return Boolean(process.env.SUPABASE_DB_URL || process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
 };
 
@@ -34,8 +36,10 @@ type BlogRaw = Blog & {
 };
 
 // The `db` export in db/client.ts may be a typed drizzle instance or a
-// lightweight fake (when DB is skipped). Keep the cast local.
-const drizzleDb: any = db as unknown;
+// lightweight fake (when DB is skipped). Cast to `any` locally to allow
+// chaining query builders without leaking `any` across the app. We'll
+// tighten types later if needed.
+const drizzleDb: any = db as any;
 
 export async function getAllPostsFromDb(): Promise<PostRow[]> {
   if (!hasDb()) { return []; }
@@ -90,8 +94,8 @@ export async function getPostBySlugFromDb(slug: string): Promise<PostRow | null>
 export async function getAllSlugsFromDb(): Promise<string[]> {
   if (!hasDb()) { return []; }
   try {
-    const rows = await drizzleDb.select({ slug: posts.slug }).from(posts);
-    return rows.map((r: any) => r.slug);
+    const rows: Array<{ slug: string }> = await drizzleDb.select({ slug: posts.slug }).from(posts);
+    return rows.map((r) => r.slug);
   } catch (e) {
     console.error('DB getAllSlugsFromDb error', e);
     return [];
@@ -117,13 +121,12 @@ export async function getPostsPageFromDb(
   if (category && category !== 'Todas') { conds.push(eq(posts.category, category)); }
   if (q && q.trim().length > 0) {
     const like = `%${q.trim()}%`;
-    conds.push(
-      or(
-        ilike(posts.title as any, like as any),
-        ilike(posts.description as any, like as any),
-        ilike(posts.content as any, like as any)
-      ) as any
+    const pred = or(
+      ilike(posts.title as any, like as any),
+      ilike(posts.description as any, like as any),
+      ilike(posts.content as any, like as any)
     );
+    conds.push(pred as any as SQL);
   }
   const where = conds.length > 0 ? and(...conds) : undefined;
 
@@ -131,9 +134,11 @@ export async function getPostsPageFromDb(
   let total = 0;
   try {
     let countQ: any = drizzleDb.select({ value: count() }).from(posts);
-    if (where) { countQ = countQ.where(where as any); }
-    const countRows = await countQ;
-    total = Number(countRows?.[0]?.value ?? 0);
+    if (where) {
+      countQ = countQ.where(where as any);
+    }
+    const countRows: Array<{ value: number }> = await countQ;
+    total = Number((countRows?.[0]?.value ?? 0) as number);
   } catch (e) {
     console.error('DB count error', e);
   }
@@ -161,8 +166,8 @@ export async function getPostsPageFromDb(
       .limit(pageSize)
       .offset(offset);
     if (where) { qsel = qsel.where(where as any); }
-    const rows = await qsel;
-    return { items: rows as unknown as PostRow[], total, page, pageSize };
+    const rows: PostRow[] = await qsel;
+    return { items: rows, total, page, pageSize };
   } catch (e) {
     console.error('DB page error', e);
     return { items: [], total, page, pageSize };
@@ -173,8 +178,8 @@ export async function getDistinctCategoriesFromDb(): Promise<string[]> {
   if (!hasDb()) { return []; }
   try {
     // group by to get distinct categories
-    const rows = await drizzleDb.select({ category: posts.category }).from(posts).groupBy(posts.category);
-    return rows.map((r: any) => r.category).filter((x: any): x is string => !!x);
+    const rows: Array<{ category: string | null }> = await drizzleDb.select({ category: posts.category }).from(posts).groupBy(posts.category);
+    return rows.map((r) => r.category).filter((x): x is string => !!x);
   } catch (e) {
     console.error('DB categories error', e);
     return [];
@@ -192,7 +197,7 @@ const normalizeSlug = (s: string) =>
     .replace(/^-+|-+$/g, ''); // trim leading and trailing '-'
 
 const canonicalSlugFor = (p: Blog): string => {
-  const raw = (p as any)?._raw?.flattenedPath as string | undefined;
+  const raw = (p as BlogRaw)._raw?.flattenedPath as string | undefined;
   const base = p.slug || (raw ? (raw.split('/').pop() || raw) : p.title);
   return normalizeSlug(base);
 };
@@ -206,7 +211,7 @@ export async function getAllPosts(): Promise<PostRow[]> {
     slug: canonicalSlugFor(p),
     title: p.title,
     description: p.description ?? null,
-    content: (p as any)?.body?.raw ?? '',
+    content: (p as BlogRaw).body?.raw ?? '',
     category: p.category ?? null,
     image: p.image ?? null,
     date: new Date(p.date),
@@ -225,7 +230,7 @@ export async function getPostBySlug(slug: string): Promise<PostRow | null> {
     slug: canonicalSlugFor(p),
     title: p.title,
     description: p.description ?? null,
-    content: (p as any)?.body?.raw ?? '',
+    content: (p as BlogRaw).body?.raw ?? '',
     category: p.category ?? null,
     image: p.image ?? null,
     date: new Date(p.date),
