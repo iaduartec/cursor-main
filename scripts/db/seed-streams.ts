@@ -39,11 +39,13 @@ const initial: SeedStream[] = [
 
 async function run() {
   const { db } = await import('../../db/client');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const typedDb = db as any;
   for (const s of initial) {
     const now = new Date();
     const image = s.image || (s.youtubeId ? `https://img.youtube.com/vi/${s.youtubeId}/hqdefault.jpg` : undefined);
     const embedUrl = s.embedUrl || (s.youtubeId ? `https://www.youtube.com/embed/${s.youtubeId}` : undefined);
-    await db
+    await typedDb
       .insert(streams)
       .values({
         slug: s.slug,

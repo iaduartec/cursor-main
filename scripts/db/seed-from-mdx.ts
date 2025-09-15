@@ -41,6 +41,8 @@ async function getBlogFiles(dir: string) {
 
 async function seed() {
   const { db } = await import('../../db/client');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const typedDb = db as any;
   const blogDir = path.join(process.cwd(), 'content', 'blog');
   const files = await getBlogFiles(blogDir);
   console.log(`Found ${files.length} blog files to seed`);
@@ -59,7 +61,7 @@ async function seed() {
     const now = new Date();
 
     // Upsert by slug
-    await db
+    await typedDb
       .insert(posts)
       .values({
         slug: fm.slug,

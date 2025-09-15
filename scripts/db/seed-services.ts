@@ -42,6 +42,8 @@ async function getServiceFiles(dir: string) {
 
 async function seed() {
   const { db } = await import('../../db/client');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const typedDb = db as any;
   const servicesDir = path.join(process.cwd(), 'content', 'servicios');
   
   if (!fs.existsSync(servicesDir)) {
@@ -64,7 +66,7 @@ async function seed() {
 
     const now = new Date();
 
-    await db
+    await typedDb
       .insert(services)
       .values({
         slug: fm.slug,
