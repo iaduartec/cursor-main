@@ -1,4 +1,5 @@
 // test setup: register additional matchers for DOM testing
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Make sure Vitest's expect is available globally before loading jest-dom
 import { expect as vitestExpect, afterEach } from 'vitest';
 

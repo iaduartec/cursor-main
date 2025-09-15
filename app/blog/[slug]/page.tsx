@@ -21,6 +21,7 @@ import RelatedPosts from '../../../components/RelatedPosts';
 import { unstable_cache } from 'next/cache';
 import { getAllPosts, getAllSlugs, getPostBySlug } from '../../../lib/db-posts';
 import { marked } from 'marked';
+import { sanitizeHtml } from '../../../lib/sanitize-html';
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -134,7 +135,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     redirect(`/blog/${canonical}`);
   }
 
-  const html = (await marked.parse(post.content || '')) as string;
+  const htmlRaw = (await marked.parse(post.content || '')) as string;
+  const html = sanitizeHtml(htmlRaw);
   const readTime = estimateReadTime(post.content || '');
 
   const allPosts: BlogCard[] = await getBlogCards();
@@ -205,6 +207,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <section className="max-w-4xl mx-auto py-16 px-4">
         <article className="prose prose-lg dark:prose-invert max-w-none">
+          {/* Content generated from markdown; sanitized by lib/sanitize-html.ts */}
+          {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </article>
 

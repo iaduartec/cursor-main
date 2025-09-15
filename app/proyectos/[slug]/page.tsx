@@ -16,6 +16,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllProjects, getProjectBySlug } from '../../../lib/db-projects.new';
 import { marked } from 'marked';
+import { sanitizeHtml } from '../../../lib/sanitize-html';
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -52,7 +53,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </div>
     );
   }
-  const html = (await marked.parse(p.content || p.description || '')) as string;
+  const htmlRaw = (await marked.parse(p.content || p.description || '')) as string;
+  const html = sanitizeHtml(htmlRaw);
 
   return (
     <div className="min-h-screen">
@@ -69,7 +71,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </section>
 
       <section className="max-w-5xl mx-auto py-12 px-4">
-        <article className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: html }} />
+  {/* Content generated from markdown; sanitized by lib/sanitize-html.ts */}
+  {/* eslint-disable-next-line react/no-danger */}
+  <article className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: html }} />
       </section>
     </div>
   );

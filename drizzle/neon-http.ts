@@ -22,7 +22,7 @@ async function main() {
   const db = drizzle(sql, { logger: true })
 
   await migrate(db, { migrationsFolder: 'drizzle' })
-  console.log('✅ Migraciones aplicadas')
+  console.warn('✅ Migraciones aplicadas')
 }
 
 main().catch((err) => {

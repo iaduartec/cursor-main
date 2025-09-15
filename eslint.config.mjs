@@ -32,6 +32,7 @@ export default [
       'build/**',
       'dist/**',
       'public/**',
+      'intranet-scaffold/**',
       '.git/**',
       '.lintstagedrc.js',
       '__tests__/**',
@@ -195,6 +196,15 @@ export default [
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    },
+  },
+
+  // Allow explicit any and console usage in server-side API routes, scripts and db client
+  {
+    files: ['app/api/**', 'server/**', 'db/**', 'scripts/**', 'lib/**', 'tests/e2e/**'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-console': 'off',
     },
   },
 
