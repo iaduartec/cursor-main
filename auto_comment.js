@@ -21,10 +21,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const _filename = fileURLToPath(import.meta.url);
-// dirname not used but we keep file context comment for future maintainers
-// const _dirname = path.dirname(_filename);
-
+// Note: __filename/__dirname are available via fileURLToPath, but unused here.
 const ROOT = process.cwd();
 
 // === CONFIG ===
