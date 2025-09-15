@@ -1,16 +1,3 @@
-/**
-Resumen generado automáticamente.
-
-db/client.ts
-
-2025-09-13T06:20:07.370Z
-
-——————————————————————————————
-Archivo .ts: client.ts
-Tamaño: 3569 caracteres, 88 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
 import { createClient } from '@supabase/supabase-js';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
@@ -37,7 +24,8 @@ const rawConnectionString =
 // URL parsing errors like ERR_INVALID_URL.
 const connectionString = rawConnectionString.replace(/^"|"$/g, '').trim();
 
-const skipDb = process.env.USE_IN_MEMORY_DB === '1' || process.env.SKIP_DB === '1';
+const skipDb =
+  process.env.USE_IN_MEMORY_DB === '1' || process.env.SKIP_DB === '1';
 
 if (!connectionString) {
   throw new Error(
@@ -54,12 +42,16 @@ let dbExport: unknown = undefined;
 if (!skipDb) {
   // Try to use @supabase/postgres-js for serverless-friendly connections when available.
   // If it's not installed or fails, fall back to the 'postgres' client.
-  let lowLevelClient: unknown;
+  let lowLevelClient: postgres.Sql | undefined;
   try {
     // Dynamic require so code still works if package not installed at runtime.
     const req = eval('require');
     const supabasePg = (() => {
-      try { return req('@supabase/postgres-js'); } catch { return undefined; }
+      try {
+        return req('@supabase/postgres-js');
+      } catch {
+        return undefined;
+      }
     })();
     if (supabasePg && typeof supabasePg.createClient === 'function') {
       lowLevelClient = supabasePg.createClient(connectionString);
@@ -78,16 +70,36 @@ if (!skipDb) {
   // to an empty array. This covers typical usage patterns like
   // `await db.select(...).from(...).where(...);` and count queries.
   class FakeQuery {
-    from() { return this; }
-    where() { return this; }
-    orderBy() { return this; }
-    limit() { return this; }
-    offset() { return this; }
-    groupBy() { return this; }
+    from() {
+      return this;
+    }
+    where() {
+      return this;
+    }
+    orderBy() {
+      return this;
+    }
+    limit() {
+      return this;
+    }
+    offset() {
+      return this;
+    }
+    groupBy() {
+      return this;
+    }
     then(onfulfilled?: (value: unknown) => unknown): Promise<unknown> {
       if (typeof onfulfilled === 'function') {
-        try { onfulfilled([] as unknown); } catch (_) { /* ignore */ }
-          try { onfulfilled([] as unknown); } catch (_err) { /* ignore */ }
+        try {
+          onfulfilled([] as unknown);
+        } catch {
+          /* ignore */
+        }
+        try {
+          onfulfilled([] as unknown);
+        } catch (_err) {
+          /* ignore */
+        }
       }
       return Promise.resolve([] as unknown);
     }
@@ -109,7 +121,11 @@ export { client as sql };
 // Supabase client (JS) for auth/storage/other APIs. Prefer using
 // SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_ANON_KEY) set in Vercel.
 // Accept cxz_ prefixed env vars commonly used in local .env files as fallbacks
-const supabaseUrl = process.env.SUPABASE_URL || process.env.cxz_SUPABASE_URL || process.env.cxz_NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseUrl =
+  process.env.SUPABASE_URL ||
+  process.env.cxz_SUPABASE_URL ||
+  process.env.cxz_NEXT_PUBLIC_SUPABASE_URL ||
+  '';
 const supabaseKey =
   process.env.SUPABASE_SERVICE_ROLE_KEY ||
   process.env.SUPABASE_ANON_KEY ||
@@ -121,15 +137,15 @@ if (!supabaseUrl || !supabaseKey) {
   // Don't crash - some environments may not need the JS client. Log a helpful warning.
   // In Vercel, set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY as environment variables.
   // If you only need DB access via Drizzle, the SUPABASE_* JS client is optional.
-   
+
   console.warn(
     'Advertencia: SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY/SUPABASE_ANON_KEY no definidos. Algunas funcionalidades de Supabase (auth/storage) podrían no funcionar.'
   );
 }
 
-export const supabase = supabaseUrl && supabaseKey
-  ? createClient(supabaseUrl, supabaseKey, {
-      auth: { autoRefreshToken: false, persistSession: false },
-    })
-  : undefined;
-
+export const supabase =
+  supabaseUrl && supabaseKey
+    ? createClient(supabaseUrl, supabaseKey, {
+        auth: { autoRefreshToken: false, persistSession: false },
+      })
+    : undefined;
