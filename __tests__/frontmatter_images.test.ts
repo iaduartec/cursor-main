@@ -15,6 +15,10 @@ function extractField(fm: string, key: string): string | null {
     const trimmed = line.trim();
     if (trimmed.startsWith(key + ":")) {
       const value = trimmed.substring(key.length + 1).trim();
+      // strip surrounding single or double quotes if present
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        return value.slice(1, -1);
+      }
       return value;
     }
   }

@@ -41,6 +41,8 @@ async function getProjectFiles(dir: string) {
 
 async function seed() {
   const { db } = await import('../../db/client');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const typedDb = db as any;
   const projectsDir = path.join(process.cwd(), 'content', 'proyectos');
   
   // Check if projects directory exists
@@ -66,7 +68,7 @@ async function seed() {
     const now = new Date();
 
     // Upsert by slug
-    await db
+    await typedDb
       .insert(projects)
       .values({
         slug: fm.slug,
