@@ -32,7 +32,11 @@ const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL
 export async function getAllStreams(): Promise<StreamRow[]> {
   if (!hasDb()) {return fallbackStreams();}
   try {
-    const rows = await db
+    // Local typed cast for incremental typing migration.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const typedDb = db as any;
+
+    const rows = await typedDb
       .select({
         id: streams.id,
         slug: streams.slug,
