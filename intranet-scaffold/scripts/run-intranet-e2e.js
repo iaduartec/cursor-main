@@ -69,7 +69,9 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
   } else {
     console.log('Database URL detected in environment; running against real DB');
   }
-  const dev = spawn('pnpm', ['dev'], { cwd, stdio: 'inherit', env });
+  // dev may be replaced during recovery flow; use let instead of const
+  // eslint-disable-next-line prefer-const
+  let dev = spawn('pnpm', ['dev'], { cwd, stdio: 'inherit', env });
 
   // wait for server (fast check first: 10s)
   try {
@@ -92,10 +94,10 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
     const dev2 = spawn('pnpm', ['dev'], { cwd, stdio: 'inherit', env });
     try {
       await waitForServer('http://127.0.0.1:3000', 60000);
-      // replace dev handle for shutdown later
-      dev.kill && dev.kill('SIGINT');
-      // use dev2 for shutdown
-      dev = dev2;  
+  // replace dev handle for shutdown later
+  if (dev && typeof dev.kill === 'function') { dev.kill('SIGINT'); }
+  // use dev2 for shutdown
+  dev = dev2;
     } catch (e2) {
       console.error('Recovery failed:', e2 && e2.message);
       try { dev2.kill('SIGINT'); } catch (er) {}

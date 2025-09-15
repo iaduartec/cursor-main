@@ -30,6 +30,8 @@ async function main() {
 
     // Wait up to 40s for Ready
     const start = Date.now();
+    // ready is mutated by the stdout handler; disable this rule here
+    // eslint-disable-next-line no-unmodified-loop-condition
     while (!ready && Date.now() - start < 40000) {
       await new Promise((r) => setTimeout(r, 500));
     }
@@ -45,8 +47,9 @@ async function main() {
       const r = await fetch('http://127.0.0.1:3000/api/_debug/ready');
       console.log('ready status', r.status);
       console.log('ready body', await r.text());
-    } catch (e) {
-      console.error('GET /api/_debug/ready failed', e);
+    } catch (_e) {
+      // ignore fetch errors during health check
+      console.error('GET /api/_debug/ready failed', _e);
     }
 
     try {
@@ -58,8 +61,8 @@ async function main() {
       });
       console.log('post status', p.status);
       try { console.log('post body', await p.text()); } catch(e){}
-    } catch (e) {
-      console.error('POST /api/projects failed', e);
+    } catch (_e) {
+      console.error('POST /api/projects failed', _e);
     }
 
     // kill next child

@@ -20,7 +20,8 @@ export default async function BlogPage({ params }: { params: { slug: string } })
   let post;
   try {
     post = await getPostSerialized(params.slug);
-  } catch (err) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_err) {
     return notFound();
   }
   const { source, frontmatter } = post;
