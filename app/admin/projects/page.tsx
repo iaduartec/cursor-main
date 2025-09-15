@@ -36,8 +36,8 @@ export default async function AdminProjectsPage() {
     const now = new Date();
     await db
       .insert(projects)
-      .values({ slug, title, description: description || null, content: content || null, image: image || null, category: category || null, date: date as any, createdAt: now, updatedAt: now })
-      .onConflictDoUpdate({ target: projects.slug, set: { title, description: description || null, content: content || null, image: image || null, category: category || null, date: date as any, updatedAt: now } });
+  .values({ slug, title, description: description || null, content: content || null, image: image || null, category: category || null, date: date ? new Date(String(date)) : null, createdAt: now, updatedAt: now })
+  .onConflictDoUpdate({ target: projects.slug, set: { title, description: description || null, content: content || null, image: image || null, category: category || null, date: date ? new Date(String(date)) : null, updatedAt: now } });
     revalidateTag('projects');
     revalidatePath('/admin/projects');
   }
@@ -75,11 +75,11 @@ export default async function AdminProjectsPage() {
           </tr>
         </thead>
         <tbody>
-          {items.map((p) => (
+          {items.map((p: { slug: string; title: string; date?: string | number | Date; category?: string | null }) => (
             <tr key={p.slug} className="border-b">
               <td className="py-2">{p.slug}</td>
               <td>{p.title}</td>
-              <td>{p.date ? new Date(p.date as any).toLocaleString('es-ES') : ''}</td>
+              <td>{p.date ? new Date(String(p.date)).toLocaleString('es-ES') : ''}</td>
               <td>{p.category}</td>
               <td>
                 <form action={remove}>

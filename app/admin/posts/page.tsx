@@ -84,11 +84,11 @@ export default async function AdminPostsPage() {
           </tr>
         </thead>
         <tbody>
-          {items.map((p) => (
+          {items.map((p: { slug: string; title: string; date?: string | number | Date; category?: string | null }) => (
             <tr key={p.slug} className="border-b">
               <td className="py-2">{p.slug}</td>
               <td>{p.title}</td>
-              <td>{p.date ? new Date(p.date as any).toLocaleString('es-ES') : ''}</td>
+              <td>{p.date ? new Date(String(p.date)).toLocaleString('es-ES') : ''}</td>
               <td>{p.category}</td>
               <td>
                 <form action={remove}>

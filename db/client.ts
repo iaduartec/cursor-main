@@ -72,7 +72,7 @@ if (!skipDb) {
   // Otherwise create a client with the 'postgres' package.
   client = lowLevelClient ?? postgres(connectionString, { prepare: false });
 
-  dbExport = drizzle(client, { schema });
+  dbExport = drizzle(client as any, { schema });
 } else {
   // Minimal thenable query used as a chainable stub. When awaited it resolves
   // to an empty array. This covers typical usage patterns like
@@ -101,10 +101,10 @@ if (!skipDb) {
   dbExport = fakeDb;
 }
 
-export const db = dbExport;
+export const db: any = dbExport;
 
 // Export the low-level sql client too (may be undefined when DB is skipped)
-export { client as sql };
+export const sql: any = client as any;
 
 // Supabase client (JS) for auth/storage/other APIs. Prefer using
 // SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_ANON_KEY) set in Vercel.
