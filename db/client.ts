@@ -87,6 +87,7 @@ if (!skipDb) {
     then(onfulfilled?: (value: unknown) => unknown): Promise<unknown> {
       if (typeof onfulfilled === 'function') {
         try { onfulfilled([] as unknown); } catch (_) { /* ignore */ }
+          try { onfulfilled([] as unknown); } catch (_err) { /* ignore */ }
       }
       return Promise.resolve([] as unknown);
     }
