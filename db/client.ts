@@ -112,8 +112,11 @@ if (!skipDb) {
 // codebase while we perform an incremental typing migration. This keeps
 // the runtime behavior unchanged. We'll replace these `any` exports with
 // concrete Drizzle/Supabase types in a follow-up PR.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const db: any = dbExport;
+// Export a typed Drizzle client using the schema. We cast the runtime
+// value (`dbExport`) to the Drizzle type to incrementally tighten types
+// without changing runtime behavior.
+type DrizzleClient = ReturnType<typeof drizzle>;
+export const db = dbExport as unknown as DrizzleClient;
 
 // Export the low-level sql client too (may be undefined when DB is skipped)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
