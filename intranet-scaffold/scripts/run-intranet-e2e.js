@@ -95,7 +95,7 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
       // replace dev handle for shutdown later
       dev.kill && dev.kill('SIGINT');
       // use dev2 for shutdown
-      dev = dev2; // eslint-disable-line no-param-reassign
+      dev = dev2;  
     } catch (e2) {
       console.error('Recovery failed:', e2 && e2.message);
       try { dev2.kill('SIGINT'); } catch (er) {}

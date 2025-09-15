@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+ 
 import fs from 'fs';
 import path from 'path';
 
@@ -21,7 +21,7 @@ import path from 'path';
   // If a DB URL is present, run a simple insert using postgres client
   try {
     // dynamic import to avoid adding optional deps
-    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+     
     const req = eval('require');
     const postgres = req('postgres');
     const sql = postgres(dbUrl, { prepare: false });

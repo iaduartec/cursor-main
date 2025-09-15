@@ -47,7 +47,7 @@ try {
   // attempt to resolve the module during client-side bundling.
   let supabasePg: any;
   try {
-    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+     
     const req = eval('require');
     supabasePg = req('@supabase/postgres-js');
   } catch {
@@ -55,7 +55,7 @@ try {
   }
   if (supabasePg && typeof supabasePg.createClient === 'function') {
     // The package exposes createClient(connectionString) in most versions
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+     
     lowLevelClient = supabasePg.createClient(connectionString);
   }
 } catch {
@@ -86,7 +86,7 @@ if (!supabaseUrl || !supabaseKey) {
   // Don't crash - some environments may not need the JS client. Log a helpful warning.
   // In Vercel, set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY as environment variables.
   // If you only need DB access via Drizzle, the SUPABASE_* JS client is optional.
-  // eslint-disable-next-line no-console
+   
   console.warn(
     'Advertencia: SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY/SUPABASE_ANON_KEY no definidos. Algunas funcionalidades de Supabase (auth/storage) podrían no funcionar.'
   );
