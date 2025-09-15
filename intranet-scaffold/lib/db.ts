@@ -111,7 +111,7 @@ export function getDb() {
     if (process.env.USE_IN_MEMORY_DB === '1' || process.env.USE_IN_MEMORY_DB === 'true') {
       // Preserve adapter instance across HMR / module reloads in Next dev
       if (typeof globalThis.__inMemorySqlAdapter !== 'undefined') {
-        sql = globalThis.__inMemorySqlAdapter;
+        sql = (globalThis as any).__inMemorySqlAdapter;
       /* eslint-disable @typescript-eslint/no-explicit-any, no-var */
       } else {
         sql = createInMemoryAdapter();
