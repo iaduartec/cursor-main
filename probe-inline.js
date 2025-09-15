@@ -1,5 +1,4 @@
-const fs = require('fs');
-/* eslint-disable @typescript-eslint/no-require-imports, no-undef, no-console, no-empty, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-require-imports, no-undef, no-console, no-empty, @typescript-eslint/no-unused-vars, no-redeclare */
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
