@@ -72,7 +72,7 @@ export default async function AdminServicesPage() {
           </tr>
         </thead>
         <tbody>
-          {items.map((s) => (
+          {items.map((s: { slug: string; title: string; areaServed?: string | null; hasOfferCatalog?: boolean }) => (
             <tr key={s.slug} className="border-b">
               <td className="py-2">{s.slug}</td>
               <td>{s.title}</td>
