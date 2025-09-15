@@ -11,7 +11,7 @@ Tamaño: 5708 caracteres, 170 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-/* eslint-disable no-console, no-undef */
+/* eslint-disable no-console, no-undef, @typescript-eslint/no-unused-vars */
 /**
  * Inserta un resumen al inicio de cada archivo como comentario.
  * Ajusta OPENAI_API_KEY y el modelo. Revisa EXT_MAP para añadir más extensiones.
