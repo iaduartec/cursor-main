@@ -51,7 +51,12 @@ function fallbackProjects(): ProjectRow[] {
 export async function getAllProjects(): Promise<ProjectRow[]> {
   return withDb(
     async () => {
-      const rows = await db
+      // Local cast to `any` to progressively migrate this module to typed db
+      // without changing global exports. Replace with proper Drizzle types
+      // once callers are updated.
+      const typedDb = db as any;
+
+      const rows = await typedDb
         .select()
         .from(projects)
         .orderBy(desc(projects.date));
@@ -69,7 +74,9 @@ export async function getProjectBySlug(slug: string): Promise<ProjectRow | null>
 
   return withDb(
     async () => {
-      const result = await db
+      const typedDb = db as any;
+
+      const result = await typedDb
         .select()
         .from(projects)
         .where(eq(projects.slug, slug))
