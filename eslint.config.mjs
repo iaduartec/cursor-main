@@ -189,6 +189,15 @@ export default [
     },
   },
 
+  // Allow any in the intranet scaffold and generated content types to reduce noise
+  {
+    files: ['intranet-scaffold/**', 'types/**', 'types/**/*.d.ts', 'types/*.d.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    },
+  },
+
   // Observability bootstrap can use console
   {
     files: ['instrumentation.ts'],
