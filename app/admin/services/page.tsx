@@ -13,7 +13,7 @@ Contenido detectado basado en extensión y estructura básica.
 */
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db } from '../../../db/client';
-import { services } from '../../../db/schema';
+import { services, type NewService } from '../../../db/schema';
 import { eq, asc } from 'drizzle-orm';
 
 async function getItems() {
@@ -38,8 +38,8 @@ export default async function AdminServicesPage() {
     const typedDb = db as any;
     await typedDb
       .insert(services)
-      .values({ slug, title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, createdAt: now, updatedAt: now })
-      .onConflictDoUpdate({ target: services.slug, set: { title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, updatedAt: now } });
+      .values({ slug, title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, createdAt: now, updatedAt: now } as NewService)
+      .onConflictDoUpdate({ target: services.slug, set: { title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, updatedAt: now } as Partial<NewService> });
     revalidateTag('services');
     revalidatePath('/admin/services');
   }
