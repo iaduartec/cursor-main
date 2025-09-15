@@ -36,10 +36,12 @@ export default async function globalSetup() {
 
   let signaledReady = false;
   child.stdout.on('data', (d: string) => {
-    process.stdout.write(`[next] ${  d}`);
-    if (!signaledReady && /Ready/.test(d)) {signaledReady = true;}
+    process.stdout.write(`[next] ${d}`);
+    if (!signaledReady && /Ready/.test(d)) {
+      signaledReady = true;
+    }
   });
-  child.stderr.on('data', (d: string) => process.stderr.write(`[next-err] ${  d}`));
+  child.stderr.on('data', (_d: string) => process.stderr.write(`[next-err] ${_d}`));
 
   // Wait up to 40s for Next to emit Ready
   const start = Date.now();
@@ -58,7 +60,7 @@ export default async function globalSetup() {
       const res = await fetch('http://127.0.0.1:3000/api/_debug/ready');
       if (res.ok) {return;}
       // if not ok, continue polling
-    } catch (e) {
+    } catch (_e) {
       // ignore network errors while server finalizes
     }
     await new Promise((r) => setTimeout(r, 1000));
