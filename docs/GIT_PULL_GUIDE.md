@@ -15,6 +15,7 @@ npm run git:pull
 ```
 
 This command will:
+
 1. Check if you're in a git repository
 2. Verify working directory status
 3. Warn about uncommitted changes
@@ -132,6 +133,7 @@ $ npm run git:pull
 ### Pre-commit Hook Integration
 
 The repository includes husky pre-commit hooks that run:
+
 - TypeScript type checking
 - Linting
 - Tests (if available)
@@ -141,6 +143,7 @@ After pulling changes, these hooks ensure code quality is maintained.
 ### Build Process Integration
 
 After pulling changes that affect:
+
 - `package.json` - Run `pnpm install`
 - `contentlayer.config.ts` - Consider rebuilding content
 - Build configs - Run `npm run build`
@@ -157,6 +160,7 @@ fatal: Authentication failed
 ```
 
 This is expected in sandboxed environments. In normal development:
+
 1. Ensure GitHub credentials are properly configured
 2. Use SSH keys or personal access tokens
 3. Check repository permissions
@@ -164,6 +168,7 @@ This is expected in sandboxed environments. In normal development:
 ### Network Issues
 
 If fetch operations fail due to network restrictions:
+
 1. Check internet connectivity
 2. Verify firewall settings
 3. Try again after network issues resolve

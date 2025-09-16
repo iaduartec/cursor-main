@@ -1,5 +1,9 @@
 <!--
-Resumen generado automáticamente.
+Resumen generado automáticam4) Variables de entorno (añadir según necesites):
+   - NEXT_PUBLIC_SITE_URL = `https://tu-dominio`
+   - NODE_ENV = production
+   - (Opcional) OPENAI_API_KEY, NEXT_PUBLIC_GA_ID, GTM_ID, RECAPTCHA_* si
+     las usas.
 
 DEPLOY_VERCEL.md
 
@@ -23,17 +27,20 @@ Resumen mínimo
 Pasos
 
 1) Crear cuenta en Vercel (si no la tienes).
-2) Conectar el repositorio GitHub `kirivfk/cursor-main` desde el panel de Vercel.
-3) En la pantalla de configuración del proyecto en Vercel, confirmar o establecer:
+2) Conectar el repositorio GitHub `kirivfk/cursor-main` desde el panel de
+   Vercel.
+3) En la pantalla de configuración del proyecto en Vercel, confirmar o
+   establecer:
    - Framework Preset: Next.js
    - Build Command: npm run build
    - Install Command: npm ci --legacy-peer-deps
    - Output Directory: (dejar vacío; Next manejará la salida)
 
 4) Variables de entorno (añadir según necesites):
-   - NEXT_PUBLIC_SITE_URL = https://tu-dominio
+   - NEXT_PUBLIC_SITE_URL = `https://tu-dominio`
    - NODE_ENV = production
-   - (Opcional) OPENAI_API_KEY, NEXT_PUBLIC_GA_ID, GTM_ID, RECAPTCHA_* si las usas
+   - (Opcional) OPENAI_API_KEY, NEXT_PUBLIC_GA_ID, GTM_ID, RECAPTCHA_* si
+     las usas
 
 5) Opciones recomendadas en "Advanced" (si Vercel lo permite):
    - Build cache: activar
@@ -61,8 +68,11 @@ Problemas comunes
 Soporte adicional
 
 Si quieres, puedo:
-- Añadir variables recomendadas directamente en `vercel.json` (no recomendado para secrets).
-- Crear un workflow de GitHub Actions que dispare despliegues o valide builds antes de push.
+
+- Añadir variables recomendadas directamente en `vercel.json` (no recomendado
+  para secrets).
+- Crear un workflow de GitHub Actions que dispare despliegues o valide builds
+  antes de push.
 
 
 ---

@@ -22,6 +22,7 @@ Las imágenes generadas por el workflow de artículos eran muy pequeñas (86B - 
 ### 1. **Mejoras en el Workflow Principal**
 
 #### Archivo: `.github/workflows/generate-article.yml`
+
 - ✅ Mejorado el parsing del título del issue con más patrones
 - ✅ Añadida validación de directorios antes de generar contenido
 - ✅ Mejorado el manejo de errores con `set -e`
@@ -32,6 +33,7 @@ Las imágenes generadas por el workflow de artículos eran muy pequeñas (86B - 
 ### 2. **Mejoras en el Script de Generación**
 
 #### Archivo: `tools/generate_article.py`
+
 - ✅ Añadida validación de tamaño de imágenes (>1KB)
 - ✅ Mejorado el logging para debugging
 - ✅ Añadidos fallbacks más robustos
@@ -41,6 +43,7 @@ Las imágenes generadas por el workflow de artículos eran muy pequeñas (86B - 
 ### 3. **Sistema de Placeholder**
 
 #### Archivo: `tools/generate_placeholder_image.py`
+
 - ✅ Generador de imágenes de placeholder cuando las APIs fallan
 - ✅ Imágenes de 1920x1080 con diseño profesional
 - ✅ Colores configurables según el acento
@@ -49,7 +52,8 @@ Las imágenes generadas por el workflow de artículos eran muy pequeñas (86B - 
 
 ### 4. **Scripts de Diagnóstico y Pruebas**
 
-#### Scripts locales (ahora en `tools/dev/`):
+#### Scripts locales (ahora en `tools/dev/`)
+
 - `tools/dev/test_workflow.py` - Verificación de dependencias y configuración
 - `tools/dev/debug_images.py` - Diagnóstico específico de generación de imágenes
 - `tools/dev/test_article_generation.py` - Prueba completa de generación
@@ -58,12 +62,14 @@ Las imágenes generadas por el workflow de artículos eran muy pequeñas (86B - 
 
 ## 📊 Resultados de las Pruebas
 
-### Antes de las correcciones:
+### Antes de las correcciones
+
 - ❌ Imágenes de 86B - 509B (inválidas)
 - ❌ No se referenciaban en el frontmatter
 - ❌ Workflow fallaba silenciosamente
 
-### Después de las correcciones:
+### Después de las correcciones
+
 - ✅ Imágenes de placeholder: ~30KB (válidas)
 - ✅ Referencias correctas en frontmatter
 - ✅ Workflow robusto con múltiples fallbacks
