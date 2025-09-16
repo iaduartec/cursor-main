@@ -23,10 +23,10 @@ if (pnpmMajor !== 9 && pnpmMajor !== 10) {
   console.error(`❌ Usa pnpm 9.x o 10.x. Detectado: ${ua}`);
   process.exit(1);
 }
-// Bloquea versión de Node: exige 22.x
+// Bloquea versión de Node: exige 24.x
 const major = Number(process.versions.node.split(".")[0]);
-if (major !== 22) {
-  console.error(`❌ Usa Node 22.x. Detectado: ${process.versions.node}`);
+if (major !== 24) {
+  console.error(`❌ Usa Node 24.x. Detectado: ${process.versions.node}`);
   process.exit(1);
 }
 
