@@ -1,5 +1,9 @@
 // test setup: register additional matchers for DOM testing
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// Note: the dynamic import below may reference declaration-merged matchers
+// from '@testing-library/jest-dom' which are not exported as a module type.
+// Use a targeted ts-ignore on the import to avoid TS2306 while keeping the
+// rest of this file type-checked.
 // Make sure Vitest's expect is available globally before loading jest-dom
 import { expect as vitestExpect, afterEach } from 'vitest';
 
@@ -14,6 +18,7 @@ import * as React from 'react';
 (async () => {
 	try {
 		// primary: import the package entry (it will call expect.extend internally)
+		// @ts-expect-error TS2306: jest-dom provides declaration merging matchers, not a module
 		await import('@testing-library/jest-dom');
 	} catch {
 		// fallback: import the matchers module and extend manually

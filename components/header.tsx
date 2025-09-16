@@ -62,7 +62,7 @@ export default function Header() {
               priority
             />
             {/* Texto eliminado: el logo ya incluye la marca */}
-            <div className="flex flex-col leading-tight hidden">
+            <div className="hidden md:flex md:flex-col leading-tight">
               <span className="text-white font-bold text-lg">Duartec</span>
               <span className="text-sm text-gray-200">Instalaciones Informáticas</span>
             </div>

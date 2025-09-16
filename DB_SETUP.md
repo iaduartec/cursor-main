@@ -33,11 +33,12 @@ Variables de entorno recomendadas
 - `SUPABASE_DB_URL` - URL de conexión Postgres (p. ej. la "Database URL" que provee Supabase). `db/client.ts` la usa con la mayor prioridad.
 - `POSTGRES_URL` - alternativa compatible usada por algunos scripts y por `db/client.ts` si `SUPABASE_DB_URL` no está definida.
 - `DATABASE_URL` - fallback genérico (por compatibilidad con otras infraestructuras).
-- `SUPABASE_URL` - URL pública del proyecto Supabase (para el SDK JS, p. ej. https://xyz.supabase.co).
+ - `SUPABASE_URL` - URL pública del proyecto Supabase (para el SDK JS, p. ej. `https://xyz.supabase.co`).
 - `SUPABASE_SERVICE_ROLE_KEY` - clave de servicio (privada) necesaria para tareas administrativas y para inicializar el SDK con privilegios elevados. Guárala en Vercel como Environment Secret.
 - `SUPABASE_ANON_KEY` - clave pública/anon para el SDK cuando no se usa la service role. `db/client.ts` acepta `SUPABASE_SERVICE_ROLE_KEY` o `SUPABASE_ANON_KEY` para crear el cliente JS.
 
 Orden de precedencia en `db/client.ts` (qué variable se usa para la conexión SQL):
+ 
 1. `SUPABASE_DB_URL` (recomendado)
 2. `POSTGRES_URL`
 3. `DATABASE_URL`
@@ -59,9 +60,9 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 Ejemplo de variables en Vercel (Environment Variables / Secrets):
 
-- `SUPABASE_DB_URL` = <Database URL from Supabase project>
-- `SUPABASE_URL` = <Supabase public URL>
-- `SUPABASE_SERVICE_ROLE_KEY` = <Service role key> (marca como Secret)
+ - `SUPABASE_DB_URL` = `postgresql://<DB_USER>:<DB_PASS>@<HOST>:5432/<DB_NAME>` (Database URL from Supabase project)
+ - `SUPABASE_URL` = `https://xyz.supabase.co` (Supabase public URL)
+ - `SUPABASE_SERVICE_ROLE_KEY` = `SERVICE_ROLE_KEY_HERE` (Service role key — marca como Secret)
 
 Comportamiento del SDK y el driver
 - El archivo `db/client.ts` intenta usar en runtime el driver `@supabase/postgres-js` (serverless-friendly) mediante `require` dinámico; si no está instalado, hace fallback al paquete `postgres`.
