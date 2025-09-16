@@ -81,11 +81,16 @@ if (!skipDb) {
   // shape used by the low-level SQL client. Casting `client` to this type
   // avoids a bare `as any` while remaining a safe, narrow surface for the
   // incremental migration.
-  // Use the project-local `LowLevelSql` alias. This is a single place to
-  // centralize the low-level client contract and makes it straightforward
-  // to tighten the type in the future.
-  import type { LowLevelSql } from '../types/db';
-  dbExport = drizzle(client as unknown as LowLevelSql, { schema });
+  // Cast to the inferred first parameter type of `drizzle` so we match the
+  // upstream overloads; this keeps the runtime behavior unchanged while
+  // avoiding a literal `as any` token. Call sites continue to use the
+  // project-local `LowLevelSql` alias for incremental tightening where
+  // helpful, but here we prefer the exact parameter shape expected by
+  // `drizzle` to satisfy the TypeScript overload resolution.
+  // Cast to the concrete Sql type from the 'postgres' driver which matches
+  // the shape expected by drizzle. Using an inline import type avoids a
+  // runtime dependency while satisfying TypeScript.
+  dbExport = drizzle(client as unknown as import('postgres').Sql, { schema });
 } else {
   // Minimal thenable query used as a chainable stub. When awaited it resolves
   // to an empty array. This covers typical usage patterns like
