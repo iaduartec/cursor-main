@@ -4,7 +4,7 @@ Instrucciones breves y accionables para agentes de IA que trabajen en este repos
 ## Visión general (big picture)
 - Aplicación Next.js (directorio `app/`) con TypeScript y Tailwind.
 - Contenido editorial en `content/` procesado por Contentlayer; tipos generados en `/.contentlayer/generated` (mapeado en `tsconfig.json`).
-- Acceso a datos con Drizzle ORM (`db/schema.ts`) y Postgres/Supabase; migraciones en `drizzle/`.
+- Acceso a datos con Drizzle ORM (`db/schema.ts`) y Postgres (Neon); migraciones en `drizzle/`.
 - Scripts y utilidades en `scripts/` y `tools/` (p. ej. generación de imágenes, seeds, migraciones).
 
 ## Flujos críticos y comandos (ejemplos)
@@ -44,7 +44,7 @@ pnpm lint               # eslint
 - `next.config.mjs` permite desactivar Contentlayer con `SKIP_CONTENTLAYER=1` — útil en Windows o para tests rápidos.
 - `reactStrictMode` está desactivado por una razón conocida: evita doble-mount en mapas cliente (ver `next.config.mjs`). No revertir sin probar maps.
 - El build de Next ignora errores de TypeScript y ESLint (`typescript.ignoreBuildErrors: true`, `eslint.ignoreDuringBuilds: true`). Aun así conservar la calidad del código; los checks se ejecutan con `pnpm type-check` y `pnpm lint`.
-- `db/client.ts` intenta usar `@supabase/postgres-js` dinámicamente y hace fallback a `postgres`. Comprueba `DB_SETUP.md` antes de forzar dependencias.
+- `db/client.ts` usa el driver `postgres` (Neon-friendly). En el pasado se intentó `@supabase/postgres-js` como opción dinámica; ese enfoque es legacy en este repo. Comprueba `DB_SETUP.md` para más detalles.
 
 ## Tests e2e / entorno reproducible
 - Playwright usa `playwright.config.ts` que arranca un servidor con `node intranet-scaffold/scripts/start-next-dev.js` y variables de entorno:
@@ -60,8 +60,9 @@ Si añades o modificas pruebas e2e, ejecuta `pnpm test:e2e` localmente; el proce
 
 ## Integraciones y despliegue
 - Vercel: `next.config.mjs` habilita `output: 'standalone'` solo cuando `VERCEL` o `ENABLE_STANDALONE` están activos.
-- Variables de entorno críticas:
-  - `SUPABASE_DB_URL` (preferida) / `POSTGRES_URL` / `DATABASE_URL` (fallbacks)
+ - Variables de entorno críticas:
+  - `POSTGRES_URL` / `DATABASE_URL` (primarias)
+  - `SUPABASE_DB_URL` (legacy, solo si necesitas compatibilidad con proyectos antiguos)
   - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`
   - `SKIP_CONTENTLAYER`, `USE_IN_MEMORY_DB`, `VERCEL`
 
