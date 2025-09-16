@@ -45,8 +45,8 @@ async function run() {
 
   try {
     // close sql if available
-    if (sql && typeof (sql as any).end === 'function') {
-      await (sql as any).end();
+    if (sql && typeof (sql as unknown as { end?: unknown }).end === 'function') {
+      await (sql as unknown as { end?: () => Promise<unknown> }).end?.();
       console.log('\nClosed low-level sql connection.');
     }
   } catch (err) {

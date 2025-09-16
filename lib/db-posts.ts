@@ -113,11 +113,11 @@ export async function getPostsPageFromDb(
   if (q && q.trim().length > 0) {
     const like = `%${q.trim()}%`;
     const pred = or(
-      ilike(posts.title as any, like as any),
-      ilike(posts.description as any, like as any),
-      ilike(posts.content as any, like as any)
+      ilike(posts.title as unknown as SQL, like as string),
+      ilike(posts.description as unknown as SQL, like as string),
+      ilike(posts.content as unknown as SQL, like as string)
     );
-    conds.push(pred as any as SQL);
+    conds.push(pred as unknown as SQL);
   }
   const where = conds.length > 0 ? and(...conds) : undefined;
 
@@ -126,7 +126,7 @@ export async function getPostsPageFromDb(
   try {
     let countQ: any = drizzleDb.select({ value: count() }).from(posts);
     if (where) {
-      countQ = countQ.where(where as any);
+      countQ = countQ.where(where as unknown as SQL);
     }
     const countRows: Array<{ value: number }> = await countQ;
     total = Number((countRows?.[0]?.value ?? 0) as number);
@@ -156,7 +156,7 @@ export async function getPostsPageFromDb(
       )
       .limit(pageSize)
       .offset(offset);
-    if (where) { qsel = qsel.where(where as any); }
+  if (where) { qsel = qsel.where(where as unknown as SQL); }
     const rows: Post[] = await qsel;
     return { items: rows, total, page, pageSize };
   } catch (e) {

@@ -81,8 +81,8 @@ export async function withDb<T>(
         // eslint-disable-next-line no-console
         console.debug('Verbose DB error details:', error);
         // eslint-disable-next-line no-console
-        if (error && typeof (error as any).stack === 'string') {
-          console.debug('Stack:', (error as any).stack);
+        if (error && typeof (error as unknown as { stack?: unknown }).stack === 'string') {
+          console.debug('Stack:', (error as unknown as { stack?: string }).stack);
         }
       } catch {
         // ignore logging errors
