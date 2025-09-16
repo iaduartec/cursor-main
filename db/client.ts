@@ -97,7 +97,7 @@ if (!skipDb) {
         }
         try {
           onfulfilled([] as unknown);
-        } catch (_err) {
+        } catch {
           /* ignore */
         }
       }

@@ -1,17 +1,4 @@
-/**
-Resumen generado automáticamente.
-
-components/footer.tsx
-
-2025-09-13T06:20:07.368Z
-
-——————————————————————————————
-Archivo .tsx: footer.tsx
-Tamaño: 6637 caracteres, 151 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
