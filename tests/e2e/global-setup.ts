@@ -20,13 +20,17 @@ export default async function globalSetup() {
   // Start Next dev as a child process so Playwright can hit the running server
   // Resolve next's actual JS entry in a cross-platform way
   const nextBin = require.resolve('next/dist/bin/next');
-  const child = spawn(process.execPath, [nextBin, 'dev', '-H', '127.0.0.1', '-p', '3000'], {
-    cwd,
-    env: process.env,
-    stdio: ['ignore', 'pipe', 'pipe'],
-    // don't use shell on Windows to avoid "C:\Program Files" splitting
-    shell: false,
-  });
+  const child = spawn(
+    process.execPath,
+    [nextBin, 'dev', '-H', '127.0.0.1', '-p', '3000'],
+    {
+      cwd,
+      env: process.env,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      // don't use shell on Windows to avoid "C:\Program Files" splitting
+      shell: false,
+    }
+  );
 
   // Store PID so teardown can kill it
   fs.writeFileSync(path.resolve(cwd, '.playwright-dev.pid'), String(child.pid));
@@ -36,15 +40,20 @@ export default async function globalSetup() {
 
   let signaledReady = false;
   child.stdout.on('data', (d: string) => {
-    process.stdout.write(`[next] ${  d}`);
-    if (!signaledReady && /Ready/.test(d)) {signaledReady = true;}
+    process.stdout.write(`[next] ${d}`);
+    if (!signaledReady && /Ready/.test(d)) {
+      signaledReady = true;
+    }
   });
-  child.stderr.on('data', (d: string) => process.stderr.write(`[next-err] ${  d}`));
+  child.stderr.on('data', (d: string) =>
+    process.stderr.write(`[next-err] ${d}`)
+  );
 
   // Wait up to 40s for Next to emit Ready
   const start = Date.now();
+  // eslint-disable-next-line no-unmodified-loop-condition
   while (!signaledReady && Date.now() - start < 40000) {
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise(r => setTimeout(r, 500));
   }
   if (!signaledReady) {
     child.kill();
@@ -56,12 +65,14 @@ export default async function globalSetup() {
   for (let i = 0; i < maxPoll; i++) {
     try {
       const res = await fetch('http://127.0.0.1:3000/api/_debug/ready');
-      if (res.ok) {return;}
+      if (res.ok) {
+        return;
+      }
       // if not ok, continue polling
-    } catch (e) {
+    } catch {
       // ignore network errors while server finalizes
     }
-    await new Promise((r) => setTimeout(r, 1000));
+    await new Promise(r => setTimeout(r, 1000));
   }
 
   // If we reach here, server did not expose readiness
