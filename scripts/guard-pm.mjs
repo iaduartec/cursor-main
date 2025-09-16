@@ -11,10 +11,16 @@ Tamaño: 428 caracteres, 14 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-// Bloquea gestor: exige pnpm 9.6.0
+// Bloquea gestor: exige pnpm 9.x o 10.x (aceptamos 10.16.1)
 const ua = process.env.npm_config_user_agent || "";
-if (!ua.includes("pnpm/9.6.0")) {
-  console.error(`❌ Usa pnpm 9.6.0. Detectado: ${ua || "desconocido"}`);
+const pnpmMatch = ua.match(/pnpm\/(\d+)\.(\d+)\.(\d+)/);
+if (!pnpmMatch) {
+  console.error(`❌ Usa pnpm 9.x o 10.x. Detectado: ${ua || "desconocido"}`);
+  process.exit(1);
+}
+const pnpmMajor = Number(pnpmMatch[1]);
+if (pnpmMajor !== 9 && pnpmMajor !== 10) {
+  console.error(`❌ Usa pnpm 9.x o 10.x. Detectado: ${ua}`);
   process.exit(1);
 }
 // Bloquea versión de Node: exige 22.x
