@@ -16,7 +16,7 @@ jobs:
       - name: Instalar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
       - name: Instalar dependencias
         run: pnpm install
       - name: Auditoría de seguridad Node.js
@@ -29,7 +29,7 @@ jobs:
       - name: Instalar Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
       - name: Instalar dependencias
         run: pip install --upgrade -r tools/requirements.txt
       - name: Auditoría de seguridad Python
