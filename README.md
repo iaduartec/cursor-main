@@ -3,6 +3,7 @@
 Sitio web profesional de **Duartec Instalaciones Informáticas**: soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos.
 
 ## 🚀 Tecnologías principales
+
 - [Next.js](https://nextjs.org/) (con soporte para TypeScript)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Drizzle ORM](https://orm.drizzle.team/) + Neon/Postgres
@@ -11,10 +12,12 @@ Sitio web profesional de **Duartec Instalaciones Informáticas**: soluciones int
 - [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) para linting y formato
 
 ## 📦 Requisitos previos
+
 - **Node.js** `22.x`
 - **pnpm** `9.6.0` (gestor de paquetes)
 
 ## 🔧 Instalación
+
 Clona el repositorio y ejecuta:
 
 ```bash
@@ -41,19 +44,19 @@ pnpm install
 
 ## 🌍 SEO y Analytics
 
-* Configuración SEO con [`next-seo`](https://github.com/garmeeh/next-seo)
-* Sitemap automático con [`next-sitemap`](https://www.npmjs.com/package/next-sitemap)
-* Métricas con [`@vercel/analytics`](https://vercel.com/docs/concepts/analytics)
+- Configuración SEO con [`next-seo`](https://github.com/garmeeh/next-seo)
+- Sitemap automático con [`next-sitemap`](https://www.npmjs.com/package/next-sitemap)
+- Métricas con [`@vercel/analytics`](https://vercel.com/docs/concepts/analytics)
 
 ## 🧪 Testing
 
-* **Unit testing** con Jest
-* **End-to-End testing** con Playwright
-* **Intranet** con pruebas e2e dedicadas (`intranet-scaffold`)
+- **Unit testing** con Jest
+- **End-to-End testing** con Playwright
+- **Intranet** con pruebas e2e dedicadas (`intranet-scaffold`)
 
 ## 📂 Estructura básica (resumida)
 
-```
+```text
 /scripts             → Scripts de automatización
 /tools               → Utilidades (generación de imágenes, artículos, etc.)
 /intranet-scaffold   → Submódulo para pruebas y demo CRUD

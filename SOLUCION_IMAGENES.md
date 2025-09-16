@@ -97,19 +97,22 @@ public/images/blog/
 ## 🚀 Cómo Usar
 
 ### Opción 1: Issue con título específico
-```
+
+```text
 Título: Artículo: Sistemas de videovigilancia inteligente
 ```
 
 ### Opción 2: Issue con etiqueta
-```
+
+```text
 Título: Solicitud de artículo
 Cuerpo: Sistemas de videovigilancia inteligente
 Etiquetas: generate-article
 ```
 
-### Parámetros opcionales en el cuerpo:
-```
+### Parámetros opcionales en el cuerpo
+
+```text
 Estilo: fotográfico
 Color: azul
 Detalles: cámaras IP modernas, entorno profesional
@@ -118,11 +121,13 @@ Categoria: Seguridad
 
 ## 🛠️ Configuración Necesaria
 
-### Secrets de GitHub:
+### Secrets de GitHub
+
 - `OPENAI_API_KEY` - Para generación con OpenAI
 - `GEMINI_API_KEY` - Para generación con Gemini
 
-### Permisos:
+### Permisos
+
 - `contents: write` - Para crear archivos
 - `issues: write` - Para comentar y cerrar issues
 

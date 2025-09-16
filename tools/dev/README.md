@@ -23,4 +23,5 @@ los workflows de GitHub ni en el despliegue.
 - `debug_images.py`: Diagnóstico de generación y conversión de imágenes
 - `cleanup_images.py`: Limpieza de imágenes inválidas o de prueba
 
-Nota: pueden requerir variables de entorno (`OPENAI_API_KEY`, `GEMINI_API_KEY`) y dependencias instaladas (`pip install -r tools/requirements.txt`).
+Nota: pueden requerir variables de entorno (`OPENAI_API_KEY`, `GEMINI_API_KEY`)
+y dependencias instaladas (`pip install -r tools/requirements.txt`).

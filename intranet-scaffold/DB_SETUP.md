@@ -17,7 +17,7 @@ Este repositorio usa Neon/Postgres (compatible con Supabase) y Drizzle ORM.
 
 Variables de entorno necesarias (ejemplo `.env.local`):
 
-```
+```bash
 # Prefer POSTGRES_URL / DATABASE_URL for Neon/Postgres
 POSTGRES_URL=postgresql://user:password@db.host:5432/postgres
 # Supabase-specific variables (opcional / legacy)
@@ -41,5 +41,3 @@ pnpm run db:migrate
 ```powershell
 pnpm exec tsx scripts/db/seed-projects.ts
 ```
-
-

@@ -1,1 +1,88 @@
-# Dependency Update Report\nGenerated: 2025-09-14T07:35:17.937Z\n\n## Summary\n- Total outdated dependencies: 19\n- Major updates: 0 (⚠️  Breaking changes possible)\n- Minor updates: 0 (✨ New features)\n- Patch updates: 19 (🐛 Bug fixes)\n\n## 🐛 PATCH Updates\n\n- **critters** (dependencies)\n  - Current: 0.0.25\n  - Latest: 0.0.25\n\n- **@eslint/js** (devDependencies)\n  - Current: 8.57.1\n  - Latest: 9.35.0\n\n- **@testing-library/react** (devDependencies)\n  - Current: 14.3.1\n  - Latest: 16.3.0\n\n- **@types/node** (devDependencies)\n  - Current: 22.18.3\n  - Latest: 24.3.3\n\n- **@types/react** (devDependencies)\n  - Current: 18.3.24\n  - Latest: 19.1.13\n\n- **@types/react-dom** (dependencies)\n  - Current: 18.3.7\n  - Latest: 19.1.9\n\n- **cross-env** (devDependencies)\n  - Current: 7.0.3\n  - Latest: 10.0.0\n\n- **dotenv** (dependencies)\n  - Current: 16.6.1\n  - Latest: 17.2.2\n\n- **eslint** (devDependencies)\n  - Current: 8.57.1\n  - Latest: 9.35.0\n\n- **framer-motion** (dependencies)\n  - Current: 10.18.0\n  - Latest: 12.23.12\n\n- **marked** (dependencies)\n  - Current: 12.0.2\n  - Latest: 16.2.1\n\n- **next-intl** (dependencies)\n  - Current: 3.26.5\n  - Latest: 4.3.8\n\n- **react** (dependencies)\n  - Current: 18.3.1\n  - Latest: 19.1.1\n\n- **react-dom** (dependencies)\n  - Current: 18.3.1\n  - Latest: 19.1.1\n\n- **react-leaflet** (dependencies)\n  - Current: 4.2.1\n  - Latest: 5.0.0\n\n- **tailwindcss** (dependencies)\n  - Current: 3.4.17\n  - Latest: 4.1.13\n\n- **zod** (dependencies)\n  - Current: 3.25.76\n  - Latest: 4.1.8\n\n- **esbuild** (devDependencies)\n  - Current: 0.18.20\n  - Latest: 0.25.9\n\n- **lucide-react** (dependencies)\n  - Current: 0.263.1\n  - Latest: 0.544.0\n\n
+# Dependency Update Report
+
+Generated: 2025-09-14T07:35:17.937Z
+
+## Summary
+
+- Total outdated dependencies: 19
+- Major updates: 0 (⚠️  Breaking changes possible)
+- Minor updates: 0 (✨ New features)
+- Patch updates: 19 (🐛 Bug fixes)
+
+## 🐛 PATCH Updates
+
+- **critters** (dependencies)
+  - Current: 0.0.25
+  - Latest: 0.0.25
+
+- **@eslint/js** (devDependencies)
+  - Current: 8.57.1
+  - Latest: 9.35.0
+
+- **@testing-library/react** (devDependencies)
+  - Current: 14.3.1
+  - Latest: 16.3.0
+
+- **@types/node** (devDependencies)
+  - Current: 22.18.3
+  - Latest: 24.3.3
+
+- **@types/react** (devDependencies)
+  - Current: 18.3.24
+  - Latest: 19.1.13
+
+- **@types/react-dom** (dependencies)
+  - Current: 18.3.7
+  - Latest: 19.1.9
+
+- **cross-env** (devDependencies)
+  - Current: 7.0.3
+  - Latest: 10.0.0
+
+- **dotenv** (dependencies)
+  - Current: 16.6.1
+  - Latest: 17.2.2
+
+- **eslint** (devDependencies)
+  - Current: 8.57.1
+  - Latest: 9.35.0
+
+- **framer-motion** (dependencies)
+  - Current: 10.18.0
+  - Latest: 12.23.12
+
+- **marked** (dependencies)
+  - Current: 12.0.2
+  - Latest: 16.2.1
+
+- **next-intl** (dependencies)
+  - Current: 3.26.5
+  - Latest: 4.3.8
+
+- **react** (dependencies)
+  - Current: 18.3.1
+  - Latest: 19.1.1
+
+- **react-dom** (dependencies)
+  - Current: 18.3.1
+  - Latest: 19.1.1
+
+- **react-leaflet** (dependencies)
+  - Current: 4.2.1
+  - Latest: 5.0.0
+
+- **tailwindcss** (dependencies)
+  - Current: 3.4.17
+  - Latest: 4.1.13
+
+- **zod** (dependencies)
+  - Current: 3.25.76
+  - Latest: 4.1.8
+
+- **esbuild** (devDependencies)
+  - Current: 0.18.20
+  - Latest: 0.25.9
+
+- **lucide-react** (dependencies)
+  - Current: 0.263.1
+  - Latest: 0.544.0

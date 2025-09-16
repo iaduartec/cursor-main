@@ -15,7 +15,7 @@ Tamaño: 2388 caracteres, 57 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 -->
-Guía rápida para desplegar este proyecto en Vercel
+# Guía rápida para desplegar este proyecto en Vercel
 
 Resumen mínimo
 
@@ -73,7 +73,6 @@ Si quieres, puedo:
   para secrets).
 - Crear un workflow de GitHub Actions que dispare despliegues o valide builds
   antes de push.
-
 
 ---
 Generado automáticamente por GitHub Copilot

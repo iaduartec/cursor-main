@@ -43,8 +43,10 @@ Orden de precedencia en `db/client.ts` (qué variable se usa para la conexión S
 
 Nota de seguridad y despliegue
 
-- Nunca comitees las claves en el repositorio. Usa `.env.local` para pruebas locales y Secrets/Environment Variables en Vercel para deploy.
-- Para las operaciones administrativas (migrations, seed), usa `SUPABASE_SERVICE_ROLE_KEY` o una variable dedicada con permisos de escritura.
+- Nunca comitees las claves en el repositorio. Usa `.env.local` para pruebas
+  locales y Secrets/Environment Variables en Vercel para deploy.
+- Para las operaciones administrativas (migrations, seed), usa
+  `SUPABASE_SERVICE_ROLE_KEY` o una variable dedicada con permisos de escritura.
 
 Ejemplo de `.env.local` (local):
 
@@ -59,18 +61,22 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 Ejemplo de variables en Vercel (Environment Variables / Secrets):
 
-- `SUPABASE_DB_URL` = `postgresql://<DB_USER>:<DB_PASS>@<HOST>:5432/<DB_NAME>` (Database URL from Supabase project)
+- `SUPABASE_DB_URL` = `postgresql://<DB_USER>:<DB_PASS>@<HOST>:5432/<DB_NAME>`
+  (Database URL from Supabase project)
 - `SUPABASE_URL` = `https://xyz.supabase.co` (Supabase public URL)
-- `SUPABASE_SERVICE_ROLE_KEY` = `SERVICE_ROLE_KEY_HERE` (Service role key — marca como Secret)
+- `SUPABASE_SERVICE_ROLE_KEY` = `SERVICE_ROLE_KEY_HERE`
+  (Service role key — marca como Secret)
 
 Comportamiento del SDK y el driver
 
-- El archivo `db/client.ts` usa `postgres` como driver por defecto (Neon-friendly). Evitamos forzar drivers opcionales en runtime para mantener la instalación robusta.
+- El archivo `db/client.ts` usa `postgres` como driver por defecto (Neon-friendly).
+  Evitamos forzar drivers opcionales en runtime para mantener la instalación robusta.
 
 Variables útiles para debugging
 
 - `NODE_ENV=development` para ejecutar `pnpm dev` localmente.
-- `SUPABASE_DB_URL` en una shell temporal para ejecutar scripts puntuales sin `.env.local`, por ejemplo:
+- `SUPABASE_DB_URL` en una shell temporal para ejecutar scripts puntuales
+  sin `.env.local`, por ejemplo:
 
 ```powershell
 $env:SUPABASE_DB_URL="postgresql://..."
@@ -80,22 +86,33 @@ Guía de conexión y despliegue (Neon / Postgres)
 Aplicar migraciones y poblar datos (Supabase)
 
 - Motor: Neon (Vercel Postgres) / Postgres (recomendado para este repositorio).
-- Esquema: definido en `db/schema.ts` con Drizzle (pg-core). Funciona con cualquier Postgres compatible.
+- Esquema: definido en `db/schema.ts` con Drizzle (pg-core). Funciona con
+  cualquier Postgres compatible.
 - Migraciones: en carpeta `drizzle/` generadas por `drizzle-kit`.
-- Seed: scripts en `scripts/db/` permiten poblar `posts`, `projects`, `services`, `streams`.
-1. En Vercel: añade las variables `SUPABASE_DB_URL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` en Settings > Environment Variables.
+- Seed: scripts en `scripts/db/` permiten poblar `posts`, `projects`,
+  `services`, `streams`.
+
+1. En Vercel: añade las variables `SUPABASE_DB_URL`, `SUPABASE_URL`,
+   `SUPABASE_SERVICE_ROLE_KEY` en Settings > Environment Variables.
 
 Por qué usar Neon / Postgres en Vercel
+
 1. Localmente: crea `.env.local` con las mismas variables para pruebas.
-- Integración nativa con Vercel y buena experiencia serverless.
-- Si necesitas integración con Auth/Storage, aún puedes usar proveedores externos; este repo usa Drizzle para acceso SQL directo.
+2. Integración nativa con Vercel y buena experiencia serverless.
+3. Si necesitas integración con Auth/Storage, aún puedes usar proveedores
+   externos; este repo usa Drizzle para acceso SQL directo.
 
 ```bash
 Variables de entorno recomendadas
 pnpm db:migrate
-- `POSTGRES_URL` - URL de conexión Postgres (p. ej. la "Connection string" que provee Neon/Vercel). Este repo prioriza `POSTGRES_URL`.
-- `DATABASE_URL` - fallback genérico (por compatibilidad con otras infraestructuras).
-- `SUPABASE_DB_URL` - aceptada como fallback por compatibilidad con despliegues previos, pero considerada obsoleta para nuevas instalaciones.
+```
+
+- `POSTGRES_URL` - URL de conexión Postgres (p. ej. la "Connection string"
+  que provee Neon/Vercel). Este repo prioriza `POSTGRES_URL`.
+- `DATABASE_URL` - fallback genérico (por compatibilidad con otras
+  infraestructuras).
+- `SUPABASE_DB_URL` - aceptada como fallback por compatibilidad con
+  despliegues previos, pero considerada obsoleta para nuevas instalaciones.
 - Si usas el SDK de Supabase para Auth/Storage, conserva las variables `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` solo para esa funcionalidad.
 ```bash
 pnpm db:seed

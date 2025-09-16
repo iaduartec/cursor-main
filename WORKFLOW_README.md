@@ -21,7 +21,7 @@ Este workflow automatiza la generación de artículos para el blog usando IA (Op
 
 Crea un issue con uno de estos formatos de título:
 
-```
+```text
 Artículo: Título del artículo
 Artículo: Cómo implementar sistemas de videovigilancia
 Nuevo artículo: Gestión eficiente de residuos urbanos
@@ -34,7 +34,7 @@ Generar artículo: Optimización energética en edificios públicos
 2. Añade la etiqueta `generate-article`
 3. Opcionalmente, especifica parámetros en el cuerpo:
 
-```
+```text
 Tema del artículo aquí
 
 Estilo: fotográfico
@@ -101,13 +101,15 @@ python tools/dev/test_workflow.py
 ## 📝 Ejemplos de uso
 
 ### Ejemplo 1: Artículo simple
-```
+
+```text
 Título: Artículo: Sistemas de videovigilancia inteligente
 Cuerpo: (vacío)
 ```
 
 ### Ejemplo 2: Artículo con parámetros
-```
+
+```text
 Título: Nuevo artículo: Gestión de residuos urbanos
 Cuerpo: 
 Estilo: minimalista
@@ -117,7 +119,8 @@ Categoria: Sostenibilidad
 ```
 
 ### Ejemplo 3: Con etiqueta
-```
+
+```text
 Título: Solicitud de artículo
 Cuerpo: Implementación de energías renovables en edificios públicos
 Etiquetas: generate-article

@@ -4,7 +4,9 @@ This guide explains how to use the git pull functionality implemented in this re
 
 ## Overview
 
-The repository now includes a smart git pull script that safely handles pulling changes from remote repositories with proper error handling, conflict detection, and post-pull hooks.
+The repository now includes a smart git pull script that safely handles
+pulling changes from remote repositories with proper error handling,
+conflict detection, and post-pull hooks.
 
 ## Usage
 
