@@ -122,9 +122,9 @@ export type DrizzleClient = PgDatabase<any, schema.Database>;
 // exported type is now stricter which helps downstream migrations.
 export const db = dbExport as unknown as DrizzleClient;
 
-// Export the low-level sql client too (may be undefined when DB is skipped)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const sql: any = client as any;
+// Export the low-level sql client too (may be undefined when DB is skipped).
+// Use `unknown` here to reduce `any` surface while preserving runtime value.
+export const sql: unknown = client as unknown;
 
 // Supabase client (JS) for auth/storage/other APIs. Prefer using
 // SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_ANON_KEY) set in Vercel.

@@ -27,7 +27,14 @@ declare global {
 
 function createInMemoryAdapter() {
   const state = {
-    projects: [] as any[],
+    projects: [] as unknown as Array<{
+      id: number;
+      slug?: string | null;
+      title?: string | null;
+      description?: string | null;
+      hero_image?: string | null;
+      created_at?: number;
+    }> ,
     nextId: 1,
   };
 
@@ -55,10 +62,10 @@ function createInMemoryAdapter() {
       const now = Date.now();
       const row = {
         id: state.nextId++,
-        slug: slug ?? null,
-        title: title ?? null,
-        description: description ?? null,
-        hero_image: hero_image ?? null,
+        slug: slug == null ? null : String(slug),
+        title: title == null ? null : String(title),
+        description: description == null ? null : String(description),
+        hero_image: hero_image == null ? null : String(hero_image),
         created_at: now,
       };
       state.projects.push(row);
@@ -97,10 +104,17 @@ function createInMemoryAdapter() {
     return [];
   } as unknown;
 
-  (adapter as any).end = async function () { /* no-op */ };
+  // Ensure adapter exposes an optional `.end()` method for compatibility with callers
+  try {
+    (adapter as { end?: () => Promise<unknown> }).end = async function () { /* no-op */ };
+  } catch {
+    // ignore
+  }
+
   // Attach internal state for debugging/inspection when running in-memory DB
   try {
-    ((adapter as unknown) as { __state?: unknown }).__state = state;
+    // assign to a typed slot to avoid `any`
+    (adapter as { __state?: unknown }).__state = state;
   } catch (e) {
     // ignore if read-only
   }
@@ -112,12 +126,12 @@ export function getDb() {
     // If requested, use in-memory adapter (useful for local dev/E2E)
     if (process.env.USE_IN_MEMORY_DB === '1' || process.env.USE_IN_MEMORY_DB === 'true') {
       // Preserve adapter instance across HMR / module reloads in Next dev
-      if (typeof (globalThis as any).__inMemorySqlAdapter !== 'undefined') {
-        sql = (globalThis as any).__inMemorySqlAdapter as unknown;
+      if (typeof (globalThis as unknown as { __inMemorySqlAdapter?: unknown }).__inMemorySqlAdapter !== 'undefined') {
+        sql = (globalThis as unknown as { __inMemorySqlAdapter?: unknown }).__inMemorySqlAdapter as unknown;
       /* eslint-disable @typescript-eslint/no-explicit-any, no-var */
       } else {
         sql = createInMemoryAdapter();
-  try { (globalThis as any).__inMemorySqlAdapter = sql; } catch (e) { /* ignore */ }
+  try { (globalThis as unknown as { __inMemorySqlAdapter?: unknown }).__inMemorySqlAdapter = sql; } catch (e) { /* ignore */ }
       }
       return sql;
     }
