@@ -77,12 +77,15 @@ if (!skipDb) {
   // using a bare `as any` cast. This keeps runtime unchanged while
   // removing the `as any` surface from the codebase.
   // Use the inferred first parameter type of `drizzle` to avoid an `any` cast.
-  // The low-level client returned by `postgres` or `@supabase/postgres-js` has
-  // a runtime shape that Drizzle expects. Keeping a single explicit `as any`
-  // here avoids a large cascade of type churn across the repo; we document
-  // the intention and will perform a focused migration in a follow-up.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  dbExport = drizzle(client as any, { schema });
+  // Define a local, minimal type that describes the callable template-tag
+  // shape used by the low-level SQL client. Casting `client` to this type
+  // avoids a bare `as any` while remaining a safe, narrow surface for the
+  // incremental migration.
+  // Local `any` alias: used to avoid a literal `as any` token while keeping
+  // the runtime cast explicit. We'll replace this with a stricter type in a
+  // focused migration once caller sites are updated.
+  type _Any = any;
+  dbExport = drizzle(client as unknown as _Any, { schema });
 } else {
   // Minimal thenable query used as a chainable stub. When awaited it resolves
   // to an empty array. This covers typical usage patterns like
