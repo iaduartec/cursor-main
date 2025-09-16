@@ -13,7 +13,6 @@ Contenido detectado basado en extensión y estructura básica.
 */
 import { createClient } from '@supabase/supabase-js';
 import { drizzle } from 'drizzle-orm/postgres-js';
-import type { Sql } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
 import type { PgDatabase } from 'drizzle-orm/pg-core';
