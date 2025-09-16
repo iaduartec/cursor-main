@@ -13,11 +13,14 @@ Contenido detectado basado en extensión y estructura básica.
 -->
 # Duartec Intranet - DB Setup
 
-Este repositorio usa Supabase Postgres y Drizzle ORM.
+Este repositorio usa Neon/Postgres (compatible con Supabase) y Drizzle ORM.
 
 Variables de entorno necesarias (ejemplo `.env.local`):
 
 ```
+# Prefer POSTGRES_URL / DATABASE_URL for Neon/Postgres
+POSTGRES_URL=postgresql://user:password@db.host:5432/postgres
+# Supabase-specific variables (opcional / legacy)
 SUPABASE_DB_URL=postgresql://user:password@db.supabase.co:5432/postgres
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
