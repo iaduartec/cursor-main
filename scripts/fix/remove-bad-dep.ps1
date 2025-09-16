@@ -1,4 +1,4 @@
-# Remove @supabase/postgres-js line from package.json (backup then replace)
+Write-Host "This script was archived to archive/supabase-refs/remove-bad-dep.ps1 during Supabase cleanup."# Remove @supabase/postgres-js line from package.json (backup then replace)
 param(
   [string]$ProjectRoot = "$(Resolve-Path ..)"
 )
