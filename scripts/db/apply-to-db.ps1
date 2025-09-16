@@ -10,7 +10,7 @@ param(
 # Or set env var SUPABASE_DB_URL or POSTGRES_URL
 
 if (-not $DbUrl) {
-  $DbUrl = $env:SUPABASE_DB_URL; if (-not $DbUrl) { $DbUrl = $env:POSTGRES_URL }
+  $DbUrl = $env:POSTGRES_URL; if (-not $DbUrl) { $DbUrl = $env:SUPABASE_DB_URL }
 }
 
 if (-not $DbUrl) {
@@ -23,7 +23,8 @@ Write-Output "Applying migrations and seeds to DB: $($DbUrl -replace '(:\\/\\/).
 # Export env var for node scripts
 $env:POSTGRES_URL = $DbUrl
 $env:DATABASE_URL = $DbUrl
-$env:SUPABASE_DB_URL = $DbUrl
+# Keep SUPABASE_DB_URL only as a fallback/compat variable if present
+if (-not $env:SUPABASE_DB_URL) { $env:SUPABASE_DB_URL = $DbUrl }
 
 # If backup requested, try to run pg_dump
 if ($Backup) {
