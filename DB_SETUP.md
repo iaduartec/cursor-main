@@ -113,7 +113,9 @@ pnpm db:migrate
   infraestructuras).
 - `SUPABASE_DB_URL` - aceptada como fallback por compatibilidad con
   despliegues previos, pero considerada obsoleta para nuevas instalaciones.
-- Si usas el SDK de Supabase para Auth/Storage, conserva las variables `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` solo para esa funcionalidad.
+- Si usas el SDK de Supabase para Auth/Storage, conserva las variables
+  `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` solo para esa funcionalidad.
+
 ```bash
 pnpm db:seed
 ```
