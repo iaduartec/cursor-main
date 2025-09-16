@@ -23,8 +23,9 @@ Write-Output "Applying migrations and seeds to DB: $($DbUrl -replace '(:\\/\\/).
 # Export env var for node scripts
 $env:POSTGRES_URL = $DbUrl
 $env:DATABASE_URL = $DbUrl
-# Keep SUPABASE_DB_URL only as a fallback/compat variable if present
-if (-not $env:SUPABASE_DB_URL) { $env:SUPABASE_DB_URL = $DbUrl }
+# Note: We prefer POSTGRES_URL/DATABASE_URL. SUPABASE_DB_URL is a deprecated
+# legacy fallback — do not set it automatically here to avoid persisting
+# Supabase-specific variables in automation.
 
 # If backup requested, try to run pg_dump
 if ($Backup) {

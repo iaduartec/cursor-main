@@ -18,10 +18,14 @@ function checkDebugAccess(req: Request) {
   const token = process.env.INTRANET_DEBUG_TOKEN;
   if (token) {
     const provided = req.headers.get('x-debug-token') || '';
-    if (provided !== token) {return false;}
+    if (provided !== token) {
+      return false;
+    }
     return true;
   }
-  if (process.env.NODE_ENV === 'production') {return false;}
+  if (process.env.NODE_ENV === 'production') {
+    return false;
+  }
   return true;
 }
 
@@ -30,10 +34,14 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
   try {
-  const sql = getDb();
-  const state = (sql && (sql as unknown as { __state?: unknown }).__state) || null;
+    const sql = getDb();
+    const state =
+      (sql && (sql as unknown as { __state?: unknown }).__state) || null;
     return NextResponse.json({ state });
   } catch (err: any) {
-    return NextResponse.json({ error: String(err) || 'Internal Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: String(err) || 'Internal Error' },
+      { status: 500 }
+    );
   }
 }

@@ -1,4 +1,3 @@
- 
 import fs from 'fs';
 import path from 'path';
 
@@ -8,21 +7,31 @@ import path from 'path';
     { comment: 'Segundo comentario de prueba' },
   ];
 
-  // Prefer Neon/Postgres env vars; accept SUPABASE_DB_URL as a deprecated fallback.
-  const dbUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL || process.env.SUPABASE_DB_URL;
+  // Prefer Neon/Postgres env vars. SUPABASE_DB_URL is a deprecated fallback
+  // and may be used only if explicitly present in the environment.
+  const dbUrl =
+    process.env.POSTGRES_URL ||
+    process.env.DATABASE_URL ||
+    process.env.SUPABASE_DB_URL;
   if (!dbUrl) {
     // fallback: write JSON seed file for local testing
     const outDir = path.join(process.cwd(), 'data', 'seeds');
     fs.mkdirSync(outDir, { recursive: true });
-    fs.writeFileSync(path.join(outDir, 'comments.json'), JSON.stringify(comments, null, 2), 'utf8');
-    console.log('No DB URL found — wrote data/seeds/comments.json with sample comments');
+    fs.writeFileSync(
+      path.join(outDir, 'comments.json'),
+      JSON.stringify(comments, null, 2),
+      'utf8'
+    );
+    console.log(
+      'No DB URL found — wrote data/seeds/comments.json with sample comments'
+    );
     process.exit(0);
   }
 
   // If a DB URL is present, run a simple insert using postgres client
   try {
     // dynamic import to avoid adding optional deps
-     
+
     const req = eval('require');
     const postgres = req('postgres');
     const sql = postgres(dbUrl, { prepare: false });
@@ -35,5 +44,4 @@ import path from 'path';
     console.error('Fallo al insertar en la DB:', err);
     process.exit(1);
   }
-
 })();

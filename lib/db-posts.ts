@@ -13,12 +13,16 @@ import { allBlogs, type Blog } from 'contentlayer/generated';
 
 // Use the Post type inferred from the Drizzle schema
 
-
 const hasDb = () => {
   if (process.env.USE_IN_MEMORY_DB === '1' || process.env.SKIP_DB === '1') {
     return false;
   }
-  return Boolean(process.env.SUPABASE_DB_URL || process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
+  return Boolean(
+    process.env.SUPABASE_DB_URL ||
+      process.env.POSTGRES_URL ||
+      process.env.POSTGRES_URL_NON_POOLING ||
+      process.env.DATABASE_URL
+  );
 };
 
 // Helper type for contentlayer items where we access private/raw fields
@@ -33,7 +37,9 @@ type BlogRaw = Blog & {
 const drizzleDb = db as unknown as DrizzleClient;
 
 export async function getAllPostsFromDb(): Promise<Post[]> {
-  if (!hasDb()) { return []; }
+  if (!hasDb()) {
+    return [];
+  }
   try {
     const rows = await drizzleDb
       .select({
@@ -58,7 +64,9 @@ export async function getAllPostsFromDb(): Promise<Post[]> {
 }
 
 export async function getPostBySlugFromDb(slug: string): Promise<Post | null> {
-  if (!hasDb()) { return null; }
+  if (!hasDb()) {
+    return null;
+  }
   try {
     const [row] = await drizzleDb
       .select({
@@ -83,10 +91,14 @@ export async function getPostBySlugFromDb(slug: string): Promise<Post | null> {
 }
 
 export async function getAllSlugsFromDb(): Promise<string[]> {
-  if (!hasDb()) { return []; }
+  if (!hasDb()) {
+    return [];
+  }
   try {
-    const rows: Array<{ slug: string }> = await drizzleDb.select({ slug: posts.slug }).from(posts);
-    return rows.map((r) => r.slug);
+    const rows: Array<{ slug: string }> = await drizzleDb
+      .select({ slug: posts.slug })
+      .from(posts);
+    return rows.map(r => r.slug);
   } catch (e) {
     console.error('DB getAllSlugsFromDb error', e);
     return [];
@@ -102,14 +114,28 @@ export type PostsPageParams = {
   sortDir?: 'asc' | 'desc';
 };
 
-export async function getPostsPageFromDb(
-  { page = 1, pageSize = 9, category, q, sortBy = 'date', sortDir = 'desc' }: PostsPageParams
-): Promise<{ items: Post[]; total: number; page: number; pageSize: number }> {
-  if (!hasDb()) { return { items: [], total: 0, page, pageSize }; }
+export async function getPostsPageFromDb({
+  page = 1,
+  pageSize = 9,
+  category,
+  q,
+  sortBy = 'date',
+  sortDir = 'desc',
+}: PostsPageParams): Promise<{
+  items: Post[];
+  total: number;
+  page: number;
+  pageSize: number;
+}> {
+  if (!hasDb()) {
+    return { items: [], total: 0, page, pageSize };
+  }
   const offset = Math.max(0, (page - 1) * pageSize);
 
   const conds: SQL[] = [];
-  if (category && category !== 'Todas') { conds.push(eq(posts.category, category)); }
+  if (category && category !== 'Todas') {
+    conds.push(eq(posts.category, category));
+  }
   if (q && q.trim().length > 0) {
     const like = `%${q.trim()}%`;
     const pred = or(
@@ -151,12 +177,18 @@ export async function getPostsPageFromDb(
       .from(posts)
       .orderBy(
         sortBy === 'title'
-          ? (sortDir === 'asc' ? asc(posts.title) : desc(posts.title))
-          : (sortDir === 'asc' ? asc(posts.date) : desc(posts.date))
+          ? sortDir === 'asc'
+            ? asc(posts.title)
+            : desc(posts.title)
+          : sortDir === 'asc'
+            ? asc(posts.date)
+            : desc(posts.date)
       )
       .limit(pageSize)
       .offset(offset);
-  if (where) { qsel = qsel.where(where as unknown as SQL); }
+    if (where) {
+      qsel = qsel.where(where as unknown as SQL);
+    }
     const rows: Post[] = await qsel;
     return { items: rows, total, page, pageSize };
   } catch (e) {
@@ -166,17 +198,22 @@ export async function getPostsPageFromDb(
 }
 
 export async function getDistinctCategoriesFromDb(): Promise<string[]> {
-  if (!hasDb()) { return []; }
+  if (!hasDb()) {
+    return [];
+  }
   try {
     // group by to get distinct categories
-    const rows: Array<{ category: string | null }> = await drizzleDb.select({ category: posts.category }).from(posts).groupBy(posts.category);
-    return rows.map((r) => r.category).filter((x): x is string => !!x);
+    const rows: Array<{ category: string | null }> = await drizzleDb
+      .select({ category: posts.category })
+      .from(posts)
+      .groupBy(posts.category);
+    return rows.map(r => r.category).filter((x): x is string => !!x);
   } catch (e) {
     console.error('DB categories error', e);
     return [];
   }
 }
- 
+
 // Fallbacks using Contentlayer (for local/dev without DB)
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -189,15 +226,17 @@ const normalizeSlug = (s: string) =>
 
 const canonicalSlugFor = (p: Blog): string => {
   const raw = (p as BlogRaw)._raw?.flattenedPath as string | undefined;
-  const base = p.slug || (raw ? (raw.split('/').pop() || raw) : p.title);
+  const base = p.slug || (raw ? raw.split('/').pop() || raw : p.title);
   return normalizeSlug(base);
 };
 
 export async function getAllPosts(): Promise<Post[]> {
   const dbRows = await getAllPostsFromDb();
-  if (dbRows.length > 0) { return dbRows; }
+  if (dbRows.length > 0) {
+    return dbRows;
+  }
   // Fallback to Contentlayer
-  return allBlogs.map((p) => ({
+  return allBlogs.map(p => ({
     id: 0,
     slug: canonicalSlugFor(p),
     title: p.title,
@@ -215,9 +254,13 @@ export async function getAllPosts(): Promise<Post[]> {
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   const norm = normalizeSlug(slug);
   const row = await getPostBySlugFromDb(norm);
-  if (row) { return row; }
-  const p = allBlogs.find((x) => canonicalSlugFor(x) === norm);
-  if (!p) { return null; }
+  if (row) {
+    return row;
+  }
+  const p = allBlogs.find(x => canonicalSlugFor(x) === norm);
+  if (!p) {
+    return null;
+  }
   return {
     id: 0,
     slug: canonicalSlugFor(p),
@@ -235,26 +278,44 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
 export async function getAllSlugs(): Promise<string[]> {
   const slugs = await getAllSlugsFromDb();
-  if (slugs.length > 0) { return slugs.map(normalizeSlug); }
-  return allBlogs.map((p) => canonicalSlugFor(p));
+  if (slugs.length > 0) {
+    return slugs.map(normalizeSlug);
+  }
+  return allBlogs.map(p => canonicalSlugFor(p));
 }
 
-export async function getPostsPage(params: PostsPageParams): Promise<{ items: Post[]; total: number; page: number; pageSize: number }> {
+export async function getPostsPage(
+  params: PostsPageParams
+): Promise<{ items: Post[]; total: number; page: number; pageSize: number }> {
   const dbResult = await getPostsPageFromDb(params);
   // If DB has items and is configured, prefer DB results.
-  if (hasDb() && dbResult.items.length > 0) { return dbResult; }
+  if (hasDb() && dbResult.items.length > 0) {
+    return dbResult;
+  }
 
   // Otherwise, try to fallback to Contentlayer (local MDX files).
   const all = await getAllPosts();
-  if (!all || all.length === 0) { return dbResult; }
-  const category = params.category && params.category !== 'Todas' ? params.category : undefined;
+  if (!all || all.length === 0) {
+    return dbResult;
+  }
+  const category =
+    params.category && params.category !== 'Todas'
+      ? params.category
+      : undefined;
   const q = params.q?.trim();
   let filtered = all;
-  if (category) { filtered = filtered.filter((p) => (p.category || '').toLowerCase() === category.toLowerCase()); }
+  if (category) {
+    filtered = filtered.filter(
+      p => (p.category || '').toLowerCase() === category.toLowerCase()
+    );
+  }
   if (q && q.length > 0) {
     const needle = q.toLowerCase();
     filtered = filtered.filter(
-      (p) => p.title.toLowerCase().includes(needle) || (p.description || '').toLowerCase().includes(needle) || (p.content || '').toLowerCase().includes(needle)
+      p =>
+        p.title.toLowerCase().includes(needle) ||
+        (p.description || '').toLowerCase().includes(needle) ||
+        (p.content || '').toLowerCase().includes(needle)
     );
   }
   const sortBy = params.sortBy || 'date';
@@ -276,8 +337,14 @@ export async function getPostsPage(params: PostsPageParams): Promise<{ items: Po
 
 export async function getDistinctCategories(): Promise<string[]> {
   const cats = await getDistinctCategoriesFromDb();
-  if (cats.length > 0 || hasDb()) { return cats; }
+  if (cats.length > 0 || hasDb()) {
+    return cats;
+  }
   const set = new Set<string>();
-  for (const p of allBlogs) { if (p.category) { set.add(p.category); } }
+  for (const p of allBlogs) {
+    if (p.category) {
+      set.add(p.category);
+    }
+  }
   return Array.from(set);
 }

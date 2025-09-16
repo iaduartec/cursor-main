@@ -19,7 +19,10 @@ async function run() {
   try {
     console.log('\nTesting drizzle select via db (projects)...');
     const typedDb = db as unknown as DrizzleClient;
-    const rows = await typedDb.select().from((await import('../../db/schema')).projects).limit(1);
+    const rows = await typedDb
+      .select()
+      .from((await import('../../db/schema')).projects)
+      .limit(1);
     console.log('Projects rows:', rows);
   } catch (err) {
     console.error('Drizzle select error (projects):', err);
@@ -28,7 +31,10 @@ async function run() {
   try {
     console.log('\nTesting drizzle select via db (services)...');
     const typedDb = db as unknown as DrizzleClient;
-    const rows = await typedDb.select().from((await import('../../db/schema')).services).limit(1);
+    const rows = await typedDb
+      .select()
+      .from((await import('../../db/schema')).services)
+      .limit(1);
     console.log('Services rows:', rows);
   } catch (err) {
     console.error('Drizzle select error (services):', err);
@@ -37,7 +43,10 @@ async function run() {
   try {
     console.log('\nTesting drizzle select via db (streams)...');
     const typedDb = db as unknown as DrizzleClient;
-    const rows = await typedDb.select().from((await import('../../db/schema')).streams).limit(1);
+    const rows = await typedDb
+      .select()
+      .from((await import('../../db/schema')).streams)
+      .limit(1);
     console.log('Streams rows:', rows);
   } catch (err) {
     console.error('Drizzle select error (streams):', err);
@@ -45,7 +54,10 @@ async function run() {
 
   try {
     // close sql if available
-    if (sql && typeof (sql as unknown as { end?: unknown }).end === 'function') {
+    if (
+      sql &&
+      typeof (sql as unknown as { end?: unknown }).end === 'function'
+    ) {
       await (sql as unknown as { end?: () => Promise<unknown> }).end?.();
       console.log('\nClosed low-level sql connection.');
     }
@@ -54,7 +66,7 @@ async function run() {
   }
 }
 
-run().catch((e) => {
+run().catch(e => {
   console.error('Unhandled error in diagnostic script:', e);
   process.exit(1);
 });

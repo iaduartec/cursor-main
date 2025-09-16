@@ -136,7 +136,9 @@ export function getDb() {
       return sql;
     }
 
-  const dbUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL || process.env.SUPABASE_DB_URL || process.env.cxz_POSTGRES_URL;
+  // Prefer Neon/Postgres env vars. SUPABASE_DB_URL is accepted only as an
+  // explicit legacy fallback if present in the environment.
+  const dbUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL || process.env.cxz_POSTGRES_URL || process.env.SUPABASE_DB_URL;
   if (!dbUrl) {throw new Error("Database URL not configured. Set POSTGRES_URL or DATABASE_URL.");}
   sql = postgres(dbUrl, { ssl: 'require' });
   }
