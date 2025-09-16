@@ -1,65 +1,72 @@
-/**
-Resumen generado automáticamente.
-
-lib/db-projects.new.ts
-
-2025-09-13T06:20:07.379Z
-
-——————————————————————————————
-Archivo .ts: db-projects.new.ts
-Tamaño: 1736 caracteres, 69 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
-import { allProyectos } from 'contentlayer/generated';
-
-// Tipos de contenido desde contentlayer
-type ContentLayerProject = (typeof allProyectos)[number];
+// Fallback data when Contentlayer is disabled
+const fallbackProjects = [
+  {
+    id: 1,
+    slug: 'instalacion-redes-oficina',
+    title: 'Instalación de Redes en Oficina Corporativa',
+    description: 'Instalación completa de red informática para empresa de 50 empleados en Burgos.',
+    content: 'Proyecto de instalación de red completa incluyendo cableado estructurado, switches, routers y puntos de red.',
+    image: '/images/proyectos/redes-oficina.jpg',
+    category: 'informatica',
+    location: 'Burgos',
+    date: '2024-01-15',
+    featured: true,
+    technologies: ['Cableado estructurado', 'Switches Cisco', 'WiFi 6', 'Servidor Windows'],
+    client: 'Empresa ABC S.L.',
+    duration: '2 semanas',
+    budget: '15.000€'
+  },
+  {
+    id: 2,
+    slug: 'sistema-videovigilancia-supermercado',
+    title: 'Sistema de Videovigilancia para Supermercado',
+    description: 'Instalación de sistema CCTV completo con 16 cámaras en supermercado local.',
+    content: 'Instalación de 16 cámaras IP, servidor de grabación, monitores y software de gestión.',
+    image: '/images/proyectos/videovigilancia-supermercado.jpg',
+    category: 'videovigilancia',
+    location: 'Burgos',
+    date: '2024-02-20',
+    featured: true,
+    technologies: ['Cámaras IP', 'Servidor DVR', 'Software de gestión', 'Monitores 4K'],
+    client: 'Supermercado XYZ',
+    duration: '1 semana',
+    budget: '8.000€'
+  }
+];
 
 export type Project = {
   id: number;
   slug: string;
   title: string;
-  description: string | null;
-  content: string | null;
-  image: string | null;
-  category: string | null;
-  date: Date | null;
-  createdAt: Date;
-  updatedAt: Date;
+  description: string;
+  content: string;
+  image: string;
+  category: string;
+  location: string;
+  date: string;
+  featured: boolean;
+  technologies: string[];
+  client: string;
+  duration: string;
+  budget: string;
 };
 
-function projectFromContentLayer(p: ContentLayerProject): Project {
-  return {
-    id: 0,
-    slug: p.slug,
-    title: p.title ?? p.slug,
-    description: p.description ?? null,
-    content: p.body?.raw ?? null,
-    image: p.image ?? null,
-    category: p.category ?? null,
-    date: p.date ? new Date(p.date) : null,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  };
-}
-
 export async function getAllProjects(): Promise<Project[]> {
-  return allProyectos.map(projectFromContentLayer).sort((a, b) => {
-    if (!a.date && !b.date) {
-      return 0;
-    }
-    if (!a.date) {
-      return 1;
-    }
-    if (!b.date) {
-      return -1;
-    }
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  });
+  // Return fallback data when Contentlayer is disabled
+  return fallbackProjects;
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  const p = allProyectos.find(x => x.slug === slug);
-  return p ? projectFromContentLayer(p) : null;
+  const projects = await getAllProjects();
+  return projects.find(project => project.slug === slug) || null;
+}
+
+export async function getFeaturedProjects(): Promise<Project[]> {
+  const projects = await getAllProjects();
+  return projects.filter(project => project.featured);
+}
+
+export async function getProjectsByCategory(category: string): Promise<Project[]> {
+  const projects = await getAllProjects();
+  return projects.filter(project => project.category === category);
 }
