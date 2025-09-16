@@ -11,23 +11,16 @@ Tamaño: 3569 caracteres, 88 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-import { createClient } from '@supabase/supabase-js';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
 import type { PgDatabase } from 'drizzle-orm/pg-core';
 
-// Prefer Supabase-specific env vars when deploying to Vercel/Supabase
-// Order of precedence:
-// 1. SUPABASE_DB_URL (recommended for Supabase projects)
-// 2. POSTGRES_URL (used in this repo scripts)
-// 3. DATABASE_URL (generic)
-// Support legacy/local env var names (some environments use cxz_ prefix).
+// Connection string precedence: POSTGRES_URL > DATABASE_URL
+// Keep support for legacy cxz_ prefixed env vars used in local .env files.
 const rawConnectionString =
-  process.env.SUPABASE_DB_URL ||
   process.env.POSTGRES_URL ||
   process.env.DATABASE_URL ||
-  // fallbacks for local/dev .env that uses cxz_ prefixes
   process.env.cxz_POSTGRES_URL ||
   process.env.cxz_POSTGRES_PRISMA_URL ||
   process.env.cxz_POSTGRES_URL_NON_POOLING ||
@@ -53,43 +46,12 @@ if (!connectionString) {
 let client: unknown = undefined;
 let dbExport: unknown = undefined;
 if (!skipDb) {
-  // Try to use @supabase/postgres-js for serverless-friendly connections when available.
-  // If it's not installed or fails, fall back to the 'postgres' client.
-  let lowLevelClient: unknown;
-  try {
-    // Dynamic require so code still works if package not installed at runtime.
-    const req = eval('require');
-    const supabasePg = (() => {
-      try { return req('@supabase/postgres-js'); } catch { return undefined; }
-    })();
-    if (supabasePg && typeof supabasePg.createClient === 'function') {
-      lowLevelClient = supabasePg.createClient(connectionString);
-    }
-  } catch {
-    // ignore; we'll fallback to the 'postgres' client below
-  }
+  // Use the 'postgres' client (Neon-friendly) as the single supported
+  // low-level driver. This repo now uses Neon exclusively so we simplify
+  // the runtime path and remove any Supabase-specific branches.
+  client = postgres(connectionString, { prepare: false });
 
-  // If @supabase/postgres-js was available and created a client, use it.
-  // Otherwise create a client with the 'postgres' package.
-  client = lowLevelClient ?? postgres(connectionString, { prepare: false });
-
-  // Cast the runtime `client` to a local low-level client type to avoid
-  // using a bare `as any` cast. This keeps runtime unchanged while
-  // removing the `as any` surface from the codebase.
-  // Use the inferred first parameter type of `drizzle` to avoid an `any` cast.
-  // Define a local, minimal type that describes the callable template-tag
-  // shape used by the low-level SQL client. Casting `client` to this type
-  // avoids a bare `as any` while remaining a safe, narrow surface for the
-  // incremental migration.
-  // Cast to the inferred first parameter type of `drizzle` so we match the
-  // upstream overloads; this keeps the runtime behavior unchanged while
-  // avoiding a literal `as any` token. Call sites continue to use the
-  // project-local `LowLevelSql` alias for incremental tightening where
-  // helpful, but here we prefer the exact parameter shape expected by
-  // `drizzle` to satisfy the TypeScript overload resolution.
-  // Cast to the concrete Sql type from the 'postgres' driver which matches
-  // the shape expected by drizzle. Using an inline import type avoids a
-  // runtime dependency while satisfying TypeScript.
+  // Create a typed Drizzle instance using the Neon/postgres client.
   dbExport = drizzle(client as unknown as import('postgres').Sql, { schema });
 } else {
   // Minimal thenable query used as a chainable stub. When awaited it resolves
@@ -150,31 +112,4 @@ export type SqlTag = ((strings: TemplateStringsArray, ...values: unknown[]) => P
 // like `await sql` and `await sql` template-tag calls to type-check. The
 // runtime value is unchanged; we avoid `any` by using a small adapter type.
 export const sql: SqlTag = (client as unknown) as SqlTag;
-
-// Supabase client (JS) for auth/storage/other APIs. Prefer using
-// SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_ANON_KEY) set in Vercel.
-// Accept cxz_ prefixed env vars commonly used in local .env files as fallbacks
-const supabaseUrl = process.env.SUPABASE_URL || process.env.cxz_SUPABASE_URL || process.env.cxz_NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ||
-  process.env.SUPABASE_ANON_KEY ||
-  process.env.cxz_SUPABASE_SERVICE_ROLE_KEY ||
-  process.env.cxz_NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-  '';
-
-if (!supabaseUrl || !supabaseKey) {
-  // Don't crash - some environments may not need the JS client. Log a helpful warning.
-  // In Vercel, set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY as environment variables.
-  // If you only need DB access via Drizzle, the SUPABASE_* JS client is optional.
-   
-  console.warn(
-    'Advertencia: SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY/SUPABASE_ANON_KEY no definidos. Algunas funcionalidades de Supabase (auth/storage) podrían no funcionar.'
-  );
-}
-
-export const supabase = supabaseUrl && supabaseKey
-  ? createClient(supabaseUrl, supabaseKey, {
-      auth: { autoRefreshToken: false, persistSession: false },
-    })
-  : undefined;
 
