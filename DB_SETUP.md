@@ -204,11 +204,13 @@ pnpm exec tsx scripts/run-db-ping-oneoff.ts
 
 ```powershell
 pnpm exec tsx scripts/temp-api-ping.ts
+```
+
 Buenas prácticas y recordatorios
 
-- No comitees credenciales: usa `.env.local` para pruebas locales y configura variables en Vercel para deploy.
-- En Vercel, define `SUPABASE_DB_URL`, `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` como Environment Variables (Secret).
-- Si Contentlayer da errores de parseo MDX en Windows, revisa los frontmatters de los `.mdx` afectados; son warnings que pueden impedir la generación de `.contentlayer`.
+ - No comitees credenciales: usa `.env.local` para pruebas locales y configura variables en Vercel para deploy.
+ - En Vercel, define `POSTGRES_URL` (o `DATABASE_URL`) como variable de conexión principal. Conserva `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` únicamente si necesitas el SDK de Supabase para Auth/Storage.
+ - Si Contentlayer da errores de parseo MDX en Windows, revisa los frontmatters de los `.mdx` afectados; son warnings que pueden impedir la generación de `.contentlayer`.
 
 Si quieres, puedo:
 
