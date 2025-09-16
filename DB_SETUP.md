@@ -71,8 +71,7 @@ Ejemplo de variables en Vercel (Environment Variables / Secrets):
 
 Comportamiento del SDK y el driver
 
-- El archivo `db/client.ts` intenta usar en runtime el driver `@supabase/postgres-js` (serverless-friendly) mediante `require` dinámico; si no está instalado, hace fallback al paquete `postgres`.
-- Por eso el código no falla la instalación si `@supabase/postgres-js` no está en `package.json`. Si prefieres, puedes instalarlo explícitamente y ajustar `package.json` para forzar ese driver.
+- El archivo `db/client.ts` usa `postgres` como driver por defecto (Neon-friendly). Evitamos forzar drivers opcionales en runtime para mantener la instalación robusta.
 
 Variables útiles para debugging
 
@@ -161,7 +160,7 @@ pnpm db:seed
 pnpm test
 ```
 
-- Cambiar el driver a `@supabase/postgres-js` para mejor comportamiento en serverless (recomendado si experimentas problemas de conexiones). Esto requiere añadir la dependencia y adaptar `db/client.ts`.
+- No recomendamos cambiar el driver por defecto. Si tienes un caso muy concreto que requiere `@supabase/postgres-js`, contáctame y lo validamos antes de forzar la dependencia.
 - Añadir un job en Vercel que ejecute `pnpm db:migrate` después de cada deploy.
 
 Problema conocido al instalar dependencias
@@ -186,7 +185,7 @@ pnpm install
 
 1. Si aún hay problemas, revisa las entradas en `pnpm-lock.yaml.bak` (si existe) o elimina el backup y vuelve a intentar.
 
-Nota: en este proyecto implementamos un patrón de "require dinámico" en `db/client.ts` para evitar que la falta de un driver opcional rompa la instalación. Si prefieres instalar a fuerza `@supabase/postgres-js`, confirma y lo añadimos explícitamente.
+Nota: este proyecto evita dependencias opcionales en runtime. Si necesitas soporte específico para `@supabase/postgres-js`, discutámoslo antes de añadirlo.
 Verificación rápida (comandos usados en esta migración)
 
 Estos son los comandos que usamos para validar la conexión y el estado de la base de datos sin depender de Next/Contentlayer:
