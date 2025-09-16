@@ -1,3 +1,5 @@
+Write-Host "This script has been retired and removed during the Supabase -> Neon migration."
+Write-Host "If you find leftover package.json entries referencing deprecated drivers, please remove them manually and run 'pnpm install'."
 Write-Host "This script was archived to archive/supabase-refs/remove-bad-dep.ps1 during Supabase cleanup."# Remove @supabase/postgres-js line from package.json (backup then replace)
 param(
   [string]$ProjectRoot = "$(Resolve-Path ..)"
