@@ -4,7 +4,11 @@ Resumen generado automáticamente.
 DEV_NOTES.md
 
 2025-09-13T
-- Blog: listado y detalle leen desde `posts` (fallback a Contentlayer si
+- Blog: listadAvisos y advertencias conocidas (seguras)
+
+- Contentlayer en Windows muestra warnings, pero el build funciona.
+- OTel puede mostrar "Critical dependency" en dev/build; es ruido por
+  detección dinámica.detalle leen desde `posts` (fallback a Contentlayer si
   no hay BD).
 - Streaming: listado (`/streaming`) y detalle (`/streaming/[slug]`) desde
   `streams`.

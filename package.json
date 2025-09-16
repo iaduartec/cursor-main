@@ -55,9 +55,9 @@
     "@neondatabase/serverless": "^1.0.1",
     "@next/bundle-analyzer": "^15.5.3",
     "@svgr/webpack": "^8.1.0",
-    "@types/node": "^22.18.4",
-    "@types/react": "^18.3.24",
-    "@types/react-dom": "^18.3.7",
+    "@types/node": "^24.5.1",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
     "@vercel/analytics": "^1.5.0",
     "@vercel/edge-config": "^1.4.0",
     "@vercel/speed-insights": "^1.2.0",
@@ -65,11 +65,11 @@
     "critters": "^0.0.25",
     "dotenv": "^16.6.1",
     "drizzle-orm": "^0.44.5",
-    "framer-motion": "^10.18.0",
+    "framer-motion": "^12.23.13",
     "gray-matter": "^4.0.3",
     "leaflet": "^1.9.4",
-    "lucide-react": "^0.263.1",
-    "marked": "^12.0.2",
+    "lucide-react": "^0.544.0",
+    "marked": "^16.3.0",
     "next": "^15.5.3",
     "next-contentlayer": "^0.3.4",
     "next-intl": "^3.26.5",
@@ -77,17 +77,17 @@
     "next-sitemap": "^4.2.3",
     "postcss": "^8.5.6",
     "postgres": "^3.4.7",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "react-leaflet": "^4.2.1",
     "sharp": "^0.34.3",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
     "zod": "^3.25.76"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^8.57.1",
+    "@eslint/js": "^9.35.0",
     "@playwright/test": "1.55.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
@@ -103,7 +103,7 @@
     "cross-env": "^7.0.3",
     "drizzle-kit": "^0.31.4",
     "esbuild": "0.18.20",
-    "eslint": "^8.57.1",
+    "eslint": "^9.35.0",
     "eslint-config-next": "^15.5.3",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
@@ -117,7 +117,7 @@
     "vitest": "^3.2.4"
   },
   "engines": {
-    "node": "22.x"
+    "node": ">=24.0.0"
   },
   "browserslist": {
     "production": [
