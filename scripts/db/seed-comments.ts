@@ -7,12 +7,8 @@ import path from 'path';
     { comment: 'Segundo comentario de prueba' },
   ];
 
-  // Prefer Neon/Postgres env vars. SUPABASE_DB_URL is a deprecated fallback
-  // and may be used only if explicitly present in the environment.
-  const dbUrl =
-    process.env.POSTGRES_URL ||
-    process.env.DATABASE_URL ||
-    process.env.SUPABASE_DB_URL;
+  // Database connection configuration
+  const dbUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL;
   if (!dbUrl) {
     // fallback: write JSON seed file for local testing
     const outDir = path.join(process.cwd(), 'data', 'seeds');

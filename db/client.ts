@@ -2,14 +2,11 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
 
-// Prefer Supabase-specific env vars when deploying to Vercel/Supabase
+// Database connection configuration
 // Order of precedence:
-// 1. SUPABASE_DB_URL (recommended for Supabase projects)
-// 2. POSTGRES_URL (used in this repo scripts)
-// 3. DATABASE_URL (generic)
-// Support legacy/local env var names (some environments use cxz_ prefix).
+// 1. POSTGRES_URL (recommended for Neon/Postgres projects)
+// 2. DATABASE_URL (generic fallback)
 const rawConnectionString =
-  process.env.SUPABASE_DB_URL ||
   process.env.POSTGRES_URL ||
   process.env.DATABASE_URL ||
   // fallbacks for local/dev .env that uses cxz_ prefixes
@@ -42,29 +39,8 @@ let client: postgres.Sql | undefined = undefined;
 let dbExport: unknown = undefined;
 if (!skipDb) {
   try {
-    // Try to use @supabase/postgres-js for serverless-friendly connections when available.
-    // If it's not installed or fails, fall back to the 'postgres' client.
-    let lowLevelClient: postgres.Sql | undefined;
-    try {
-      // Dynamic require so code still works if package not installed at runtime.
-      const req = eval('require');
-      const supabasePg = (() => {
-        try {
-          return req('@supabase/postgres-js');
-        } catch {
-          return undefined;
-        }
-      })();
-      if (supabasePg && typeof supabasePg.createClient === 'function') {
-        lowLevelClient = supabasePg.createClient(connectionString);
-      }
-    } catch {
-      // ignore; we'll fallback to the 'postgres' client below
-    }
-
-    // If @supabase/postgres-js was available and created a client, use it.
-    // Otherwise create a client with the 'postgres' package.
-    client = lowLevelClient ?? postgres(connectionString, { prepare: false });
+    // Create client with the 'postgres' package
+    client = postgres(connectionString, { prepare: false });
 
     // Test the connection to ensure it's working
     await client`SELECT 1`;
@@ -130,36 +106,3 @@ export const db = dbExport;
 
 // Export the low-level sql client too (may be undefined when DB is skipped)
 export { client as sql };
-
-// Supabase client (JS) for auth/storage/other APIs. Prefer using
-// SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_ANON_KEY) set in Vercel.
-// Accept cxz_ prefixed env vars commonly used in local .env files as fallbacks
-const supabaseUrl =
-  process.env.SUPABASE_URL ||
-  process.env.cxz_SUPABASE_URL ||
-  process.env.cxz_NEXT_PUBLIC_SUPABASE_URL ||
-  '';
-const supabaseKey =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ||
-  process.env.SUPABASE_ANON_KEY ||
-  process.env.cxz_SUPABASE_SERVICE_ROLE_KEY ||
-  process.env.cxz_NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-  '';
-
-if (!supabaseUrl || !supabaseKey) {
-  // Don't crash - some environments may not need the JS client. Log a helpful warning.
-  // In Vercel, set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY as environment variables.
-  // If you only need DB access via Drizzle, the SUPABASE_* JS client is optional.
-
-  console.warn(
-    'Advertencia: SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY/SUPABASE_ANON_KEY no definidos. Algunas funcionalidades de Supabase (auth/storage) podrían no funcionar.'
-  );
-}
-
-// Supabase client is not available in this Neon-only setup
-// export const supabase =
-//   supabaseUrl && supabaseKey
-//     ? createClient(supabaseUrl, supabaseKey, {
-//         auth: { autoRefreshToken: false, persistSession: false },
-//       })
-//     : undefined;

@@ -4,17 +4,17 @@ param(
   [string]$BackupPath
 )
 
-# Helper to apply migrations and seeds to a real Postgres/Supabase DB
+# Helper to apply migrations and seeds to a real Postgres DB
 # Usage:
 #   .\apply-to-db.ps1 -DbUrl "postgres://..."
-# Or set env var SUPABASE_DB_URL or POSTGRES_URL
+# Or set env var POSTGRES_URL
 
 if (-not $DbUrl) {
-  $DbUrl = $env:SUPABASE_DB_URL; if (-not $DbUrl) { $DbUrl = $env:POSTGRES_URL }
+  $DbUrl = $env:POSTGRES_URL
 }
 
 if (-not $DbUrl) {
-  Write-Error "No DB URL provided. Set -DbUrl or SUPABASE_DB_URL/POSTGRES_URL environment variable."
+  Write-Error "No DB URL provided. Set -DbUrl or POSTGRES_URL environment variable."
   exit 2
 }
 
@@ -23,7 +23,6 @@ Write-Output "Applying migrations and seeds to DB: $($DbUrl -replace '(:\\/\\/).
 # Export env var for node scripts
 $env:POSTGRES_URL = $DbUrl
 $env:DATABASE_URL = $DbUrl
-$env:SUPABASE_DB_URL = $DbUrl
 
 # If backup requested, try to run pg_dump
 if ($Backup) {

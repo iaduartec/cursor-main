@@ -25,15 +25,11 @@ foreach ($line in $lines) {
     }
 }
 
-# Mapeo recomendado: prefer POSTGRES_* variables; keep SUPABASE_* as fallback/legacy
+# Mapeo de variables de entorno para GitHub Secrets
 $mapping = @{
     'cxz_POSTGRES_URL_NON_POOLING' = 'POSTGRES_URL_NON_POOLING'
     'cxz_POSTGRES_URL' = 'POSTGRES_URL'
     'cxz_POSTGRES_PRISMA_URL' = 'POSTGRES_PRISMA_URL'
-    'cxz_SUPABASE_SERVICE_ROLE_KEY' = 'SUPABASE_SERVICE_ROLE_KEY'
-    'cxz_SUPABASE_URL' = 'SUPABASE_URL'
-    'cxz_NEXT_PUBLIC_SUPABASE_ANON_KEY' = 'NEXT_PUBLIC_SUPABASE_ANON_KEY'
-    'cxz_SUPABASE_JWT_SECRET' = 'SUPABASE_JWT_SECRET'
 }
 
 $toUpload = @{}
