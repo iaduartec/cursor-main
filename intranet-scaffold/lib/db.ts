@@ -15,12 +15,14 @@ import postgres from "postgres";
 
 // Provide either a real Postgres client (postgres) or a lightweight
 // in-memory adapter used for local E2E when USE_IN_MEMORY_DB=1 is set.
-let sql: any = null;
+let sql: unknown = null;
 
 declare global {
-  // Preserve adapter instance across HMR; use let to satisfy ESLint (no-var)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let __inMemorySqlAdapter: any | undefined;
+  // Preserve adapter instance across HMR; add property to GlobalThis
+  interface GlobalThis {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    __inMemorySqlAdapter?: unknown;
+  }
 }
 
 function createInMemoryAdapter() {
@@ -30,7 +32,7 @@ function createInMemoryAdapter() {
   };
 
   // sql should be callable as a template tag: sql`SELECT ...`
-  const adapter = async function sqlTag(strings: TemplateStringsArray, ...values: any[]) {
+  const adapter = async function sqlTag(strings: TemplateStringsArray, ...values: unknown[]) {
     // Reconstruct a best-effort query string for routing decisions
     let q = '';
     for (let i = 0; i < strings.length; i++) {
@@ -49,7 +51,7 @@ function createInMemoryAdapter() {
     // INSERT INTO projects (...) VALUES (${slug}, ${title}, ${description}, ${hero_image}) RETURNING ...
     if (nq.includes('insert into projects')) {
       // values = [slug, title, description, hero_image]
-      const [slug, title, description, hero_image] = values;
+  const [slug, title, description, hero_image] = values as [unknown, unknown, unknown, unknown];
       const now = Date.now();
       const row = {
         id: state.nextId++,
@@ -66,11 +68,11 @@ function createInMemoryAdapter() {
     // UPDATE projects SET ... WHERE id = ${id} RETURNING ...
     if (nq.includes('update projects set')) {
       // Expect values = [slug, title, description, hero_image, id]
-      const id = values[values.length - 1];
-      const slug = values[0];
-      const title = values[1];
-      const description = values[2];
-      const hero_image = values[3];
+  const id = values[values.length - 1] as unknown;
+  const slug = values[0] as unknown;
+  const title = values[1] as unknown;
+  const description = values[2] as unknown;
+  const hero_image = values[3] as unknown;
       const idx = state.projects.findIndex(p => p.id === Number(id));
       if (idx === -1) {return [];}
       const updated = Object.assign({}, state.projects[idx], {
@@ -93,12 +95,12 @@ function createInMemoryAdapter() {
 
     // Fallback: return empty
     return [];
-  } as any;
+  } as unknown;
 
-  adapter.end = async function () { /* no-op */ };
+  (adapter as any).end = async function () { /* no-op */ };
   // Attach internal state for debugging/inspection when running in-memory DB
   try {
-    (adapter as any).__state = state;
+    ((adapter as unknown) as { __state?: unknown }).__state = state;
   } catch (e) {
     // ignore if read-only
   }
@@ -110,12 +112,12 @@ export function getDb() {
     // If requested, use in-memory adapter (useful for local dev/E2E)
     if (process.env.USE_IN_MEMORY_DB === '1' || process.env.USE_IN_MEMORY_DB === 'true') {
       // Preserve adapter instance across HMR / module reloads in Next dev
-      if (typeof globalThis.__inMemorySqlAdapter !== 'undefined') {
-        sql = (globalThis as any).__inMemorySqlAdapter;
+      if (typeof (globalThis as any).__inMemorySqlAdapter !== 'undefined') {
+        sql = (globalThis as any).__inMemorySqlAdapter as unknown;
       /* eslint-disable @typescript-eslint/no-explicit-any, no-var */
       } else {
         sql = createInMemoryAdapter();
-        try { globalThis.__inMemorySqlAdapter = sql; } catch (e) { /* ignore */ }
+  try { (globalThis as any).__inMemorySqlAdapter = sql; } catch (e) { /* ignore */ }
       }
       return sql;
     }
@@ -129,8 +131,8 @@ export function getDb() {
 
 export async function closeDb() {
   if (sql) {
-    if (typeof sql.end === 'function') {
-      await sql.end({ timeout: 5 }).catch(() => { /* ignore */ });
+    if (typeof (sql as { end?: unknown }).end === 'function') {
+      await ((sql as { end?: () => Promise<unknown> }).end?.() ?? Promise.resolve()).catch(() => { /* ignore */ });
     }
     sql = null;
   }
