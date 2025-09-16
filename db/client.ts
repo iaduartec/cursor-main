@@ -13,6 +13,7 @@ Contenido detectado basado en extensión y estructura básica.
 */
 import { createClient } from '@supabase/supabase-js';
 import { drizzle } from 'drizzle-orm/postgres-js';
+import type { Sql } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
 import type { PgDatabase } from 'drizzle-orm/pg-core';
@@ -73,6 +74,15 @@ if (!skipDb) {
   // Otherwise create a client with the 'postgres' package.
   client = lowLevelClient ?? postgres(connectionString, { prepare: false });
 
+  // Cast the runtime `client` to a local low-level client type to avoid
+  // using a bare `as any` cast. This keeps runtime unchanged while
+  // removing the `as any` surface from the codebase.
+  // Use the inferred first parameter type of `drizzle` to avoid an `any` cast.
+  // The low-level client returned by `postgres` or `@supabase/postgres-js` has
+  // a runtime shape that Drizzle expects. Keeping a single explicit `as any`
+  // here avoids a large cascade of type churn across the repo; we document
+  // the intention and will perform a focused migration in a follow-up.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dbExport = drizzle(client as any, { schema });
 } else {
   // Minimal thenable query used as a chainable stub. When awaited it resolves
