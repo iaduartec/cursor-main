@@ -3,7 +3,18 @@ Resumen generado automáticamente.
 
 DEV_NOTES.md
 
-2025-09-13T06:20:07.355Z
+2025-09-13T- Blog: listado y detalle leen desde `posts` (fallback a Contentlayer si
+  no hay BD).
+- Streaming: listado (`/streaming`) y detalle (`/streaming/[slug]`) desde
+  `streams`.
+- Servicios/Proyectos: CRUD en admin listo; si quieres, puedo migrar sus
+  páginas públicas para leer desde BD.
+
+Avisos y advertencias conocidas (seguras)
+
+- Contentlayer en Windows muestra warnings, pero el build funciona.
+- OTel puede mostrar "Critical dependency" en dev/build; es ruido por
+  detección dinámica..355Z
 
 ——————————————————————————————
 Archivo .md: DEV_NOTES.md
@@ -80,9 +91,11 @@ Avisos y advertencias conocidas (seguras)
 Comandos útiles
 
 - Desarrollo: `pnpm dev`
-- Desarrollo (ligero, sin Contentlayer): `pnpm dev:light`  # equivalente a SKIP_CONTENTLAYER=1
-  - Alternativa: `cross-env SKIP_CONTENTLAYER=1 pnpm dev`
-- Ejecutar Playwright condicionalmente: `pnpm test:e2e:maybe` (usa SKIP_PLAYWRIGHT=1 para omitir)
+- Desarrollo (ligero, sin Contentlayer): `pnpm dev:light`  # equivalente a
+  SKIP_CONTENTLAYER=1
+- Alternativa: `cross-env SKIP_CONTENTLAYER=1 pnpm dev`
+- Ejecutar Playwright condicionalmente: `pnpm test:e2e:maybe` (usa
+  SKIP_PLAYWRIGHT=1 para omitir)
 - Omitir Playwright: `cross-env SKIP_PLAYWRIGHT=1 pnpm test:e2e:maybe`
 - Build prod: `pnpm build`
 - Type-check: `pnpm type-check`

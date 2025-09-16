@@ -52,18 +52,27 @@ Checklist post-despliegue
 
 - [ ] Revisar logs de build en Vercel para errores de TypeScript o dependencias
 - [ ] Validar que la página principal carga correctamente
-- [ ] Revisar `/_next/image` si usas dominios remotos: si usas imágenes externas, añade dominios permitidos en `next.config.mjs` -> images.remotePatterns
+- [ ] Revisar `/_next/image` si usas dominios remotos: si usas imágenes
+  externas, añade dominios permitidos en `next.config.mjs` -> images.remotePatterns
 
 Notas técnicas
 
-- `next.config.mjs` ya está configurado con `output: 'standalone'`, lo que genera una salida que se puede usar en contenedores.
-- `vercel.json` ya incluye `buildCommand` e `installCommand` y headers de seguridad.
-- Si el build falla por dependencias nativas o peer deps, prueba cambiar `Install Command` a `npm install --legacy-peer-deps` o `npm ci --legacy-peer-deps`.
+- `next.config.mjs` ya está configurado con `output: 'standalone'`, lo que
+  genera una salida que se puede usar en contenedores.
+- `vercel.json` ya incluye `buildCommand` e `installCommand` y headers de
+  seguridad.
+- Si el build falla por dependencias nativas o peer deps, prueba cambiar
+  `Install Command` a `npm install --legacy-peer-deps` o
+  `npm ci --legacy-peer-deps`.
 
 Problemas comunes
 
-- Error: "Module not found: Can't resolve 'fs'" — ocurre si se importan APIs de Node en componentes que se renderizan en cliente; asegúrate de usar dynamic imports o condicionales.
-- Error de contentlayer: Si usas Contentlayer con Next, asegúrate que las dependencias de generación están presentes en `devDependencies` y que Vercel ejecuta el build correctamente.
+- Error: "Module not found: Can't resolve 'fs'" — ocurre si se importan
+  APIs de Node en componentes que se renderizan en cliente; asegúrate de
+  usar dynamic imports o condicionales.
+- Error de contentlayer: Si usas Contentlayer con Next, asegúrate que las
+  dependencias de generación están presentes en `devDependencies` y que
+  Vercel ejecuta el build correctamente.
 
 Soporte adicional
 

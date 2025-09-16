@@ -203,17 +203,17 @@ Si al ejecutar `pnpm install` obtienes un error 404 para
 
 2. Regenera el lockfile (opción segura):
 
-```powershell
-pnpm install --no-frozen-lockfile
-```
+   ```powershell
+   pnpm install --no-frozen-lockfile
+   ```
 
 3. Si el paso 2 falla, elimina el lockfile manualmente y reinstala:
 
-```powershell
-# En el directorio del proyecto
-Remove-Item pnpm-lock.yaml -Force
-pnpm install
-```
+   ```powershell
+   # En el directorio del proyecto
+   Remove-Item pnpm-lock.yaml -Force
+   pnpm install
+   ```
 
 4. Si aún hay problemas, revisa las entradas en `pnpm-lock.yaml.bak` (si
    existe) o elimina el backup y vuelve a intentar.
