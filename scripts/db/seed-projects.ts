@@ -21,6 +21,7 @@ dotenv.config();
 import { readFile, readdir } from 'node:fs/promises';
 import matter from 'gray-matter';
 import { projects, type NewProject } from '../../db/schema';
+import type { DrizzleClient } from '../../db/client';
 // import { eq } from 'drizzle-orm'; // No se utiliza
 
 type ProjectFrontmatter = {
@@ -41,8 +42,7 @@ async function getProjectFiles(dir: string) {
 
 async function seed() {
   const { db } = await import('../../db/client');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
   const projectsDir = path.join(process.cwd(), 'content', 'proyectos');
   
   // Check if projects directory exists

@@ -12,13 +12,12 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { db } from '../../../db/client';
+import { db, type DrizzleClient } from '../../../db/client';
 import { posts, type NewPost } from '../../../db/schema';
 import { eq, desc } from 'drizzle-orm';
 
 async function getItems() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
   return await typedDb
     .select({ id: posts.id, slug: posts.slug, title: posts.title, date: posts.date, category: posts.category })
     .from(posts)
@@ -39,8 +38,7 @@ export default async function AdminPostsPage() {
     const dateStr = String(formData.get('date') || '');
     const date = dateStr ? new Date(dateStr) : new Date();
     const now = new Date();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
     await typedDb
       .insert(posts)
       .values({ slug, title, description: description || null, category: category || null, image: image || null, content, date, published: true, createdAt: now, updatedAt: now } as NewPost)
@@ -56,8 +54,7 @@ export default async function AdminPostsPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
   await typedDb.delete(posts).where(eq(posts.slug, slug));
     revalidateTag('blogs');
     revalidatePath('/blog');

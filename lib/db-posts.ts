@@ -6,7 +6,7 @@
  * static generation scenarios.
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { db } from '../db/client';
+import { db, type DrizzleClient } from '../db/client';
 import { posts, type Post } from '../db/schema';
 import { and, asc, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';
 import { allBlogs, type Blog } from 'contentlayer/generated';
@@ -28,10 +28,9 @@ type BlogRaw = Blog & {
 };
 
 // The `db` export in db/client.ts may be a typed drizzle instance or a
-// lightweight fake (when DB is skipped). Cast to `any` locally to allow
-// chaining query builders without leaking `any` across the app. We'll
-// tighten types later if needed.
-const drizzleDb: any = db as any;
+// lightweight fake (when DB is skipped). Cast locally to DrizzleClient to
+// progressively migrate away from `any` while keeping runtime behavior.
+const drizzleDb = db as unknown as DrizzleClient;
 
 export async function getAllPostsFromDb(): Promise<Post[]> {
   if (!hasDb()) { return []; }

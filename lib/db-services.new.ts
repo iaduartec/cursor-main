@@ -11,7 +11,7 @@ Tamaño: 1621 caracteres, 67 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-import { db } from '../db/client';
+import { db, type DrizzleClient } from '../db/client';
 import { services, type Service } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';
 import { allServicios } from 'contentlayer/generated';
@@ -41,9 +41,7 @@ function fallbackServices(): Service[] {
 export async function getAllServices(): Promise<Service[]> {
   return withDb(
     async () => {
-      // Local typed cast for incremental typing migration.
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
 
       const rows = await typedDb
         .select()
@@ -63,8 +61,7 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
 
   return withDb(
     async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
 
       const result = await typedDb
         .select()

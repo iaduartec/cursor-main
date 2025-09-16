@@ -12,10 +12,11 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { db } from '../../../db/client';
+import { db, type DrizzleClient } from '../../../db/client';
 import { streams, type NewStream } from '../../../db/schema';
 import { getAllStreams } from '../../../lib/db-streams';
 import { eq } from 'drizzle-orm';
+
 
 export default async function AdminStreamsPage() {
   const items = await getAllStreams();
@@ -31,8 +32,7 @@ export default async function AdminStreamsPage() {
     const description = String(formData.get('description') || '');
     const isLive = formData.get('isLive') ? true : false;
     const now = new Date();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
     await typedDb
       .insert(streams)
       .values({
@@ -59,8 +59,7 @@ export default async function AdminStreamsPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
     await typedDb.delete(streams).where(eq(streams.slug, slug));
     revalidateTag('streams');
     revalidatePath('/streaming');

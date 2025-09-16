@@ -15,6 +15,7 @@ import { createClient } from '@supabase/supabase-js';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
+import type { PgDatabase } from 'drizzle-orm/pg-core';
 
 // Prefer Supabase-specific env vars when deploying to Vercel/Supabase
 // Order of precedence:
@@ -115,7 +116,10 @@ if (!skipDb) {
 // Export a typed Drizzle client using the schema. We cast the runtime
 // value (`dbExport`) to the Drizzle type to incrementally tighten types
 // without changing runtime behavior.
-type DrizzleClient = ReturnType<typeof drizzle>;
+export type DrizzleClient = PgDatabase<any, schema.Database>;
+// Export db as Drizzle<Database> so callers can gradually adopt the
+// concrete schema types. The runtime value is unchanged (dbExport) but the
+// exported type is now stricter which helps downstream migrations.
 export const db = dbExport as unknown as DrizzleClient;
 
 // Export the low-level sql client too (may be undefined when DB is skipped)

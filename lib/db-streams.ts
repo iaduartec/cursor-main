@@ -12,7 +12,8 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 import { db } from '../db/client';
-import { streams, type Stream } from '../db/schema';
+import { streams, type Stream, type Database } from '../db/schema';
+import type { PgDatabase } from 'drizzle-orm/pg-core';
 import { asc } from 'drizzle-orm';
 
 const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
@@ -20,9 +21,7 @@ const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL
 export async function getAllStreams(): Promise<Stream[]> {
   if (!hasDb()) {return fallbackStreams();}
   try {
-    // Local typed cast for incremental typing migration.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const typedDb = db as any;
+  const typedDb = db as unknown as PgDatabase<any, Database>;
 
     const rows = await typedDb
       .select({
@@ -38,7 +37,7 @@ export async function getAllStreams(): Promise<Stream[]> {
       })
       .from(streams)
       .orderBy(asc(streams.name));
-    return rows as unknown as Stream[];
+  return rows as unknown as Stream[];
   } catch (e) {
     console.error('DB getAllStreams error', e);
     return fallbackStreams();

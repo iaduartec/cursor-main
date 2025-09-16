@@ -13,7 +13,7 @@ Contenido detectado basado en extensión y estructura básica.
 */
 import { NextRequest, NextResponse } from 'next/server';
 import { getStreamBySlug } from '../../../../lib/db-streams';
-import { db } from '../../../../db/client';
+import { db, type DrizzleClient } from '../../../../db/client';
 import { streams, type NewStream } from '../../../../db/schema';
 import { eq } from 'drizzle-orm';
 import { revalidateTag } from 'next/cache';
@@ -37,8 +37,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
   const { slug } = await params;
   const patch = await req.json().catch(() => ({}));
   const now = new Date();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
   const res = await typedDb
     .update(streams)
     .set(({
@@ -60,8 +59,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   if (!isAuthorized(req)) {return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });}
   const { slug } = await params;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
   await typedDb.delete(streams).where(eq(streams.slug, slug));
   revalidateTag('streams');
   return NextResponse.json({ ok: true });

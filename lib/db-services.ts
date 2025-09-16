@@ -12,7 +12,7 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 // lib/db-services.ts
-import { db } from '../db/client';
+import { db, type DrizzleClient } from '../db/client';
 import { services, type Service } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';
 import { allServicios } from 'contentlayer/generated';
@@ -39,9 +39,7 @@ function fallbackServices(): Service[] {
 export async function getAllServices(): Promise<Service[]> {
   return withDb(
     async () => {
-      // Local cast to allow incremental typing migration for this module.
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
 
       const rows = await typedDb
         .select()
@@ -64,8 +62,7 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
 
   return withDb(
     async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
 
       const result = await typedDb
         .select()

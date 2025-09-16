@@ -21,6 +21,7 @@ dotenv.config();
 import { readFile, readdir } from 'node:fs/promises';
 import matter from 'gray-matter';
 import { posts, type NewPost } from '../../db/schema';
+import type { DrizzleClient } from '../../db/client';
 // import { eq } from 'drizzle-orm'; // No se utiliza
 
 type Frontmatter = {
@@ -41,8 +42,7 @@ async function getBlogFiles(dir: string) {
 
 async function seed() {
   const { db } = await import('../../db/client');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
   const blogDir = path.join(process.cwd(), 'content', 'blog');
   const files = await getBlogFiles(blogDir);
   console.log(`Found ${files.length} blog files to seed`);

@@ -13,7 +13,7 @@ Contenido detectado basado en extensión y estructura básica.
 */
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllStreams } from '../../../lib/db-streams';
-import { db } from '../../../db/client';
+import { db, type DrizzleClient } from '../../../db/client';
 import { streams, type NewStream } from '../../../db/schema';
 import { revalidateTag } from 'next/cache';
 
@@ -39,8 +39,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Missing slug or name' }, { status: 400 });
   }
   const now = new Date();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
   await typedDb
     .insert(streams)
     .values({

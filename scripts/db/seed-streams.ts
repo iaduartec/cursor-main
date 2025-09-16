@@ -18,7 +18,8 @@ const envLocal = path.resolve(process.cwd(), '.env.local');
 if (fs.existsSync(envLocal)) {dotenv.config({ path: envLocal });}
 dotenv.config();
 
-import { streams, type NewStream } from '../../db/schema';
+import { streams, type NewStream, type Database } from '../../db/schema';
+import type { PgDatabase } from 'drizzle-orm/pg-core';
 
 type SeedStream = {
   slug: string;
@@ -39,8 +40,7 @@ const initial: SeedStream[] = [
 
 async function run() {
   const { db } = await import('../../db/client');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const typedDb = db as any;
+  const typedDb = db as unknown as PgDatabase<any, Database>;
   for (const s of initial) {
     const now = new Date();
     const image = s.image || (s.youtubeId ? `https://img.youtube.com/vi/${s.youtubeId}/hqdefault.jpg` : undefined);

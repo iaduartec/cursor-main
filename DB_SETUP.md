@@ -122,6 +122,9 @@ Notas:
 Cambios en el código
 
 - `db/client.ts` ahora prioriza `SUPABASE_DB_URL` y emite advertencias si `SUPABASE_URL`/`SERVICE_ROLE_KEY` no están definidos.
+
+
+
 - `scripts/db/migrate-supabase.ts` ya es el script recomendado para migraciones.
 
 Pruebas y verificación

@@ -11,7 +11,7 @@ Tamaño: 1736 caracteres, 69 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-import { db } from '../db/client';
+import { db, type DrizzleClient } from '../db/client';
 import { projects, type Project } from '../db/schema';
 import { desc, eq } from 'drizzle-orm';
 import { allProyectos } from 'contentlayer/generated';
@@ -42,10 +42,7 @@ function fallbackProjects(): Project[] {
 export async function getAllProjects(): Promise<Project[]> {
   return withDb(
     async () => {
-      // Local cast to `any` to progressively migrate this module to typed db
-      // without changing global exports. Replace with proper Drizzle types
-      // once callers are updated.
-      const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
 
       const rows = await typedDb
         .select()
@@ -65,7 +62,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
   
   return withDb(
     async () => {
-      const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
 
       const result = await typedDb
         .select()

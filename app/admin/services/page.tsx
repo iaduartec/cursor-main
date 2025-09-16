@@ -12,13 +12,12 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { db } from '../../../db/client';
+import { db, type DrizzleClient } from '../../../db/client';
 import { services, type NewService } from '../../../db/schema';
 import { eq, asc } from 'drizzle-orm';
 
 async function getItems() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
   return await typedDb.select().from(services).orderBy(asc(services.title));
 }
 
@@ -34,8 +33,7 @@ export default async function AdminServicesPage() {
     const areaServed = String(formData.get('areaServed') || '');
     const hasOfferCatalog = formData.get('hasOfferCatalog') ? true : false;
     const now = new Date();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
     await typedDb
       .insert(services)
       .values({ slug, title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, createdAt: now, updatedAt: now } as NewService)
@@ -47,8 +45,7 @@ export default async function AdminServicesPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const typedDb = db as any;
+  const typedDb = db as unknown as DrizzleClient;
   await typedDb.delete(services).where(eq(services.slug, slug));
     revalidateTag('services');
     revalidatePath('/admin/services');
