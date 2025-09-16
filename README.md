@@ -5,7 +5,7 @@ Sitio web profesional de **Duartec Instalaciones Informáticas**: soluciones int
 ## 🚀 Tecnologías principales
 - [Next.js](https://nextjs.org/) (con soporte para TypeScript)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [Drizzle ORM](https://orm.drizzle.team/) + [Supabase](https://supabase.com/)
+-- [Drizzle ORM](https://orm.drizzle.team/) + Neon/Postgres
 - [Contentlayer](https://www.contentlayer.dev/)
 - [Playwright](https://playwright.dev/) y [Jest](https://jestjs.io/) para testing
 - [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) para linting y formato
@@ -33,7 +33,7 @@ pnpm install
 | `pnpm test`            | Ejecuta tests unitarios con Jest                        |
 | `pnpm test:e2e`        | Ejecuta tests end-to-end con Playwright                 |
 | `pnpm format`          | Formatea el código con Prettier                         |
-| `pnpm db:migrate`      | Ejecuta migraciones de base de datos (Supabase/Drizzle) |
+| `pnpm db:migrate`      | Ejecuta migraciones de base de datos (Neon/Postgres + Drizzle) |
 | `pnpm images:generate` | Genera imágenes faltantes                               |
 | `pnpm git:pull`        | Actualiza el repositorio con script interno             |
 

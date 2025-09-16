@@ -8,7 +8,8 @@ import path from 'path';
     { comment: 'Segundo comentario de prueba' },
   ];
 
-  const dbUrl = process.env.SUPABASE_DB_URL || process.env.POSTGRES_URL || process.env.DATABASE_URL;
+  // Prefer Neon/Postgres env vars; accept SUPABASE_DB_URL as a deprecated fallback.
+  const dbUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL || process.env.SUPABASE_DB_URL;
   if (!dbUrl) {
     // fallback: write JSON seed file for local testing
     const outDir = path.join(process.cwd(), 'data', 'seeds');

@@ -20,9 +20,9 @@ import path from "path";
 
 async function main() {
   const databaseUrl =
-    process.env.SUPABASE_DB_URL ||
-    process.env.DATABASE_URL ||
-    process.env.POSTGRES_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.DATABASE_URL ||
+  process.env.SUPABASE_DB_URL ||
     process.env.cxz_POSTGRES_URL ||
     process.env.cxz_POSTGRES_URL_NON_POOLING;
   if (!databaseUrl) {

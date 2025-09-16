@@ -18,9 +18,9 @@ import path from "path";
 import postgres from "postgres";
 
 async function main() {
-  const databaseUrl = process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.cxz_POSTGRES_URL;
+  const databaseUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL || process.env.SUPABASE_DB_URL || process.env.cxz_POSTGRES_URL;
   if (!databaseUrl) {
-    console.error("No database URL found in environment. Set SUPABASE_DB_URL or DATABASE_URL.");
+    console.error("No database URL found in environment. Set POSTGRES_URL or DATABASE_URL.");
     process.exit(1);
   }
 

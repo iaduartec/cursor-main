@@ -136,9 +136,9 @@ export function getDb() {
       return sql;
     }
 
-    const dbUrl = process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.cxz_POSTGRES_URL;
-    if (!dbUrl) {throw new Error("Database URL not configured. Set SUPABASE_DB_URL or DATABASE_URL.");}
-    sql = postgres(dbUrl, { ssl: 'require' });
+  const dbUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL || process.env.SUPABASE_DB_URL || process.env.cxz_POSTGRES_URL;
+  if (!dbUrl) {throw new Error("Database URL not configured. Set POSTGRES_URL or DATABASE_URL.");}
+  sql = postgres(dbUrl, { ssl: 'require' });
   }
   return sql;
 }

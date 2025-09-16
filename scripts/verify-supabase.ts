@@ -15,7 +15,7 @@ Contenido detectado basado en extensión y estructura básica.
 import postgres from 'postgres';
 
 async function verifySupabaseConnection() {
-  console.log('🔍 Verificando conexión a Supabase...\n');
+  console.log('🔍 Verificando conexión a Neon/Postgres...\n');
 
   const connectionString = process.env.POSTGRES_URL || process.env.DATABASE_URL;
   if (!connectionString) {
@@ -46,11 +46,11 @@ async function verifySupabaseConnection() {
     const streamsCount = streamsResult[0].count;
     console.log(`📹 Streams en base de datos: ${streamsCount}`);
 
-    console.log('\n✅ Conexión a Supabase verificada exitosamente!');
-    console.log('✅ Todos los datos han sido migrados correctamente.');
+  console.log('\n✅ Conexión a Neon/Postgres verificada exitosamente!');
+  console.log('✅ Verificación de datos completada.');
 
   } catch (error) {
-    console.error('❌ Error al verificar conexión a Supabase:', error);
+  console.error('❌ Error al verificar conexión a Neon/Postgres:', error);
     process.exit(1);
   } finally {
     await sql.end();

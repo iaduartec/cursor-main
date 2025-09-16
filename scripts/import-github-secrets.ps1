@@ -25,10 +25,10 @@ foreach ($line in $lines) {
     }
 }
 
-# Mapeo recomendado
+# Mapeo recomendado: prefer POSTGRES_* variables; keep SUPABASE_* as fallback/legacy
 $mapping = @{
-    'cxz_POSTGRES_URL_NON_POOLING' = 'SUPABASE_DB_URL'
-    'cxz_POSTGRES_URL' = 'SUPABASE_DB_URL'            # fallback
+    'cxz_POSTGRES_URL_NON_POOLING' = 'POSTGRES_URL_NON_POOLING'
+    'cxz_POSTGRES_URL' = 'POSTGRES_URL'
     'cxz_POSTGRES_PRISMA_URL' = 'POSTGRES_PRISMA_URL'
     'cxz_SUPABASE_SERVICE_ROLE_KEY' = 'SUPABASE_SERVICE_ROLE_KEY'
     'cxz_SUPABASE_URL' = 'SUPABASE_URL'

@@ -78,49 +78,60 @@ Variables útiles para debugging
 ```powershell
 $env:SUPABASE_DB_URL="postgresql://..."
 pnpm exec tsx scripts/db/check-version.ts
-```
-
+Guía de conexión y despliegue (Neon / Postgres)
 
 Aplicar migraciones y poblar datos (Supabase)
 
-1. Crear el proyecto Supabase y copiar credenciales.
-
-   - En Supabase Cloud: crea un nuevo proyecto y copia la `Database URL` y la `Anon`/`Service Role Key`.
-
+- Motor: Neon (Vercel Postgres) / Postgres (recomendado para este repositorio).
+- Esquema: definido en `db/schema.ts` con Drizzle (pg-core). Funciona con cualquier Postgres compatible.
+- Migraciones: en carpeta `drizzle/` generadas por `drizzle-kit`.
+- Seed: scripts en `scripts/db/` permiten poblar `posts`, `projects`, `services`, `streams`.
 1. En Vercel: añade las variables `SUPABASE_DB_URL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` en Settings > Environment Variables.
 
+Por qué usar Neon / Postgres en Vercel
 1. Localmente: crea `.env.local` con las mismas variables para pruebas.
-
-1. Ejecuta migraciones (local):
+- Integración nativa con Vercel y buena experiencia serverless.
+- Si necesitas integración con Auth/Storage, aún puedes usar proveedores externos; este repo usa Drizzle para acceso SQL directo.
 
 ```bash
+Variables de entorno recomendadas
 pnpm db:migrate
-```
-
-Nota: Este script ejecuta `scripts/db/migrate-supabase.ts` y usa `POSTGRES_URL`/`DATABASE_URL`/`SUPABASE_DB_URL`.
-
-1. Ejecuta seeds (opcional):
-
+- `POSTGRES_URL` - URL de conexión Postgres (p. ej. la "Connection string" que provee Neon/Vercel). Este repo prioriza `POSTGRES_URL`.
+- `DATABASE_URL` - fallback genérico (por compatibilidad con otras infraestructuras).
+- `SUPABASE_DB_URL` - aceptada como fallback por compatibilidad con despliegues previos, pero considerada obsoleta para nuevas instalaciones.
+- Si usas el SDK de Supabase para Auth/Storage, conserva las variables `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` solo para esa funcionalidad.
 ```bash
 pnpm db:seed
 ```
 
+Orden de precedencia en `db/client.ts` (qué variable se usa para la conexión SQL):
+ 
+1. `POSTGRES_URL` (recomendado)
 Migración de datos desde Neon (si vienes de Neon/Vercel Postgres)
 
+2. `DATABASE_URL`
+3. `SUPABASE_DB_URL` (compatibilidad / deprecated)
 Si actualmente tienes datos en Neon (Vercel Postgres), sigue estos pasos mínimos:
 
+Nota: en este proyecto el driver preferido es `postgres` (paquete `postgres`). Evitamos forzar dependencias opcionales en runtime para que la instalación sea robusta.
 1. Dump desde Neon:
 
+1. Crear el proyecto Neon / Postgres y copiar credenciales.
 ```bash
 PGSOURCE=<NEON_DATABASE_URL>
+    - En Neon/Vercel: copia la `Connection string` (POSTGRES_URL) y configúrala como variable de entorno en Vercel.
 pg_dump --format=custom --no-owner --no-privileges --verbs --file=neon_dump.dump "$PGSOURCE"
 ```
+1. En Vercel: añade `POSTGRES_URL` (o `DATABASE_URL`) en Settings > Environment Variables.
 
 1. Restore en Supabase (usar psql/pg_restore con las credenciales de Supabase):
+1. Localmente: crea `.env.local` con las mismas variables para pruebas.
 
 ```bash
+Nota: Este script ejecuta `scripts/db/migrate-supabase.ts` (nombre por compatibilidad) y usa `POSTGRES_URL`/`DATABASE_URL`/`SUPABASE_DB_URL`.
 PGTARGET=<SUPABASE_DB_URL>
 pg_restore --clean --no-owner --no-privileges --dbname="$PGTARGET" neon_dump.dump
+Migración de datos desde Neon (si vienes de Neon/Vercel Postgres)
 ```
 
 Notas:
@@ -128,14 +139,12 @@ Notas:
 - Asegúrate de que las extensiones usadas en Neon estén disponibles en Supabase; ajusta schema si hay diferencias.
 - Si tu base usa roles o funciones específicas, revisa permisos después del restore.
 
-Cambios en el código
-
 - `db/client.ts` ahora prioriza `SUPABASE_DB_URL` y emite advertencias si `SUPABASE_URL`/`SERVICE_ROLE_KEY` no están definidos.
 
 
-
+`db/client.ts` ahora prioriza `POSTGRES_URL` y emite advertencias si `SUPABASE_URL`/`SERVICE_ROLE_KEY` no están definidos.
 - `scripts/db/migrate-supabase.ts` ya es el script recomendado para migraciones.
-
+`scripts/db/migrate-supabase.ts` ya es el script recomendado para migraciones.
 Pruebas y verificación
 
 1. En local: crea `.env.local` con `SUPABASE_DB_URL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
@@ -147,8 +156,6 @@ pnpm db:migrate
 pnpm db:seed
 pnpm test
 ```
-
-Siguientes pasos opcionales
 
 - Cambiar el driver a `@supabase/postgres-js` para mejor comportamiento en serverless (recomendado si experimentas problemas de conexiones). Esto requiere añadir la dependencia y adaptar `db/client.ts`.
 - Añadir un job en Vercel que ejecute `pnpm db:migrate` después de cada deploy.
@@ -176,19 +183,16 @@ pnpm install
 1. Si aún hay problemas, revisa las entradas en `pnpm-lock.yaml.bak` (si existe) o elimina el backup y vuelve a intentar.
 
 Nota: en este proyecto implementamos un patrón de "require dinámico" en `db/client.ts` para evitar que la falta de un driver opcional rompa la instalación. Si prefieres instalar a fuerza `@supabase/postgres-js`, confirma y lo añadimos explícitamente.
-
 Verificación rápida (comandos usados en esta migración)
 
 Estos son los comandos que usamos para validar la conexión y el estado de la base de datos sin depender de Next/Contentlayer:
 
 - Comprobar versión de Postgres (script oficial):
-
 ```powershell
 pnpm exec tsx scripts/db/check-version.ts
 ```
 
 - One-shot: obtener la versión vía el cliente del proyecto (sin HTTP):
-
 ```powershell
 pnpm exec tsx scripts/run-db-ping-oneoff.ts
 ```
@@ -197,9 +201,6 @@ pnpm exec tsx scripts/run-db-ping-oneoff.ts
 
 ```powershell
 pnpm exec tsx scripts/temp-api-ping.ts
-# luego: curl http://127.0.0.1:4000/api/db-ping
-```
-
 Buenas prácticas y recordatorios
 
 - No comitees credenciales: usa `.env.local` para pruebas locales y configura variables en Vercel para deploy.
