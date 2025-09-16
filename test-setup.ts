@@ -14,7 +14,8 @@ import { expect as vitestExpect, afterEach } from 'vitest';
 
 // Ensure React is available globally for modules compiled with the classic JSX runtime
 import * as React from 'react';
-(globalThis as any).React = React;
+// Expose React globally for modules compiled with the classic JSX runtime
+(globalThis as unknown as { React?: typeof React }).React = React;
 
 (async () => {
 	try {
