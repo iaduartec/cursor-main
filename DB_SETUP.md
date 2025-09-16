@@ -205,6 +205,3 @@ Si quieres, puedo:
 1. Cambiar el driver a `@supabase/postgres-js` y ajustar `db/client.ts`.
 2. Añadir scripts para automatizar dump/restore entre Neon y Supabase.
 3. Crear un pequeño endpoint/Admin para verificar la conexión y mostrar versión de DB.
-
-Dime qué quieres que implemente ahora y lo hago.
-
