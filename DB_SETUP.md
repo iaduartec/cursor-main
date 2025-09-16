@@ -198,6 +198,8 @@ Buenas prácticas y recordatorios
 - En Vercel, define `POSTGRES_URL` (o `DATABASE_URL`) como variable de conexión principal. Conserva `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` únicamente si necesitas el SDK de Supabase para Auth/Storage.
 - Si Contentlayer da errores de parseo MDX en Windows, revisa los frontmatters de los `.mdx` afectados; son warnings que pueden impedir la generación de `.contentlayer`.
 
+.contentlayer`.
+
 Si quieres, puedo:
 
 1. Cambiar el driver a `@supabase/postgres-js` y ajustar `db/client.ts`.
