@@ -1,6 +1,8 @@
 # Duartec Web
 
-Sitio web profesional de **Duartec Instalaciones Informáticas**: soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos.
+Sitio web profesional de **Duartec Instalaciones Informáticas**:
+soluciones integrales en informática, videovigilancia, sonido y electricidad
+en Burgos.
 
 ## 🚀 Tecnologías principales
 
@@ -8,8 +10,10 @@ Sitio web profesional de **Duartec Instalaciones Informáticas**: soluciones int
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Drizzle ORM](https://orm.drizzle.team/) + Neon/Postgres
 - [Contentlayer](https://www.contentlayer.dev/)
-- [Playwright](https://playwright.dev/) y [Jest](https://jestjs.io/) para testing
-- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) para linting y formato
+- [Playwright](https://playwright.dev/) y [Jest](https://jestjs.io/)
+  para testing
+- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
+  para linting y formato
 
 ## 📦 Requisitos previos
 
@@ -26,19 +30,17 @@ pnpm install
 
 ## 📜 Scripts disponibles
 
-| Script                 | Descripción                                                    |
-| ---------------------- | -------------------------------------------------------------- |
-| `pnpm dev`             | Entorno de desarrollo con Next.js                              |
-| `pnpm build`           | Genera build de producción                                     |
-| `pnpm start`           | Inicia el servidor en producción                               |
-| `pnpm lint`            | Revisa errores de linting                                      |
-| `pnpm lint:fix`        | Corrige errores de linting automáticamente                     |
-| `pnpm test`            | Ejecuta tests unitarios con Jest                               |
-| `pnpm test:e2e`        | Ejecuta tests end-to-end con Playwright                        |
-| `pnpm format`          | Formatea el código con Prettier                                |
-| `pnpm db:migrate`      | Ejecuta migraciones de base de datos (Neon/Postgres + Drizzle) |
-| `pnpm images:generate` | Genera imágenes faltantes                                      |
-| `pnpm git:pull`        | Actualiza el repositorio con script interno                    |
+- `pnpm dev` - Entorno de desarrollo con Next.js
+- `pnpm build` - Genera build de producción
+- `pnpm start` - Inicia el servidor en producción
+- `pnpm lint` - Revisa errores de linting
+- `pnpm lint:fix` - Corrige errores de linting automáticamente
+- `pnpm test` - Ejecuta tests unitarios con Jest
+- `pnpm test:e2e` - Ejecuta tests end-to-end con Playwright
+- `pnpm format` - Formatea el código con Prettier
+- `pnpm db:migrate` - Ejecuta migraciones de base de datos
+- `pnpm images:generate` - Genera imágenes faltantes
+- `pnpm git:pull` - Actualiza el repositorio con script interno
 
 👉 Para ver todos los scripts disponibles, revisa el `package.json`.
 

@@ -13,7 +13,8 @@ Contenido detectado basado en extensión y estructura básica.
 -->
 # Workflow de Generación de Artículos
 
-Este workflow automatiza la generación de artículos para el blog usando IA (OpenAI y Gemini).
+Este workflow automatiza la generación de artículos para el blog
+usando IA (OpenAI y Gemini).
 
 ## 🚀 Cómo usar
 
@@ -64,6 +65,7 @@ Configura estos secrets en tu repositorio:
 ### Permisos
 
 El workflow necesita estos permisos:
+
 - `contents: write` - Para crear archivos
 - `issues: write` - Para comentar y cerrar issues
 
@@ -78,7 +80,8 @@ El workflow crea:
 
 ### Error: "Missing API key"
 
-Verifica que los secrets estén configurados correctamente en Settings > Secrets and variables > Actions.
+Verifica que los secrets estén configurados correctamente en
+Settings > Secrets and variables > Actions.
 
 ### Error: "No se generó el archivo del artículo"
 
@@ -88,7 +91,8 @@ Verifica que los secrets estén configurados correctamente en Settings > Secrets
 
 ### Error: "Permission denied" en Git
 
-El workflow usa `GITHUB_TOKEN` automáticamente. Si hay problemas, verifica que el repositorio tenga permisos de escritura para Actions.
+El workflow usa `GITHUB_TOKEN` automáticamente. Si hay problemas,
+verifica que el repositorio tenga permisos de escritura para Actions.
 
 ## 🧪 Pruebas locales
 

@@ -15,7 +15,9 @@ Contenido detectado basado en extensión y estructura básica.
 
 ## 🎯 Problema Identificado
 
-Las imágenes generadas por el workflow de artículos eran muy pequeñas (86B - 509B), lo que indicaba que había errores en la generación o procesamiento de imágenes con las APIs de IA.
+Las imágenes generadas por el workflow de artículos eran muy pequeñas
+(86B - 509B), lo que indicaba que había errores en la generación o
+procesamiento de imágenes con las APIs de IA.
 
 ## 🔧 Soluciones Implementadas
 
@@ -84,7 +86,7 @@ Las imágenes generadas por el workflow de artículos eran muy pequeñas (86B - 
 
 ## 📁 Estructura de Archivos
 
-```
+```text
 content/blog/
 ├── {slug}.mdx (artículo con frontmatter)
 

@@ -3,7 +3,8 @@ Resumen generado automáticamente.
 
 DEV_NOTES.md
 
-2025-09-13T- Blog: listado y detalle leen desde `posts` (fallback a Contentlayer si
+2025-09-13T
+- Blog: listado y detalle leen desde `posts` (fallback a Contentlayer si
   no hay BD).
 - Streaming: listado (`/streaming`) y detalle (`/streaming/[slug]`) desde
   `streams`.
@@ -14,7 +15,7 @@ Avisos y advertencias conocidas (seguras)
 
 - Contentlayer en Windows muestra warnings, pero el build funciona.
 - OTel puede mostrar "Critical dependency" en dev/build; es ruido por
-  detección dinámica..355Z
+  detección dinámica.
 
 ——————————————————————————————
 Archivo .md: DEV_NOTES.md
@@ -105,22 +106,40 @@ Comandos útiles
 ## Operación de squash + backup (historial sobrescrito)
 
 - Fecha: 2025-09-13T
-- Acción: Se creó una rama de respaldo `main-backup-<timestamp>` y se generó un commit único (squash) con el estado actual del árbol de `main`.
-- Resultado: Se forzó `git push --force origin main` local -> remoto. El historial remoto fue reemplazado por el nuevo commit squasheado.
-- Notas: Si necesitas recuperar el historial completo, restaura desde la rama `main-backup-<timestamp>` disponible en el repositorio remoto.
+- Acción: Se creó una rama de respaldo `main-backup-<timestamp>` y se
+  generó un commit único (squash) con el estado actual del árbol de `main`.
+- Resultado: Se forzó `git push --force origin main` local -> remoto. El
+  historial remoto fue reemplazado por el nuevo commit squasheado.
+- Notas: Si necesitas recuperar el historial completo, restaura desde la
+  rama `main-backup-<timestamp>` disponible en el repositorio remoto.
 
 ## Correcciones y pruebas rápidas (2025-09-13)
 
-- PostCSS en Windows: se detectó un conflicto entre la configuración raíz `postcss.config.js` (ESM) y la forma en que Next/webpack carga PostCSS en el scaffold. Para arreglarlo se añadieron archivos CommonJS:
-  - `postcss.config.cjs` en la raíz (temporal) y `intranet-scaffold/postcss.config.cjs` para asegurar que la app local cargue la configuración PostCSS correctamente.
-  - Se eliminó la versión problemática `postcss.config.js` para evitar interop ESM/CommonJS que causaba errores "module is not defined" y "must export a plugins key".
+- PostCSS en Windows: se detectó un conflicto entre la configuración raíz
+  `postcss.config.js` (ESM) y la forma en que Next/webpack carga PostCSS en
+  el scaffold. Para arreglarlo se añadieron archivos CommonJS:
+- `postcss.config.cjs` en la raíz (temporal) y
+  `intranet-scaffold/postcss.config.cjs` para asegurar que la app local
+  cargue la configuración PostCSS correctamente.
+- Se eliminó la versión problemática `postcss.config.js` para evitar
+  interop ESM/CommonJS que causaba errores "module is not defined" y
+  "must export a plugins key".
 
-- Ruta de debug: se añadió `intranet-scaffold/app/api/_debug/ready/route.ts` que responde JSON { status: 'ok', inMemoryDb: boolean } (200) y facilita checks automáticos en CI/local.
+- Ruta de debug: se añadió `intranet-scaffold/app/api/_debug/ready/route.ts`
+  que responde JSON { status: 'ok', inMemoryDb: boolean } (200) y facilita
+  checks automáticos en CI/local.
 
 - Pruebas realizadas:
-  - Arranqué Next (dev) con `USE_IN_MEMORY_DB=1` y `INTRANET_DEBUG_TOKEN=test-token-123` (vía `intranet-scaffold/scripts/spawn-next-and-test.js`).
-  - GET `/api/_debug/ready`: la ruta está disponible — en algunas corridas iniciales devolvió 404 por timing/compilación; tras compilación la ruta responde correctamente.
-  - POST `/api/projects` con header `x-debug-token: test-token-123`: respondió 201 y creó un proyecto en la DB en memoria.
+- Arranqué Next (dev) con `USE_IN_MEMORY_DB=1` y
+  `INTRANET_DEBUG_TOKEN=test-token-123` (vía
+  `intranet-scaffold/scripts/spawn-next-and-test.js`).
+- GET `/api/_debug/ready`: la ruta está disponible — en algunas corridas
+  iniciales devolvió 404 por timing/compilación; tras compilación la ruta
+  responde correctamente.
+- POST `/api/projects` con header `x-debug-token: test-token-123`:
+  respondió 201 y creó un proyecto en la DB en memoria.
 
-Notas: si prefieres mantener la configuración PostCSS solo en la raíz o solo en el scaffold, lo dejamos consistente y limpio (yo dejé el `intranet-scaffold/postcss.config.cjs` para evitar conflictos locales en Windows).
-
+Notas: si prefieres mantener la configuración PostCSS solo en la raíz o
+solo en el scaffold, lo dejamos consistente y limpio (yo dejé el
+`intranet-scaffold/postcss.config.cjs` para evitar conflictos locales en
+Windows).
