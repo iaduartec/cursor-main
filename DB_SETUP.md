@@ -25,7 +25,7 @@ Variables de entorno recomendadas
 - `SUPABASE_SERVICE_ROLE_KEY` / `SUPABASE_ANON_KEY` - claves para el SDK JS (opcional).
 
 Orden de precedencia en `db/client.ts` (qué variable se usa para la conexión SQL):
- 
+
 1. `POSTGRES_URL` (recomendado)
 2. `DATABASE_URL`
 3. `SUPABASE_DB_URL` (compatibilidad / deprecated)
@@ -91,7 +91,7 @@ pnpm db:seed
 ```
 
 Orden de precedencia en `db/client.ts` (qué variable se usa para la conexión SQL):
- 
+
 1. `POSTGRES_URL` (recomendado)
 Migración de datos desde Neon (si vienes de Neon/Vercel Postgres)
 

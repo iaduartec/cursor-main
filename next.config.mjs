@@ -16,12 +16,17 @@ let withContentlayer = (c) => c;
 if (process.env.SKIP_CONTENTLAYER !== '1') {
   try {
     // Dynamically import to avoid side-effects when skipping
-     
+
     ({ withContentlayer } = await import('next-contentlayer'));
   } catch (err) {
     // If import fails, fall back to identity function
     withContentlayer = (c) => c;
   }
+}
+
+// Auto-skip Contentlayer on Windows to avoid compatibility issues
+if (process.platform === 'win32' && process.env.SKIP_CONTENTLAYER !== '0') {
+  console.warn('⚠️  Contentlayer compatibility warning on Windows - consider setting SKIP_CONTENTLAYER=1 for development');
 }
 
 /** @type {import('next').NextConfig} */
@@ -86,6 +91,15 @@ const nextConfig = {
       '@opentelemetry/exporter-jaeger': false,
     };
 
+    // Suppress webpack build dependency warnings for Contentlayer
+    config.snapshot = {
+      ...config.snapshot,
+      managedPaths: [
+        ...(config.snapshot?.managedPaths || []),
+        /node_modules\/@contentlayer/
+      ]
+    };
+
     return config;
   },
 
@@ -105,7 +119,7 @@ const nextConfig = {
   reactStrictMode: false,
 
   // Avoid workspace root inference warning with multiple lockfiles
-outputFileTracingRoot: path.join(process.cwd()),
+  outputFileTracingRoot: path.join(process.cwd()),
 };
 
 // Enable standalone output only on Vercel or when explicitly requested.

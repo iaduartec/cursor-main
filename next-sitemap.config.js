@@ -12,7 +12,7 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 /** @type {import('next-sitemap').IConfig} */
-export default {
+module.exports = {
   siteUrl: process.env.SITE_URL || 'https://duartec.es',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
