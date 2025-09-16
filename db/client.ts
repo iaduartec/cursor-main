@@ -1,4 +1,3 @@
-import { createClient } from '@supabase/supabase-js';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
@@ -24,12 +23,14 @@ const rawConnectionString =
 // URL parsing errors like ERR_INVALID_URL.
 const connectionString = rawConnectionString.replace(/^"|"$/g, '').trim();
 
-const skipDb =
-  process.env.USE_IN_MEMORY_DB === '1' || process.env.SKIP_DB === '1';
+let skipDb =
+  process.env.USE_IN_MEMORY_DB === '1' ||
+  process.env.SKIP_DB === '1' ||
+  !connectionString; // Skip if no connection string available
 
 if (!connectionString) {
-  throw new Error(
-    'No se encontró URL de base de datos. Define SUPABASE_DB_URL, POSTGRES_URL o DATABASE_URL en las variables de entorno.'
+  console.warn(
+    '⚠️  No se encontró URL de base de datos. Usando modo sin conexión.'
   );
 }
 
@@ -37,34 +38,46 @@ if (!connectionString) {
 // fake `db` that behaves like a thenable query returning empty results.
 // This avoids runtime errors during static generation while keeping the
 // import surface stable.
-let client: unknown = undefined;
+let client: postgres.Sql | undefined = undefined;
 let dbExport: unknown = undefined;
 if (!skipDb) {
-  // Try to use @supabase/postgres-js for serverless-friendly connections when available.
-  // If it's not installed or fails, fall back to the 'postgres' client.
-  let lowLevelClient: postgres.Sql | undefined;
   try {
-    // Dynamic require so code still works if package not installed at runtime.
-    const req = eval('require');
-    const supabasePg = (() => {
-      try {
-        return req('@supabase/postgres-js');
-      } catch {
-        return undefined;
+    // Try to use @supabase/postgres-js for serverless-friendly connections when available.
+    // If it's not installed or fails, fall back to the 'postgres' client.
+    let lowLevelClient: postgres.Sql | undefined;
+    try {
+      // Dynamic require so code still works if package not installed at runtime.
+      const req = eval('require');
+      const supabasePg = (() => {
+        try {
+          return req('@supabase/postgres-js');
+        } catch {
+          return undefined;
+        }
+      })();
+      if (supabasePg && typeof supabasePg.createClient === 'function') {
+        lowLevelClient = supabasePg.createClient(connectionString);
       }
-    })();
-    if (supabasePg && typeof supabasePg.createClient === 'function') {
-      lowLevelClient = supabasePg.createClient(connectionString);
+    } catch {
+      // ignore; we'll fallback to the 'postgres' client below
     }
-  } catch {
-    // ignore; we'll fallback to the 'postgres' client below
+
+    // If @supabase/postgres-js was available and created a client, use it.
+    // Otherwise create a client with the 'postgres' package.
+    client = lowLevelClient ?? postgres(connectionString, { prepare: false });
+
+    // Test the connection to ensure it's working
+    await client`SELECT 1`;
+
+    dbExport = drizzle(client, { schema });
+  } catch (error) {
+    console.warn(
+      '⚠️  Error conectando a la base de datos:',
+      (error as Error).message
+    );
+    console.warn('⚠️  Usando modo sin conexión para evitar errores de build.');
+    skipDb = true;
   }
-
-  // If @supabase/postgres-js was available and created a client, use it.
-  // Otherwise create a client with the 'postgres' package.
-  client = lowLevelClient ?? postgres(connectionString, { prepare: false });
-
-  dbExport = drizzle(client, { schema });
 } else {
   // Minimal thenable query used as a chainable stub. When awaited it resolves
   // to an empty array. This covers typical usage patterns like
@@ -143,9 +156,10 @@ if (!supabaseUrl || !supabaseKey) {
   );
 }
 
-export const supabase =
-  supabaseUrl && supabaseKey
-    ? createClient(supabaseUrl, supabaseKey, {
-        auth: { autoRefreshToken: false, persistSession: false },
-      })
-    : undefined;
+// Supabase client is not available in this Neon-only setup
+// export const supabase =
+//   supabaseUrl && supabaseKey
+//     ? createClient(supabaseUrl, supabaseKey, {
+//         auth: { autoRefreshToken: false, persistSession: false },
+//       })
+//     : undefined;

@@ -1,9 +1,13 @@
 {
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm build",
-  "regions": [
-    "fra1"
-  ],
+  "regions": ["fra1"],
+  "framework": "nextjs",
+  "functions": {
+    "app/api/**/*.ts": {
+      "runtime": "nodejs24.x"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
