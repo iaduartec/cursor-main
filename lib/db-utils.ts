@@ -51,13 +51,42 @@ export async function withDb<T>(
     const msg = r && typeof r.message === 'string' ? (r.message as string) : String(err);
     const causeCode = r && typeof r.code === 'string' ? (r.code as string) : undefined;
     const isNetworkError = /getaddrinfo|ENOTFOUND|EAI_AGAIN/i.test(msg) || causeCode === 'ENOTFOUND';
+    // Build an enhanced hint including query/params when available (Drizzle errors include them)
+    const query = r && typeof r.query === 'string' ? (r.query as string) : undefined;
+    const params = r && Array.isArray(r.params) ? (r.params as unknown[]) : undefined;
+
     if (isNetworkError) {
-       
       console.warn('Database unavailable (network error). Falling back to contentlayer. Message:', msg);
     } else {
       // Para otros errores, imprimir un mensaje más corto pero sin el stack completo.
-       
-      console.warn('Database operation failed, falling back to contentlayer. Message:', msg);
+      if (query) {
+        console.warn(
+          'Database operation failed (query error), falling back to contentlayer. Message:',
+          msg,
+          '\nQuery:',
+          query,
+          params ? `\nParams: ${JSON.stringify(params)}` : ''
+        );
+      } else {
+        console.warn('Database operation failed, falling back to contentlayer. Message:', msg);
+      }
+
+      // Give a helpful next-step hint when the error might mean migrations are missing
+      console.warn('Hint: if the database schema is out-of-date, run `pnpm run db:migrate` and then `pnpm run db:seed` (if needed).');
+    }
+
+    // If developer requests verbose DB logs, print the full error object/stack for debugging.
+    if (process.env.DB_VERBOSE_LOG === '1') {
+      try {
+        // eslint-disable-next-line no-console
+        console.debug('Verbose DB error details:', error);
+        // eslint-disable-next-line no-console
+        if (error && typeof (error as any).stack === 'string') {
+          console.debug('Stack:', (error as any).stack);
+        }
+      } catch {
+        // ignore logging errors
+      }
     }
     return fallback;
   }
