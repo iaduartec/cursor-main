@@ -14,7 +14,7 @@ Contenido detectado basado en extensión y estructura básica.
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllServices, getServiceBySlug } from '../../../lib/db-services';
+import { getAllServices, getServiceBySlug } from '../../../lib/db-services.new';
 
 const normalizeSlug = (s: string) =>
   String(s || '')

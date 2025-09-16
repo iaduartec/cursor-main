@@ -11,16 +11,24 @@ Tamaño: 1621 caracteres, 67 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-import { db, type DrizzleClient } from '../db/client';
-import { services, type Service } from '../db/schema';
-import { asc, eq } from 'drizzle-orm';
 import { allServicios } from 'contentlayer/generated';
-import { withDb } from './db-utils';
 
 // Tipos de contenido desde contentlayer
-type ContentLayerService = typeof allServicios[number];
+type ContentLayerService = (typeof allServicios)[number];
 
-function fallbackServiceFromContentLayer(s: ContentLayerService): Service {
+export type Service = {
+  id: number;
+  slug: string;
+  title: string;
+  description: string | null;
+  image: string | null;
+  areaServed: string | null;
+  hasOfferCatalog: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+function serviceFromContentLayer(s: ContentLayerService): Service {
   return {
     id: 0,
     slug: s.slug,
@@ -31,45 +39,16 @@ function fallbackServiceFromContentLayer(s: ContentLayerService): Service {
     hasOfferCatalog: Boolean(s.hasOfferCatalog),
     createdAt: new Date(),
     updatedAt: new Date(),
-  } as Service;
-}
-
-function fallbackServices(): Service[] {
-  return allServicios.map(fallbackServiceFromContentLayer);
+  };
 }
 
 export async function getAllServices(): Promise<Service[]> {
-  return withDb(
-    async () => {
-  const typedDb = db as unknown as DrizzleClient;
-
-      const rows = await typedDb
-        .select()
-        .from(services)
-        .orderBy(asc(services.title));
-      return rows as Service[];
-    },
-    fallbackServices()
-  );
+  return allServicios
+    .map(serviceFromContentLayer)
+    .sort((a, b) => a.title.localeCompare(b.title));
 }
 
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
-  const fallback = () => {
-    const s = allServicios.find((x) => x.slug === slug);
-    return s ? fallbackServiceFromContentLayer(s) : null;
-  };
-
-  return withDb(
-    async () => {
-  const typedDb = db as unknown as DrizzleClient;
-
-      const result = await typedDb
-        .select()
-        .from(services)
-        .where(eq(services.slug, slug))
-        .limit(1);
-      return (result[0] as Service) ?? null;
-    },
-    fallback()
-  );
+  const s = allServicios.find(x => x.slug === slug);
+  return s ? serviceFromContentLayer(s) : null;
 }

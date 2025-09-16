@@ -14,7 +14,7 @@ Contenido detectado basado en extensión y estructura básica.
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Monitor, Camera, Volume2, Zap, ArrowRight, type LucideIcon } from 'lucide-react';
-import { getAllServices } from '../../lib/db-services';
+import { getAllServices } from '../../lib/db-services.new';
 
 export const metadata: Metadata = {
   title: 'Servicios - Duartec Instalaciones Informáticas',

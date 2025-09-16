@@ -11,16 +11,25 @@ Tamaño: 1736 caracteres, 69 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-import { db, type DrizzleClient } from '../db/client';
-import { projects, type Project } from '../db/schema';
-import { desc, eq } from 'drizzle-orm';
 import { allProyectos } from 'contentlayer/generated';
-import { withDb } from './db-utils';
 
 // Tipos de contenido desde contentlayer
 type ContentLayerProject = (typeof allProyectos)[number];
 
-function fallbackProjectFromContentLayer(p: ContentLayerProject): Project {
+export type Project = {
+  id: number;
+  slug: string;
+  title: string;
+  description: string | null;
+  content: string | null;
+  image: string | null;
+  category: string | null;
+  date: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+function projectFromContentLayer(p: ContentLayerProject): Project {
   return {
     id: 0,
     slug: p.slug,
@@ -32,45 +41,25 @@ function fallbackProjectFromContentLayer(p: ContentLayerProject): Project {
     date: p.date ? new Date(p.date) : null,
     createdAt: new Date(),
     updatedAt: new Date(),
-  } as Project;
-}
-
-function fallbackProjects(): Project[] {
-  return allProyectos.map(fallbackProjectFromContentLayer);
+  };
 }
 
 export async function getAllProjects(): Promise<Project[]> {
-  return withDb(
-    async () => {
-  const typedDb = db as unknown as DrizzleClient;
-
-      const rows = await typedDb
-        .select()
-        .from(projects)
-        .orderBy(desc(projects.date));
-      return rows as unknown as Project[];
-    },
-    fallbackProjects()
-  );
+  return allProyectos.map(projectFromContentLayer).sort((a, b) => {
+    if (!a.date && !b.date) {
+      return 0;
+    }
+    if (!a.date) {
+      return 1;
+    }
+    if (!b.date) {
+      return -1;
+    }
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  const fallback = () => {
-    const p = allProyectos.find((x) => x.slug === slug);
-    return p ? fallbackProjectFromContentLayer(p) : null;
-  };
-  
-  return withDb(
-    async () => {
-  const typedDb = db as unknown as DrizzleClient;
-
-      const result = await typedDb
-        .select()
-        .from(projects)
-        .where(eq(projects.slug, slug))
-        .limit(1);
-      return (result[0] as unknown as Project) ?? null;
-    },
-    fallback()
-  );
+  const p = allProyectos.find(x => x.slug === slug);
+  return p ? projectFromContentLayer(p) : null;
 }
