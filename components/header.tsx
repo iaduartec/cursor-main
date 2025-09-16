@@ -49,7 +49,7 @@ export default function Header() {
       </div>
 
       {/* Header principal */}
-      <div className="max-w-6xl mx-auto px-4 py-4 bg-slate-800 dark:bg-slate-800 rounded-lg my-2 shadow-lg">
+      <div className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center group" aria-label="Inicio">
@@ -127,7 +127,7 @@ export default function Header() {
                 <Link
                   href="/"
                   onClick={closeMenu}
-                  className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
                 >
                   Inicio
                 </Link>
@@ -136,7 +136,7 @@ export default function Header() {
                 <Link
                   href="/servicios"
                   onClick={closeMenu}
-                  className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
                 >
                   Servicios
                 </Link>
@@ -145,7 +145,7 @@ export default function Header() {
                 <Link
                   href="/streaming"
                   onClick={closeMenu}
-                  className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
                 >
                   Streaming 24h
                 </Link>
@@ -154,7 +154,7 @@ export default function Header() {
                 <Link
                   href="/proyectos"
                   onClick={closeMenu}
-                  className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
                 >
                   Proyectos
                 </Link>
@@ -163,7 +163,7 @@ export default function Header() {
                 <Link
                   href="/blog"
                   onClick={closeMenu}
-                  className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
                 >
                   Blog
                 </Link>
@@ -172,7 +172,7 @@ export default function Header() {
                 <Link
                   href="/quienes-somos"
                   onClick={closeMenu}
-                  className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
                 >
                   Quiénes somos
                 </Link>

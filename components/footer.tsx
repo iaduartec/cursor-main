@@ -29,16 +29,16 @@ export default function Footer() {
               sonido y electricidad en Burgos y Castilla y León. Calidad y profesionalidad garantizadas.
             </p>
             <div className="flex space-x-4">
-              <a href="https://facebook.com/duartec" className="text-gray-400 hover:text-accent transition-colors" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <a href="https://facebook.com/duartec" className="text-gray-400 hover:text-blue-400 transition-colors" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="https://twitter.com/duartec" className="text-gray-400 hover:text-accent transition-colors" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+              <a href="https://twitter.com/duartec" className="text-gray-400 hover:text-blue-300 transition-colors" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="https://instagram.com/duartec" className="text-gray-400 hover:text-accent transition-colors" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <a href="https://instagram.com/duartec" className="text-gray-400 hover:text-pink-400 transition-colors" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://linkedin.com/company/duartec" className="text-gray-400 hover:text-accent transition-colors" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com/company/duartec" className="text-gray-400 hover:text-blue-500 transition-colors" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
@@ -49,27 +49,27 @@ export default function Footer() {
             <h4 className="font-semibold text-lg mb-4">Servicios</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/servicios/informatica" className="text-gray-300 hover:text-accent transition-colors">
+                <Link href="/servicios/informatica" className="text-gray-300 hover:text-white transition-colors">
                   Informática
                 </Link>
               </li>
               <li>
-                <Link href="/servicios/videovigilancia" className="text-gray-300 hover:text-accent transition-colors">
+                <Link href="/servicios/videovigilancia" className="text-gray-300 hover:text-white transition-colors">
                   Videovigilancia
                 </Link>
               </li>
               <li>
-                <Link href="/servicios/sonido" className="text-gray-300 hover:text-accent transition-colors">
+                <Link href="/servicios/sonido" className="text-gray-300 hover:text-white transition-colors">
                   Sonido Profesional
                 </Link>
               </li>
               <li>
-                <Link href="/servicios/electricidad" className="text-gray-300 hover:text-accent transition-colors">
+                <Link href="/servicios/electricidad" className="text-gray-300 hover:text-white transition-colors">
                   Electricidad
                 </Link>
               </li>
               <li>
-                <Link href="/servicios" className="text-gray-300 hover:text-accent transition-colors">
+                <Link href="/servicios" className="text-gray-300 hover:text-white transition-colors">
                   Ver todos los servicios
                 </Link>
               </li>
@@ -81,23 +81,23 @@ export default function Footer() {
             <h4 className="font-semibold text-lg mb-4">Contacto</h4>
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-accent" />
-                <a href="tel:+34947256430" className="text-gray-300 hover:text-accent transition-colors">
+                <Phone className="w-4 h-4 text-blue-400" />
+                <a href="tel:+34947256430" className="text-gray-300 hover:text-white transition-colors">
                   947 256 430
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-accent" />
-                <a href="mailto:info@duartec.es" className="text-gray-300 hover:text-accent transition-colors">
+                <Mail className="w-4 h-4 text-blue-400" />
+                <a href="mailto:info@duartec.es" className="text-gray-300 hover:text-white transition-colors">
                   info@duartec.es
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-accent" />
+                <MapPin className="w-4 h-4 text-blue-400" />
                 <span className="text-gray-300">Burgos, España</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-accent" />
+                <Clock className="w-4 h-4 text-blue-400" />
                 <span className="text-gray-300">L-V 9:00-18:00</span>
               </div>
             </div>
@@ -116,16 +116,16 @@ export default function Footer() {
 
             {/* Enlaces legales */}
             <nav className="flex flex-wrap gap-4 text-sm">
-              <Link href="/legal/aviso-legal" className="text-gray-400 hover:text-accent transition-colors">
+              <Link href="/legal/aviso-legal" className="text-gray-400 hover:text-white transition-colors">
                 Aviso legal
               </Link>
-              <Link href="/legal/privacidad" className="text-gray-400 hover:text-accent transition-colors">
+              <Link href="/legal/privacidad" className="text-gray-400 hover:text-white transition-colors">
                 Política de privacidad
               </Link>
-              <Link href="/legal/cookies" className="text-gray-400 hover:text-accent transition-colors">
+              <Link href="/legal/cookies" className="text-gray-400 hover:text-white transition-colors">
                 Política de cookies
               </Link>
-              <Link href="/legal/condiciones" className="text-gray-400 hover:text-accent transition-colors">
+              <Link href="/legal/condiciones" className="text-gray-400 hover:text-white transition-colors">
                 Condiciones de uso
               </Link>
             </nav>
