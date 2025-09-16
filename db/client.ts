@@ -121,10 +121,18 @@ export type DrizzleClient = PgDatabase<any, schema.Database>;
 // concrete schema types. The runtime value is unchanged (dbExport) but the
 // exported type is now stricter which helps downstream migrations.
 export const db = dbExport as unknown as DrizzleClient;
+// Low-level template-tag SQL client type. This matches the minimal surface
+// used across the codebase: callable as a template tag and exposing optional
+// helpers like `.end()` and a debug `__state` field (in-memory adapter).
+export type SqlTag = ((strings: TemplateStringsArray, ...values: unknown[]) => Promise<unknown>) & {
+  end?: () => Promise<unknown>;
+  __state?: unknown;
+};
 
-// Export the low-level sql client too (may be undefined when DB is skipped).
-// Use `unknown` here to reduce `any` surface while preserving runtime value.
-export const sql: unknown = client as unknown;
+// Export the low-level sql client with a narrow callable type to allow usages
+// like `await sql` and `await sql` template-tag calls to type-check. The
+// runtime value is unchanged; we avoid `any` by using a small adapter type.
+export const sql: SqlTag = (client as unknown) as SqlTag;
 
 // Supabase client (JS) for auth/storage/other APIs. Prefer using
 // SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_ANON_KEY) set in Vercel.

@@ -9,7 +9,8 @@ import { expect as vitestExpect, afterEach } from 'vitest';
 
 // Ensure Vitest's expect is present on globalThis, then dynamically load
 // @testing-library/jest-dom so it can call expect.extend safely.
-(globalThis as any).expect = vitestExpect;
+// Expose Vitest's expect globally for libraries that augment it (jest-dom)
+(globalThis as unknown as { expect?: typeof vitestExpect }).expect = vitestExpect;
 
 // Ensure React is available globally for modules compiled with the classic JSX runtime
 import * as React from 'react';
@@ -25,7 +26,8 @@ import * as React from 'react';
 		try {
 			const mod = await import('@testing-library/jest-dom/matchers');
 			const matchers = (mod && (mod.default ?? mod));
-			vitestExpect.extend(matchers as any);
+			// matchers may be an object of matcher functions; cast to unknown then to Record of functions
+			vitestExpect.extend(matchers as unknown as Record<string, (...args: any[]) => any>);
 		} catch {
 			// if both fail, continue without jest-dom; tests may still run but matchers won't be available
 			// Log to console for diagnostics.
