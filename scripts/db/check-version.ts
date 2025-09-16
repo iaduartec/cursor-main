@@ -16,8 +16,8 @@ Contenido detectado basado en extensión y estructura básica.
 (async () => {
   try {
     const mod = await import('../../db/client')
-    const exported = (mod as any).default ?? mod
-    const {sql} = exported
+  const exported = (mod as unknown as { default?: unknown }).default ?? mod
+  const {sql} = exported as { sql?: unknown }
     if (typeof sql !== 'function') {
       console.error('El cliente sql exportado no es una función. exports:', Object.keys(exported))
       process.exit(2)
@@ -25,7 +25,7 @@ Contenido detectado basado en extensión y estructura básica.
 
     const res = await sql`select version()`
     console.log('pg version:', res[0].version)
-    await sql.end()
+  await (sql as unknown as { end?: () => Promise<unknown> }).end?.()
   } catch (err) {
     console.error('Error comprobando versión de Postgres:', err)
     process.exit(1)

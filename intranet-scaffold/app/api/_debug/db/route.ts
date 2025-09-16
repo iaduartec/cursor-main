@@ -30,8 +30,8 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
   try {
-    const sql = getDb();
-    const state = (sql && (sql as any).__state) || null;
+  const sql = getDb();
+  const state = (sql && (sql as unknown as { __state?: unknown }).__state) || null;
     return NextResponse.json({ state });
   } catch (err: any) {
     return NextResponse.json({ error: String(err) || 'Internal Error' }, { status: 500 });

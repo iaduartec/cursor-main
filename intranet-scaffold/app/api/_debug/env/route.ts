@@ -38,8 +38,8 @@ export async function GET(req: Request) {
       if (envVal === '1' || envVal === 'true') {
         usingInMemory = true;
       }
-      const sql = getDb();
-      hasState = !!(sql && (sql as any).__state);
+  const sql = getDb();
+  hasState = !!(sql && (sql as unknown as { __state?: unknown }).__state);
     } catch {
       // getDb may throw if DB not configured; still return env info
     }
