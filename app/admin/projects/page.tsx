@@ -13,7 +13,7 @@ Contenido detectado basado en extensión y estructura básica.
 */
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db, type DrizzleClient } from '../../../db/client';
-import { projects, type NewProject } from '../../../db/schema';
+import { projects, type NewProject, type Project } from '../../../db/schema';
 import { eq, desc } from 'drizzle-orm';
 
 async function getItems() {
@@ -78,7 +78,7 @@ export default async function AdminProjectsPage() {
           </tr>
         </thead>
         <tbody>
-          {items.map((p: { slug: string; title: string; date?: string | number | Date; category?: string | null }) => (
+          {items.map((p: Project) => (
             <tr key={p.slug} className="border-b">
               <td className="py-2">{p.slug}</td>
               <td>{p.title}</td>

@@ -11,9 +11,8 @@ Tamaño: 2069 caracteres, 68 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-import { db } from '../db/client';
-import { streams, type Stream, type Database } from '../db/schema';
-import type { PgDatabase } from 'drizzle-orm/pg-core';
+import { db, type DrizzleClient } from '../db/client';
+import { streams, type Stream } from '../db/schema';
 import { asc } from 'drizzle-orm';
 
 const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
@@ -21,7 +20,7 @@ const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL
 export async function getAllStreams(): Promise<Stream[]> {
   if (!hasDb()) {return fallbackStreams();}
   try {
-  const typedDb = db as unknown as PgDatabase<any, Database>;
+  const typedDb = db as unknown as DrizzleClient;
 
     const rows = await typedDb
       .select({

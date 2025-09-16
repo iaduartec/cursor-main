@@ -24,6 +24,8 @@ async function getItems() {
     .orderBy(desc(posts.date));
 }
 
+type ProjectedPost = { id: number; slug: string; title: string; date: Date | null; category: string | null };
+
 export default async function AdminPostsPage() {
   const items = await getItems();
 
@@ -87,7 +89,7 @@ export default async function AdminPostsPage() {
           </tr>
         </thead>
         <tbody>
-          {items.map((p: { slug: string; title: string; date?: string | number | Date; category?: string | null }) => (
+          {items.map((p: ProjectedPost) => (
             <tr key={p.slug} className="border-b">
               <td className="py-2">{p.slug}</td>
               <td>{p.title}</td>

@@ -18,7 +18,7 @@ async function run() {
 
   try {
     console.log('\nTesting drizzle select via db (projects)...');
-  const typedDb = db as unknown as DrizzleClient;
+    const typedDb = db as unknown as DrizzleClient;
     const rows = await typedDb.select().from((await import('../../db/schema')).projects).limit(1);
     console.log('Projects rows:', rows);
   } catch (err) {
@@ -27,7 +27,7 @@ async function run() {
 
   try {
     console.log('\nTesting drizzle select via db (services)...');
-  const typedDb = db as unknown as DrizzleClient;
+    const typedDb = db as unknown as DrizzleClient;
     const rows = await typedDb.select().from((await import('../../db/schema')).services).limit(1);
     console.log('Services rows:', rows);
   } catch (err) {
@@ -36,7 +36,7 @@ async function run() {
 
   try {
     console.log('\nTesting drizzle select via db (streams)...');
-  const typedDb = db as unknown as DrizzleClient;
+    const typedDb = db as unknown as DrizzleClient;
     const rows = await typedDb.select().from((await import('../../db/schema')).streams).limit(1);
     console.log('Streams rows:', rows);
   } catch (err) {
