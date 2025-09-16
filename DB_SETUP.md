@@ -2,6 +2,11 @@
 
 <!--
 Resumen generado automáticamente.
+-->
+# DB_SETUP
+
+<!--
+Resumen generado automáticamente.
 
 DB_SETUP.md
 
@@ -17,7 +22,7 @@ Uso de Supabase (optimizado para Vercel)
 
 Resumen
 
-- Motor: Supabase Postgres (recomendado si quieres integrar Storage/Auth/Realtime).
+- Motor: Postgres (Neon/Vercel). Si necesitas Storage/Auth/Realtime puedes integrar servicios externos; Supabase se considera una opción legacy en este repositorio.
 - Esquema: definido en `db/schema.ts` con Drizzle (pg-core). Funciona en Supabase porque es Postgres.
 - Migraciones: en carpeta `drizzle/` generadas por `drizzle-kit`.
 - Seed: scripts en `scripts/db/` permiten poblar `posts`, `projects`, `services`, `streams`.
@@ -123,7 +128,7 @@ pg_dump --format=custom --no-owner --no-privileges --verbs --file=neon_dump.dump
 ```
 1. En Vercel: añade `POSTGRES_URL` (o `DATABASE_URL`) en Settings > Environment Variables.
 
-1. Restore en Supabase (usar psql/pg_restore con las credenciales de Supabase):
+- `SUPABASE_DB_URL` - aceptada únicamente como fallback por compatibilidad con despliegues previos; para nuevas instalaciones usa `POSTGRES_URL`.
 1. Localmente: crea `.env.local` con las mismas variables para pruebas.
 
 ```bash
@@ -131,7 +136,7 @@ Nota: Este script ejecuta `scripts/db/migrate-supabase.ts` (nombre por compatibi
 PGTARGET=<SUPABASE_DB_URL>
 pg_restore --clean --no-owner --no-privileges --dbname="$PGTARGET" neon_dump.dump
 Migración de datos desde Neon (si vienes de Neon/Vercel Postgres)
-```
+3. `SUPABASE_DB_URL` (solo fallback / legacy)
 
 Notas:
 
