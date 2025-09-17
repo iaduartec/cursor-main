@@ -1,4 +1,4 @@
- // Fallback data when Contentlayer is disabled
+// Fallback data when Contentlayer is disabled
 const fallbackPosts = [
   {
     id: 1,
@@ -8,7 +8,7 @@ const fallbackPosts = [
       'Conoce a Duartec, empresa líder en Burgos especializada en instalaciones informáticas, videovigilancia, sonido y electricidad.',
     content:
       'Somos Duartec, una empresa con más de 10 años de experiencia en el sector de las instalaciones informáticas y tecnológicas en Burgos y Castilla y León.',
-    image: '/images/blog/bienvenido.jpg',
+    image: '/images/proyectos/Informática.jpeg',
     category: 'empresa',
     tags: ['duartec', 'burgos', 'instalaciones'],
     published: true,
@@ -24,7 +24,7 @@ const fallbackPosts = [
       'Descubre por qué la videovigilancia es fundamental para la seguridad de tu empresa y cómo elegir el sistema adecuado.',
     content:
       'En el mundo empresarial actual, la seguridad es una prioridad absoluta. La videovigilancia juega un papel crucial en la protección de activos, empleados y clientes.',
-    image: '/images/blog/videovigilancia.jpg',
+    image: '/images/proyectos/CCTV.jpeg',
     category: 'seguridad',
     tags: ['videovigilancia', 'seguridad', 'empresas'],
     published: true,
