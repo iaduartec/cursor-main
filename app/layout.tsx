@@ -12,6 +12,7 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 import './globals.css';
+import './browser-compatibility.css';
 import 'leaflet/dist/leaflet.css';
 // import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
