@@ -30,16 +30,16 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-slate-800 dark:to-slate-900 shadow-lg sticky top-0 z-50">
+    <header className="w-full bg-gradient-to-r from-primary to-primary/90 dark:from-slate-800 dark:to-slate-900 shadow-lg sticky top-0 z-50">
       {/* Top bar con información de contacto */}
-      <div className="bg-accent text-white py-2 px-4">
+      <div className="bg-primary text-white py-2 px-4">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm">
           <div className="flex items-center gap-4 mb-2 sm:mb-0">
-            <a href="tel:+34947256430" className="flex items-center gap-1 hover:underline">
+            <a href="tel:+34947256430" className="flex items-center gap-1 hover:text-accent transition-colors">
               <Phone className="w-4 h-4" />
               <span data-testid="header-phone">947 256 430</span>
             </a>
-            <a href="mailto:info@duartec.es" className="flex items-center gap-1 hover:underline">
+            <a href="mailto:info@duartec.es" className="flex items-center gap-1 hover:text-accent transition-colors">
               <Mail className="w-4 h-4" />
               <span data-testid="header-email">info@duartec.es</span>
             </a>

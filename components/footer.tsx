@@ -29,16 +29,16 @@ export default function Footer() {
               sonido y electricidad en Burgos y Castilla y León. Calidad y profesionalidad garantizadas.
             </p>
             <div className="flex space-x-4">
-              <a href="https://facebook.com/duartec" className="text-gray-400 hover:text-blue-400 transition-colors" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <a href="https://facebook.com/duartec" className="text-gray-400 hover:text-accent transition-colors" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="https://twitter.com/duartec" className="text-gray-400 hover:text-blue-300 transition-colors" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+              <a href="https://twitter.com/duartec" className="text-gray-400 hover:text-accent transition-colors" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="https://instagram.com/duartec" className="text-gray-400 hover:text-pink-400 transition-colors" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <a href="https://instagram.com/duartec" className="text-gray-400 hover:text-accent transition-colors" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://linkedin.com/company/duartec" className="text-gray-400 hover:text-blue-500 transition-colors" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com/company/duartec" className="text-gray-400 hover:text-accent transition-colors" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>

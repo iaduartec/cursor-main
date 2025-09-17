@@ -76,15 +76,21 @@ body {
 
 /* Text size adjustments for better accessibility */
 @supports (-webkit-text-size-adjust: 100%) {
-  html, :host { 
-    -webkit-text-size-adjust: 100%; 
+  html, :host {
+    -webkit-text-size-adjust: 100%;
   }
 }
 
 @supports (text-size-adjust: 100%) {
-  html, :host { 
-    text-size-adjust: 100%; 
+  html, :host {
+    text-size-adjust: 100%;
   }
+}
+
+/* Fallback for older browsers */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* Skip to content link for accessibility */
@@ -136,6 +142,18 @@ a:focus-visible {
   user-select: auto;
 }
 
+/* Forced color adjust support */
+@supports (forced-color-adjust: none) {
+  * {
+    forced-color-adjust: none;
+  }
+}
+
+/* Fallback for older browsers */
+* {
+  forced-color-adjust: auto;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -148,6 +166,47 @@ a:focus-visible {
 ::-webkit-scrollbar-thumb {
   background: var(--color-gray-dark);
   border-radius: 4px;
+}
+
+/* Backdrop filter support for older browsers */
+@supports (backdrop-filter: blur(6px)) {
+  .backdrop-blur-supported {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+@supports (-webkit-backdrop-filter: blur(6px)) {
+  .backdrop-blur-webkit {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* Filter support for older browsers */
+@supports (filter: invert(100%)) {
+  .filter-invert-supported {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+  }
+}
+
+@supports (-webkit-filter: invert(100%)) {
+  .filter-invert-webkit {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+  }
+}
+
+/* Fallback classes for older browsers */
+.backdrop-blur {
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.filter-invert {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
 }
 
 ::-webkit-scrollbar-thumb:hover {

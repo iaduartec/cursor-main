@@ -113,7 +113,7 @@ const getBlogCards = unstable_cache(
         slug: canonicalSlugFor(p),
         category: p.category ?? 'General',
         image: cleanSrc(p.image || '') || '/images/proyectos/CCTV.jpeg',
-        date: p.date.toISOString(),
+        date: new Date(p.publishedAt).toISOString(),
         readTime: estimateReadTime(p.content || ''),
         excerpt: p.description || '',
       }))
@@ -146,7 +146,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     slug: canonicalSlugFor(post),
     category: post.category ?? 'General',
     image: post.image || '/images/proyectos/CCTV.jpeg',
-    date: post.date.toISOString(),
+    date: new Date(post.publishedAt).toISOString(),
     readTime,
     excerpt: post.description || '',
   };
