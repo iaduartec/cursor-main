@@ -4,42 +4,50 @@ const fallbackServices = [
     id: 1,
     slug: 'informatica',
     title: 'Servicios Informáticos',
-    description: 'Instalación, mantenimiento y soporte técnico de equipos informáticos.',
-    content: 'Ofrecemos servicios completos de informática incluyendo instalación de equipos, mantenimiento preventivo, soporte técnico y consultoría.',
+    description:
+      'Instalación, mantenimiento y soporte técnico de equipos informáticos.',
+    content:
+      'Ofrecemos servicios completos de informática incluyendo instalación de equipos, mantenimiento preventivo, soporte técnico y consultoría.',
     icon: 'Monitor',
     category: 'informatica',
-    featured: true
+    featured: true,
   },
   {
     id: 2,
     slug: 'videovigilancia',
     title: 'Videovigilancia (CCTV)',
-    description: 'Instalación y mantenimiento de sistemas de videovigilancia y seguridad.',
-    content: 'Sistemas completos de videovigilancia con cámaras IP, grabadores DVR/NVR, monitores y software de gestión.',
+    description:
+      'Instalación y mantenimiento de sistemas de videovigilancia y seguridad.',
+    content:
+      'Sistemas completos de videovigilancia con cámaras IP, grabadores DVR/NVR, monitores y software de gestión.',
     icon: 'Camera',
     category: 'videovigilancia',
-    featured: true
+    featured: true,
   },
   {
     id: 3,
     slug: 'sonido',
     title: 'Sonido Profesional',
-    description: 'Instalación de sistemas de sonido para eventos, locales comerciales y hogares.',
-    content: 'Equipos de sonido profesional, megafonía, sistemas de conferencias y sonorización de espacios.',
+    description:
+      'Instalación de sistemas de sonido para eventos, locales comerciales y hogares.',
+    content:
+      'Equipos de sonido profesional, megafonía, sistemas de conferencias y sonorización de espacios.',
     icon: 'Volume2',
     category: 'sonido',
-    featured: true
+    featured: true,
   },
   {
     id: 4,
     slug: 'electricidad',
     title: 'Instalaciones Eléctricas',
-    description: 'Instalaciones eléctricas residenciales, comerciales e industriales.',
-    content: 'Proyectos eléctricos completos, reformas, ampliaciones y certificaciones eléctricas.',
+    description:
+      'Instalaciones eléctricas residenciales, comerciales e industriales.',
+    content:
+      'Proyectos eléctricos completos, reformas, ampliaciones y certificaciones eléctricas.',
     icon: 'Zap',
     category: 'electricidad',
-    featured: true
-  }
+    featured: true,
+  },
 ];
 
 export type Service = {
@@ -68,7 +76,9 @@ export async function getFeaturedServices(): Promise<Service[]> {
   return services.filter(service => service.featured);
 }
 
-export async function getServicesByCategory(category: string): Promise<Service[]> {
+export async function getServicesByCategory(
+  category: string
+): Promise<Service[]> {
   const services = await getAllServices();
   return services.filter(service => service.category === category);
 }

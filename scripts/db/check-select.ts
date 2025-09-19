@@ -1,6 +1,6 @@
 // Diagnostic script: run simple queries to reproduce DB errors
 // Diagnostic script: run simple queries to reproduce DB errors
-import { sql, db, type DrizzleClient } from '../../db/client';
+import { sql, db } from '../../db/client';
 
 async function run() {
   try {
@@ -17,7 +17,7 @@ async function run() {
 
   try {
     console.log('\nTesting drizzle select via db (projects)...');
-    const typedDb = db as unknown as DrizzleClient;
+    const typedDb = db as unknown as any;
     const rows = await typedDb
       .select()
       .from((await import('../../db/schema')).projects)
@@ -29,7 +29,7 @@ async function run() {
 
   try {
     console.log('\nTesting drizzle select via db (services)...');
-    const typedDb = db as unknown as DrizzleClient;
+    const typedDb = db as unknown as any;
     const rows = await typedDb
       .select()
       .from((await import('../../db/schema')).services)
@@ -41,7 +41,7 @@ async function run() {
 
   try {
     console.log('\nTesting drizzle select via db (streams)...');
-    const typedDb = db as unknown as DrizzleClient;
+    const typedDb = db as unknown as any;
     const rows = await typedDb
       .select()
       .from((await import('../../db/schema')).streams)
