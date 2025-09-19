@@ -1,7 +1,6 @@
 // Diagnostic script: run simple queries to reproduce DB errors
 // Diagnostic script: run simple queries to reproduce DB errors
 import { sql, db, type DrizzleClient } from '../../db/client';
-import type { Database } from '../../db/schema';
 
 async function run() {
   try {
@@ -61,7 +60,7 @@ async function run() {
       await (sql as unknown as { end?: () => Promise<unknown> }).end?.();
       console.log('\nClosed low-level sql connection.');
     }
-  } catch (err) {
+  } catch {
     // ignore
   }
 }
