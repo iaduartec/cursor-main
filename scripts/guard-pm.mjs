@@ -11,7 +11,7 @@ Tamaño: 428 caracteres, 14 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
-// Bloquea gestor: exige pnpm 10.x (versión más reciente, no permite versiones antiguas)
+// Bloquea gestor: exige pnpm >=10 <11 (evita versiones antiguas y futuras incompatibles)
 const ua = process.env.npm_config_user_agent || "";
 const pnpmMatch = ua.match(/pnpm\/(\d+)\.(\d+)\.(\d+)/);
 if (!pnpmMatch) {
@@ -20,9 +20,9 @@ if (!pnpmMatch) {
   process.exit(1);
 }
 const pnpmMajor = Number(pnpmMatch[1]);
-if (pnpmMajor !== 10) {
-  console.error(`❌ Usa pnpm 10.x. Detectado: ${ua}`);
-  console.error(`💡 Actualiza a pnpm 10.x (no se permiten versiones anteriores).`);
+if (!(pnpmMajor >= 10 && pnpmMajor < 11)) {
+  console.error(`❌ Usa pnpm >=10 <11. Detectado: ${ua}`);
+  console.error(`💡 Instala pnpm 10.x (se aceptan 10.*; se bloquean <10 y >=11).`);
   process.exit(1);
 }
 // Bloquea versión de Node: exige 22.x o superior (no permite versiones antiguas)
