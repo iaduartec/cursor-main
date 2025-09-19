@@ -3,11 +3,6 @@
   "buildCommand": "pnpm build",
   "regions": ["fra1"],
   "framework": "nextjs",
-  "functions": {
-    "app/api/**/*.ts": {
-      "runtime": "nodejs22.x"
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",

@@ -18,10 +18,10 @@ en Burgos.
 
 ## 📦 Requisitos previos
 
-- **Node.js** `>=24.0.0` (LTS más reciente)
+- **Node.js** `>=22.0.0` (LTS compatible)
 - **pnpm** `10.x` (última versión estable)
 
-> ⚠️ **Importante**: El proyecto incluye un script de guardia que bloquea versiones antiguas de Node.js (<24.x) y pnpm (!=10.x) para asegurar consistencia.
+> ⚠️ **Importante**: El proyecto incluye un script de guardia que bloquea versiones antiguas de Node.js (<22.x) y pnpm (!=10.x) para asegurar consistencia.
 
 ## 🔧 Instalación
 
