@@ -25,11 +25,11 @@ if (pnpmMajor !== 10) {
   console.error(`💡 Actualiza a pnpm 10.x (no se permiten versiones anteriores).`);
   process.exit(1);
 }
-// Bloquea versión de Node: exige 24.x o superior (no permite versiones antiguas)
+// Bloquea versión de Node: exige 22.x o superior (no permite versiones antiguas)
 const major = Number(process.versions.node.split(".")[0]);
-if (major < 24) {
-  console.error(`❌ Usa Node 24.x o superior. Detectado: ${process.versions.node}`);
-  console.error(`💡 Actualiza Node.js a la versión 24.x o superior para continuar.`);
+if (major < 22) {
+  console.error(`❌ Usa Node 22.x o superior. Detectado: ${process.versions.node}`);
+  console.error(`💡 Actualiza Node.js a la versión 22.x o superior para continuar.`);
   process.exit(1);
 }
 
