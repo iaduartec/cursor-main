@@ -15,8 +15,12 @@ vi.mock('next/navigation', () => ({
 describe('Home Page', () => {
   it('renders hero section', () => {
     render(<Home />);
-    // page content may include repeated text in layout; assert at least one occurrence
-    expect(screen.getAllByText('Soluciones integrales en informática, videovigilancia, sonido y electricidad').length).toBeGreaterThan(0);
+    // El texto del H1 está dividido entre nodos (texto + span). Usamos un matcher flexible sobre textContent.
+    const matcher = (content: string, node: Element | null) =>
+      node?.textContent?.includes(
+        'Soluciones integrales en informática, videovigilancia, sonido y electricidad'
+      ) ?? false;
+    expect(screen.getAllByText(matcher).length).toBeGreaterThan(0);
   });
 
   it('renders main services', () => {
