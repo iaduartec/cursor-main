@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/dev-no-contentlayer.js",
-    "build": "pnpm db:migrate && next build",
+    "build": "node -e \"if(process.env.SKIP_DB==='1'){console.log('SKIP_DB=1 set, skipping db:migrate');process.exit(0);}console.log('Running db:migrate');process.exit(require('child_process').spawnSync('pnpm',['db:migrate'],{stdio:'inherit'}).status);\" && next build",
     "start": "next start",
     "db:migrate": "tsx --require dotenv/config scripts/db/migrate-supabase.ts",
     "db:seed": "tsx scripts/db/seed-from-mdx.ts",
@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
-    
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.44.5",
     "gray-matter": "^4.0.3",
