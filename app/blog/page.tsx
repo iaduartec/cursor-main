@@ -67,8 +67,18 @@ export default async function BlogPage({
     excerpt: p.description || '',
   }));
 
-  const cats = await getDistinctCategories();
-  const categories = cats.length > 0 ? cats : Array.from(new Set(posts.map((p) => p.category))).filter(Boolean) as string[];
+  // Categorías defensivas: si Contentlayer/BD no devuelve array, usar fallback desde los posts ya preparados
+  let cats: string[] = [];
+  try {
+    const raw = await getDistinctCategories();
+    cats = Array.isArray(raw) ? raw.filter(Boolean) : [];
+  } catch {
+    // silenciar para build; usaremos fallback
+    console.warn('[blog/page] getDistinctCategories() falló, usando fallback desde posts');
+  }
+  const categories = cats && cats.length > 0
+    ? cats
+    : (Array.from(new Set(posts.map((p) => p.category))).filter(Boolean) as string[]);
 
   return (
     <div className="min-h-screen">
