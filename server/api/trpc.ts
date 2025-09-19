@@ -16,9 +16,15 @@ export function createTRPCRouter(def: unknown = {}) {
 
 export const publicProcedure: any = {
   // A very small adapter that allows `.input()`/`.query()` chains in code
-  input() { return publicProcedure; },
-  query(fn?: unknown) { return fn as any; },
-  mutation(fn?: unknown) { return fn as any; },
+  input() {
+    return publicProcedure;
+  },
+  query(fn?: unknown) {
+    return fn as any;
+  },
+  mutation(fn?: unknown) {
+    return fn as any;
+  },
 };
 
 export const protectedProcedure = publicProcedure;

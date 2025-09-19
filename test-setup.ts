@@ -35,7 +35,6 @@ import * as React from 'react';
     } catch {
       // if both fail, continue without jest-dom; tests may still run but matchers won't be available
       // Log to console for diagnostics.
-      // eslint-disable-next-line no-console
       console.warn('Could not load @testing-library/jest-dom matchers');
     }
   }
