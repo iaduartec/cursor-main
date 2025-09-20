@@ -23,3 +23,12 @@ venv/
 env/
 /.idea
 /.DS_Store
+# Vercel-specific ignores
+backup.repo.bundle
+code
+cursor.git
+tsconfig.tsbuildinfo
+playwright-report
+test-results
+*.bundle
+*.tar.gz

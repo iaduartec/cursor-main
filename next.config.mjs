@@ -114,12 +114,12 @@ const nextConfig = {
   outputFileTracingRoot: path.join(process.cwd()),
 };
 
-// Enable standalone output only when explicitly requested. Using standalone on
-// Vercel prevents the platform from generating serverless functions which
-// causes the "No serverless pages were built" error during deployment.
-const enableStandalone = process.env.ENABLE_STANDALONE === '1';
+// Enable standalone output only when explicitly requested OR outside Vercel.
+// Using standalone on Vercel prevents the platform from generating serverless 
+// functions which causes the "No serverless pages were built" error during deployment.
+const enableStandalone = process.env.ENABLE_STANDALONE === '1' && !process.env.VERCEL;
 if (enableStandalone) {
-  //nextConfig.output = 'standalone';
+  nextConfig.output = 'standalone';
 }
 
 // Allow disabling Contentlayer (useful for Windows dev in subprojects)
