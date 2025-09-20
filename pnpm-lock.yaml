@@ -5,15 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-<<<<<<< HEAD
-  '@opentelemetry/semantic-conventions': 1.28.0
-  '@contentlayer/*>esbuild': 0.18.20
-  '@contentlayer/*>@opentelemetry/api': 1.4.1
-=======
   '@contentlayer/*>esbuild': 0.18.20
   '@contentlayer/*>@opentelemetry/api': 1.4.1
   '@opentelemetry/semantic-conventions': 1.28.0
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 importers:
 
