@@ -114,8 +114,10 @@ const nextConfig = {
   outputFileTracingRoot: path.join(process.cwd()),
 };
 
-// Enable standalone output only on Vercel or when explicitly requested.
-const enableStandalone = process.env.VERCEL === '1' || process.env.ENABLE_STANDALONE === '1';
+// Enable standalone output only when explicitly requested. Using standalone on
+// Vercel prevents the platform from generating serverless functions which
+// causes the "No serverless pages were built" error during deployment.
+const enableStandalone = process.env.ENABLE_STANDALONE === '1';
 if (enableStandalone) {
   nextConfig.output = 'standalone';
 }
