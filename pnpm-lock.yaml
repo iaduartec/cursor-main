@@ -53,13 +53,8 @@ importers:
         specifier: ^0.44.5
         version: 0.44.5(@neondatabase/serverless@1.0.1)(@opentelemetry/api@1.9.0)(@types/pg@8.15.5)(postgres@3.4.7)
       framer-motion:
-<<<<<<< HEAD
-        specifier: ^10.0.0
-        version: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-=======
-        specifier: ^12.23.13
-        version: 12.23.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
+  specifier: ^12.23.13
+  version: 12.23.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
