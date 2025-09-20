@@ -19,7 +19,7 @@
     "dev": "cross-env SKIP_CONTENTLAYER=1 SKIP_DB=1 next dev",
     "preinstall": "node scripts/guard-pm.mjs",
     "prebuild": "node scripts/prebuild.mjs",
-    "build": "cross-env SKIP_DB=1 next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix --max-warnings=0",
