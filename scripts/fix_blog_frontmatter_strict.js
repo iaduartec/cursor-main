@@ -1,20 +1,4 @@
 #!/usr/bin/env node
-<<<<<<< HEAD
-=======
-/**
-Resumen generado automáticamente.
-
-scripts/fix_blog_frontmatter_strict.js
-
-2025-09-13T06:20:07.385Z
-
-——————————————————————————————
-Archivo .js: fix_blog_frontmatter_strict.js
-Tamaño: 3765 caracteres, 122 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 /*
  * Normalize MDX front matter strictly and separate body correctly.
  * - Keeps only known keys for Blog docs.

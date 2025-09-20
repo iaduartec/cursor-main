@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import { createClient } from '@supabase/supabase-js';
-=======
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
 
-<<<<<<< HEAD
 // Prefer Supabase-specific env vars when deploying to Vercel/Supabase
 // Order of precedence:
 // 1. SUPABASE_DB_URL (recommended for Supabase projects)
@@ -53,7 +48,6 @@ export const supabase = createClient(supabaseUrl, supabaseKey, {
   },
 });
 
-=======
 // Database connection configuration
 // Order of precedence:
 // 1. POSTGRES_URL (recommended for Neon/Postgres projects)
@@ -158,4 +152,3 @@ export const db = dbExport;
 
 // Export the low-level sql client too (may be undefined when DB is skipped)
 export { client as sql };
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9

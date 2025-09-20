@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import { revalidatePath, revalidateTag } from 'next/cache';
-import { db } from '../../../db/client';
-import { streams } from '../../../db/schema';
-import { getAllStreams } from '../../../lib/db-streams';
-import { eq } from 'drizzle-orm';
-
-=======
 /**
 Resumen generado automáticamente.
 
@@ -26,7 +18,6 @@ import { getAllStreams } from '../../../lib/db-streams';
 import { eq } from 'drizzle-orm';
 
 
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 export default async function AdminStreamsPage() {
   const items = await getAllStreams();
 
@@ -41,12 +32,8 @@ export default async function AdminStreamsPage() {
     const description = String(formData.get('description') || '');
     const isLive = formData.get('isLive') ? true : false;
     const now = new Date();
-<<<<<<< HEAD
-    await db
-=======
   const typedDb = db as unknown as DrizzleClient;
     await typedDb
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       .insert(streams)
       .values({
         slug,
@@ -59,17 +46,10 @@ export default async function AdminStreamsPage() {
         isLive,
         createdAt: now,
         updatedAt: now,
-<<<<<<< HEAD
-      })
-      .onConflictDoUpdate({
-        target: streams.slug,
-        set: { name, provider, youtubeId: youtubeId || null, embedUrl: embedUrl || null, image: image || null, description: description || null, isLive, updatedAt: now },
-=======
       } as NewStream)
       .onConflictDoUpdate({
         target: streams.slug,
         set: { name, provider, youtubeId: youtubeId || null, embedUrl: embedUrl || null, image: image || null, description: description || null, isLive, updatedAt: now } as Partial<NewStream>,
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       });
     revalidateTag('streams');
     revalidatePath('/streaming');
@@ -79,12 +59,8 @@ export default async function AdminStreamsPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-<<<<<<< HEAD
-    await db.delete(streams).where(eq(streams.slug, slug));
-=======
   const typedDb = db as unknown as DrizzleClient;
     await typedDb.delete(streams).where(eq(streams.slug, slug));
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     revalidateTag('streams');
     revalidatePath('/streaming');
     revalidatePath('/admin/streams');

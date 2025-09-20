@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { revalidatePath, revalidateTag } from 'next/cache';
-import { db } from '../../../db/client';
-import { services } from '../../../db/schema';
-import { eq, asc } from 'drizzle-orm';
-
-async function getItems() {
-  return await db.select().from(services).orderBy(asc(services.title));
-=======
 /**
 Resumen generado automáticamente.
 
@@ -28,7 +19,6 @@ import { eq, asc } from 'drizzle-orm';
 async function getItems() {
   const typedDb = db as unknown as DrizzleClient;
   return await typedDb.select().from(services).orderBy(asc(services.title));
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 }
 
 export default async function AdminServicesPage() {
@@ -43,18 +33,11 @@ export default async function AdminServicesPage() {
     const areaServed = String(formData.get('areaServed') || '');
     const hasOfferCatalog = formData.get('hasOfferCatalog') ? true : false;
     const now = new Date();
-<<<<<<< HEAD
-    await db
-      .insert(services)
-      .values({ slug, title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, createdAt: now, updatedAt: now })
-      .onConflictDoUpdate({ target: services.slug, set: { title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, updatedAt: now } });
-=======
   const typedDb = db as unknown as DrizzleClient;
     await typedDb
       .insert(services)
       .values({ slug, title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, createdAt: now, updatedAt: now } as NewService)
       .onConflictDoUpdate({ target: services.slug, set: { title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, updatedAt: now } as Partial<NewService> });
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     revalidateTag('services');
     revalidatePath('/admin/services');
   }
@@ -62,12 +45,8 @@ export default async function AdminServicesPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-<<<<<<< HEAD
-    await db.delete(services).where(eq(services.slug, slug));
-=======
   const typedDb = db as unknown as DrizzleClient;
   await typedDb.delete(services).where(eq(services.slug, slug));
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     revalidateTag('services');
     revalidatePath('/admin/services');
   }
@@ -96,11 +75,7 @@ export default async function AdminServicesPage() {
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
-          {items.map((s) => (
-=======
           {items.map((s: Service) => (
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             <tr key={s.slug} className="border-b">
               <td className="py-2">{s.slug}</td>
               <td>{s.title}</td>

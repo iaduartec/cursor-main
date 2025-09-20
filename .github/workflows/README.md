@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-=======
-<!--
-Resumen generado automáticamente.
-
-.github/workflows/README.md
-
-2025-09-13T06:20:07.353Z
-
-——————————————————————————————
-Archivo .md: README.md
-Tamaño: 1430 caracteres, 49 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
--->
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 # Configuración de Deployment Automático
 
 Este repositorio está configurado para desplegar automáticamente a Vercel cada vez que se hace push a la rama `main`.

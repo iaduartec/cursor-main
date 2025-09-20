@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import { NextRequest, NextResponse } from 'next/server';
-import { getAllStreams } from '../../../lib/db-streams';
-import { db } from '../../../db/client';
-import { streams } from '../../../db/schema';
-=======
 /**
 Resumen generado automáticamente.
 
@@ -21,7 +15,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAllStreams } from '../../../lib/db-streams';
 import { db, type DrizzleClient } from '../../../db/client';
 import { streams, type NewStream } from '../../../db/schema';
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import { revalidateTag } from 'next/cache';
 
 function isAuthorized(req: NextRequest): boolean {
@@ -46,12 +39,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Missing slug or name' }, { status: 400 });
   }
   const now = new Date();
-<<<<<<< HEAD
-  await db
-=======
   const typedDb = db as unknown as DrizzleClient;
   await typedDb
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     .insert(streams)
     .values({
       slug,
@@ -64,17 +53,10 @@ export async function POST(req: NextRequest) {
       isLive: Boolean(isLive),
       createdAt: now,
       updatedAt: now,
-<<<<<<< HEAD
-    })
-    .onConflictDoUpdate({
-      target: streams.slug,
-      set: {
-=======
     } as NewStream)
     .onConflictDoUpdate({
       target: streams.slug,
       set: ({
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
         name,
         description: description ?? null,
         provider,
@@ -83,11 +65,7 @@ export async function POST(req: NextRequest) {
         image: image ?? null,
         isLive: Boolean(isLive),
         updatedAt: now,
-<<<<<<< HEAD
-      },
-=======
       } as Partial<NewStream>),
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     });
 
   revalidateTag('streams');

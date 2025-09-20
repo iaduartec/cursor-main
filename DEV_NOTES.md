@@ -1,62 +1,7 @@
-<<<<<<< HEAD
-=======
-<!--
-Resumen generado automáticamente.
-
-DEV_NOTES.md
-
-2025-09-13T
-- Blog: listadAvisos y advertencias conocidas (seguras)
-
-- Contentlayer en Windows muestra warnings, pero el build funciona.
-- OTel puede mostrar "Critical dependency" en dev/build; es ruido por
-  detección dinámica.detalle leen desde `posts` (fallback a Contentlayer si
-  no hay BD).
-- Streaming: listado (`/streaming`) y detalle (`/streaming/[slug]`) desde
-  `streams`.
-- Servicios/Proyectos: CRUD en admin listo; si quieres, puedo migrar sus
-  páginas públicas para leer desde BD.
-
-Avisos y advertencias conocidas (seguras)
-
-- Contentlayer en Windows muestra warnings, pero el build funciona.
-- OTel puede mostrar "Critical dependency" en dev/build; es ruido por
-  detección dinámica.
-
-——————————————————————————————
-Archivo .md: DEV_NOTES.md
-Tamaño: 2403 caracteres, 54 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
--->
-# Desarrollo y despliegue: Node 22, DB y standalone
-
-DEV_NOTES.md
-
-2025-09-13T06:20:07.355Z
-
-——————————————————————————————
-Archivo .md: DEV_NOTES.md
-Tamaño: 2403 caracteres, 54 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
--->
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-Desarrollo y despliegue: Node 22, DB y standalone
-
-Resumen rápido
-
-- Node: 22.x (ver `engines.node` y `.node-version`).
-- Gestor de paquetes: pnpm (ver `packageManager`). Usa `pnpm install`/`pnpm run`.
-<<<<<<< HEAD
-- Standalone: desactivado por defecto en local Windows (para evitar symlinks). En Vercel se activa automáticamente.
-- BD: Postgres (Neon/Vercel) con Drizzle ORM. Usa `POSTGRES_URL` o `POSTGRES_URL_NON_POOLING`.
-=======
 - Standalone: desactivado por defecto en local Windows (para evitar symlinks).
   En Vercel se activa automáticamente.
 - BD: Postgres (Neon/Vercel) con Drizzle ORM. Usa `POSTGRES_URL` o
   `POSTGRES_URL_NON_POOLING`.
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 - Admin: panel en `/admin` protegido por token (`ADMIN_TOKEN`).
 
 Standalone (Next.js)
@@ -64,31 +9,12 @@ Standalone (Next.js)
 - `next.config.mjs` activa `output: 'standalone'` solo si:
   - `VERCEL=1` (deploy en Vercel), o
   - `ENABLE_STANDALONE=1` (forzar local).
-<<<<<<< HEAD
-- Motivo: en Windows el build standalone puede fallar por symlinks (EPERM). Para probarlo local, ejecuta:
-=======
 - Motivo: en Windows el build standalone puede fallar por symlinks (EPERM).
   Para probarlo local, ejecuta:
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   - PowerShell: `$env:ENABLE_STANDALONE='1'; npm run build`
 
 Base de datos (Drizzle + Postgres)
 
-<<<<<<< HEAD
-- Variables soportadas: `POSTGRES_URL` (pooled), `POSTGRES_URL_NON_POOLING` (directa), `DATABASE_URL` (fallback).
-- Cliente: `db/client.ts` usa `pg` Pool (válido en local y Vercel) — no requiere `@vercel/postgres`.
-- Migraciones: `npm run db:migrate` (lee `.env.local` si existe).
-- Seeds: `npm run db:seed` (blog desde MDX), `npm run db:seed:streams` (cámaras iniciales).
-
-Admin y API
-
-- `ADMIN_TOKEN`: añade en `.env.local` y en Vercel. Protege `/admin` (middleware) y las mutaciones de `/api/streams`.
-- Login admin: `/admin/login` (guarda cookie `admin` si el token es válido).
-- Endpoints Streams:
-  - GET `/api/streams`, GET `/api/streams/[slug]` (públicos).
-  - POST `/api/streams`, PATCH/DELETE `/api/streams/[slug]` (con `Authorization: Bearer <ADMIN_TOKEN>`).
-- Revalidación: al mutar streams, se invalida la tag `streams` para refrescar `/streaming`.
-=======
 - Variables soportadas: `POSTGRES_URL` (pooled), `POSTGRES_URL_NON_POOLING`
   (directa), `DATABASE_URL` (fallback).
 - Cliente: `db/client.ts` usa `pg` Pool (válido en local y Vercel) — no
@@ -108,7 +34,6 @@ Admin y API
     `Authorization: Bearer <ADMIN_TOKEN>`).
 - Revalidación: al mutar streams, se invalida la tag `streams` para refrescar
   `/streaming`.
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 Contenido desde BD
 
@@ -124,22 +49,6 @@ Avisos y advertencias conocidas (seguras)
 Comandos útiles
 
 - Desarrollo: `pnpm dev`
-<<<<<<< HEAD
-=======
-- Desarrollo (ligero, sin Contentlayer): `pnpm dev:light`  # equivalente a
-  SKIP_CONTENTLAYER=1
-- Alternativa: `cross-env SKIP_CONTENTLAYER=1 pnpm dev`
-- Ejecutar Playwright condicionalmente: `pnpm test:e2e:maybe` (usa
-  SKIP_PLAYWRIGHT=1 para omitir)
-- Omitir Playwright: `cross-env SKIP_PLAYWRIGHT=1 pnpm test:e2e:maybe`
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-- Build prod: `pnpm build`
-- Type-check: `pnpm type-check`
-- Migraciones: `pnpm db:migrate`
-- Seed blog/streams: `pnpm db:seed` / `pnpm db:seed:streams`
-
-<<<<<<< HEAD
-=======
 ## Operación de squash + backup (historial sobrescrito)
 
 - Fecha: 2025-09-13T
@@ -180,4 +89,3 @@ Notas: si prefieres mantener la configuración PostCSS solo en la raíz o
 solo en el scaffold, lo dejamos consistente y limpio (yo dejé el
 `intranet-scaffold/postcss.config.cjs` para evitar conflictos locales en
 Windows).
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9

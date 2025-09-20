@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import path from 'path';
-import { withContentlayer } from 'next-contentlayer';
-=======
 /**
 Resumen generado automáticamente.
 
@@ -32,7 +28,6 @@ if (process.env.SKIP_CONTENTLAYER !== '1') {
 if (process.platform === 'win32' && process.env.SKIP_CONTENTLAYER !== '0') {
   console.warn('⚠️  Contentlayer compatibility warning on Windows - consider setting SKIP_CONTENTLAYER=1 for development');
 }
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -60,59 +55,7 @@ const nextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-<<<<<<< HEAD
-=======
-          { key: 'X-UA-Compatible', value: 'IE=edge' },
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-        ],
-      },
-      {
-        source: '/api/(.*)',
-        headers: [{ key: 'Cache-Control', value: 'no-store, max-age=0' }],
-      },
-    ];
-  },
-
-  async redirects() {
-    return [];
-  },
-
-  async rewrites() {
-    return [{ source: '/sitemap.xml', destination: '/api/sitemap' }];
-  },
-
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: { test: /[\\/]node_modules[\\/]/, name: 'vendors', chunks: 'all' },
-        },
-      };
-    }
-
-    config.module.rules.push({ test: /\.svg$/, use: ['@svgr/webpack'] });
-
-    // Silence optional OTel exporter resolution warnings
-    config.resolve = config.resolve || {};
-    config.resolve.alias = {
-      ...(config.resolve.alias || {}),
-      '@opentelemetry/exporter-jaeger': false,
-    };
-
-    return config;
-  },
-
-  experimental: {
-    optimizeCss: false,
-    scrollRestoration: true,
-  },
-
-<<<<<<< HEAD
-  typescript: { ignoreBuildErrors: false },
-=======
   typescript: { ignoreBuildErrors: true },
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   eslint: { ignoreDuringBuilds: true },
 
   trailingSlash: false,
@@ -123,13 +66,6 @@ const nextConfig = {
   reactStrictMode: false,
 
   // Avoid workspace root inference warning with multiple lockfiles
-<<<<<<< HEAD
-outputFileTracingRoot: path.join(process.cwd()),
-};
-
-// Enable standalone output only on Vercel or when explicitly requested.
-const enableStandalone = process.env.VERCEL === '1' || process.env.ENABLE_STANDALONE === '1';
-=======
   outputFileTracingRoot: path.join(process.cwd()),
 };
 
@@ -137,17 +73,12 @@ const enableStandalone = process.env.VERCEL === '1' || process.env.ENABLE_STANDA
 // Using standalone on Vercel prevents the platform from generating serverless 
 // functions which causes the "No serverless pages were built" error during deployment.
 const enableStandalone = process.env.ENABLE_STANDALONE === '1' && !process.env.VERCEL;
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 if (enableStandalone) {
   nextConfig.output = 'standalone';
 }
 
-<<<<<<< HEAD
-export default withContentlayer(nextConfig);
-=======
 // Allow disabling Contentlayer (useful for Windows dev in subprojects)
 const skipContentlayer = process.env.SKIP_CONTENTLAYER === '1';
 const finalConfig = skipContentlayer ? nextConfig : withContentlayer(nextConfig);
 
 export default finalConfig;
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9

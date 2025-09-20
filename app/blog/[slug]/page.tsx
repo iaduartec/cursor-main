@@ -1,34 +1,5 @@
-<<<<<<< HEAD
-=======
-/**
-Resumen generado automáticamente.
-
-app/blog/[slug]/page.tsx
-
-2025-09-13T06:20:07.361Z
-
-——————————————————————————————
-Archivo .tsx: page.tsx
-Tamaño: 7543 caracteres, 231 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-import { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Calendar, ArrowLeft, Clock } from 'lucide-react';
-<<<<<<< HEAD
-import { notFound, redirect } from 'next/navigation';
-import Breadcrumb from '../../../components/Breadcrumb';
-import RelatedPosts from '../../../components/RelatedPosts';
-import { unstable_cache } from 'next/cache';
-import { getAllPosts, getAllSlugs, getPostBySlug } from '../../../lib/db-posts';
-import { marked } from 'marked';
-=======
 import { notFound } from 'next/navigation';
 import { getAllPosts, getPostBySlug } from '../../../lib/db-posts';
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -38,29 +9,6 @@ const normalizeSlug = (s: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-<<<<<<< HEAD
-const canonicalSlugFor = (p: { slug?: string; title?: string }): string => {
-  const base = p.slug || p.title || '';
-  return normalizeSlug(base);
-};
-
-const getCategoryColor = (category: string) => {
-  switch (category) {
-    case 'Seguridad':
-      return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-    case 'Electricidad':
-      return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-    case 'Informática':
-      return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-    case 'Sonido':
-      return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
-    default:
-      return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
-  }
-};
-
-=======
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 const estimateReadTime = (text: string) => {
   const words = text ? text.trim().split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.round(words / 200));
@@ -69,13 +17,10 @@ const estimateReadTime = (text: string) => {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-<<<<<<< HEAD
-  const incoming = normalizeSlug(slug);
+const incoming = normalizeSlug(slug);
   const post = await getPostBySlug(incoming);
-=======
-  const normalizedSlug = normalizeSlug(slug);
+const normalizedSlug = normalizeSlug(slug);
   const post = await getPostBySlug(normalizedSlug);
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   if (!post) {
     return {
       title: 'Artículo no encontrado',
@@ -86,20 +31,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${post.title} - Duartec Blog`,
     description: post.description || undefined,
-<<<<<<< HEAD
-    openGraph: {
-      title: post.title,
-      description: post.description || undefined,
-      images: post.image ? [cleanSrc(post.image)] : [],
-    },
-=======
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-  };
+};
 }
 
 export async function generateStaticParams() {
-<<<<<<< HEAD
-  const slugs = await getAllSlugs();
+const slugs = await getAllSlugs();
   return slugs.map((slug) => ({ slug }));
 }
 
@@ -176,8 +112,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <Image
             src={current.image || '/images/proyectos/CCTV.jpeg'}
             alt={current.title}
-=======
-  try {
+try {
     const posts = await getAllPosts();
     return posts.map((post) => ({ slug: post.slug }));
   } catch (error) {
@@ -205,18 +140,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <Image
             src={post.image || '/images/proyectos/CCTV.jpeg'}
             alt={post.title}
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             fill
             className="object-cover opacity-10"
           />
         </div>
         <div className="relative max-w-4xl mx-auto">
-<<<<<<< HEAD
-          <Breadcrumb items={[
-            { label: 'Blog', href: '/blog' },
-            { label: current.title }
-          ]} />
-=======
           {/* Breadcrumb simple */}
           <nav className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-accent transition-colors">Inicio</Link>
@@ -225,16 +153,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <span>/</span>
             <span className="text-gray-900 dark:text-white font-medium">{post.title}</span>
           </nav>
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
           <div className="flex items-center mb-6">
             <Link
               href="/blog"
-<<<<<<< HEAD
-              className="flex items-center text-accent hover:text-accent-700 transition-colors"
-=======
               className="flex items-center text-accent hover:text-accent/80 transition-colors"
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
               Volver al blog
@@ -242,15 +165,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
 
           <div className="mb-6">
-<<<<<<< HEAD
-            <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${getCategoryColor((current.category || '') )}`}>
-              {current.category}
-            </span>
-          </div>
-
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">
-            {current.title}
-=======
             <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">
               {post.category}
             </span>
@@ -258,17 +172,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
             {post.title}
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
           </h1>
 
           <div className="flex items-center text-gray-600 dark:text-gray-300 space-x-6">
             <div className="flex items-center">
               <Calendar className="w-5 h-5 mr-2" />
-<<<<<<< HEAD
-              <span>{new Date(current.date).toLocaleDateString('es-ES', {
-=======
               <span>{new Date(post.publishedAt).toLocaleDateString('es-ES', {
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
@@ -276,29 +185,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
             <div className="flex items-center">
               <Clock className="w-5 h-5 mr-2" />
-<<<<<<< HEAD
-              <span>{current.readTime} de lectura</span>
-=======
               <span>{readTime} de lectura</span>
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             </div>
           </div>
         </div>
       </section>
 
-<<<<<<< HEAD
-      <section className="max-w-4xl mx-auto py-16 px-4">
-        <article className="prose prose-lg dark:prose-invert max-w-none">
-          <div dangerouslySetInnerHTML={{ __html: html }} />
-        </article>
-
-        <RelatedPosts
-          currentPost={current}
-          allPosts={allPosts}
-          maxPosts={3}
-        />
-
-=======
       {/* Content Section */}
       <section className="max-w-4xl mx-auto py-16 px-4">
         <article className="prose prose-lg dark:prose-invert max-w-none">
@@ -308,7 +200,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </article>
 
         {/* Call to Action */}
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
         <div className="mt-16 bg-accent rounded-2xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-4">
             ¿Necesitas ayuda con tu proyecto?
@@ -319,21 +210,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contacto"
-<<<<<<< HEAD
-              className="inline-flex items-center justify-center bg-white text-accent px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
-=======
               className="inline-flex items-center justify-center bg-white text-accent px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             >
               Contactar expertos
             </Link>
             <a
               href="tel:+34947256430"
-<<<<<<< HEAD
-              className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-accent transition-colors duration-200"
-=======
               className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-accent transition-colors"
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             >
               Llamar ahora
             </a>

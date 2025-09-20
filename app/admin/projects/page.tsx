@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { revalidatePath, revalidateTag } from 'next/cache';
-import { db } from '../../../db/client';
-import { projects } from '../../../db/schema';
-import { eq, desc } from 'drizzle-orm';
-
-async function getItems() {
-  return await db.select().from(projects).orderBy(desc(projects.date));
-=======
 /**
 Resumen generado automáticamente.
 
@@ -28,7 +19,6 @@ import { eq, desc } from 'drizzle-orm';
 async function getItems() {
   const typedDb = db as unknown as DrizzleClient;
   return await typedDb.select().from(projects).orderBy(desc(projects.date));
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 }
 
 export default async function AdminProjectsPage() {
@@ -45,18 +35,11 @@ export default async function AdminProjectsPage() {
     const dateStr = String(formData.get('date') || '');
     const date = dateStr ? new Date(dateStr) : null;
     const now = new Date();
-<<<<<<< HEAD
-    await db
-      .insert(projects)
-      .values({ slug, title, description: description || null, content: content || null, image: image || null, category: category || null, date: date as any, createdAt: now, updatedAt: now })
-      .onConflictDoUpdate({ target: projects.slug, set: { title, description: description || null, content: content || null, image: image || null, category: category || null, date: date as any, updatedAt: now } });
-=======
   const typedDb = db as unknown as DrizzleClient;
     await typedDb
       .insert(projects)
   .values({ slug, title, description: description || null, content: content || null, image: image || null, category: category || null, date: date ? new Date(String(date)) : null, createdAt: now, updatedAt: now } as NewProject)
   .onConflictDoUpdate({ target: projects.slug, set: { title, description: description || null, content: content || null, image: image || null, category: category || null, date: date ? new Date(String(date)) : null, updatedAt: now } as Partial<NewProject> });
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     revalidateTag('projects');
     revalidatePath('/admin/projects');
   }
@@ -64,12 +47,8 @@ export default async function AdminProjectsPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-<<<<<<< HEAD
-    await db.delete(projects).where(eq(projects.slug, slug));
-=======
   const typedDb = db as unknown as DrizzleClient;
   await typedDb.delete(projects).where(eq(projects.slug, slug));
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     revalidateTag('projects');
     revalidatePath('/admin/projects');
   }
@@ -99,19 +78,11 @@ export default async function AdminProjectsPage() {
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
-          {items.map((p) => (
-            <tr key={p.slug} className="border-b">
-              <td className="py-2">{p.slug}</td>
-              <td>{p.title}</td>
-              <td>{p.date ? new Date(p.date as any).toLocaleString('es-ES') : ''}</td>
-=======
           {items.map((p: Project) => (
             <tr key={p.slug} className="border-b">
               <td className="py-2">{p.slug}</td>
               <td>{p.title}</td>
               <td>{p.date ? new Date(String(p.date)).toLocaleString('es-ES') : ''}</td>
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
               <td>{p.category}</td>
               <td>
                 <form action={remove}>

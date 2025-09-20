@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { db } from '../db/client';
-
-export const hasDb = () => Boolean(
-  process.env.POSTGRES_URL || 
-  process.env.POSTGRES_URL_NON_POOLING || 
-  process.env.DATABASE_URL
-);
-=======
 // Detecta si hay configuración de base de datos disponible en el entorno.
 // Soporta nombres estándar y también los prefijos `cxz_` usados en .env local.
 export const hasDb = () => {
@@ -34,7 +25,6 @@ export const hasDb = () => {
       process.env.cxz_POSTGRES_URL_NON_POOLING
   );
 };
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 export async function withDb<T>(
   operation: () => Promise<T>,
@@ -43,14 +33,6 @@ export async function withDb<T>(
   if (!hasDb()) {
     return fallback;
   }
-<<<<<<< HEAD
-  
-  try {
-    return await operation();
-  } catch (error) {
-    console.error('Database operation failed:', error);
-=======
-
   try {
     return await operation();
   } catch (error) {
@@ -78,7 +60,6 @@ export async function withDb<T>(
         msg
       );
     }
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     return fallback;
   }
 }

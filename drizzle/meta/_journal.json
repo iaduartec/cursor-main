@@ -22,16 +22,6 @@
       "when": 1757269960661,
       "tag": "0002_cold_hawkeye",
       "breakpoints": true
-<<<<<<< HEAD
-=======
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1757950133280,
-      "tag": "0003_chilly_karen_page",
-      "breakpoints": true
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     }
   ]
 }

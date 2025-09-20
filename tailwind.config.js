@@ -1,30 +1,5 @@
-<<<<<<< HEAD
-=======
-/**
-Resumen generado automáticamente.
-
-tailwind.config.js
-
-2025-09-13T06:20:07.387Z
-
-——————————————————————————————
-Archivo .js: tailwind.config.js
-Tamaño: 5286 caracteres, 171 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './content/**/*.{mdx,md}',
-<<<<<<< HEAD
-=======
     // include intranet-scaffold app and components so Tailwind generates classes used there
     './intranet-scaffold/**/*.{js,ts,jsx,tsx,md,mdx}',
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   ],
   darkMode: 'class',
   theme: {

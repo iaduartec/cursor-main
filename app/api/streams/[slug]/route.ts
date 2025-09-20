@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import { NextRequest, NextResponse } from 'next/server';
-import { getStreamBySlug } from '../../../../lib/db-streams';
-import { db } from '../../../../db/client';
-import { streams } from '../../../../db/schema';
-=======
 /**
 Resumen generado automáticamente.
 
@@ -21,7 +15,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getStreamBySlug } from '../../../../lib/db-streams';
 import { db, type DrizzleClient } from '../../../../db/client';
 import { streams, type NewStream } from '../../../../db/schema';
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import { eq } from 'drizzle-orm';
 import { revalidateTag } from 'next/cache';
 
@@ -44,16 +37,10 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
   const { slug } = await params;
   const patch = await req.json().catch(() => ({}));
   const now = new Date();
-<<<<<<< HEAD
-  const res = await db
-    .update(streams)
-    .set({
-=======
   const typedDb = db as unknown as DrizzleClient;
   const res = await typedDb
     .update(streams)
     .set(({
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       name: patch.name,
       description: patch.description ?? null,
       provider: patch.provider,
@@ -62,11 +49,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
       image: patch.image ?? null,
       isLive: typeof patch.isLive === 'boolean' ? patch.isLive : undefined,
       updatedAt: now,
-<<<<<<< HEAD
-    } as any)
-=======
     } as Partial<NewStream>))
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     .where(eq(streams.slug, slug));
 
   revalidateTag('streams');
@@ -76,12 +59,8 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   if (!isAuthorized(req)) {return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });}
   const { slug } = await params;
-<<<<<<< HEAD
-  await db.delete(streams).where(eq(streams.slug, slug));
-=======
   const typedDb = db as unknown as DrizzleClient;
   await typedDb.delete(streams).where(eq(streams.slug, slug));
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   revalidateTag('streams');
   return NextResponse.json({ ok: true });
 }

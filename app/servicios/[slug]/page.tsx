@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { getAllServices, getServiceBySlug } from '../../../lib/db-services';
-=======
 /**
 Resumen generado automáticamente.
 
@@ -21,7 +15,6 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getAllServices, getServiceBySlug } from '../../../lib/db-services.new';
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 const normalizeSlug = (s: string) =>
   String(s || '')

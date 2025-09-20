@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-import { db } from '../db/client';
-import { streams } from '../db/schema';
-import { asc } from 'drizzle-orm';
-
-export type StreamRow = {
-  id: number;
-  slug: string;
-  name: string;
-  description: string | null;
-  provider: string;
-  youtubeId: string | null;
-  embedUrl: string | null;
-  image: string | null;
-  isLive: boolean;
-};
-
-const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
-
-export async function getAllStreams(): Promise<StreamRow[]> {
-  if (!hasDb()) {return fallbackStreams();}
-  try {
-    const rows = await db
-=======
 /**
 Resumen generado automáticamente.
 
@@ -47,7 +23,6 @@ export async function getAllStreams(): Promise<Stream[]> {
   const typedDb = db as unknown as DrizzleClient;
 
     const rows = await typedDb
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       .select({
         id: streams.id,
         slug: streams.slug,
@@ -61,31 +36,19 @@ export async function getAllStreams(): Promise<Stream[]> {
       })
       .from(streams)
       .orderBy(asc(streams.name));
-<<<<<<< HEAD
-    return rows as unknown as StreamRow[];
-=======
   return rows as unknown as Stream[];
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   } catch (e) {
     console.error('DB getAllStreams error', e);
     return fallbackStreams();
   }
 }
 
-<<<<<<< HEAD
-export async function getStreamBySlug(slug: string): Promise<StreamRow | null> {
-=======
 export async function getStreamBySlug(slug: string): Promise<Stream | null> {
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   const s = (await getAllStreams()).find((x) => x.slug === slug);
   return s || null;
 }
 
-<<<<<<< HEAD
-function fallbackStreams(): StreamRow[] {
-=======
 function fallbackStreams(): Stream[] {
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   const list = [
     { slug: 'silos', name: 'Santo Domingo de Silos', youtubeId: 'czwL7LgjyjU' },
     { slug: 'rabanera-del-pinar', name: 'Rabanera del Pinar', youtubeId: '2FLLNsHmgxc' },
@@ -102,12 +65,8 @@ function fallbackStreams(): Stream[] {
     embedUrl: s.youtubeId ? `https://www.youtube.com/embed/${s.youtubeId}` : null,
     image: s.youtubeId ? `https://img.youtube.com/vi/${s.youtubeId}/hqdefault.jpg` : null,
     isLive: true,
-<<<<<<< HEAD
-  }));
-=======
     createdAt: new Date(),
     updatedAt: new Date(),
   } as Stream));
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 }
 

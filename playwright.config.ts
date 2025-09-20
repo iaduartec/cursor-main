@@ -1,30 +1,4 @@
-<<<<<<< HEAD
-=======
-/**
-Resumen generado automáticamente.
-
-playwright.config.ts
-
-2025-09-13T06:20:07.381Z
-
-——————————————————————————————
-Archivo .ts: playwright.config.ts
-Tamaño: 2392 caracteres, 87 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-import { defineConfig, devices } from '@playwright/test';
-
-/**
- * @see https://playwright.dev/docs/test-configuration
- */
-export default defineConfig({
-  testDir: './tests/e2e',
-<<<<<<< HEAD
-=======
   timeout: 180 * 1000,
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -92,19 +66,6 @@ export default defineConfig({
     // },
   ],
 
-<<<<<<< HEAD
-  /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
-  },
-
-  /* Global setup and teardown */
-  globalSetup: require.resolve('./tests/e2e/global-setup.ts'),
-  globalTeardown: require.resolve('./tests/e2e/global-teardown.ts'),
-=======
   /* Run your local dev server before starting the tests using a small start script in intranet-scaffold. */
   webServer: {
     command: 'node intranet-scaffold/scripts/start-next-dev.js',
@@ -117,5 +78,4 @@ export default defineConfig({
       INTRANET_DEBUG_TOKEN: 'test-token-123',
     },
   },
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 });

@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-=======
-/**
-Resumen generado automáticamente.
-
-app/admin/layout.tsx
-
-2025-09-13T06:20:07.359Z
-
-——————————————————————————————
-Archivo .tsx: layout.tsx
-Tamaño: 826 caracteres, 19 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen grid grid-rows-[auto_1fr]">

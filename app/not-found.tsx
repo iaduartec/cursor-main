@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-=======
-/**
-Resumen generado automáticamente.
-
-app/not-found.tsx
-
-2025-09-13T06:20:07.364Z
-
-——————————————————————————————
-Archivo .tsx: not-found.tsx
-Tamaño: 1822 caracteres, 49 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import Link from 'next/link';
 import { Home, ArrowLeft } from 'lucide-react';
 

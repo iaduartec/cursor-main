@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-import { db } from '../db/client';
-import { streams } from '../db/schema';
-import { asc, eq } from 'drizzle-orm';
-import { withDb } from './db-utils';
-
-export type StreamRow = {
-  id: number;
-  slug: string;
-  name: string;
-  description: string | null;
-  provider: string;
-  youtubeId: string | null;
-  embedUrl: string | null;
-  image: string | null;
-  isLive: boolean;
-};
-
-// Datos de respaldo en caso de que la BD no esté disponible
-const fallbackStreams: StreamRow[] = [
-=======
 /**
 Resumen generado automáticamente.
 
@@ -39,7 +18,6 @@ import { withDb } from './db-utils';
 
 // Datos de respaldo en caso de que la BD no esté disponible
 const fallbackStreams: Stream[] = [
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   {
     id: 1,
     slug: 'camara-24h',
@@ -50,19 +28,6 @@ const fallbackStreams: Stream[] = [
     embedUrl: null,
     image: '/images/webcam.jpg',
     isLive: true,
-<<<<<<< HEAD
-  },
-];
-
-export async function getAllStreams(): Promise<StreamRow[]> {
-  return withDb(
-    async () => {
-      const rows = await db
-        .select()
-        .from(streams)
-        .orderBy(asc(streams.name));
-      return rows;
-=======
     createdAt: new Date(),
     updatedAt: new Date(),
   } as Stream,
@@ -77,33 +42,21 @@ export async function getAllStreams(): Promise<Stream[]> {
         .from(streams)
         .orderBy(asc(streams.name));
       return rows as Stream[];
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     },
     fallbackStreams
   );
 }
 
-<<<<<<< HEAD
-export async function getStreamBySlug(slug: string): Promise<StreamRow | null> {
-  return withDb(
-    async () => {
-      const result = await db
-=======
 export async function getStreamBySlug(slug: string): Promise<Stream | null> {
   return withDb(
     async () => {
   const typedDb = db as unknown as DrizzleClient;
       const result = await typedDb
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
         .select()
         .from(streams)
         .where(eq(streams.slug, slug))
         .limit(1);
-<<<<<<< HEAD
-      return result[0] ?? null;
-=======
       return (result[0] as Stream) ?? null;
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     },
     fallbackStreams.find((s) => s.slug === slug) ?? null
   );
