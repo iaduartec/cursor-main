@@ -1,6 +1,6 @@
 // scripts/db/migrate-supabase.ts
 import { config } from 'dotenv'
-config({ path: '.env.local' }) // 👈 fuerza .env.local
+config({ path: '.env' }) // Usar .env para las credenciales
 import postgres from 'postgres'
 import { drizzle } from 'drizzle-orm/postgres-js'
 import { migrate } from 'drizzle-orm/postgres-js/migrator'
@@ -15,8 +15,7 @@ async function main() {
   const db = drizzle(sql, { logger: true })
 
   await migrate(db, { migrationsFolder: 'drizzle' })
-  console.log('✅ Migraciones aplicadas a Supabase')
-
+p
   await sql.end()
 }
 

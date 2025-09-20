@@ -7,7 +7,6 @@
         "informática",
         "videovigilancia",
         "sonido",
-        "electricidad",
         "burgos",
         "instalaciones",
         "nextjs",
@@ -44,7 +43,7 @@
     },
     "dependencies": {
         "@neondatabase/serverless": "^1.0.1",
-    // ...existing code...
+    
         "@next/bundle-analyzer": "^15.0.0",
         "@supabase/supabase-js": "^2.57.2",
         "@svgr/webpack": "^8.1.0",
