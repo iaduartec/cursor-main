@@ -21,6 +21,7 @@
     "prebuild": "node scripts/prebuild.mjs",
     "build": "next build",
     "start": "next start",
+    "Next.js": "next build",
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix --max-warnings=0",
     "analyze": "cross-env ANALYZE=true next build",
