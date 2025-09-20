@@ -1,33 +1,32 @@
 // Minimal tRPC stub used for local type-checking and simple dev runs.
-// This file intentionally provides lightweight, 'any'-typed helpers
-// matching the shape used across the app. Replace with real tRPC
-// initialization when integrating full tRPC backend.
+// This file intentionally provides lightweight helpers matching the
+// shape used across the app. Replace with real tRPC initialization when
+// integrating a production backend.
 
-// Intentionally lightweight tRPC stub for local dev and type-checking.
-// We keep the runtime shape permissive but avoid spreading `any` into
-// function signatures where `unknown` suffices. Callers that rely on the
-// precise tRPC typing should replace this file with a real tRPC init.
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export function createTRPCRouter(def: unknown = {}) {
-  // Keep the returned shape `any`-typed for the rest of the app while
-  // preventing callers from passing through `any` inadvertently.
-  return def as any;
+type RouterDefinition = Record<string, unknown>;
+
+export function createTRPCRouter<TDef extends RouterDefinition>(def: TDef): TDef;
+export function createTRPCRouter(): RouterDefinition;
+export function createTRPCRouter(def: RouterDefinition = {}) {
+  return def;
 }
 
-export const publicProcedure: any = {
-  // A very small adapter that allows `.input()`/`.query()` chains in code
-  input() {
-    return publicProcedure;
-  },
-  query(fn?: unknown) {
-    return fn as any;
-  },
-  mutation(fn?: unknown) {
-    return fn as any;
-  },
+type ProcedureHandler<TResult = unknown> = (...args: unknown[]) => TResult;
+
+interface ProcedureChain {
+  input(): ProcedureChain;
+  query<THandler extends ProcedureHandler>(fn?: THandler): THandler | undefined;
+  mutation<THandler extends ProcedureHandler>(fn?: THandler): THandler | undefined;
+}
+
+const baseProcedure: ProcedureChain = {
+  input: () => baseProcedure,
+  query: (fn) => fn,
+  mutation: (fn) => fn,
 };
+
+export const publicProcedure: ProcedureChain = baseProcedure;
 
 export const protectedProcedure = publicProcedure;
 
-export default null as any;
-/* eslint-enable @typescript-eslint/no-explicit-any */
+export default null;
