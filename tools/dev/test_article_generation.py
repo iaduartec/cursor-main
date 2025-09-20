@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+"""
+Resumen generado automáticamente.
+
+tools/dev/test_article_generation.py
+
+2025-09-13T06:20:07.388Z
+
+——————————————————————————————
+Archivo .py: test_article_generation.py
+Tamaño: 5617 caracteres, 151 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 #!/usr/bin/env python3
 """
 Script de prueba para generar un artículo completo y verificar las imágenes.

@@ -1,0 +1,39 @@
+{
+  "name": "duartec-intranet",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "preinstall": "pnpm approve-builds -y",
+    "vercel-build": "pnpm approve-builds -y && cross-env NODE_OPTIONS=\"--trace-uncaught --enable-source-maps\" SKIP_DB=1 next build",
+    "dev": "node scripts/dev-no-contentlayer.js",
+    "build": "node -e \"if(process.env.SKIP_DB==='1'){console.log('SKIP_DB=1 set, skipping db:migrate');process.exit(0);}console.log('Running db:migrate');process.exit(require('child_process').spawnSync('pnpm',['db:migrate'],{stdio:'inherit'}).status);\" && next build",
+    "start": "next start",
+    "db:migrate": "tsx --require dotenv/config scripts/db/migrate-supabase.ts",
+    "db:seed": "tsx scripts/db/seed-from-mdx.ts",
+    "type-check": "tsc --noEmit",
+    "intranet:e2e": "node ./scripts/run-intranet-e2e.js",
+    "intranet:e2e:ui": "npx playwright test --config=playwright.config.ts"
+  },
+  "dependencies": {
+    "@mdx-js/react": "^3.1.1",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.44.5",
+    "gray-matter": "^4.0.3",
+    "next": "^15.5.3",
+    "next-mdx-remote": "^5.0.0",
+    "postgres": "^3.4.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsx": "^4.19.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.0",
+    "@types/node": "24.3.3",
+    "@types/react": "19.1.13",
+    "typescript": "^5.0.0"
+  },
+  "pnpm": {}
+}

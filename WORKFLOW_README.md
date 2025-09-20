@@ -1,6 +1,26 @@
+<<<<<<< HEAD
 # Workflow de Generación de Artículos
 
 Este workflow automatiza la generación de artículos para el blog usando IA (OpenAI y Gemini).
+=======
+<!--
+Resumen generado automáticamente.
+
+WORKFLOW_README.md
+
+2025-09-13T06:20:07.358Z
+
+——————————————————————————————
+Archivo .md: WORKFLOW_README.md
+Tamaño: 3939 caracteres, 146 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+-->
+# Workflow de Generación de Artículos
+
+Este workflow automatiza la generación de artículos para el blog
+usando IA (OpenAI y Gemini).
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 ## 🚀 Cómo usar
 
@@ -8,7 +28,11 @@ Este workflow automatiza la generación de artículos para el blog usando IA (Op
 
 Crea un issue con uno de estos formatos de título:
 
+<<<<<<< HEAD
 ```
+=======
+```text
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 Artículo: Título del artículo
 Artículo: Cómo implementar sistemas de videovigilancia
 Nuevo artículo: Gestión eficiente de residuos urbanos
@@ -21,7 +45,11 @@ Generar artículo: Optimización energética en edificios públicos
 2. Añade la etiqueta `generate-article`
 3. Opcionalmente, especifica parámetros en el cuerpo:
 
+<<<<<<< HEAD
 ```
+=======
+```text
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 Tema del artículo aquí
 
 Estilo: fotográfico
@@ -51,6 +79,10 @@ Configura estos secrets en tu repositorio:
 ### Permisos
 
 El workflow necesita estos permisos:
+<<<<<<< HEAD
+=======
+
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 - `contents: write` - Para crear archivos
 - `issues: write` - Para comentar y cerrar issues
 
@@ -65,7 +97,12 @@ El workflow crea:
 
 ### Error: "Missing API key"
 
+<<<<<<< HEAD
 Verifica que los secrets estén configurados correctamente en Settings > Secrets and variables > Actions.
+=======
+Verifica que los secrets estén configurados correctamente en
+Settings > Secrets and variables > Actions.
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 ### Error: "No se generó el archivo del artículo"
 
@@ -75,7 +112,12 @@ Verifica que los secrets estén configurados correctamente en Settings > Secrets
 
 ### Error: "Permission denied" en Git
 
+<<<<<<< HEAD
 El workflow usa `GITHUB_TOKEN` automáticamente. Si hay problemas, verifica que el repositorio tenga permisos de escritura para Actions.
+=======
+El workflow usa `GITHUB_TOKEN` automáticamente. Si hay problemas,
+verifica que el repositorio tenga permisos de escritura para Actions.
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 ## 🧪 Pruebas locales
 
@@ -88,13 +130,23 @@ python tools/dev/test_workflow.py
 ## 📝 Ejemplos de uso
 
 ### Ejemplo 1: Artículo simple
+<<<<<<< HEAD
 ```
+=======
+
+```text
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 Título: Artículo: Sistemas de videovigilancia inteligente
 Cuerpo: (vacío)
 ```
 
 ### Ejemplo 2: Artículo con parámetros
+<<<<<<< HEAD
 ```
+=======
+
+```text
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 Título: Nuevo artículo: Gestión de residuos urbanos
 Cuerpo: 
 Estilo: minimalista
@@ -104,7 +156,12 @@ Categoria: Sostenibilidad
 ```
 
 ### Ejemplo 3: Con etiqueta
+<<<<<<< HEAD
 ```
+=======
+
+```text
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 Título: Solicitud de artículo
 Cuerpo: Implementación de energías renovables en edificios públicos
 Etiquetas: generate-article

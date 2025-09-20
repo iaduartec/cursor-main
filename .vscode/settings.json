@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "editor.stickyScroll.defaultModel": "outlineModel",
   "css.validate": false,
   "less.validate": false,
@@ -13,3 +14,25 @@
   "python.testing.pytestEnabled": true,
   "chatgpt.commentCodeLensEnabled": true
 }
+=======
+  // Activa Copilot para todos los lenguajes
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": false,
+    "scminput": false
+  },
+  // Sugerencias inline sin barra, con colores
+  "editor.inlineSuggest.fontFamily": "monospace",
+  "editor.inlineSuggest.showToolbar": "never",
+  "editor.inlineSuggest.syntaxHighlightingEnabled": true,
+  // Next Edit Suggestions
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "editor.inlineSuggest.edits.allowCodeShifting": "always",
+  "editor.inlineSuggest.edits.renderSideBySide": "auto",
+  // Arreglos basados en diagnósticos (imports, etc.)
+  "github.copilot.nextEditSuggestions.fixes": true,
+  // Sin retraso: aparece al instante
+  "editor.inlineSuggest.minShowDelay": 0
+}
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9

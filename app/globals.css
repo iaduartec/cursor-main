@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+/*
+Resumen generado automáticamente.
+
+app/globals.css
+
+2025-09-13T06:20:07.363Z
+
+——————————————————————————————
+Archivo .css: globals.css
+Tamaño: 10888 caracteres, 549 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 /* Tailwind CSS directives */
 @tailwind base;
 @tailwind components;
@@ -63,17 +79,36 @@ body {
 
 /* Text size adjustments for better accessibility */
 @supports (-webkit-text-size-adjust: 100%) {
+<<<<<<< HEAD
   html, :host { 
     -webkit-text-size-adjust: 100%; 
+=======
+  html, :host {
+    -webkit-text-size-adjust: 100%;
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   }
 }
 
 @supports (text-size-adjust: 100%) {
+<<<<<<< HEAD
   html, :host { 
     text-size-adjust: 100%; 
   }
 }
 
+=======
+  html, :host {
+    text-size-adjust: 100%;
+  }
+}
+
+/* Fallback for older browsers */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 /* Skip to content link for accessibility */
 .skip-to-content {
   position: absolute;
@@ -115,6 +150,29 @@ a:focus-visible {
   border-radius: 0.375rem;
 }
 
+<<<<<<< HEAD
+=======
+/* Provide vendor fallbacks for user-select ordering where applicable */
+* {
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}
+
+/* Forced color adjust support */
+@supports (forced-color-adjust: none) {
+  * {
+    forced-color-adjust: none;
+  }
+}
+
+/* Fallback for older browsers */
+* {
+  forced-color-adjust: auto;
+}
+
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -129,6 +187,50 @@ a:focus-visible {
   border-radius: 4px;
 }
 
+<<<<<<< HEAD
+=======
+/* Backdrop filter support for older browsers */
+@supports (backdrop-filter: blur(6px)) {
+  .backdrop-blur-supported {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+@supports (-webkit-backdrop-filter: blur(6px)) {
+  .backdrop-blur-webkit {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* Filter support for older browsers */
+@supports (filter: invert(100%)) {
+  .filter-invert-supported {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+  }
+}
+
+@supports (-webkit-filter: invert(100%)) {
+  .filter-invert-webkit {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+  }
+}
+
+/* Fallback classes for older browsers */
+.backdrop-blur {
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.filter-invert {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
 }

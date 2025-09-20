@@ -19,6 +19,10 @@ export default [
       'build/**',
       'dist/**',
       'public/**',
+<<<<<<< HEAD
+=======
+      'intranet-scaffold/**',
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       '.git/**',
       '.lintstagedrc.js',
       '__tests__/**',
@@ -27,6 +31,17 @@ export default [
       'jest.setup.js',
       'tailwind.config.js',
       'tmp_home.tsx',
+<<<<<<< HEAD
+=======
+      // Ignore script files with shebang
+      'scripts/**/*.js',
+      'content/**/*.js',
+      'fix_*.js',
+      'auto_comment.js',
+      'probe*.js',
+      // Ignore intranet-scaffold for now
+      'intranet-scaffold/**',
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     ],
   },
 
@@ -115,7 +130,13 @@ export default [
   // Node-oriented JS files (config and scripts)
   {
     files: [
+<<<<<<< HEAD
       'scripts/**/*.js',
+=======
+      // scripts in various extensions and the intranet scaffold folder
+      'scripts/**/*.{js,cjs,mjs,ts}',
+      'intranet-scaffold/**/*.{js,cjs,mjs,ts}',
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       'next.config.*',
       'tailwind.config.js',
       'jest.config.js',
@@ -174,6 +195,27 @@ export default [
     },
   },
 
+<<<<<<< HEAD
+=======
+  // Allow any in the intranet scaffold and generated content types to reduce noise
+  {
+    files: ['intranet-scaffold/**', 'types/**', 'types/**/*.d.ts', 'types/*.d.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    },
+  },
+
+  // Allow explicit any and console usage in server-side API routes, scripts and db client
+  {
+    files: ['app/api/**', 'server/**', 'db/**', 'scripts/**', 'lib/**', 'tests/e2e/**'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-console': 'off',
+    },
+  },
+
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   // Observability bootstrap can use console
   {
     files: ['instrumentation.ts'],
@@ -181,4 +223,28 @@ export default [
       'no-console': 'off',
     },
   },
+<<<<<<< HEAD
+=======
+  // Allow generated/type and tooling files to use `any` and console for scripts
+  {
+    files: ['tools/**/*.{js,ts,tsx}', 'types/**/*.{ts,d.ts}', 'scripts/**/*.{js,ts}', 'lib/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-console': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'no-undef': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+
+  // Special rules for test files
+  {
+    files: ['**/*.test.{js,ts,tsx}', '**/*.spec.{js,ts,tsx}', 'tests/**/*.{js,ts}', '__tests__/**/*.{js,ts}'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-console': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    },
+  },
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 ];

@@ -1,4 +1,20 @@
 #!/usr/bin/env node
+<<<<<<< HEAD
+=======
+/**
+Resumen generado automáticamente.
+
+fix_blog_slugs_extended.js
+
+2025-09-13T06:20:07.372Z
+
+——————————————————————————————
+Archivo .js: fix_blog_slugs_extended.js
+Tamaño: 4745 caracteres, 134 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 /*
  * Extended blog slug fixer.
  *

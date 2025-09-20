@@ -1,4 +1,20 @@
 #!/usr/bin/env node
+<<<<<<< HEAD
+=======
+/**
+Resumen generado automáticamente.
+
+content/blog/fix_blog_slugs.js
+
+2025-09-13T06:20:07.368Z
+
+——————————————————————————————
+Archivo .js: fix_blog_slugs.js
+Tamaño: 3591 caracteres, 105 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 /*
  * This utility scans every MDX file under the `content/blog` directory
  * and ensures that the `slug` field in the front‑matter contains only

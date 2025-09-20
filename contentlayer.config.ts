@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+/**
+Resumen generado automáticamente.
+
+contentlayer.config.ts
+
+2025-09-13T06:20:07.369Z
+
+——————————————————————————————
+Archivo .ts: contentlayer.config.ts
+Tamaño: 2214 caracteres, 70 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 
 const Servicio = defineDocumentType(() => ({

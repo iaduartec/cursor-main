@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿import Link from 'next/link';
+=======
+import Link from 'next/link';
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
@@ -49,27 +53,47 @@ export default function Footer() {
             <h4 className="font-semibold text-lg mb-4">Servicios</h4>
             <ul className="space-y-2">
               <li>
+<<<<<<< HEAD
                 <Link href="/servicios/informatica" className="text-gray-300 hover:text-accent transition-colors">
+=======
+                <Link href="/servicios/informatica" className="text-gray-300 hover:text-white transition-colors">
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                   Informática
                 </Link>
               </li>
               <li>
+<<<<<<< HEAD
                 <Link href="/servicios/videovigilancia" className="text-gray-300 hover:text-accent transition-colors">
+=======
+                <Link href="/servicios/videovigilancia" className="text-gray-300 hover:text-white transition-colors">
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                   Videovigilancia
                 </Link>
               </li>
               <li>
+<<<<<<< HEAD
                 <Link href="/servicios/sonido" className="text-gray-300 hover:text-accent transition-colors">
+=======
+                <Link href="/servicios/sonido" className="text-gray-300 hover:text-white transition-colors">
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                   Sonido Profesional
                 </Link>
               </li>
               <li>
+<<<<<<< HEAD
                 <Link href="/servicios/electricidad" className="text-gray-300 hover:text-accent transition-colors">
+=======
+                <Link href="/servicios/electricidad" className="text-gray-300 hover:text-white transition-colors">
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                   Electricidad
                 </Link>
               </li>
               <li>
+<<<<<<< HEAD
                 <Link href="/servicios" className="text-gray-300 hover:text-accent transition-colors">
+=======
+                <Link href="/servicios" className="text-gray-300 hover:text-white transition-colors">
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                   Ver todos los servicios
                 </Link>
               </li>
@@ -81,23 +105,41 @@ export default function Footer() {
             <h4 className="font-semibold text-lg mb-4">Contacto</h4>
             <div className="space-y-3">
               <div className="flex items-center gap-2">
+<<<<<<< HEAD
                 <Phone className="w-4 h-4 text-accent" />
                 <a href="tel:+34947256430" className="text-gray-300 hover:text-accent transition-colors">
+=======
+                <Phone className="w-4 h-4 text-blue-400" />
+                <a href="tel:+34947256430" className="text-gray-300 hover:text-white transition-colors" data-testid="footer-phone">
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                   947 256 430
                 </a>
               </div>
               <div className="flex items-center gap-2">
+<<<<<<< HEAD
                 <Mail className="w-4 h-4 text-accent" />
                 <a href="mailto:info@duartec.es" className="text-gray-300 hover:text-accent transition-colors">
+=======
+                <Mail className="w-4 h-4 text-blue-400" />
+                <a href="mailto:info@duartec.es" className="text-gray-300 hover:text-white transition-colors" data-testid="footer-email">
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                   info@duartec.es
                 </a>
               </div>
               <div className="flex items-center gap-2">
+<<<<<<< HEAD
                 <MapPin className="w-4 h-4 text-accent" />
                 <span className="text-gray-300">Burgos, España</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-accent" />
+=======
+                <MapPin className="w-4 h-4 text-blue-400" />
+                <span className="text-gray-300">Burgos, España</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-blue-400" />
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 <span className="text-gray-300">L-V 9:00-18:00</span>
               </div>
             </div>
@@ -116,6 +158,7 @@ export default function Footer() {
 
             {/* Enlaces legales */}
             <nav className="flex flex-wrap gap-4 text-sm">
+<<<<<<< HEAD
               <Link href="/legal/aviso-legal" className="text-gray-400 hover:text-accent transition-colors">
                 Aviso legal
               </Link>
@@ -126,6 +169,18 @@ export default function Footer() {
                 Política de cookies
               </Link>
               <Link href="/legal/condiciones" className="text-gray-400 hover:text-accent transition-colors">
+=======
+              <Link href="/legal/aviso-legal" className="text-gray-400 hover:text-white transition-colors">
+                Aviso legal
+              </Link>
+              <Link href="/legal/privacidad" className="text-gray-400 hover:text-white transition-colors">
+                Política de privacidad
+              </Link>
+              <Link href="/legal/cookies" className="text-gray-400 hover:text-white transition-colors">
+                Política de cookies
+              </Link>
+              <Link href="/legal/condiciones" className="text-gray-400 hover:text-white transition-colors">
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 Condiciones de uso
               </Link>
             </nav>

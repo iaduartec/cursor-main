@@ -1,0 +1,51 @@
+name: Vercel Build Check
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm@10.16.1
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run diagnostics
+        run: pnpm vercel:diagnose:quick
+
+      - name: Build project
+        run: pnpm build
+        env:
+          # Use minimal env vars for CI build
+          NODE_ENV: production
+          SKIP_CONTENTLAYER: "0"
+          # Mock database URL for build testing
+          POSTGRES_URL: "postgresql://test:test@localhost:5432/test"
+
+      - name: Check build artifacts
+        run: |
+          if [ ! -d ".next" ]; then
+            echo "❌ .next directory not created"
+            exit 1
+          fi
+          if [ ! -f ".next/BUILD_ID" ]; then
+            echo "❌ BUILD_ID file not created"
+            exit 1
+          fi
+          echo "✅ Build artifacts check passed"

@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+"""
+Resumen generado automáticamente.
+
+tools/generate_placeholder_image.py
+
+2025-09-13T06:20:07.390Z
+
+——————————————————————————————
+Archivo .py: generate_placeholder_image.py
+Tamaño: 3953 caracteres, 123 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 #!/usr/bin/env python3
 """
 Generador de imágenes de placeholder para artículos cuando las APIs de IA fallan.

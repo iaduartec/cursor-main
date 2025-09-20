@@ -1,3 +1,4 @@
+tools/create_stock_hero.py
 #!/usr/bin/env python3
 """
 Crear/forzar imagen hero a partir de una foto stock por categoría para un post.

@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+/**
+Resumen generado automáticamente.
+
+app/streaming/page.tsx
+
+2025-09-13T06:20:07.367Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 2796 caracteres, 58 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';

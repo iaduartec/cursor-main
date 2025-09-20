@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+/**
+Resumen generado automáticamente.
+
+components/header.tsx
+
+2025-09-13T06:20:07.368Z
+
+——————————————————————————————
+Archivo .tsx: header.tsx
+Tamaño: 6934 caracteres, 184 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 "use client";
 
 import Link from "next/link";
@@ -17,6 +33,7 @@ export default function Header() {
   };
 
   return (
+<<<<<<< HEAD
     <header className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-slate-800 dark:to-slate-900 shadow-lg sticky top-0 z-50">
       {/* Top bar con información de contacto */}
       <div className="bg-accent text-white py-2 px-4">
@@ -29,6 +46,20 @@ export default function Header() {
             <a href="mailto:info@duartec.es" className="flex items-center gap-1 hover:underline">
               <Mail className="w-4 h-4" />
               <span>info@duartec.es</span>
+=======
+    <header className="w-full bg-gradient-to-r from-primary to-primary/90 dark:from-slate-800 dark:to-slate-900 shadow-lg sticky top-0 z-50">
+      {/* Top bar con información de contacto */}
+      <div className="bg-primary text-white py-2 px-4">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm">
+          <div className="flex items-center gap-4 mb-2 sm:mb-0">
+            <a href="tel:+34947256430" className="flex items-center gap-1 hover:text-accent transition-colors">
+              <Phone className="w-4 h-4" />
+              <span data-testid="header-phone">947 256 430</span>
+            </a>
+            <a href="mailto:info@duartec.es" className="flex items-center gap-1 hover:text-accent transition-colors">
+              <Mail className="w-4 h-4" />
+              <span data-testid="header-email">info@duartec.es</span>
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             </a>
           </div>
           <div className="text-xs">Horario: L-V 9:00-18:00 | Emergencias 24/7</div>
@@ -36,7 +67,11 @@ export default function Header() {
       </div>
 
       {/* Header principal */}
+<<<<<<< HEAD
       <div className="max-w-6xl mx-auto px-4 py-4 bg-slate-800 dark:bg-slate-800 rounded-lg my-2 shadow-lg">
+=======
+      <div className="max-w-6xl mx-auto px-4 py-4">
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center group" aria-label="Inicio">
@@ -49,7 +84,11 @@ export default function Header() {
               priority
             />
             {/* Texto eliminado: el logo ya incluye la marca */}
+<<<<<<< HEAD
             <div className="flex flex-col leading-tight hidden">
+=======
+            <div className="hidden md:flex md:flex-col leading-tight">
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
               <span className="text-white font-bold text-lg">Duartec</span>
               <span className="text-sm text-gray-200">Instalaciones Informáticas</span>
             </div>
@@ -114,7 +153,11 @@ export default function Header() {
                 <Link
                   href="/"
                   onClick={closeMenu}
+<<<<<<< HEAD
                   className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+=======
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 >
                   Inicio
                 </Link>
@@ -123,7 +166,11 @@ export default function Header() {
                 <Link
                   href="/servicios"
                   onClick={closeMenu}
+<<<<<<< HEAD
                   className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+=======
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 >
                   Servicios
                 </Link>
@@ -132,7 +179,11 @@ export default function Header() {
                 <Link
                   href="/streaming"
                   onClick={closeMenu}
+<<<<<<< HEAD
                   className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+=======
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 >
                   Streaming 24h
                 </Link>
@@ -141,7 +192,11 @@ export default function Header() {
                 <Link
                   href="/proyectos"
                   onClick={closeMenu}
+<<<<<<< HEAD
                   className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+=======
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 >
                   Proyectos
                 </Link>
@@ -150,7 +205,11 @@ export default function Header() {
                 <Link
                   href="/blog"
                   onClick={closeMenu}
+<<<<<<< HEAD
                   className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+=======
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 >
                   Blog
                 </Link>
@@ -159,7 +218,11 @@ export default function Header() {
                 <Link
                   href="/quienes-somos"
                   onClick={closeMenu}
+<<<<<<< HEAD
                   className="block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+=======
+                  className="block text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2"
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 >
                   Quiénes somos
                 </Link>

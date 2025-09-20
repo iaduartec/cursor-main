@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+"""
+Resumen generado automáticamente.
+
+tools/dev/cleanup_images.py
+
+2025-09-13T06:20:07.388Z
+
+——————————————————————————————
+Archivo .py: cleanup_images.py
+Tamaño: 3263 caracteres, 101 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 #!/usr/bin/env python3
 """
 Script para limpiar imágenes inválidas y de prueba.

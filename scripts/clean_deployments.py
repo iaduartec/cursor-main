@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+"""
+Resumen generado automáticamente.
+
+scripts/clean_deployments.py
+
+2025-09-13T06:20:07.384Z
+
+——————————————————————————————
+Archivo .py: clean_deployments.py
+Tamaño: 3533 caracteres, 133 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 #!/usr/bin/env bash
 # vercel-prune.sh
 # Requisitos: bash, curl, jq

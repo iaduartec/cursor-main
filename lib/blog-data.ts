@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+/**
+Resumen generado automáticamente.
+
+lib/blog-data.ts
+
+2025-09-13T06:20:07.379Z
+
+——————————————————————————————
+Archivo .ts: blog-data.ts
+Tamaño: 15297 caracteres, 375 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 export interface BlogPost {
   title: string;
   description: string;

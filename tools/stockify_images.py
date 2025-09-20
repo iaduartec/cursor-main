@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+"""
+Resumen generado automáticamente.
+
+tools/stockify_images.py
+
+2025-09-13T06:20:07.390Z
+
+——————————————————————————————
+Archivo .py: stockify_images.py
+Tamaño: 5288 caracteres, 162 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 #!/usr/bin/env python3
 """
 Genera/Forza imágenes hero para TODOS los artículos usando fotos stock por categoría.

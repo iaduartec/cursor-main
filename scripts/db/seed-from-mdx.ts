@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+/**
+Resumen generado automáticamente.
+
+scripts/db/seed-from-mdx.ts
+
+2025-09-13T06:20:07.385Z
+
+——————————————————————————————
+Archivo .ts: seed-from-mdx.ts
+Tamaño: 2288 caracteres, 85 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import fs from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';
@@ -7,7 +23,12 @@ if (fs.existsSync(envLocal)) {dotenv.config({ path: envLocal });}
 dotenv.config();
 import { readFile, readdir } from 'node:fs/promises';
 import matter from 'gray-matter';
+<<<<<<< HEAD
 import { posts } from '../../db/schema';
+=======
+import { posts, type NewPost } from '../../db/schema';
+import type { DrizzleClient } from '../../db/client';
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 // import { eq } from 'drizzle-orm'; // No se utiliza
 
 type Frontmatter = {
@@ -28,6 +49,10 @@ async function getBlogFiles(dir: string) {
 
 async function seed() {
   const { db } = await import('../../db/client');
+<<<<<<< HEAD
+=======
+  const typedDb = db as unknown as DrizzleClient;
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   const blogDir = path.join(process.cwd(), 'content', 'blog');
   const files = await getBlogFiles(blogDir);
   console.log(`Found ${files.length} blog files to seed`);
@@ -45,8 +70,13 @@ async function seed() {
     const date = new Date(fm.date as string);
     const now = new Date();
 
+<<<<<<< HEAD
     // Upsert by slug
     await db
+=======
+    // Upsert by slug (cast to NewPost for per-file typing)
+    await typedDb
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       .insert(posts)
       .values({
         slug: fm.slug,
@@ -59,10 +89,17 @@ async function seed() {
         published: true,
         updatedAt: now,
         createdAt: now,
+<<<<<<< HEAD
       })
       .onConflictDoUpdate({
         target: posts.slug,
         set: {
+=======
+      } as NewPost)
+      .onConflictDoUpdate({
+        target: posts.slug,
+        set: ({
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
           title: fm.title,
           description: fm.description ?? null,
           content,
@@ -71,7 +108,11 @@ async function seed() {
           date,
           published: true,
           updatedAt: now,
+<<<<<<< HEAD
         },
+=======
+        } as Partial<NewPost>),
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       });
 
     console.log(`Upserted post: ${fm.slug}`);

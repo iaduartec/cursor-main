@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+"""
+Resumen generado automáticamente.
+
+tools/generate_ai_images.py
+
+2025-09-13T06:20:07.389Z
+
+——————————————————————————————
+Archivo .py: generate_ai_images.py
+Tamaño: 8130 caracteres, 226 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+"""
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 #!/usr/bin/env python3
 """
 Generate AI hero images for existing blog posts using Google Gemini only.

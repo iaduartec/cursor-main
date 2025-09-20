@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # Use Ubuntu as base image
 FROM ubuntu:22.04
+=======
+# Use Debian slim as base image (more widely available mirrors)
+FROM debian:12-slim
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 # Avoid interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive

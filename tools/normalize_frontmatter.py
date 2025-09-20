@@ -1,7 +1,6 @@
+ptools/normalize_frontmatter.py
 #!/usr/bin/env python3
 """Normaliza frontmatter YAML en archivos .mdx dentro de content/ y servicios/.
-- Intenta parsear el frontmatter; si OK, vuelve a escribirlo usando yaml.safe_dump para estandarizar.
-- Si falla y detecta un bloque JSON bajo "schema:", lo convierte a un bloque literal (|) para evitar parse errors.
 """
 from pathlib import Path
 import re

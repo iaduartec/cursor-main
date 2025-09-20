@@ -18,7 +18,11 @@ const normalizeSlug = (s: string) =>
     .replace(/^-+|-+$/g, '');
 
 const canonicalSlugFor = (p: Blog): string => {
+<<<<<<< HEAD
   const raw = (p as any)?._raw?.flattenedPath as string | undefined;
+=======
+  const raw = (p as unknown as { _raw?: { flattenedPath?: string } } )?._raw?.flattenedPath as string | undefined;
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   const base = p.slug || (raw ? (raw.split('/').pop() || raw) : p.title);
   return normalizeSlug(base);
 };
@@ -145,7 +149,11 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   }
 
   // Contentlayer typing marks body as Markdown in some setups; cast to access compiled MDX
+<<<<<<< HEAD
   const MDXContent = useMDXComponent((post as any).body.code);
+=======
+  const MDXContent = useMDXComponent((post as unknown as { body?: { code?: string } }).body?.code ?? '');
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   const mdxComponents = {
     a: (props: any) => {
       const { href = '', children, className, ...rest } = props || {};
@@ -172,7 +180,11 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       />
     ),
   };
+<<<<<<< HEAD
   const readTime = estimateReadTime((post as any).body.raw ?? '');
+=======
+  const readTime = estimateReadTime((post as unknown as { body?: { raw?: string } }).body?.raw ?? '');
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
   const allPosts: BlogCard[] = await getBlogCards();
 
