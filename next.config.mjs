@@ -119,7 +119,7 @@ const nextConfig = {
 // causes the "No serverless pages were built" error during deployment.
 const enableStandalone = process.env.ENABLE_STANDALONE === '1';
 if (enableStandalone) {
-  nextConfig.output = 'standalone';
+  //nextConfig.output = 'standalone';
 }
 
 // Allow disabling Contentlayer (useful for Windows dev in subprojects)
