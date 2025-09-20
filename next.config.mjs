@@ -92,15 +92,6 @@ const nextConfig = {
       '@opentelemetry/exporter-jaeger': false,
     };
 
-    // Suppress webpack build dependency warnings for Contentlayer
-    config.snapshot = {
-      ...config.snapshot,
-      managedPaths: [
-        ...(config.snapshot?.managedPaths || []),
-        /node_modules\/@contentlayer/
-      ]
-    };
-
     return config;
   },
 
