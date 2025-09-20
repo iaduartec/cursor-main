@@ -31,6 +31,7 @@
     "test:run": "vitest run --reporter verbose",
     "test:e2e": "playwright test",
     "postbuild": "next-sitemap",
+    "vercel-build": "pnpm run build",
     "images:generate": "node scripts/generate_missing_images_runner.js --only-missing --min-bytes 1000",
     "images:check": "node scripts/generate_missing_images_runner.js --only-missing --min-bytes 1000 --dry-run",
     "images:ai": "python tools/generate_ai_images.py --only-missing --style photographic --accent blue",
