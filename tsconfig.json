@@ -1,15 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-<<<<<<< HEAD
-    "lib": ["dom", "dom.iterable", "esnext"],
-=======
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,23 +14,15 @@
     "incremental": true,
     "module": "esnext",
     "esModuleInterop": true,
-<<<<<<< HEAD
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "types": ["jest", "node"],
-=======
     "moduleResolution": "bundler",
     "ignoreDeprecations": "5.0",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "types": [
-      "vitest",
+      "jest",
       "node"
     ],
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     "plugins": [
       {
         "name": "next"
@@ -42,14 +30,6 @@
     ],
     "baseUrl": ".",
     "paths": {
-<<<<<<< HEAD
-      "contentlayer/generated": ["./.contentlayer/generated"]
-    }
-  },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", ".next", "scripts/**/*", "drizzle/**/*", "tests/**/*", "e2e/**/*", "playwright.config.ts"]
-}
-=======
       "contentlayer/generated": [
         "./.contentlayer/generated"
       ],
@@ -75,4 +55,3 @@
     "intranet-scaffold/**/*"
   ]
 }
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
