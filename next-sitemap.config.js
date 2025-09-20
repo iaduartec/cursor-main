@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-=======
-/**
-Resumen generado automáticamente.
-
-next-sitemap.config.js
-
-2025-09-13T06:20:07.380Z
-
-——————————————————————————————
-Archivo .js: next-sitemap.config.js
-Tamaño: 1302 caracteres, 52 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: process.env.SITE_URL || 'https://duartec.es',
