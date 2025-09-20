@@ -1,5 +1,4 @@
 {
-{
   "name": "duartec-web",
   "version": "1.0.0",
   "private": true,
@@ -144,13 +143,7 @@
       "@opentelemetry/semantic-conventions": "1.28.0"
     }
   },
-  "packageManager": "pnpm@10.16.1"
-}
-=======
-  "name": "duartec-web",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Sitio web profesional de Duartec Instalaciones Informáticas - Soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos",
+  "packageManager": "pnpm@10.16.1",
   "keywords": [
     "informática",
     "videovigilancia",
