@@ -51,7 +51,9 @@
     "lint:changed": "node scripts/lint-changed.mjs",
     "lint:staged": "node scripts/lint-staged.mjs",
     "deps:check": "node scripts/dependency-monitor.mjs",
-    "deps:update-safe": "pnpm update --latest --workspace-root"
+    "deps:update-safe": "pnpm update --latest --workspace-root",
+    "vercel:diagnose": "node scripts/vercel-diagnostics.mjs",
+    "vercel:diagnose:quick": "node scripts/vercel-diagnostics.mjs --skip-build"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
