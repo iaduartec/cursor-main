@@ -1,53 +1,7 @@
 {
-<<<<<<< HEAD
-  "installCommand": "pnpm install --no-frozen-lockfile",
-  "buildCommand": "pnpm build",
-  "regions": ["fra1"],
-=======
   "version": 2,
   "framework": "nextjs",
   "buildCommand": "pnpm build",
   "installCommand": "pnpm install --frozen-lockfile",
-  "outputDirectory": ".next",
-  "devCommand": "pnpm dev",
-  "regions": ["fra1"],
-  "functions": {
-    "app/**": {
-    {
-    {
-      "version": 2,
-      "framework": "nextjs",
-      "buildCommand": "pnpm build",
-      "installCommand": "pnpm install --frozen-lockfile",
-      "outputDirectory": ".next"
-    }
-<<<<<<< HEAD
-        { "key": "Cache-Control", "value": "no-store, max-age=0" }
-      ]
-    }
-  ]
-=======
-        {
-          "key": "Cache-Control",
-          "value": "no-store, max-age=0"
-        }
-      ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/sitemap.xml",
-      "destination": "/api/sitemap"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "build": {
-    "env": {
-      "SKIP_CONTENTLAYER": "0",
-      "NODE_OPTIONS": "--max-old-space-size=4096"
-    }
-  }
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
+  "outputDirectory": ".next"
 }
