@@ -9,7 +9,7 @@ if (process.env.VERCEL !== '1') {
   try {
     const { allBlogs: importedAllBlogs = [] } = await import('contentlayer/generated');
     allBlogs = importedAllBlogs;
-  } catch (error) {
+  } catch {
     // Contentlayer not available, use empty array
     allBlogs = [];
   }
