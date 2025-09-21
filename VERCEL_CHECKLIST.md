@@ -126,3 +126,4 @@ Si encuentras errores no cubiertos en este checklist:
 ---
 
 ## Checklist actualizado para proyecto Duartec Web
+
