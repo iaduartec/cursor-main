@@ -230,10 +230,13 @@ export default function AdminPage() {
             </Link>
 
             {/* Servicios */}
-            <div className='relative block w-full bg-gray-50 border border-gray-200 rounded-lg p-6 opacity-60'>
+            <Link
+              href='/admin/services'
+              className='relative block w-full bg-white border border-gray-200 rounded-lg p-6 hover:border-green-300 hover:shadow-md transition-all duration-200 group'
+            >
               <div className='flex items-center'>
                 <div className='flex-shrink-0'>
-                  <div className='w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center'>
+                  <div className='w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center group-hover:bg-green-600 transition-colors'>
                     <svg
                       className='w-6 h-6 text-white'
                       fill='none'
@@ -250,24 +253,39 @@ export default function AdminPage() {
                   </div>
                 </div>
                 <div className='ml-4'>
-                  <h4 className='text-lg font-medium text-gray-900'>
+                  <h4 className='text-lg font-medium text-gray-900 group-hover:text-green-600 transition-colors'>
                     Servicios
                   </h4>
                   <p className='text-sm text-gray-500'>
                     Gestionar servicios ofrecidos
                   </p>
-                  <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mt-2'>
-                    Próximamente
-                  </span>
                 </div>
               </div>
-            </div>
+              <div className='absolute top-6 right-6'>
+                <svg
+                  className='w-5 h-5 text-gray-400 group-hover:text-green-500 transition-colors'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M9 5l7 7-7 7'
+                  />
+                </svg>
+              </div>
+            </Link>
 
             {/* Blog */}
-            <div className='relative block w-full bg-gray-50 border border-gray-200 rounded-lg p-6 opacity-60'>
+            <Link
+              href='/admin/blog'
+              className='relative block w-full bg-white border border-gray-200 rounded-lg p-6 hover:border-purple-300 hover:shadow-md transition-all duration-200 group'
+            >
               <div className='flex items-center'>
                 <div className='flex-shrink-0'>
-                  <div className='w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center'>
+                  <div className='w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center group-hover:bg-purple-600 transition-colors'>
                     <svg
                       className='w-6 h-6 text-white'
                       fill='none'
@@ -284,22 +302,39 @@ export default function AdminPage() {
                   </div>
                 </div>
                 <div className='ml-4'>
-                  <h4 className='text-lg font-medium text-gray-900'>Blog</h4>
+                  <h4 className='text-lg font-medium text-gray-900 group-hover:text-purple-600 transition-colors'>
+                    Blog
+                  </h4>
                   <p className='text-sm text-gray-500'>
                     Gestionar posts y artículos
                   </p>
-                  <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mt-2'>
-                    Próximamente
-                  </span>
                 </div>
               </div>
-            </div>
+              <div className='absolute top-6 right-6'>
+                <svg
+                  className='w-5 h-5 text-gray-400 group-hover:text-purple-500 transition-colors'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M9 5l7 7-7 7'
+                  />
+                </svg>
+              </div>
+            </Link>
 
             {/* Streams */}
-            <div className='relative block w-full bg-gray-50 border border-gray-200 rounded-lg p-6 opacity-60'>
+            <Link
+              href='/admin/streaming'
+              className='relative block w-full bg-white border border-gray-200 rounded-lg p-6 hover:border-red-300 hover:shadow-md transition-all duration-200 group'
+            >
               <div className='flex items-center'>
                 <div className='flex-shrink-0'>
-                  <div className='w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center'>
+                  <div className='w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center group-hover:bg-red-600 transition-colors'>
                     <svg
                       className='w-6 h-6 text-white'
                       fill='none'
@@ -316,16 +351,30 @@ export default function AdminPage() {
                   </div>
                 </div>
                 <div className='ml-4'>
-                  <h4 className='text-lg font-medium text-gray-900'>Streams</h4>
+                  <h4 className='text-lg font-medium text-gray-900 group-hover:text-red-600 transition-colors'>
+                    Streaming
+                  </h4>
                   <p className='text-sm text-gray-500'>
                     Gestionar transmisiones en vivo
                   </p>
-                  <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mt-2'>
-                    Próximamente
-                  </span>
                 </div>
               </div>
-            </div>
+              <div className='absolute top-6 right-6'>
+                <svg
+                  className='w-5 h-5 text-gray-400 group-hover:text-red-500 transition-colors'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M9 5l7 7-7 7'
+                  />
+                </svg>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
