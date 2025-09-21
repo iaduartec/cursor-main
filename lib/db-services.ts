@@ -7,8 +7,8 @@ let allServicios: any[] = [];
 
 if (process.env.VERCEL !== '1') {
   try {
-    const contentlayer = await import('contentlayer/generated');
-    allServicios = contentlayer.allServicios;
+    const { allServicios: importedServicios = [] } = await import('contentlayer/generated');
+    allServicios = importedServicios;
   } catch {
     // Contentlayer not available, use empty array
     allServicios = [];

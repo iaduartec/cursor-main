@@ -7,8 +7,8 @@ let allBlogs: any[] = [];
 
 if (process.env.VERCEL !== '1') {
   try {
-    const contentlayer = await import('contentlayer/generated');
-    allBlogs = contentlayer.allBlogs;
+    const { allBlogs: importedAllBlogs = [] } = await import('contentlayer/generated');
+    allBlogs = importedAllBlogs;
   } catch (error) {
     // Contentlayer not available, use empty array
     allBlogs = [];
