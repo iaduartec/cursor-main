@@ -15,9 +15,11 @@ El token se configura en la variable de entorno `ADMIN_TOKEN`.
 ## 📝 API de Posts
 
 ### GET /api/admin/posts
+
 Obtiene todos los posts.
 
 **Respuesta:**
+
 ```json
 {
   "posts": [
@@ -39,11 +41,13 @@ Obtiene todos los posts.
 ```
 
 ### POST /api/admin/posts
+
 Crea un nuevo post.
 
 **Campos requeridos:** `slug`, `title`, `content`
 
 **Ejemplo:**
+
 ```bash
 curl -X POST http://localhost:3000/api/admin/posts \
   -H "Authorization: Bearer YOUR_ADMIN_TOKEN" \
@@ -60,11 +64,13 @@ curl -X POST http://localhost:3000/api/admin/posts \
 ```
 
 ### PUT /api/admin/posts
+
 Actualiza un post existente.
 
 **Identificadores:** `id` o `slug`
 
 **Ejemplo:**
+
 ```bash
 curl -X PUT http://localhost:3000/api/admin/posts \
   -H "Authorization: Bearer YOUR_ADMIN_TOKEN" \
@@ -76,11 +82,13 @@ curl -X PUT http://localhost:3000/api/admin/posts \
 ```
 
 ### DELETE /api/admin/posts?id=1
+
 Elimina un post.
 
 **Parámetros:** `id` o `slug`
 
 **Ejemplo:**
+
 ```bash
 curl -X DELETE "http://localhost:3000/api/admin/posts?id=1" \
   -H "Authorization: Bearer YOUR_ADMIN_TOKEN"
@@ -89,14 +97,17 @@ curl -X DELETE "http://localhost:3000/api/admin/posts?id=1" \
 ## 🔧 API de Servicios
 
 ### GET /api/admin/services
+
 Obtiene todos los servicios.
 
 ### POST /api/admin/services
+
 Crea un nuevo servicio.
 
 **Campos requeridos:** `slug`, `title`
 
 **Ejemplo:**
+
 ```bash
 curl -X POST http://localhost:3000/api/admin/services \
   -H "Authorization: Bearer YOUR_ADMIN_TOKEN" \
@@ -111,22 +122,27 @@ curl -X POST http://localhost:3000/api/admin/services \
 ```
 
 ### PUT /api/admin/services
+
 Actualiza un servicio.
 
 ### DELETE /api/admin/services?id=1
+
 Elimina un servicio.
 
 ## 🏗️ API de Proyectos
 
 ### GET /api/admin/projects
+
 Obtiene todos los proyectos.
 
 ### POST /api/admin/projects
+
 Crea un nuevo proyecto.
 
 **Campos requeridos:** `slug`, `title`
 
 **Ejemplo:**
+
 ```bash
 curl -X POST http://localhost:3000/api/admin/projects \
   -H "Authorization: Bearer YOUR_ADMIN_TOKEN" \
@@ -142,17 +158,21 @@ curl -X POST http://localhost:3000/api/admin/projects \
 ```
 
 ### PUT /api/admin/projects
+
 Actualiza un proyecto.
 
 ### DELETE /api/admin/projects?id=1
+
 Elimina un proyecto.
 
 ## 🎥 API de Streams (Ya existente)
 
 ### GET /api/streams
+
 Obtiene todos los streams.
 
 ### POST /api/streams
+
 Crea un nuevo stream.
 
 ## 🔄 Revalidación Automática
@@ -186,6 +206,7 @@ pnpm db:migrate:mdx --type=services
 ## 🗄️ Esquema de Base de Datos
 
 ### Tabla `posts`
+
 - `id`: Serial (PK)
 - `slug`: Varchar(255) UNIQUE
 - `title`: Varchar(255)
@@ -198,6 +219,7 @@ pnpm db:migrate:mdx --type=services
 - `createdAt`, `updatedAt`: Timestamps
 
 ### Tabla `services`
+
 - `id`: Serial (PK)
 - `slug`: Varchar(255) UNIQUE
 - `title`: Varchar(255)
@@ -208,6 +230,7 @@ pnpm db:migrate:mdx --type=services
 - `createdAt`, `updatedAt`: Timestamps
 
 ### Tabla `projects`
+
 - `id`: Serial (PK)
 - `slug`: Varchar(255) UNIQUE
 - `title`: Varchar(255)
