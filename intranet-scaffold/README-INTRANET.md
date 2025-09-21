@@ -90,7 +90,6 @@ pnpm intranet:e2e:ui       # Tests E2E con interfaz visual
 
 ### Estructura del Proyecto
 
-```
 intranet-scaffold/
 ├── app/
 │   ├── admin/             # Panel de administración
@@ -100,7 +99,6 @@ intranet-scaffold/
 ├── lib/                   # Utilidades y configuración
 ├── middleware.ts          # Protección de rutas
 └── db/                    # Esquemas y configuración de BD
-```
 
 ## 🔌 APIs Disponibles
 
