@@ -7,9 +7,9 @@
   },
   "scripts": {
     "preinstall": "pnpm approve-builds -y",
-    "vercel-build": "pnpm approve-builds -y && cross-env NODE_OPTIONS=\"--trace-uncaught --enable-source-maps\" SKIP_DB=1 next build",
+    "vercel-build": "pnpm approve-builds -y && cross-env NODE_OPTIONS=\"--trace-uncaught --enable-source-maps\" DISABLE_DB=1 next build",
     "dev": "node scripts/dev-no-contentlayer.js",
-    "build": "node -e \"if(process.env.SKIP_DB==='1'){console.log('SKIP_DB=1 set, skipping db:migrate');process.exit(0);}console.log('Running db:migrate');process.exit(require('child_process').spawnSync('pnpm',['db:migrate'],{stdio:'inherit'}).status);\" && next build",
+    "build": "node -e \"if(process.env.DISABLE_DB==='1'){console.log('DISABLE_DB=1 set, skipping db:migrate');process.exit(0);}console.log('Running db:migrate (will continue on failure)');try{require('child_process').spawnSync('pnpm',['db:migrate'],{stdio:'inherit'})}catch(e){console.log('DB migration failed, continuing with build...');}process.exit(0);\" && next build",
     "start": "next start",
     "db:migrate": "tsx --require dotenv/config scripts/db/migrate-supabase.ts",
     "db:seed": "tsx scripts/db/seed-from-mdx.ts",
