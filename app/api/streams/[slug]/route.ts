@@ -1,27 +1,8 @@
 <<<<<<< HEAD
 import { NextRequest, NextResponse } from 'next/server';
 import { getStreamBySlug } from '../../../../lib/db-streams';
-import { db } from '../../../../db/client';
-import { streams } from '../../../../db/schema';
-=======
-/**
-Resumen generado automáticamente.
-
-app/api/streams/[slug]/route.ts
-
-2025-09-13T06:20:07.361Z
-
-——————————————————————————————
-Archivo .ts: route.ts
-Tamaño: 2037 caracteres, 53 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
-import { NextRequest, NextResponse } from 'next/server';
-import { getStreamBySlug } from '../../../../lib/db-streams';
 import { db, type DrizzleClient } from '../../../../db/client';
 import { streams, type NewStream } from '../../../../db/schema';
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import { eq } from 'drizzle-orm';
 import { revalidateTag } from 'next/cache';
 
@@ -45,19 +26,14 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
   const patch = await req.json().catch(() => ({}));
   const now = new Date();
 <<<<<<< HEAD
-  const res = await db
-    .update(streams)
-    .set({
-=======
   const typedDb = db as unknown as DrizzleClient;
   const res = await typedDb
     .update(streams)
-    .set(({
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-      name: patch.name,
-      description: patch.description ?? null,
-      provider: patch.provider,
-      youtubeId: patch.youtubeId ?? null,
+    .set({
+  name: patch.name,
+  description: patch.description ?? null,
+  provider: patch.provider,
+  youtubeId: patch.youtubeId ?? null,
       embedUrl: patch.embedUrl ?? null,
       image: patch.image ?? null,
       isLive: typeof patch.isLive === 'boolean' ? patch.isLive : undefined,
