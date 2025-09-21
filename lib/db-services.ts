@@ -100,7 +100,8 @@ export async function getServiceBySlug(
   return null;
 }
 
-function fallbackServices(): ServiceRow[] {
+async function fallbackServices(): Promise<ServiceRow[]> {
+  const allServicios = await getAllServicios();
   return allServicios.map(s => ({
     id: 0,
     slug: s.slug,
