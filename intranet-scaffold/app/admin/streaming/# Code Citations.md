@@ -1,6 +1,6 @@
 # Code Citations
 
-## License: desconocido
+## License: MIT
 
 <https://github.com/jmcarbo/jmcarbo.github.com/blob/529425ea6912173a660587b8a5db1edfa1d32b1d/portfolio/index.html>
 
