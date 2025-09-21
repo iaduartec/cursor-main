@@ -74,7 +74,7 @@ export default async function BlogPage({
     slug: normalizeSlug(p.slug),
     category: p.category ?? 'General',
     image: cleanSrc(p.image || '') || '/images/proyectos/CCTV.jpeg',
-    date: p.date.toISOString(),
+    date: p.date ? new Date(p.date).toISOString() : new Date().toISOString(),
     readTime: estimateReadTime(p.content || ''),
     excerpt: p.description || '',
   }));
