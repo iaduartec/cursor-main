@@ -17,6 +17,9 @@ importers:
       contentlayer:
         specifier: ^0.3.4
         version: 0.3.4(esbuild@0.18.20)
+      dotenv:
+        specifier: ^17.2.2
+        version: 17.2.2
       drizzle-orm:
         specifier: ^0.44.5
         version: 0.44.5(@neondatabase/serverless@file:vendor/neon-serverless)(@opentelemetry/api@1.9.0)(postgres@3.4.7)
@@ -869,6 +872,10 @@ packages:
   diff@5.2.0:
     resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
     engines: {node: '>=0.3.1'}
+
+  dotenv@17.2.2:
+    resolution: {integrity: sha512-Sf2LSQP+bOlhKWWyhFsn0UsfdK/kCWRv1iuA2gXAwt3dyNabr6QSj00I2V10pidqz69soatm9ZwZvpQMTIOd5Q==}
+    engines: {node: '>=12'}
 
   drizzle-orm@0.44.5:
     resolution: {integrity: sha512-jBe37K7d8ZSKptdKfakQFdeljtu3P2Cbo7tJoJSVZADzIKOBo9IAJPOmMsH2bZl90bZgh8FQlD8BjxXA/zuBkQ==}
@@ -2969,6 +2976,8 @@ snapshots:
       dequal: 2.0.3
 
   diff@5.2.0: {}
+
+  dotenv@17.2.2: {}
 
   drizzle-orm@0.44.5(@neondatabase/serverless@file:vendor/neon-serverless)(@opentelemetry/api@1.9.0)(postgres@3.4.7):
     optionalDependencies:

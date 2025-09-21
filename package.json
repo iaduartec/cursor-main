@@ -39,19 +39,20 @@
     "deps:update-safe": "pnpm update --latest --workspace-root"
   },
   "dependencies": {
+    "@neondatabase/serverless": "file:vendor/neon-serverless",
     "@playwright/test": "^1.55.0",
     "contentlayer": "^0.3.4",
+    "dotenv": "^17.2.2",
     "drizzle-orm": "^0.44.5",
     "gray-matter": "^4.0.3",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.544.0",
     "next": "^14.2.13",
     "next-mdx-remote": "^5.0.0",
-    "@neondatabase/serverless": "file:vendor/neon-serverless",
-    "react-leaflet": "^4.2.1",
     "postgres": "^3.4.7",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.20",
