@@ -66,18 +66,18 @@ flowchart LR
 
 Archivo del workflow: `.github/workflows/deploy-workflow.yml`.
 
-4) Variables de entorno requeridas:
+1) Variables de entorno requeridas:
    - POSTGRES_URL = `postgresql://user:password@host/database?sslmode=require`
    - NODE_ENV = production
    - NEXT_PUBLIC_SITE_URL = `https://tu-dominio.vercel.app`
    - (Opcional) OPENAI_API_KEY, NEXT_PUBLIC_GA_ID, GTM_ID, RECAPTCHA_* si
      las usas
 
-5) Opciones recomendadas en "Advanced" (si Vercel lo permite):
+2) Opciones recomendadas en "Advanced" (si Vercel lo permite):
    - Build cache: activar
    - Install Command: usar la misma que arriba
 
-6) Desplegar: Vercel hará un build automático en cada push a `main`.
+3) Desplegar: Vercel hará un build automático en cada push a `main`.
 
 Checklist post-despliegue
 
