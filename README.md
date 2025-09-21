@@ -39,18 +39,18 @@ Requisitos: Node.js 18+, pnpm/npm/yarn, Git.
 
 Instalación básica:
 
-```
+```bash
 git clone https://github.com/duartec/duartec-web.git
 cd duartec-web
 pnpm install
 pnpm dev
 ```
 
-Abrir en: http://localhost:3000
+Abrir en: [http://localhost:3000](http://localhost:3000)
 
 ## Scripts útiles
 
-```
+```bash
 pnpm dev
 pnpm build
 pnpm start
@@ -73,4 +73,4 @@ Los servicios se gestionan en MDX dentro de `content/servicios/`. Mantén el fro
 
 ## Contacto
 
-Duartec Instalaciones Informáticas — info@duartec.es — https://www.duartec.es
+Duartec Instalaciones Informáticas — info@duartec.es — [https://www.duartec.es](https://www.duartec.es)
