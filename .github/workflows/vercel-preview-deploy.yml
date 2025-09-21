@@ -1,0 +1,59 @@
+name: PR Preview Deploy
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ main ]
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}-preview
+  cancel-in-progress: true
+
+jobs:
+  preview-deploy:
+    name: Deploy Preview to Vercel
+    runs-on: ubuntu-latest
+    # Evita forks (sin secretos) y PRs sin secretos requeridos
+    if: >-
+      ${{ github.event.pull_request.head.repo.fork == false
+          && secrets.VERCEL_TOKEN != ''
+          && secrets.VERCEL_ORG_ID != ''
+          && secrets.VERCEL_PROJECT_ID != '' }}
+    permissions:
+      contents: read
+      pull-requests: write
+      deployments: write
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      # Despliega un Preview en Vercel para este commit. Si se provee github-token,
+      # la acción comenta automáticamente la URL del preview en el PR.
+      - name: Vercel Preview Deploy
+        id: vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          # No añadir --prod: esto crea un deployment de Preview
+          vercel-args: ''
+          working-directory: .
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Opcional: registra la URL del preview en los logs para fácil referencia.
+      - name: Log Preview URL
+        run: |
+          echo "Preview URL: ${{ steps.vercel.outputs.preview-url }}"
+        shell: bash
+
+  # Trabajo de no-op para documentar por qué no se desplegó en ciertos casos
+  skipped-reason:
+    if: ${{ github.event.pull_request.head.repo.fork == true || secrets.VERCEL_TOKEN == '' || secrets.VERCEL_ORG_ID == '' || secrets.VERCEL_PROJECT_ID == '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Skipping preview deploy. Fork PRs or missing Vercel secrets."
+        shell: bash
