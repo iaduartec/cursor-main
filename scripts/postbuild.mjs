@@ -53,14 +53,13 @@ function collectFallbackDirs() {
       .filter((value) => value.length > 0 && value !== '.next'),
   );
 
-  if (process.env.VERCEL === '1') {
-    candidates.add('pnpm build');
-  }
-
   return Array.from(candidates);
 }
 
 function mirrorManifests(targetDir) {
+  if (!existsSync(targetDir)) {
+    return; // No intentar crear/copiar si el destino base no existe
+  }
   const manifestFiles = [
     'routes-manifest.json',
     'build-manifest.json',
