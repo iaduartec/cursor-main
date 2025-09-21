@@ -72,7 +72,7 @@ viewBox="0 0 24 24">
             </svg
 ```
 
-## License: desconocido
+## License: MIT
 
 <https://github.com/calebrussel77/e-commerce-shop/blob/fdc711b62e058b648e2a5d39386b203b426632f0/frontend/src/pages/UsersList/UsersList.tsx>
 
@@ -114,7 +114,7 @@ viewBox="0 0 24 24">
                 </div>
 ```
 
-## License: desconocido
+## License: MIT
 
 <https://github.com/amyamrani/homerecs/blob/f4566436d77b8b557a1a131e6e0bb771e5851e3c/src/LandingPage/LandingPage.js>
 
@@ -154,7 +154,7 @@ viewBox="0 0 24 24">
                 </div
 ```
 
-## License: desconocido
+## License: MIT
 
 <https://github.com/WonderataX/website/blob/75f58bb350119ee65cf71c395dd7c3a7dfdcdfd5/components/Services.tsx>
 
@@ -178,7 +178,7 @@ viewBox="0 0 24 24">
                 </div
 ```
 
-## License: desconocido
+## License: MIT
 
 <https://github.com/Adrian-Herrera/Laravel-RF/blob/6b61d98b7d92ccdaae4780b6dc73ead0d1cc6eb8/resources/views/dashboard.blade.php>
 
@@ -190,7 +190,7 @@ viewBox="0 0 24 24">
                 </div
 ```
 
-## License: desconocido
+## License: MIT
 
 <https://github.com/imjoshellis/imjoshellis.com/blob/f8c07f219b4cebe6a504075e54dbd0549bc35e9e/src/assets/heroicons/outline/VideoCamera.tsx>
 
