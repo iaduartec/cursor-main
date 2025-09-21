@@ -4,8 +4,10 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx}',
     './content/**/*.{mdx,md}',
-    // include intranet-scaffold app and components so Tailwind generates classes used there
-    './intranet-scaffold/**/*.{js,ts,jsx,tsx,md,mdx}',
+    // Incluir solo directorios específicos del subproyecto para evitar capturar node_modules
+    './intranet-scaffold/app/**/*.{js,ts,jsx,tsx,md,mdx}',
+    './intranet-scaffold/components/**/*.{js,ts,jsx,tsx,md,mdx}',
+    './intranet-scaffold/pages/**/*.{js,ts,jsx,tsx,md,mdx}',
   ],
   darkMode: 'class',
   theme: {
