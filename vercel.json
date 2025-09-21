@@ -1,16 +1,8 @@
 {
   "version": 2,
   "framework": "nextjs",
-  "buildCommand": "SKIP_DB=1 pnpm run build",
+  "buildCommand": "SKIP_DB=1 SKIP_CONTENTLAYER=1 pnpm run build",
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": ".next",
-  "devCommand": "pnpm run dev",
-  "functions": {
-    "app/**/*.ts": {
-      "runtime": "@vercel/node"
-    },
-    "app/**/*.tsx": {
-      "runtime": "@vercel/node"
-    }
-  }
+  "devCommand": "pnpm run dev"
 }
