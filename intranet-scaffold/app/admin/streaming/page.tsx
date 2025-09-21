@@ -1,16 +1,27 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import   const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    slug: '',
+    provider: 'youtube',
+    youtubeId: '',
+    embedUrl: '',
+    image: '',
+    isLive: true
+  });te, useEffect } from 'react';
 import AdminLayout from '../../../components/AdminLayout';
 
 interface Stream {
   id: number;
-  title: string;
+  name: string;
   description: string;
   slug: string;
-  streamUrl: string;
+  provider: string;
+  youtubeId: string | null;
+  embedUrl: string | null;
+  image: string | null;
   isLive: boolean;
-  scheduledAt: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -38,7 +49,7 @@ export default function StreamingAdminPage() {
       const response = await fetch('/api/streams');
       if (response.ok) {
         const data = await response.json();
-        setStreams(data);
+        setStreams(data.items || []);
       }
     } catch (error) {
       console.error('Error fetching streams:', error);
