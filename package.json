@@ -5,7 +5,7 @@
   "description": "Sitio web profesional de Duartec Instalaciones Informáticas - Soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "SKIP_DB=1 SKIP_CONTENTLAYER=1 next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=20",
     "lint:fix": "eslint . --fix --max-warnings=20",

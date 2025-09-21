@@ -1,7 +1,7 @@
 {
   "version": 2,
   "framework": "nextjs",
-  "buildCommand": "SKIP_DB=1 SKIP_CONTENTLAYER=1 pnpm run build",
+  "buildCommand": "pnpm run build",
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": ".next",
   "devCommand": "pnpm run dev"
