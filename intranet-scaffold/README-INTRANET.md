@@ -43,11 +43,13 @@ pnpm dev
 ## 🔐 Sistema de Autenticación
 
 ### Autenticación por Token
+
 - El sistema usa autenticación basada en tokens
 - Los tokens se almacenan en cookies HTTP-only por seguridad
 - Las sesiones duran 7 días por defecto
 
 ### Protección de Rutas
+
 - Todas las rutas `/admin/*` están protegidas por middleware
 - Los usuarios no autenticados son redirigidos automáticamente al login
 - Se preserva la URL original para redirección después del login
@@ -55,12 +57,14 @@ pnpm dev
 ## 📊 Funcionalidades Disponibles
 
 ### ✅ CRUD de Proyectos
+
 - **Endpoint**: `/admin/projects`
 - **API**: `/api/projects`
 - Crear, leer, actualizar y eliminar proyectos
 - Gestión completa desde interfaz web
 
 ### 🚧 Próximamente
+
 - **Servicios**: CRUD de servicios
 - **Blog**: Gestión de posts
 - **Streams**: Administración de transmisiones en vivo
@@ -101,16 +105,19 @@ intranet-scaffold/
 ## 🔌 APIs Disponibles
 
 ### Autenticación
+
 - `POST /api/auth` - Login
 - `DELETE /api/auth` - Logout
 
 ### Proyectos
+
 - `GET /api/projects` - Listar proyectos
 - `POST /api/projects` - Crear proyecto
 - `PUT /api/projects/[id]` - Actualizar proyecto
 - `DELETE /api/projects/[id]` - Eliminar proyecto
 
 ### Headers Requeridos para Admin APIs
+
 ```bash
 x-debug-token: TU_INTRANET_DEBUG_TOKEN
 ```
@@ -118,6 +125,7 @@ x-debug-token: TU_INTRANET_DEBUG_TOKEN
 ## 🧪 Testing
 
 ### Tests E2E
+
 ```bash
 # Ejecutar todos los tests
 pnpm intranet:e2e
@@ -127,6 +135,7 @@ pnpm intranet:e2e:ui
 ```
 
 ### Configuración de Tests
+
 - Los tests están configurados en `playwright.config.ts`
 - Usan `INTRANET_DEBUG_TOKEN` para autenticación automática
 - Incluyen tests de login, CRUD de proyectos, etc.
@@ -134,6 +143,7 @@ pnpm intranet:e2e:ui
 ## 🚀 Despliegue
 
 ### Variables de Entorno Requeridas
+
 ```bash
 INTRANET_DEBUG_TOKEN=tu_token_seguro
 DATABASE_URL=tu_url_neon
@@ -141,6 +151,7 @@ NODE_ENV=production
 ```
 
 ### Build de Producción
+
 ```bash
 pnpm build
 pnpm start
@@ -162,6 +173,7 @@ pnpm start
 ## 🆘 Solución de Problemas
 
 ### Error de conexión a BD
+
 ```bash
 # Verificar variables de entorno
 echo $DATABASE_URL
@@ -171,6 +183,7 @@ pnpm db:migrate
 ```
 
 ### Problemas de autenticación
+
 ```bash
 # Verificar token
 echo $INTRANET_DEBUG_TOKEN
@@ -180,6 +193,7 @@ echo $INTRANET_DEBUG_TOKEN
 ```
 
 ### Tests fallan
+
 ```bash
 # Asegurar que el servidor esté corriendo
 pnpm dev
