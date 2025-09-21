@@ -1,44 +1,17 @@
-<<<<<<< HEAD
-import { revalidatePath, revalidateTag } from 'next/cache';
-import { db } from '../../../db/client';
-import { posts } from '../../../db/schema';
-import { eq, desc } from 'drizzle-orm';
-
-async function getItems() {
-  return await db
-=======
-/**
-Resumen generado automáticamente.
-
-app/admin/posts/page.tsx
-
-2025-09-13T06:20:07.359Z
-
-——————————————————————————————
-Archivo .tsx: page.tsx
-Tamaño: 3890 caracteres, 94 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db, type DrizzleClient } from '../../../db/client';
 import { posts, type NewPost } from '../../../db/schema';
 import { eq, desc } from 'drizzle-orm';
 
+type ProjectedPost = { id: number; slug: string; title: string; date: Date | null; category: string | null };
+
 async function getItems() {
   const typedDb = db as unknown as DrizzleClient;
   return await typedDb
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
     .select({ id: posts.id, slug: posts.slug, title: posts.title, date: posts.date, category: posts.category })
     .from(posts)
     .orderBy(desc(posts.date));
 }
-
-<<<<<<< HEAD
-=======
-type ProjectedPost = { id: number; slug: string; title: string; date: Date | null; category: string | null };
-
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 export default async function AdminPostsPage() {
   const items = await getItems();
 
@@ -53,22 +26,13 @@ export default async function AdminPostsPage() {
     const dateStr = String(formData.get('date') || '');
     const date = dateStr ? new Date(dateStr) : new Date();
     const now = new Date();
-<<<<<<< HEAD
-    await db
-      .insert(posts)
-      .values({ slug, title, description: description || null, category: category || null, image: image || null, content, date, published: true, createdAt: now, updatedAt: now })
-      .onConflictDoUpdate({
-        target: posts.slug,
-        set: { title, description: description || null, category: category || null, image: image || null, content, date, published: true, updatedAt: now },
-=======
-  const typedDb = db as unknown as DrizzleClient;
+    const typedDb = db as unknown as DrizzleClient;
     await typedDb
       .insert(posts)
       .values({ slug, title, description: description || null, category: category || null, image: image || null, content, date, published: true, createdAt: now, updatedAt: now } as NewPost)
       .onConflictDoUpdate({
         target: posts.slug,
         set: { title, description: description || null, category: category || null, image: image || null, content, date, published: true, updatedAt: now } as Partial<NewPost>,
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       });
     revalidateTag('blogs');
     revalidatePath('/blog');
@@ -78,12 +42,8 @@ export default async function AdminPostsPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-<<<<<<< HEAD
-    await db.delete(posts).where(eq(posts.slug, slug));
-=======
-  const typedDb = db as unknown as DrizzleClient;
-  await typedDb.delete(posts).where(eq(posts.slug, slug));
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
+    const typedDb = db as unknown as DrizzleClient;
+    await typedDb.delete(posts).where(eq(posts.slug, slug));
     revalidateTag('blogs');
     revalidatePath('/blog');
     revalidatePath('/admin/posts');
@@ -115,19 +75,11 @@ export default async function AdminPostsPage() {
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
-          {items.map((p) => (
-            <tr key={p.slug} className="border-b">
-              <td className="py-2">{p.slug}</td>
-              <td>{p.title}</td>
-              <td>{p.date ? new Date(p.date as any).toLocaleString('es-ES') : ''}</td>
-=======
           {items.map((p: ProjectedPost) => (
             <tr key={p.slug} className="border-b">
               <td className="py-2">{p.slug}</td>
               <td>{p.title}</td>
               <td>{p.date ? new Date(String(p.date)).toLocaleString('es-ES') : ''}</td>
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
               <td>{p.category}</td>
               <td>
                 <form action={remove}>

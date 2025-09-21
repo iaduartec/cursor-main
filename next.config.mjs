@@ -1,26 +1,8 @@
-<<<<<<< HEAD
-import path from 'path';
-import { withContentlayer } from 'next-contentlayer';
-=======
-/**
-Resumen generado automáticamente.
-
-next.config.mjs
-
-2025-09-13T06:20:07.380Z
-
-——————————————————————————————
-Archivo .mjs: next.config.mjs
-Tamaño: 3136 caracteres, 109 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
 import path from 'path';
 let withContentlayer = (c) => c;
 if (process.env.SKIP_CONTENTLAYER !== '1') {
   try {
     // Dynamically import to avoid side-effects when skipping
-
     ({ withContentlayer } = await import('next-contentlayer'));
   } catch (err) {
     // If import fails, fall back to identity function
@@ -32,7 +14,6 @@ if (process.env.SKIP_CONTENTLAYER !== '1') {
 if (process.platform === 'win32' && process.env.SKIP_CONTENTLAYER !== '0') {
   console.warn('⚠️  Contentlayer compatibility warning on Windows - consider setting SKIP_CONTENTLAYER=1 for development');
 }
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -60,10 +41,7 @@ const nextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-<<<<<<< HEAD
-=======
           { key: 'X-UA-Compatible', value: 'IE=edge' },
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
         ],
       },
       {
@@ -108,11 +86,7 @@ const nextConfig = {
     scrollRestoration: true,
   },
 
-<<<<<<< HEAD
-  typescript: { ignoreBuildErrors: false },
-=======
   typescript: { ignoreBuildErrors: true },
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
   eslint: { ignoreDuringBuilds: true },
 
   trailingSlash: false,
@@ -123,31 +97,17 @@ const nextConfig = {
   reactStrictMode: false,
 
   // Avoid workspace root inference warning with multiple lockfiles
-<<<<<<< HEAD
-outputFileTracingRoot: path.join(process.cwd()),
-};
-
-// Enable standalone output only on Vercel or when explicitly requested.
-const enableStandalone = process.env.VERCEL === '1' || process.env.ENABLE_STANDALONE === '1';
-=======
   outputFileTracingRoot: path.join(process.cwd()),
 };
 
-// Enable standalone output only when explicitly requested OR outside Vercel.
-// Using standalone on Vercel prevents the platform from generating serverless 
-// functions which causes the "No serverless pages were built" error during deployment.
-const enableStandalone = process.env.ENABLE_STANDALONE === '1' && !process.env.VERCEL;
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
+// Enable standalone output only on Vercel o cuando se solicita explícitamente.
+const enableStandalone = process.env.VERCEL === '1' || process.env.ENABLE_STANDALONE === '1';
 if (enableStandalone) {
   nextConfig.output = 'standalone';
 }
 
-<<<<<<< HEAD
-export default withContentlayer(nextConfig);
-=======
-// Allow disabling Contentlayer (useful for Windows dev in subprojects)
+// Permitir desactivar Contentlayer (útil para desarrollo en Windows o subproyectos)
 const skipContentlayer = process.env.SKIP_CONTENTLAYER === '1';
 const finalConfig = skipContentlayer ? nextConfig : withContentlayer(nextConfig);
 
 export default finalConfig;
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
