@@ -124,4 +124,5 @@ Si encuentras errores no cubiertos en este checklist:
 4. Revisa `DEPLOY_VERCEL.md` para configuración específica
 
 ---
-*Checklist actualizado para proyecto Duartec Web*
+
+## Checklist actualizado para proyecto Duartec Web
