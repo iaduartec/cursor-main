@@ -4,85 +4,133 @@ import AdminLayout from '../../components/AdminLayout';
 export default function AdminPage() {
   return (
     <AdminLayout
-      title="Panel de Administración"
-      description="Gestiona el contenido de la web de Duartec desde un solo lugar"
+      title='Panel de Administración'
+      description='Gestiona el contenido de la web de Duartec desde un solo lugar'
     >
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8'>
+        <div className='bg-white overflow-hidden shadow rounded-lg'>
+          <div className='p-5'>
+            <div className='flex items-center'>
+              <div className='flex-shrink-0'>
+                <div className='w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center'>
+                  <svg
+                    className='w-5 h-5 text-white'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+                    />
                   </svg>
                 </div>
               </div>
-              <div className="ml-5 w-0 flex-1">
+              <div className='ml-5 w-0 flex-1'>
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Proyectos</dt>
-                  <dd className="text-lg font-medium text-gray-900">--</dd>
+                  <dt className='text-sm font-medium text-gray-500 truncate'>
+                    Proyectos
+                  </dt>
+                  <dd className='text-lg font-medium text-gray-900'>--</dd>
                 </dl>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-green-500 rounded-md flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <div className='bg-white overflow-hidden shadow rounded-lg'>
+          <div className='p-5'>
+            <div className='flex items-center'>
+              <div className='flex-shrink-0'>
+                <div className='w-8 h-8 bg-green-500 rounded-md flex items-center justify-center'>
+                  <svg
+                    className='w-5 h-5 text-white'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+                    />
                   </svg>
                 </div>
               </div>
-              <div className="ml-5 w-0 flex-1">
+              <div className='ml-5 w-0 flex-1'>
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Servicios</dt>
-                  <dd className="text-lg font-medium text-gray-900">--</dd>
+                  <dt className='text-sm font-medium text-gray-500 truncate'>
+                    Servicios
+                  </dt>
+                  <dd className='text-lg font-medium text-gray-900'>--</dd>
                 </dl>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-purple-500 rounded-md flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        <div className='bg-white overflow-hidden shadow rounded-lg'>
+          <div className='p-5'>
+            <div className='flex items-center'>
+              <div className='flex-shrink-0'>
+                <div className='w-8 h-8 bg-purple-500 rounded-md flex items-center justify-center'>
+                  <svg
+                    className='w-5 h-5 text-white'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'
+                    />
                   </svg>
                 </div>
               </div>
-              <div className="ml-5 w-0 flex-1">
+              <div className='ml-5 w-0 flex-1'>
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Posts</dt>
-                  <dd className="text-lg font-medium text-gray-900">--</dd>
+                  <dt className='text-sm font-medium text-gray-500 truncate'>
+                    Posts
+                  </dt>
+                  <dd className='text-lg font-medium text-gray-900'>--</dd>
                 </dl>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-red-500 rounded-md flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        <div className='bg-white overflow-hidden shadow rounded-lg'>
+          <div className='p-5'>
+            <div className='flex items-center'>
+              <div className='flex-shrink-0'>
+                <div className='w-8 h-8 bg-red-500 rounded-md flex items-center justify-center'>
+                  <svg
+                    className='w-5 h-5 text-white'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z'
+                    />
                   </svg>
                 </div>
               </div>
-              <div className="ml-5 w-0 flex-1">
+              <div className='ml-5 w-0 flex-1'>
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Streams</dt>
-                  <dd className="text-lg font-medium text-gray-900">--</dd>
+                  <dt className='text-sm font-medium text-gray-500 truncate'>
+                    Streams
+                  </dt>
+                  <dd className='text-lg font-medium text-gray-900'>--</dd>
                 </dl>
               </div>
             </div>
@@ -91,26 +139,34 @@ export default function AdminPage() {
       </div>
 
       {/* System Status */}
-      <div className="bg-white shadow rounded-lg mb-8">
-        <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Estado del Sistema</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+      <div className='bg-white shadow rounded-lg mb-8'>
+        <div className='px-4 py-5 sm:p-6'>
+          <h3 className='text-lg leading-6 font-medium text-gray-900 mb-4'>
+            Estado del Sistema
+          </h3>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            <div className='flex items-center'>
+              <div className='flex-shrink-0'>
+                <div className='w-3 h-3 bg-green-400 rounded-full'></div>
               </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-900">Base de Datos</p>
-                <p className="text-sm text-gray-500">Conectado a Neon PostgreSQL</p>
+              <div className='ml-3'>
+                <p className='text-sm font-medium text-gray-900'>
+                  Base de Datos
+                </p>
+                <p className='text-sm text-gray-500'>
+                  Conectado a Neon PostgreSQL
+                </p>
               </div>
             </div>
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+            <div className='flex items-center'>
+              <div className='flex-shrink-0'>
+                <div className='w-3 h-3 bg-green-400 rounded-full'></div>
               </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-900">Autenticación</p>
-                <p className="text-sm text-gray-500">Sesión activa y segura</p>
+              <div className='ml-3'>
+                <p className='text-sm font-medium text-gray-900'>
+                  Autenticación
+                </p>
+                <p className='text-sm text-gray-500'>Sesión activa y segura</p>
               </div>
             </div>
           </div>
@@ -118,49 +174,89 @@ export default function AdminPage() {
       </div>
 
       {/* Management Tools */}
-      <div className="bg-white shadow rounded-lg">
-        <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Herramientas de Gestión</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className='bg-white shadow rounded-lg'>
+        <div className='px-4 py-5 sm:p-6'>
+          <h3 className='text-lg leading-6 font-medium text-gray-900 mb-4'>
+            Herramientas de Gestión
+          </h3>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {/* Proyectos */}
             <Link
-              href="/admin/projects"
-              className="relative block w-full bg-white border border-gray-200 rounded-lg p-6 hover:border-blue-300 hover:shadow-md transition-all duration-200 group"
+              href='/admin/projects'
+              className='relative block w-full bg-white border border-gray-200 rounded-lg p-6 hover:border-blue-300 hover:shadow-md transition-all duration-200 group'
             >
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              <div className='flex items-center'>
+                <div className='flex-shrink-0'>
+                  <div className='w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center group-hover:bg-blue-600 transition-colors'>
+                    <svg
+                      className='w-6 h-6 text-white'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+                      />
                     </svg>
                   </div>
                 </div>
-                <div className="ml-4">
-                  <h4 className="text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors">Proyectos</h4>
-                  <p className="text-sm text-gray-500">Gestionar proyectos y casos de éxito</p>
+                <div className='ml-4'>
+                  <h4 className='text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors'>
+                    Proyectos
+                  </h4>
+                  <p className='text-sm text-gray-500'>
+                    Gestionar proyectos y casos de éxito
+                  </p>
                 </div>
               </div>
-              <div className="absolute top-6 right-6">
-                <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <div className='absolute top-6 right-6'>
+                <svg
+                  className='w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M9 5l7 7-7 7'
+                  />
                 </svg>
               </div>
             </Link>
 
             {/* Servicios */}
-            <div className="relative block w-full bg-gray-50 border border-gray-200 rounded-lg p-6 opacity-60">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <div className='relative block w-full bg-gray-50 border border-gray-200 rounded-lg p-6 opacity-60'>
+              <div className='flex items-center'>
+                <div className='flex-shrink-0'>
+                  <div className='w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center'>
+                    <svg
+                      className='w-6 h-6 text-white'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+                      />
                     </svg>
                   </div>
                 </div>
-                <div className="ml-4">
-                  <h4 className="text-lg font-medium text-gray-900">Servicios</h4>
-                  <p className="text-sm text-gray-500">Gestionar servicios ofrecidos</p>
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mt-2">
+                <div className='ml-4'>
+                  <h4 className='text-lg font-medium text-gray-900'>
+                    Servicios
+                  </h4>
+                  <p className='text-sm text-gray-500'>
+                    Gestionar servicios ofrecidos
+                  </p>
+                  <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mt-2'>
                     Próximamente
                   </span>
                 </div>
@@ -168,19 +264,31 @@ export default function AdminPage() {
             </div>
 
             {/* Blog */}
-            <div className="relative block w-full bg-gray-50 border border-gray-200 rounded-lg p-6 opacity-60">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            <div className='relative block w-full bg-gray-50 border border-gray-200 rounded-lg p-6 opacity-60'>
+              <div className='flex items-center'>
+                <div className='flex-shrink-0'>
+                  <div className='w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center'>
+                    <svg
+                      className='w-6 h-6 text-white'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'
+                      />
                     </svg>
                   </div>
                 </div>
-                <div className="ml-4">
-                  <h4 className="text-lg font-medium text-gray-900">Blog</h4>
-                  <p className="text-sm text-gray-500">Gestionar posts y artículos</p>
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mt-2">
+                <div className='ml-4'>
+                  <h4 className='text-lg font-medium text-gray-900'>Blog</h4>
+                  <p className='text-sm text-gray-500'>
+                    Gestionar posts y artículos
+                  </p>
+                  <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mt-2'>
                     Próximamente
                   </span>
                 </div>
@@ -188,19 +296,31 @@ export default function AdminPage() {
             </div>
 
             {/* Streams */}
-            <div className="relative block w-full bg-gray-50 border border-gray-200 rounded-lg p-6 opacity-60">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            <div className='relative block w-full bg-gray-50 border border-gray-200 rounded-lg p-6 opacity-60'>
+              <div className='flex items-center'>
+                <div className='flex-shrink-0'>
+                  <div className='w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center'>
+                    <svg
+                      className='w-6 h-6 text-white'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z'
+                      />
                     </svg>
                   </div>
                 </div>
-                <div className="ml-4">
-                  <h4 className="text-lg font-medium text-gray-900">Streams</h4>
-                  <p className="text-sm text-gray-500">Gestionar transmisiones en vivo</p>
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mt-2">
+                <div className='ml-4'>
+                  <h4 className='text-lg font-medium text-gray-900'>Streams</h4>
+                  <p className='text-sm text-gray-500'>
+                    Gestionar transmisiones en vivo
+                  </p>
+                  <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mt-2'>
                     Próximamente
                   </span>
                 </div>
@@ -211,312 +331,20 @@ export default function AdminPage() {
       </div>
 
       {/* Footer */}
-      <div className="mt-8 bg-white shadow rounded-lg">
-        <div className="px-4 py-4 sm:px-6">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-500">
+      <div className='mt-8 bg-white shadow rounded-lg'>
+        <div className='px-4 py-4 sm:px-6'>
+          <div className='flex items-center justify-between'>
+            <div className='text-sm text-gray-500'>
               <p>Sistema de administración Duartec - Versión 1.0.0</p>
             </div>
-            <div className="text-sm text-gray-500">
-              <p>Última actualización: {new Date().toLocaleDateString('es-ES')}</p>
+            <div className='text-sm text-gray-500'>
+              <p>
+                Última actualización: {new Date().toLocaleDateString('es-ES')}
+              </p>
             </div>
           </div>
         </div>
       </div>
     </AdminLayout>
-  );
-}
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='2'
-            >
-              <path d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4' />
-              <polyline points='16,17 21,12 16,7' />
-              <line x1='21' y1='12' x2='9' y2='12' />
-            </svg>
-            Cerrar Sesión
-          </a>
-        </div>
-      </div>
-
-      <div
-        style={{
-          backgroundColor: '#f8fafc',
-          padding: 20,
-          borderRadius: 8,
-          marginBottom: 24,
-        }}
-      >
-        <h2 style={{ marginTop: 0, color: '#1e293b' }}>Estado del Sistema</h2>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: 16,
-            marginTop: 12,
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: 'white',
-              padding: 16,
-              borderRadius: 6,
-              border: '1px solid #e2e8f0',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div
-                style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: '50%',
-                  backgroundColor: '#10b981',
-                }}
-              ></div>
-              <span style={{ fontWeight: '500', color: '#374151' }}>
-                Base de Datos
-              </span>
-            </div>
-            <p
-              style={{
-                margin: '8px 0 0 0',
-                fontSize: '14px',
-                color: '#6b7280',
-              }}
-            >
-              Conectado a Neon
-            </p>
-          </div>
-          <div
-            style={{
-              backgroundColor: 'white',
-              padding: 16,
-              borderRadius: 6,
-              border: '1px solid #e2e8f0',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div
-                style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: '50%',
-                  backgroundColor: '#10b981',
-                }}
-              ></div>
-              <span style={{ fontWeight: '500', color: '#374151' }}>
-                Autenticación
-              </span>
-            </div>
-            <p
-              style={{
-                margin: '8px 0 0 0',
-                fontSize: '14px',
-                color: '#6b7280',
-              }}
-            >
-              Sesión activa
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div
-        style={{
-          backgroundColor: 'white',
-          padding: 20,
-          borderRadius: 8,
-          border: '1px solid #e2e8f0',
-        }}
-      >
-        <h2 style={{ marginTop: 0, color: '#1e293b' }}>
-          Herramientas de Administración
-        </h2>
-        <p style={{ color: '#6b7280', marginBottom: 16 }}>
-          Accede a las diferentes secciones del sistema:
-        </p>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 16,
-          }}
-        >
-          <a
-            href='/admin/projects'
-            style={{
-              display: 'block',
-              padding: 20,
-              border: '1px solid #e2e8f0',
-              borderRadius: 8,
-              textDecoration: 'none',
-              color: 'inherit',
-              transition: 'all 0.2s',
-              backgroundColor: '#f8fafc',
-            }}
-            onMouseOver={e =>
-              (e.currentTarget.style.backgroundColor = '#f1f5f9')
-            }
-            onMouseOut={e =>
-              (e.currentTarget.style.backgroundColor = '#f8fafc')
-            }
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <div
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 8,
-                  backgroundColor: '#3b82f6',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <svg
-                  width='20'
-                  height='20'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='white'
-                  strokeWidth='2'
-                >
-                  <path d='M19 11H5m14 0a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2m14 0V9a2 2 0 0 0-2-2M5 11V9a2 2 0 0 1 2-2m0 0V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2M7 7h10' />
-                </svg>
-              </div>
-              <div>
-                <h3 style={{ margin: 0, color: '#1e293b', fontSize: '18px' }}>
-                  CRUD Proyectos
-                </h3>
-                <p
-                  style={{
-                    margin: '4px 0 0 0',
-                    color: '#6b7280',
-                    fontSize: '14px',
-                  }}
-                >
-                  Crear, editar y eliminar proyectos
-                </p>
-              </div>
-            </div>
-          </a>
-
-          <div
-            style={{
-              padding: 20,
-              border: '1px solid #e2e8f0',
-              borderRadius: 8,
-              backgroundColor: '#f8fafc',
-              opacity: 0.6,
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <div
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 8,
-                  backgroundColor: '#6b7280',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <svg
-                  width='20'
-                  height='20'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='white'
-                  strokeWidth='2'
-                >
-                  <path d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' />
-                </svg>
-              </div>
-              <div>
-                <h3 style={{ margin: 0, color: '#6b7280', fontSize: '18px' }}>
-                  Servicios
-                </h3>
-                <p
-                  style={{
-                    margin: '4px 0 0 0',
-                    color: '#9ca3af',
-                    fontSize: '14px',
-                  }}
-                >
-                  Próximamente disponible
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div
-            style={{
-              padding: 20,
-              border: '1px solid #e2e8f0',
-              borderRadius: 8,
-              backgroundColor: '#f8fafc',
-              opacity: 0.6,
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <div
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 8,
-                  backgroundColor: '#6b7280',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <svg
-                  width='20'
-                  height='20'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='white'
-                  strokeWidth='2'
-                >
-                  <path d='M19 11H5m14 0a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2m14 0V9a2 2 0 0 0-2-2M5 11V9a2 2 0 0 1 2-2m0 0V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2M7 7h10' />
-                </svg>
-              </div>
-              <div>
-                <h3 style={{ margin: 0, color: '#6b7280', fontSize: '18px' }}>
-                  Blog
-                </h3>
-                <p
-                  style={{
-                    margin: '4px 0 0 0',
-                    color: '#9ca3af',
-                    fontSize: '14px',
-                  }}
-                >
-                  Próximamente disponible
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        style={{
-          marginTop: 24,
-          padding: 16,
-          backgroundColor: '#fef3c7',
-          border: '1px solid #f59e0b',
-          borderRadius: 8,
-        }}
-      >
-        <p style={{ margin: 0, color: '#92400e', fontSize: '14px' }}>
-          <strong>Nota:</strong> La interfaz está diseñada para evitar
-          confirmaciones bloqueantes y facilitar las pruebas E2E y
-          automatización.
-        </p>
-      </div>
-    </main>
   );
 }
