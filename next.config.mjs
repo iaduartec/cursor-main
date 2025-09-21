@@ -1,4 +1,3 @@
-import path from 'path';
 let withContentlayer = (c) => c;
 if (process.env.SKIP_CONTENTLAYER !== '1') {
   try {
@@ -96,8 +95,6 @@ const nextConfig = {
   // Disable React Strict Mode in dev to avoid double-mounting client maps
   reactStrictMode: false,
 
-  // Avoid workspace root inference warning with multiple lockfiles
-  outputFileTracingRoot: path.join(process.cwd()),
 };
 
 // Enable standalone output only on Vercel o cuando se solicita explícitamente.
