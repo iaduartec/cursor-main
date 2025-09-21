@@ -48,8 +48,8 @@ pnpm vercel:diagnose:quick
 
 ### Error: "No serverless pages were built"
 
-- **Causa**: Configuración `output: 'standalone'` activada
-- **Solución**: Desactivar standalone en Vercel (automático en este proyecto)
+- **Causa**: Incompatibilidad de configuración de salida o entorno
+- **Solución**: En este proyecto `output: 'standalone'` se activa en Vercel (Linux) y se desactiva en Windows local. Verifica que no estés forzando standalone en entornos no compatibles.
 
 ### Error: "Module not found: Can't resolve 'fs'"
 
@@ -88,6 +88,7 @@ pnpm vercel:diagnose:quick
 - [ ] **Tiempo de carga**: < 3 segundos en la página principal
 - [ ] **Core Web Vitals**: Revisar en Vercel Analytics
 - [ ] **SEO**: Verificar meta tags y sitemap.xml
+  - Nota: El sitemap se genera en `postbuild` con `next-sitemap` según `next-sitemap.config.js` (raíz)
 
 ### Monitoreo
 

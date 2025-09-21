@@ -37,6 +37,12 @@ Pasos
    - Output Directory: (dejar vacío; Next manejará la salida)
    - Node.js Version: 22.x
 
+## Standalone y postbuild
+
+- En Vercel (Linux) el build activa automáticamente `output: 'standalone'` para optimizar el runtime.
+- En Windows local se desactiva para evitar errores de symlink (EPERM) durante el build.
+- Tras el build, el script `postbuild` ejecuta `next-sitemap` (según `next-sitemap.config.js` en la raíz) y genera `sitemap.xml` y `robots.txt`.
+
 4) Variables de entorno requeridas:
    - POSTGRES_URL = `postgresql://user:password@host/database?sslmode=require`
    - NODE_ENV = production
@@ -74,9 +80,9 @@ Problemas comunes y soluciones
   dependencias de generación están presentes en `devDependencies` y que
   Vercel ejecuta el build correctamente.
 - **Error: "No such file or directory, scandir '/var/task/.next/standalone'"** —
-  Desactiva el modo standalone en next.config.mjs para Vercel.
+  Verifica que la configuración del repo está aplicada: en Vercel (Linux) se activa `output: 'standalone'` y en Windows local se desactiva para evitar EPERM. No fuerces standalone en entornos no compatibles; si necesitas forzarlo en CI, usa `ENABLE_STANDALONE=1`.
 - **Error de peer dependencies** — Vercel detectará automáticamente las
-  dependencias faltantes. Revisa que todas las dependencias estén en 
+  dependencias faltantes. Revisa que todas las dependencias estén en
   package.json.
 - **Error de Node.js version** — Configura Node.js 22.x en la configuración
   del proyecto en Vercel Dashboard.

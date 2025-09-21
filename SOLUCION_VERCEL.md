@@ -48,9 +48,11 @@ pnpm vercel:diagnose:quick  # Diagnóstico sin build
 ### 4. Configuración Optimizada
 
 #### `next.config.mjs`
-✅ **Mejorado**: 
-- Previene uso de standalone output en Vercel
-- Mantiene compatibilidad con otros entornos
+
+✅ **Mejorado**:
+
+- Activa `output: 'standalone'` en Vercel (Linux) y lo desactiva en Windows local para evitar EPERM de symlink
+- Mantiene compatibilidad con otros entornos y permite forzarlo con `ENABLE_STANDALONE=1`
 - Comentarios explicativos añadidos
 
 #### `.vercelignore`
@@ -71,8 +73,8 @@ pnpm vercel:diagnose:quick  # Diagnóstico sin build
 ## 🛠️ Errores Comunes Solucionados
 
 ### ❌ Error: "No serverless pages were built"
-**Causa**: Configuración `output: 'standalone'` en Vercel
-**Solución**: ✅ Desactivado automáticamente cuando `VERCEL=1`
+**Causa**: Configuración de salida incompatible o mal detectada
+**Solución**: ✅ En este repo, Vercel (Linux) activa `output: 'standalone'`; en Windows local se desactiva. Evita forzarlo donde no proceda.
 
 ### ❌ Error: Package manager mismatch
 **Causa**: Documentación con comandos npm pero proyecto usa pnpm

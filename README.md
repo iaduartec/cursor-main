@@ -60,6 +60,8 @@ pnpm lint
 pnpm type-check
 ```
 
+Nota: tras `pnpm build`, se ejecuta `postbuild` que genera `sitemap.xml` y `robots.txt` usando `next-sitemap.config.js` en la raíz.
+
 ## Gestión de contenido
 
 Los servicios se gestionan en MDX dentro de `content/servicios/`. Mantén el frontmatter consistente para Contentlayer.

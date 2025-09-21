@@ -8,8 +8,8 @@
 
 ## Salida standalone
 
-- `next.config.mjs` activa `output: 'standalone'` cuando `VERCEL=1` o `ENABLE_STANDALONE=1`.
-- En Windows pueden aparecer errores de permisos con symlinks; para probar localmente:
+- `next.config.mjs` activa `output: 'standalone'` cuando `VERCEL=1` o `ENABLE_STANDALONE=1`, excepto en Windows local donde se desactiva por defecto para evitar EPERM de symlink.
+- En Windows pueden aparecer errores de permisos con symlinks; para probar localmente forzando standalone:
   ```powershell
   $env:ENABLE_STANDALONE='1'; pnpm build
   ```
