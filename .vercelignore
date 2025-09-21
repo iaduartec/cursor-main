@@ -23,8 +23,7 @@ venv/
 env/
 /.idea
 /.DS_Store
-<<<<<<< HEAD
-=======
+
 # Vercel-specific ignores
 backup.repo.bundle
 code
@@ -34,4 +33,3 @@ playwright-report
 test-results
 *.bundle
 *.tar.gz
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
