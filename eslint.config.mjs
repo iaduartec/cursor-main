@@ -20,6 +20,7 @@ export default [
       'dist/**',
       'public/**',
       'intranet-scaffold/**',
+      'vendor/**',
       '.git/**',
       '.lintstagedrc.js',
       '__tests__/**',

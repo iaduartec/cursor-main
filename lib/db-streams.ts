@@ -1,6 +1,6 @@
 import { db } from '../db/client';
 import { streams } from '../db/schema';
-import { and, asc, desc, eq, ilike, or, SQL } from 'drizzle-orm';
+import { asc } from 'drizzle-orm';
 
 export type StreamRow = {
   id: number;
@@ -23,7 +23,9 @@ const hasDb = () =>
   );
 
 export async function getAllStreams(): Promise<StreamRow[]> {
-  if (!hasDb()) {return fallbackStreams();}
+  if (!hasDb()) {
+    return fallbackStreams();
+  }
   try {
     const rows = await db
       .select({
@@ -47,16 +49,28 @@ export async function getAllStreams(): Promise<StreamRow[]> {
 }
 
 export async function getStreamBySlug(slug: string): Promise<StreamRow | null> {
-  const s = (await getAllStreams()).find((x) => x.slug === slug);
+  const s = (await getAllStreams()).find(x => x.slug === slug);
   return s || null;
 }
 
 function fallbackStreams(): StreamRow[] {
   const list = [
     { slug: 'silos', name: 'Santo Domingo de Silos', youtubeId: 'czwL7LgjyjU' },
-    { slug: 'rabanera-del-pinar', name: 'Rabanera del Pinar', youtubeId: '2FLLNsHmgxc' },
-    { slug: 'pineda-de-la-sierra', name: 'Pineda de la Sierra', youtubeId: 'MqU3cNr22XQ' },
-    { slug: 'huerta-de-arriba', name: 'Huerta de Arriba', youtubeId: 'Kv2HeXZXWaw' },
+    {
+      slug: 'rabanera-del-pinar',
+      name: 'Rabanera del Pinar',
+      youtubeId: '2FLLNsHmgxc',
+    },
+    {
+      slug: 'pineda-de-la-sierra',
+      name: 'Pineda de la Sierra',
+      youtubeId: 'MqU3cNr22XQ',
+    },
+    {
+      slug: 'huerta-de-arriba',
+      name: 'Huerta de Arriba',
+      youtubeId: 'Kv2HeXZXWaw',
+    },
   ];
   return list.map((s, i) => ({
     id: i + 1,
@@ -65,9 +79,12 @@ function fallbackStreams(): StreamRow[] {
     description: null,
     provider: 'youtube',
     youtubeId: s.youtubeId || null,
-    embedUrl: s.youtubeId ? `https://www.youtube.com/embed/${s.youtubeId}` : null,
-    image: s.youtubeId ? `https://img.youtube.com/vi/${s.youtubeId}/hqdefault.jpg` : null,
+    embedUrl: s.youtubeId
+      ? `https://www.youtube.com/embed/${s.youtubeId}`
+      : null,
+    image: s.youtubeId
+      ? `https://img.youtube.com/vi/${s.youtubeId}/hqdefault.jpg`
+      : null,
     isLive: true,
   }));
 }
-
