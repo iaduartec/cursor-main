@@ -50,16 +50,6 @@ viewBox="0 0 24 24">
                   <
 ```
 
-## License: GPL-3.0
-
-<https://github.com/rchmura/vimeography/blob/c190f89cf47b4d19e0b0b8b2d7cbebbe88f6e70f/lib/admin/app/src/components/GalleryEditor/GalleryEditor.tsx>
-
-```
-"currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg
-```
-
 ### taybart/taybart.com
 <https://github.com/taybart/taybart.com/blob/af9fdc3cbdb1d074491e32c0ed0fc4459e12eb06/frontend/src/routes/notes/PencilIcon.tsx>
 
@@ -95,22 +85,6 @@ viewBox="0 0 24 24">
 
 ### Daniel-Conte/Guia-do-Programador
 <https://github.com/Daniel-Conte/Guia-do-Programador/blob/42386c72376da36a785d4e4dcfbf55a2d576b80e/WEB/Next/next-crud/src/components/Icones.tsx>
-
-```
-<path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'
-                      />
-                    </svg>
-                  </div>
-                </div>
-```
-
-## License: MIT
-
-<https://github.com/amyamrani/homerecs/blob/f4566436d77b8b557a1a131e6e0bb771e5851e3c/src/LandingPage/LandingPage.js>
 
 ```
 <path
