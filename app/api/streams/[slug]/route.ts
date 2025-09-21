@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 import { NextRequest, NextResponse } from 'next/server';
 import { getStreamBySlug } from '../../../../lib/db-streams';
-import { db, type DrizzleClient } from '../../../../db/client';
-import { streams, type NewStream } from '../../../../db/schema';
+import { db } from '../../../../db/client';
+import { streams } from '../../../../db/schema';
 import { eq } from 'drizzle-orm';
 import { revalidateTag } from 'next/cache';
 
@@ -11,7 +10,6 @@ function isAuthorized(req: NextRequest): boolean {
   const token = header.startsWith('Bearer ') ? header.slice(7) : header;
   const expected = process.env.ADMIN_TOKEN || '';
   return expected !== '' && token === expected;
-}
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -25,24 +23,18 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
   const { slug } = await params;
   const patch = await req.json().catch(() => ({}));
   const now = new Date();
-<<<<<<< HEAD
-  const typedDb = db as unknown as DrizzleClient;
-  const res = await typedDb
+  const res = await (db as any)
     .update(streams)
     .set({
-  name: patch.name,
-  description: patch.description ?? null,
-  provider: patch.provider,
-  youtubeId: patch.youtubeId ?? null,
+      name: patch.name,
+      description: patch.description ?? null,
+      provider: patch.provider,
+      youtubeId: patch.youtubeId ?? null,
       embedUrl: patch.embedUrl ?? null,
       image: patch.image ?? null,
       isLive: typeof patch.isLive === 'boolean' ? patch.isLive : undefined,
       updatedAt: now,
-<<<<<<< HEAD
-    } as any)
-=======
-    } as Partial<NewStream>))
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
+    })
     .where(eq(streams.slug, slug));
 
   revalidateTag('streams');
@@ -52,12 +44,10 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   if (!isAuthorized(req)) {return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });}
   const { slug } = await params;
-<<<<<<< HEAD
-  await db.delete(streams).where(eq(streams.slug, slug));
-=======
-  const typedDb = db as unknown as DrizzleClient;
-  await typedDb.delete(streams).where(eq(streams.slug, slug));
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
+  await (db as any).delete(streams).where(eq(streams.slug, slug));
+  revalidateTag('streams');
+  return NextResponse.json({ ok: true });
+}
   revalidateTag('streams');
   return NextResponse.json({ ok: true });
 }
