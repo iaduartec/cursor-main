@@ -24,6 +24,21 @@ Sitio web profesional y moderno para Duartec (Burgos, España) basado en Next.js
 
 ## Estructura del proyecto
 
+# Duartec Instalaciones Informáticas
+
+Sitio web profesional y moderno para Duartec (Burgos, España) basado en Next.js 14+, TypeScript y Tailwind CSS.
+
+## Características
+
+- Next.js 14+ (App Router, Server Components)
+- TypeScript
+- Tailwind CSS
+- Contentlayer para MDX
+- SEO optimizado (next-seo)
+- Testing (Jest, Playwright)
+
+## Estructura del proyecto
+
 Ejemplo de estructura principal:
 
 ```text
