@@ -1,7 +1,8 @@
 # Code Citations
 
-## License: MIT
+## MIT License
 
+### jmcarbo/jmcarbo.github.com
 <https://github.com/jmcarbo/jmcarbo.github.com/blob/529425ea6912173a660587b8a5db1edfa1d32b1d/portfolio/index.html>
 
 ```
@@ -10,8 +11,7 @@ strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 
           <h3 className="mt-2 text-sm font-medium text-gray-900"
 ```
 
-## License: MIT
-
+### dreamyguy/gitinsight
 <https://github.com/dreamyguy/gitinsight/blob/e195b7035fac141eb18b27fd8455f634cb71ef25/frontend/src/components/primitives/Icon/Collection.js>
 
 ```
@@ -20,8 +20,7 @@ strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 
           <h3 className="mt-2 text-sm font-medium text-gray-900"
 ```
 
-## License: MIT
-
+### GarrettGarrett/bug-tracker
 <https://github.com/GarrettGarrett/bug-tracker/blob/e045af72e8fea9de54402f9eaac7c8df361736b8/components/EmptyProjectState.js>
 
 ```
@@ -30,8 +29,7 @@ strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 
           <h3 className="mt-2 text-sm font-medium text-gray-900"
 ```
 
-## License: MIT
-
+### Teerut26/my-birthday
 <https://github.com/Teerut26/my-birthday/blob/1be811808f18caa196b21f467810bcfb7ee00823/pages/index.tsx>
 
 ```
@@ -41,8 +39,7 @@ viewBox="0 0 24 24">
                   <
 ```
 
-## License: MIT
-
+### Teerut26/my-birthday (second instance)
 <https://github.com/Teerut26/my-birthday/blob/1be811808f18caa196b21f467810bcfb7ee00823/pages/index.tsx>
 
 ```
