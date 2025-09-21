@@ -4,8 +4,8 @@ import { services, type NewService, type Service } from '../../../db/schema';
 import { eq, asc } from 'drizzle-orm';
 
 async function getItems() {
-  const typedDb = db as unknown as DrizzleClient;
-  return await typedDb.select().from(services).orderBy(asc(services.title));
+  // El tipado DrizzleClient no existe, usar 'any' temporalmente
+  return await (db as any).select().from(services).orderBy(asc(services.title));
 }
 }
 
@@ -63,11 +63,7 @@ export default async function AdminServicesPage() {
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
-          {items.map((s) => (
-=======
           {items.map((s: Service) => (
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             <tr key={s.slug} className="border-b">
               <td className="py-2">{s.slug}</td>
               <td>{s.title}</td>

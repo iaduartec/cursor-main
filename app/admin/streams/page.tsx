@@ -17,8 +17,7 @@ export default async function AdminStreamsPage() {
     const description = String(formData.get('description') || '');
     const isLive = formData.get('isLive') ? true : false;
     const now = new Date();
-    const typedDb = db as unknown as DrizzleClient;
-    await typedDb
+  await (db as any)
       .insert(streams)
       .values({
         slug,
@@ -44,8 +43,7 @@ export default async function AdminStreamsPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-    const typedDb = db as unknown as DrizzleClient;
-    await typedDb.delete(streams).where(eq(streams.slug, slug));
+  await (db as any).delete(streams).where(eq(streams.slug, slug));
     revalidateTag('streams');
     revalidatePath('/streaming');
     revalidatePath('/admin/streams');
@@ -79,7 +77,7 @@ export default async function AdminStreamsPage() {
           </tr>
         </thead>
         <tbody>
-          {items.map((s) => (
+          {items.map((s: any) => (
             <tr key={s.slug} className="border-b">
               <td className="py-2">{s.slug}</td>
               <td>{s.name}</td>
