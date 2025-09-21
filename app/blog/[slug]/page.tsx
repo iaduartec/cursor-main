@@ -1,3 +1,127 @@
+<<<<<<< HEAD
+=======
+import { notFound } from 'next/navigation';
+import { getBlogBySlug } from '../../../lib/db-blog';
+import { BlogLayout } from '../layout';
+
+export default async function BlogPage({ params }: { params: { slug: string } }) {
+  const blog = await getBlogBySlug(params.slug);
+  if (!blog) return notFound();
+  return <BlogLayout blog={blog} />;
+}
+
+/**
+ * Resumen generado automáticamente.
+ *
+ * app/blog/[slug]/page.tsx
+ *
+ * 2025-09-13T06:20:07.361Z
+ *
+ * ——————————————————————————————
+ * Archivo .tsx: page.tsx
+ * Tamaño: 7543 caracteres, 231 líneas
+ * Resumen básico generado automáticamente sin análisis de IA.
+ */
+import { notFound } from 'next/navigation';
+import { getBlogBySlug } from '../../../lib/db-blog';
+import { BlogLayout } from '../layout';
+
+export default async function BlogPage({ params }: { params: { slug: string } }) {
+  const blog = await getBlogBySlug(params.slug);
+  if (!blog) return notFound();
+  return <BlogLayout blog={blog} />;
+}
+
+/**
+ * Resumen generado automáticamente.
+ *
+ * app/blog/[slug]/page.tsx
+ *
+ * 2025-09-13T06:20:07.361Z
+ *
+ * ——————————————————————————————
+ * Archivo .tsx: page.tsx
+ * Tamaño: 7543 caracteres, 231 líneas
+ * Resumen básico generado automáticamente sin análisis de IA.
+ */
+import { notFound } from 'next/navigation';
+import { getBlogBySlug } from '../../../lib/db-blog';
+import { BlogLayout } from '../layout';
+
+export default async function BlogPage({ params }: { params: { slug: string } }) {
+  const blog = await getBlogBySlug(params.slug);
+  if (!blog) return notFound();
+  return <BlogLayout blog={blog} />;
+}
+import { notFound } from 'next/navigation';
+import { getBlogBySlug } from '../../../lib/db-blog';
+import { BlogLayout } from '../layout';
+
+export default async function BlogPage({ params }: { params: { slug: string } }) {
+  const blog = await getBlogBySlug(params.slug);
+  if (!blog) return notFound();
+  return <BlogLayout blog={blog} />;
+}
+
+/**
+ * Resumen generado automáticamente.
+ *
+ * app/blog/[slug]/page.tsx
+ *
+ * 2025-09-13T06:20:07.361Z
+ *
+ * ——————————————————————————————
+ * Archivo .tsx: page.tsx
+ * Tamaño: 7543 caracteres, 231 líneas
+ * Resumen básico generado automáticamente sin análisis de IA.
+ * Contenido detectado basado en extensión y estructura básica.
+  // Removed duplicate imports and code blocks
+  // Additional code continues here...
+ */
+import { notFound } from 'next/navigation';
+import { getBlogBySlug } from '../../../lib/db-blog';
+import { BlogLayout } from '../layout';
+
+export default async function BlogPage({ params }: { params: { slug: string } }) {
+  const blog = await getBlogBySlug(params.slug);
+  if (!blog) return notFound();
+  return <BlogLayout blog={blog} />;
+}
+import { notFound } from 'next/navigation';
+import { getBlogBySlug } from '../../../lib/db-blog';
+import { BlogLayout } from '../layout';
+
+export default async function BlogPage({ params }: { params: { slug: string } }) {
+  const blog = await getBlogBySlug(params.slug);
+  if (!blog) return notFound();
+  return <BlogLayout blog={blog} />;
+}
+import { notFound } from 'next/navigation';
+import { getBlogBySlug } from '../../../lib/db-blog';
+import { BlogLayout } from '../layout';
+
+export default async function BlogPage({ params }: { params: { slug: string } }) {
+  const blog = await getBlogBySlug(params.slug);
+  if (!blog) return notFound();
+  return <BlogLayout blog={blog} />;
+}
+<<<<<<< HEAD
+=======
+/**
+Resumen generado automáticamente.
+
+app/blog/[slug]/page.tsx
+
+2025-09-13T06:20:07.361Z
+
+——————————————————————————————
+Archivo .tsx: page.tsx
+Tamaño: 7543 caracteres, 231 líneas
+Resumen básico generado automáticamente sin análisis de IA.
+Contenido detectado basado en extensión y estructura básica.
+*/
+>>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
+>>>>>>> 3457dd6 (Limpieza definitiva: solo bloque funcional mínimo en blog)
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
