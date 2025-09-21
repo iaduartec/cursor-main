@@ -2154,10 +2154,10 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1xKfQxbyxexdQj/cF0fA==}
     engines: {node: '>=14'}
 
-  '@isaacs/cliui@8.0.2:
+  '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+AR7J7lCQlCXLAh7vSR36QTiqa41tcKGtVbb4ham/F3HxQ+S84K3oVgaI5qhX5C62+p3w==}
 
-  '@pkgjs/parseargs@0.11.0:
+  '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdB4CicbWHC49psc2Y1xCFv7QWZjnPvtU92eyO+2DSirhq0Bk35p/yCEI+EsEQVVzRRV0zpKVqLIW5GZJw==}
     engines: {node: '>=14'}
 
@@ -4848,13 +4848,13 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  '@isaacs/cliui@8.0.2:
+  '@isaacs/cliui@8.0.2':
     dependencies:
       string-width: 5.1.2
       strip-ansi: 7.1.0
       wrap-ansi: 8.1.0
 
-  '@pkgjs/parseargs@0.11.0: {}
+  '@pkgjs/parseargs@0.11.0': {}
 
   yallist@4.0.0: {}
 
