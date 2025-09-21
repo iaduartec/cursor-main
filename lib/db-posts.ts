@@ -1,7 +1,21 @@
 import { db } from '../db/client';
 import { posts } from '../db/schema';
 import { and, asc, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';
-import { allBlogs, type Blog } from 'contentlayer/generated';
+
+// Conditionally import from contentlayer only when not in Vercel
+let allBlogs: any[] = [];
+
+if (process.env.VERCEL !== '1') {
+  try {
+    const contentlayer = await import('contentlayer/generated');
+    allBlogs = contentlayer.allBlogs;
+  } catch (error) {
+    // Contentlayer not available, use empty array
+    allBlogs = [];
+  }
+}
+
+type Blog = any; // Fallback type for Vercel
 
 export type PostRow = {
   id: number;

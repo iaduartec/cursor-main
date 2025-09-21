@@ -78,5 +78,6 @@ const Proyecto = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [Servicio, Blog, Legal, Proyecto],
+  documentTypes:
+    process.env.VERCEL === '1' ? [] : [Servicio, Blog, Legal, Proyecto],
 });
