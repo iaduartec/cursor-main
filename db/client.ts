@@ -95,6 +95,7 @@ const connectionString = rawConnectionString.replace(/^['"]|['"]$/g, '').trim();
 let skipDb =
   process.env.USE_IN_MEMORY_DB === '1' ||
   process.env.SKIP_DB === '1' ||
+  process.env.VERCEL === '1' ||
   !connectionString;
 
 if (!connectionString) {
