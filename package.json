@@ -31,7 +31,7 @@
     "db:seed:projects": "tsx scripts/db/seed-projects.ts",
     "db:seed:services": "tsx scripts/db/seed-services.ts",
     "db:seed:streams": "tsx scripts/db/seed-streams.ts",
-    "db:seed:comments:apply": "tsx scripts/db/seed-comments.ts",
+    "db:migrate:mdx": "node scripts/migrate-mdx-to-db.js",
     "db:apply": "pnpm run db:migrate:apply && pnpm run db:seed:comments:apply",
     "lint:changed": "node scripts/lint-changed.mjs",
     "lint:staged": "node scripts/lint-staged.mjs",
