@@ -16,11 +16,15 @@ import { getPostSerialized } from '../../../lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 
-export default async function BlogPage({ params }: { params: { slug: string } }) {
+export default async function BlogPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   let post;
   try {
     post = await getPostSerialized(params.slug);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (_err) {
     return notFound();
   }
@@ -28,7 +32,7 @@ export default async function BlogPage({ params }: { params: { slug: string } })
   return (
     <main style={{ padding: 24 }}>
       <h1>{frontmatter.title}</h1>
-      <p>{frontmatter.date}</p>
+      <p>{new Date(frontmatter.date).toLocaleDateString('es-ES')}</p>
       <MDXRemote source={source} />
     </main>
   );
