@@ -1,8 +1,16 @@
 {
-	"version": 2,
-	"framework": "nextjs",
-	"buildCommand": "pnpm run build",
-	"installCommand": "pnpm install --no-frozen-lockfile",
-	"outputDirectory": ".next",
-	"devCommand": "pnpm run dev"
+  "version": 2,
+  "framework": "nextjs",
+  "buildCommand": "SKIP_DB=1 pnpm run build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": ".next",
+  "devCommand": "pnpm run dev",
+  "functions": {
+    "app/**/*.ts": {
+      "runtime": "nodejs22.x"
+    },
+    "app/**/*.tsx": {
+      "runtime": "nodejs22.x"
+    }
+  }
 }
