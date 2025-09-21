@@ -1,0 +1,274 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "X-UA-Compatible",
+          "value": "IE=edge"
+        }
+      ],
+      "regex": "^(?:/(.*))(?:/)?$"
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ],
+      "regex": "^/api(?:/(.*))(?:/)?$"
+    }
+  ],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [
+      {
+        "source": "/sitemap.xml",
+        "destination": "/api/sitemap",
+        "regex": "^/sitemap\\.xml(?:/)?$"
+      }
+    ],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/streams/[slug]",
+      "regex": "^/api/streams/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/api/streams/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/blog/[slug]",
+      "regex": "^/blog/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/blog/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/proyectos/[slug]",
+      "regex": "^/proyectos/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/proyectos/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/servicios/[slug]",
+      "regex": "^/servicios/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/servicios/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/streaming/[slug]",
+      "regex": "^/streaming/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/streaming/(?<nxtPslug>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/__vercel_server_probe",
+      "regex": "^/__vercel_server_probe(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/__vercel_server_probe(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/admin/login",
+      "regex": "^/admin/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/login(?:/)?$"
+    },
+    {
+      "page": "/admin/posts",
+      "regex": "^/admin/posts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/posts(?:/)?$"
+    },
+    {
+      "page": "/admin/projects",
+      "regex": "^/admin/projects(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/projects(?:/)?$"
+    },
+    {
+      "page": "/admin/services",
+      "regex": "^/admin/services(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/services(?:/)?$"
+    },
+    {
+      "page": "/admin/streams",
+      "regex": "^/admin/streams(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/streams(?:/)?$"
+    },
+    {
+      "page": "/blog",
+      "regex": "^/blog(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog(?:/)?$"
+    },
+    {
+      "page": "/contacto",
+      "regex": "^/contacto(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contacto(?:/)?$"
+    },
+    {
+      "page": "/legal/aviso-legal",
+      "regex": "^/legal/aviso\\-legal(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/legal/aviso\\-legal(?:/)?$"
+    },
+    {
+      "page": "/legal/condiciones",
+      "regex": "^/legal/condiciones(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/legal/condiciones(?:/)?$"
+    },
+    {
+      "page": "/legal/cookies",
+      "regex": "^/legal/cookies(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/legal/cookies(?:/)?$"
+    },
+    {
+      "page": "/legal/privacidad",
+      "regex": "^/legal/privacidad(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/legal/privacidad(?:/)?$"
+    },
+    {
+      "page": "/proyectos",
+      "regex": "^/proyectos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/proyectos(?:/)?$"
+    },
+    {
+      "page": "/quienes-somos",
+      "regex": "^/quienes\\-somos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/quienes\\-somos(?:/)?$"
+    },
+    {
+      "page": "/servicios",
+      "regex": "^/servicios(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/servicios(?:/)?$"
+    },
+    {
+      "page": "/servicios/electricidad",
+      "regex": "^/servicios/electricidad(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/servicios/electricidad(?:/)?$"
+    },
+    {
+      "page": "/servicios/electricidad-baja-tension",
+      "regex": "^/servicios/electricidad\\-baja\\-tension(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/servicios/electricidad\\-baja\\-tension(?:/)?$"
+    },
+    {
+      "page": "/servicios/informatica",
+      "regex": "^/servicios/informatica(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/servicios/informatica(?:/)?$"
+    },
+    {
+      "page": "/servicios/sonido",
+      "regex": "^/servicios/sonido(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/servicios/sonido(?:/)?$"
+    },
+    {
+      "page": "/servicios/videovigilancia",
+      "regex": "^/servicios/videovigilancia(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/servicios/videovigilancia(?:/)?$"
+    },
+    {
+      "page": "/streaming",
+      "regex": "^/streaming(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/streaming(?:/)?$"
+    }
+  ],
+  "dataRoutes": [
+    {
+      "page": "/__vercel_server_probe",
+      "dataRouteRegex": "^/_next/data/ZM64xiaBYlPOtKiKPRjDy/__vercel_server_probe\\.json$"
+    }
+  ],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}
