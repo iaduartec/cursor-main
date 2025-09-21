@@ -1,3 +1,12 @@
+import { notFound } from 'next/navigation';
+import { getBlogBySlug } from '../../../lib/db-blog';
+import { BlogLayout } from '../layout';
+
+export default async function BlogPage({ params }: { params: { slug: string } }) {
+  const blog = await getBlogBySlug(params.slug);
+  if (!blog) return notFound();
+  return <BlogLayout blog={blog} />;
+}
 <<<<<<< HEAD
 =======
 /**
