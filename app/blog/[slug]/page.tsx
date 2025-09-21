@@ -77,7 +77,7 @@ Contenido detectado basado en extensión y estructura básica.
 >>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+// Removed duplicate imports and code blocks
 import { Calendar, ArrowLeft, Clock } from 'lucide-react';
 <<<<<<< HEAD
 import { notFound, redirect } from 'next/navigation';
