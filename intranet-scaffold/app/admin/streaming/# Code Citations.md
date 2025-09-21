@@ -171,8 +171,7 @@ viewBox="0 0 24 24">
                 </div
 ```
 
-## License: MIT
-
+### Adrian-Herrera/Laravel-RF
 <https://github.com/Adrian-Herrera/Laravel-RF/blob/6b61d98b7d92ccdaae4780b6dc73ead0d1cc6eb8/resources/views/dashboard.blade.php>
 
 ```
@@ -183,8 +182,7 @@ viewBox="0 0 24 24">
                 </div
 ```
 
-## License: MIT
-
+### imjoshellis/imjoshellis.com
 <https://github.com/imjoshellis/imjoshellis.com/blob/f8c07f219b4cebe6a504075e54dbd0549bc35e9e/src/assets/heroicons/outline/VideoCamera.tsx>
 
 ```
