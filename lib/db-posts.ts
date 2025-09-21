@@ -2,16 +2,17 @@ import { db } from '../db/client';
 import { posts } from '../db/schema';
 import { and, asc, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';
 
-// Conditionally import from contentlayer only when not in Vercel
-let allBlogs: any[] = [];
-
-if (process.env.VERCEL !== '1') {
+// Helper function to get allBlogs conditionally
+async function getAllBlogs(): Promise<any[]> {
+  if (process.env.VERCEL === '1' || process.env.SKIP_CONTENTLAYER === '1') {
+    return [];
+  }
   try {
-    const { allBlogs: importedAllBlogs = [] } = await import('contentlayer/generated');
-    allBlogs = importedAllBlogs;
+    const { allBlogs = [] } = await import('contentlayer/generated');
+    return allBlogs;
   } catch {
-    // Contentlayer not available, use empty array
-    allBlogs = [];
+    // Contentlayer not available, return empty array
+    return [];
   }
 }
 
@@ -238,6 +239,7 @@ export async function getAllPosts(): Promise<PostRow[]> {
     return dbRows;
   }
   // Fallback to Contentlayer
+  const allBlogs = await getAllBlogs();
   return allBlogs.map(p => ({
     id: 0,
     slug: canonicalSlugFor(p),
@@ -257,6 +259,7 @@ export async function getPostBySlug(slug: string): Promise<PostRow | null> {
   if (row) {
     return row;
   }
+  const allBlogs = await getAllBlogs();
   const p = allBlogs.find(x => canonicalSlugFor(x) === norm);
   if (!p) {
     return null;
@@ -279,6 +282,7 @@ export async function getAllSlugs(): Promise<string[]> {
   if (slugs.length > 0) {
     return slugs.map(normalizeSlug);
   }
+  const allBlogs = await getAllBlogs();
   return allBlogs.map(p => canonicalSlugFor(p));
 }
 
@@ -336,6 +340,7 @@ export async function getDistinctCategories(): Promise<string[]> {
   if (cats.length > 0 || hasDb()) {
     return cats;
   }
+  const allBlogs = await getAllBlogs();
   const set = new Set<string>();
   for (const p of allBlogs) {
     if (p.category) {
