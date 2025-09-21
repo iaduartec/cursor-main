@@ -1,4 +1,3 @@
-import type { NeonSql } from '@neondatabase/serverless';
 import { drizzle, type PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { neon, type NeonSql } from '@neondatabase/serverless';
 
