@@ -20,7 +20,7 @@ strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 
           <h3 className="mt-2 text-sm font-medium text-gray-900"
 ```
 
-## License: desconocido
+## License: MIT
 
 <https://github.com/GarrettGarrett/bug-tracker/blob/e045af72e8fea9de54402f9eaac7c8df361736b8/components/EmptyProjectState.js>
 
