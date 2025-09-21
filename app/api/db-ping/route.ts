@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import type { NeonSql } from '@neondatabase/serverless';
 import { sql } from '../../../db/client';
-import postgres from 'postgres';
 
 export async function GET(_req: NextRequest) {
   try {
@@ -11,8 +11,8 @@ export async function GET(_req: NextRequest) {
         { status: 500 }
       );
     }
-    const rows =
-      await (sql as postgres.Sql)`select version() as version limit 1`;
+    const query = sql as NeonSql<Record<string, unknown>>;
+    const rows = await query`select version() as version limit 1`;
     return NextResponse.json({ ok: true, version: rows });
   } catch (err: unknown) {
     return NextResponse.json(

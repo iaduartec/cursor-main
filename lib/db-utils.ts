@@ -17,10 +17,10 @@ export const hasDb = () => {
   }
 
   return Boolean(
-    process.env.SUPABASE_DB_URL ||
-      process.env.POSTGRES_URL ||
+    process.env.POSTGRES_URL ||
       process.env.POSTGRES_URL_NON_POOLING ||
       process.env.DATABASE_URL ||
+      process.env.NEON_DATABASE_URL ||
       process.env.cxz_POSTGRES_URL ||
       process.env.cxz_POSTGRES_PRISMA_URL ||
       process.env.cxz_POSTGRES_URL_NON_POOLING

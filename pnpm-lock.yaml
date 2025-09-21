@@ -32,6 +32,9 @@ importers:
       next-mdx-remote:
         specifier: ^5.0.0
         version: 5.0.0(@types/react@19.1.13)(react@18.3.1)
+      '@neondatabase/serverless':
+        specifier: file:vendor/neon-serverless
+        version: file:vendor/neon-serverless
       react-leaflet:
         specifier: ^4.2.1
         version: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -74,6 +77,11 @@ importers:
         version: 5.9.2
 
 packages:
+
+  '@neondatabase/serverless@file:vendor/neon-serverless':
+    resolution: {directory: vendor/neon-serverless, type: directory}
+    dependencies:
+      postgres: 3.4.7
 
   '@babel/code-frame@7.27.1':
     resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}

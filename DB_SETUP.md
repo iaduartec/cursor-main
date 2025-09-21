@@ -1,77 +1,39 @@
-# Configuración de Base de Datos
+# Configuración de base de datos con Neon
 
-## Supabase (optimizado para Vercel)
+La aplicación está pensada para usar **Neon Postgres** (o cualquier Postgres compatible) con Drizzle ORM.
 
-### Resumen
+## Variables de entorno imprescindibles
 
-- Motor: Supabase Postgres (ideal si necesitas Auth, Storage o Realtime).
-- Esquema gestionado con Drizzle (`db/schema.ts`).
-- Migraciones en `drizzle/` generadas con `drizzle-kit`.
-- Scripts de seed disponibles en `scripts/db/` para poblar `posts`, `projects`, `services` y `streams`.
-
-### Variables de entorno principales
-
-- `SUPABASE_DB_URL`: URL de conexión Postgres. Prioritaria en `db/client.ts`.
-- `SUPABASE_URL`: URL pública del proyecto para el SDK de Supabase.
-- `SUPABASE_SERVICE_ROLE_KEY`: clave de servicio (o `SUPABASE_ANON_KEY` para usos básicos).
-- Compatibilidad: `POSTGRES_URL` y `DATABASE_URL` siguen soportadas como alternativas.
-
-### Puesta en marcha local
-
-1. Crea `.env.local` con las variables anteriores.
-2. Ejecuta las migraciones:
-   ```bash
-   pnpm db:migrate
-   ```
-3. (Opcional) Lanza los scripts de seed:
-   ```bash
-   pnpm db:seed
-   ```
-
-### Migrar datos desde Neon/Vercel Postgres
-
-1. Genera un volcado desde Neon:
-   ```bash
-   PGSOURCE=<NEON_DATABASE_URL>
-   pg_dump --format=custom --no-owner --no-privileges --file=neon_dump.dump "$PGSOURCE"
-   ```
-2. Restaura en Supabase:
-   ```bash
-   PGTARGET=<SUPABASE_DB_URL>
-   pg_restore --clean --no-owner --no-privileges --dbname="$PGTARGET" neon_dump.dump
-   ```
-3. Verifica extensiones y permisos tras la importación.
-
-### Notas
-
-- `db/client.ts` prioriza `SUPABASE_DB_URL` e inicializa el SDK de Supabase si las claves están presentes.
-- `scripts/db/migrate-supabase.ts` es el camino recomendado para aplicar migraciones en Supabase.
-
-## Neon / Vercel Postgres (compatibilidad)
-
-Aunque Supabase es la opción principal, también puedes usar Neon o Vercel Postgres.
-
-### Variables de entorno
-
-- `POSTGRES_URL`: URL principal de conexión.
-- `DATABASE_URL`: fallback genérico.
-
-Ejemplo de `.env.local`:
-```bash
-POSTGRES_URL="postgresql://user:password@host/database?sslmode=require"
-```
-
-### Comandos útiles
+Configura tu `.env.local` con una URL válida de Neon:
 
 ```bash
-# Generar migraciones
-pnpm db:generate
-
-# Aplicar migraciones
-pnpm db:migrate
-
-# Ejecutar seeds manualmente
-pnpm db:seed
+DATABASE_URL="postgresql://<usuario>:<contraseña>@<host>.neon.tech/<db>?sslmode=require"
 ```
 
-> Para entornos locales sin base de datos disponible puedes definir `USE_IN_MEMORY_DB=1` o `SKIP_DB=1` para que la aplicación funcione con datos de Contentlayer.
+También se aceptan `POSTGRES_URL` o `NEON_DATABASE_URL`. El cliente se inicializa con la primera variable disponible en ese orden.
+
+## Puesta en marcha local
+
+1. Crea `.env.local` con `DATABASE_URL` (y opcionalmente `ENABLE_DB_IN_DEV=1` si quieres forzar el uso de la BD en desarrollo).
+2. Aplica migraciones y seeds:
+   ```bash
+   pnpm run db:migrate
+   pnpm run db:seed
+   ```
+3. Verifica la conexión:
+   ```bash
+   pnpm exec tsx scripts/db/ping-neon.ts
+   pnpm exec tsx scripts/verify-neon.ts
+   ```
+
+## Scripts relevantes
+
+- `scripts/db/migrate.ts`: aplica migraciones usando el driver serverless compatible con Neon.
+- `scripts/db/migrate-neon.ts`: versión alternativa basada en `drizzle-orm/neon-http` para despliegues serverless puros.
+- `scripts/db/migrate-safe.ts`: versión tolerante a errores (con soporte para Neon) pensada para CI.
+- `scripts/db/seed-from-mdx.ts`: rellena la tabla `posts` con el contenido del blog.
+- `scripts/db/seed-projects.ts`, `scripts/db/seed-services.ts`, `scripts/db/seed-streams.ts`: scripts para poblar el resto de tablas.
+
+## Fallback sin base de datos
+
+En desarrollo, si no defines ninguna URL de Postgres y `ENABLE_DB_IN_DEV` no está activo, la aplicación cae automáticamente a los datos estáticos generados por Contentlayer para evitar fallos.

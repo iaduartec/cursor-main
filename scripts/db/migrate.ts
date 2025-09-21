@@ -5,7 +5,8 @@
  */
 import { config } from 'dotenv';
 config({ path: '.env.local' }); // 👈 fuerza .env.local
-import postgres from 'postgres';
+import type { NeonSql } from '@neondatabase/serverless';
+import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import { migrate } from 'drizzle-orm/postgres-js/migrator';
 
@@ -18,13 +19,15 @@ async function main() {
     return;
   }
 
-  const sql = postgres(url, { prepare: false });
+  const sql = neon(url) as NeonSql;
   const db = drizzle(sql, { logger: true });
 
   await migrate(db, { migrationsFolder: 'drizzle' });
   console.log('✅ Migraciones aplicadas exitosamente');
 
-  await sql.end();
+  if (typeof sql.end === 'function') {
+    await sql.end();
+  }
 }
 
 main().catch(err => {

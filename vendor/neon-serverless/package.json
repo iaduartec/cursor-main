@@ -1,0 +1,12 @@
+{
+  "name": "@neondatabase/serverless",
+  "version": "0.10.4-local",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "license": "MIT",
+  "dependencies": {
+    "postgres": "^3.4.7"
+  }
+}
+

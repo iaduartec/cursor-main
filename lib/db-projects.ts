@@ -13,7 +13,13 @@ export type ProjectRow = {
   date: Date | null;
 };
 
-const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
+const hasDb = () =>
+  Boolean(
+    process.env.POSTGRES_URL ||
+      process.env.POSTGRES_URL_NON_POOLING ||
+      process.env.DATABASE_URL ||
+      process.env.NEON_DATABASE_URL
+  );
 
 export async function getAllProjects(): Promise<ProjectRow[]> {
   if (!hasDb()) return [];
