@@ -1,7 +1,19 @@
 import { db } from '../db/client';
 import { services } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';
-import { allServicios } from 'contentlayer/generated';
+
+// Conditionally import from contentlayer only when not in Vercel
+let allServicios: any[] = [];
+
+if (process.env.VERCEL !== '1') {
+  try {
+    const contentlayer = await import('contentlayer/generated');
+    allServicios = contentlayer.allServicios;
+  } catch {
+    // Contentlayer not available, use empty array
+    allServicios = [];
+  }
+}
 
 export type ServiceRow = {
   id: number;

@@ -282,9 +282,7 @@ export async function getAllSlugs(): Promise<string[]> {
   return allBlogs.map(p => canonicalSlugFor(p));
 }
 
-export async function getPostsPage(
-  params: PostsPageParams
-): Promise<{
+export async function getPostsPage(params: PostsPageParams): Promise<{
   items: PostRow[];
   total: number;
   page: number;
