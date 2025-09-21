@@ -97,8 +97,10 @@ const nextConfig = {
 
 };
 
-// Enable standalone output only on Vercel o cuando se solicita explícitamente.
-const enableStandalone = process.env.VERCEL === '1' || process.env.ENABLE_STANDALONE === '1';
+// Enable standalone output only on Vercel o cuando se solicita explícitamente,
+// y evitarlo en Windows por problemas de symlink (EPERM) en entornos locales.
+const enableStandalone =
+  (process.env.VERCEL === '1' || process.env.ENABLE_STANDALONE === '1') && process.platform !== 'win32';
 if (enableStandalone) {
   nextConfig.output = 'standalone';
 }
