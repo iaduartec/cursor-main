@@ -18,6 +18,8 @@ class VercelDiagnostics {
     this.issues = [];
     this.warnings = [];
     this.fixes = [];
+    this.ciRunsTypecheck = false;
+    this.ciRunsLint = false;
   }
 
   log(message, color = RESET) {
@@ -41,14 +43,14 @@ class VercelDiagnostics {
 
   checkPackageJson() {
     this.log('\n🔍 Checking package.json configuration...');
-    
+
     if (!existsSync('package.json')) {
       this.addIssue('package.json not found');
       return;
     }
 
     const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
-    
+
     // Check package manager
     if (pkg.packageManager && !pkg.packageManager.startsWith('pnpm')) {
       this.addWarning(`Package manager is ${pkg.packageManager}, but project uses pnpm`);
@@ -88,7 +90,7 @@ class VercelDiagnostics {
       this.addFix('Created vercel.json with recommended configuration');
     } else {
       const vercelConfig = JSON.parse(readFileSync('vercel.json', 'utf8'));
-      
+
       if (vercelConfig.buildCommand) {
         if (vercelConfig.buildCommand.includes('pnpm')) {
           this.addFix(`Build command uses pnpm: ${vercelConfig.buildCommand}`);
@@ -122,12 +124,27 @@ class VercelDiagnostics {
       this.addWarning('Standalone output detected - may cause "No serverless pages" error on Vercel');
     }
 
-    if (config.includes('typescript: { ignoreBuildErrors: true }')) {
-      this.addWarning('TypeScript errors are ignored during build');
+    const tsIgnored = config.includes("typescript: { ignoreBuildErrors: true }");
+    const eslintIgnored = config.includes("eslint: { ignoreDuringBuilds: true }");
+
+    if (tsIgnored || eslintIgnored) {
+      this.detectCIEnforcements();
     }
 
-    if (config.includes('eslint: { ignoreDuringBuilds: true }')) {
-      this.addWarning('ESLint errors are ignored during build');
+    if (tsIgnored) {
+      if (this.ciRunsTypecheck) {
+        this.addFix('TypeScript checks enforced in CI (ignore during build is acceptable)');
+      } else {
+        this.addWarning('TypeScript errors are ignored during build');
+      }
+    }
+
+    if (eslintIgnored) {
+      if (this.ciRunsLint) {
+        this.addFix('ESLint checks enforced in CI (ignore during build is acceptable)');
+      } else {
+        this.addWarning('ESLint errors are ignored during build');
+      }
     }
   }
 
@@ -140,6 +157,10 @@ class VercelDiagnostics {
 
     if (existsSync('.env.example.db')) {
       this.addFix('Database environment example found');
+    }
+
+    if (existsSync('.env.vercel-import')) {
+      this.addFix('Found .env.vercel-import (helper for importing vars to Vercel)');
     }
 
     if (!existsSync('.env') && !existsSync('.env.local')) {
@@ -237,13 +258,42 @@ class VercelDiagnostics {
     this.checkNextConfig();
     this.checkEnvironmentFiles();
     this.checkDependencies();
-    
+
     // Skip build test if --skip-build flag is provided
     if (!process.argv.includes('--skip-build')) {
       await this.checkBuildProcess();
     }
 
     this.generateReport();
+  }
+
+  detectCIEnforcements() {
+    try {
+      const paths = [
+        '.github/workflows/deploy-workflow.yml',
+        '.github/workflows/vercel-preview.yml',
+        '.github/workflows/deploy.yml',
+      ].filter((p) => existsSync(p));
+
+      for (const p of paths) {
+        const yml = readFileSync(p, 'utf8');
+        if (yml.match(/pnpm\s+type-check/)) {
+          this.ciRunsTypecheck = true;
+        }
+        if (yml.match(/pnpm\s+lint(\b|:|\s)/)) {
+          this.ciRunsLint = true;
+        }
+      }
+
+      if (this.ciRunsTypecheck || this.ciRunsLint) {
+        this.addFix(`CI enforces: ${[
+          this.ciRunsTypecheck ? 'type-check' : null,
+          this.ciRunsLint ? 'lint' : null,
+        ].filter(Boolean).join(', ')}`);
+      }
+    } catch {
+      // ignore
+    }
   }
 }
 
