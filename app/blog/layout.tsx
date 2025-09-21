@@ -21,6 +21,7 @@
 // Removed duplicate closing brace
 // Removed duplicate closing brace
 import { Metadata } from 'next';
+import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
   title: 'Blog - Duartec Instalaciones Informáticas',
@@ -32,8 +33,6 @@ export const metadata: Metadata = {
     type: 'website',
   },
 };
-
-import { ReactNode } from 'react';
 
 export function BlogLayout({ children }: { children: ReactNode }) {
   return (
