@@ -20,12 +20,16 @@ const normalizeSlug = (slug: string): string =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-const canonicalSlugFor = (post: { slug?: string | null; title?: string | null }): string => {
+const canonicalSlugFor = (post: {
+  slug?: string | null;
+  title?: string | null;
+}): string => {
   const base = post.slug || post.title || '';
   return normalizeSlug(base);
 };
 
-const cleanSrc = (value?: string | null): string => (value || '').replace(/[\r\n]+/g, '').trim();
+const cleanSrc = (value?: string | null): string =>
+  (value || '').replace(/[\r\n]+/g, '').trim();
 
 const getCategoryColor = (category: string) => {
   switch ((category || '').toLowerCase()) {
@@ -67,7 +71,7 @@ const getBlogCards = unstable_cache(
   async (): Promise<BlogCard[]> => {
     const posts = await getAllPosts();
     return posts
-      .map((post) => ({
+      .map(post => ({
         title: post.title,
         slug: canonicalSlugFor(post),
         category: post.category ?? 'General',
@@ -82,7 +86,11 @@ const getBlogCards = unstable_cache(
   { revalidate: 3600, tags: ['blogs'] }
 );
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const incoming = normalizeSlug(params.slug);
   const post = await getPostBySlug(incoming);
 
@@ -106,10 +114,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
-  return slugs.map((slug) => ({ slug }));
+  return slugs.map(slug => ({ slug }));
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const incoming = normalizeSlug(params.slug);
   const post = await getPostBySlug(incoming);
 
@@ -137,81 +149,90 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   };
 
   return (
-    <div className="min-h-screen">
-      <section className="relative bg-gradient-to-br from-slate-900 to-slate-800 text-white py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
+    <div className='min-h-screen'>
+      <section className='relative bg-gradient-to-br from-slate-900 to-slate-800 text-white py-20 px-4 overflow-hidden'>
+        <div className='absolute inset-0 opacity-20'>
           <Image
             src={current.image || FALLBACK_IMAGE}
             alt={current.title}
             fill
             priority
-            className="object-cover"
-            sizes="100vw"
+            className='object-cover'
+            sizes='100vw'
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/80 to-slate-900" />
+          <div className='absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/80 to-slate-900' />
         </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <Link href="/blog" className="inline-flex items-center text-sm font-medium text-white/90 hover:text-white mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" />
+        <div className='relative z-10 max-w-5xl mx-auto'>
+          <Link
+            href='/blog'
+            className='inline-flex items-center text-sm font-medium text-white/90 hover:text-white mb-6'
+          >
+            <ArrowLeft className='mr-2 h-4 w-4' />
             Volver al blog
           </Link>
 
-          <div className="mb-4">
-            <span className={`inline-block rounded-full px-4 py-2 text-sm font-medium ${getCategoryColor(current.category)}`}>
+          <div className='mb-4'>
+            <span
+              className={`inline-block rounded-full px-4 py-2 text-sm font-medium ${getCategoryColor(
+                current.category
+              )}`}
+            >
               {current.category}
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">{current.title}</h1>
+          <h1 className='text-4xl md:text-5xl font-bold mb-6'>
+            {current.title}
+          </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-sm text-white/80">
-            <span className="inline-flex items-center">
-              <Calendar className="mr-2 h-4 w-4" />
+          <div className='flex flex-wrap items-center gap-6 text-sm text-white/80'>
+            <span className='inline-flex items-center'>
+              <Calendar className='mr-2 h-4 w-4' />
               {new Date(current.date).toLocaleDateString('es-ES', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
               })}
             </span>
-            <span className="inline-flex items-center">
-              <Clock className="mr-2 h-4 w-4" />
+            <span className='inline-flex items-center'>
+              <Clock className='mr-2 h-4 w-4' />
               {current.readTime} de lectura
             </span>
           </div>
         </div>
       </section>
 
-      <section className="max-w-4xl mx-auto py-16 px-4">
+      <section className='max-w-4xl mx-auto py-16 px-4'>
         <Breadcrumb
-          items={[
-            { label: 'Blog', href: '/blog' },
-            { label: current.title },
-          ]}
+          items={[{ label: 'Blog', href: '/blog' }, { label: current.title }]}
         />
 
-        <article className="prose prose-lg max-w-none dark:prose-invert">
+        <article className='prose prose-lg max-w-none dark:prose-invert'>
           {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </article>
 
         <RelatedPosts currentPost={current} allPosts={allPosts} maxPosts={3} />
 
-        <div className="mt-16 rounded-2xl bg-accent p-8 text-center text-white">
-          <h3 className="mb-4 text-2xl font-bold">¿Necesitas ayuda con tu proyecto?</h3>
-          <p className="mb-6 text-lg opacity-90">
-            Nuestros expertos están aquí para ayudarte con cualquier consulta técnica.
+        <div className='mt-16 rounded-2xl bg-accent p-8 text-center text-white'>
+          <h3 className='mb-4 text-2xl font-bold'>
+            ¿Necesitas ayuda con tu proyecto?
+          </h3>
+          <p className='mb-6 text-lg opacity-90'>
+            Nuestros expertos están aquí para ayudarte con cualquier consulta
+            técnica.
           </p>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className='flex flex-col items-center justify-center gap-4 sm:flex-row'>
             <Link
-              href="/contacto"
-              className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 font-semibold text-accent transition-colors duration-200 hover:bg-gray-100"
+              href='/contacto'
+              className='inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 font-semibold text-accent transition-colors duration-200 hover:bg-gray-100'
             >
               Contactar expertos
             </Link>
             <a
-              href="tel:+34947256430"
-              className="inline-flex items-center justify-center rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-accent"
+              href='tel:+34947256430'
+              className='inline-flex items-center justify-center rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-accent'
             >
               Llamar ahora
             </a>
