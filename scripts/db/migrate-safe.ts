@@ -59,8 +59,16 @@ async function main() {
   try {
     if (typeof sql.unsafe === 'function') {
       await sql.unsafe(sqlText);
+    } else if (typeof (sql as any) === 'function') {
+      // some versions return a callable function
+      await (sql as any)(sqlText);
+    } else if (typeof (sql as any).query === 'function') {
+      // fallback to a query method if present
+      await (sql as any).query(sqlText);
     } else {
-      await sql(sqlText);
+      throw new Error(
+        'Unsupported neon sql client API: cannot execute migration'
+      );
     }
     console.log('Migration applied successfully');
   } catch (err) {
@@ -80,4 +88,3 @@ main().catch(err => {
   console.error(err);
   process.exit(1);
 });
-

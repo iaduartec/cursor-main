@@ -56,7 +56,9 @@ class FakeQuery<T = unknown> {
     return this;
   }
 
-  then(onfulfilled?: (value: FakeQueryResult<T>) => unknown): Promise<FakeQueryResult<T>> {
+  then(
+    onfulfilled?: (value: FakeQueryResult<T>) => unknown
+  ): Promise<FakeQueryResult<T>> {
     const value: FakeQueryResult<T> = [];
 
     if (typeof onfulfilled === 'function') {
@@ -96,7 +98,9 @@ let skipDb =
   !connectionString;
 
 if (!connectionString) {
-  console.warn('⚠️  No se encontró URL de base de datos. Usando modo sin conexión.');
+  console.warn(
+    '⚠️  No se encontró URL de base de datos. Usando modo sin conexión.'
+  );
 }
 
 let client: NeonSql | undefined;
