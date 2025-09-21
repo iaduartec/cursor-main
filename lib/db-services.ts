@@ -2,16 +2,17 @@ import { db } from '../db/client';
 import { services } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';
 
-// Conditionally import from contentlayer only when not in Vercel
-let allServicios: any[] = [];
-
-if (process.env.VERCEL !== '1') {
+// Helper function to get allServicios conditionally
+async function getAllServicios(): Promise<any[]> {
+  if (process.env.VERCEL === '1' || process.env.SKIP_CONTENTLAYER === '1') {
+    return [];
+  }
   try {
-    const { allServicios: importedServicios = [] } = await import('contentlayer/generated');
-    allServicios = importedServicios;
+    const { allServicios = [] } = await import('contentlayer/generated');
+    return allServicios;
   } catch {
-    // Contentlayer not available, use empty array
-    allServicios = [];
+    // Contentlayer not available, return empty array
+    return [];
   }
 }
 
@@ -61,6 +62,7 @@ export async function getServiceBySlug(
   slug: string
 ): Promise<ServiceRow | null> {
   if (!hasDb()) {
+    const allServicios = await getAllServicios();
     const s = allServicios.find(x => x.slug === slug);
     if (!s) {
       return null;
