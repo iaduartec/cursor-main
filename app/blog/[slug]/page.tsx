@@ -267,19 +267,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <Image
             src={current.image || '/images/proyectos/CCTV.jpeg'}
             alt={current.title}
-            fill
-            className="object-cover opacity-10"
-          />
+            /**
+             * Resumen generado automáticamente.
+             *
         </div>
-        <div className="relative max-w-4xl mx-auto">
-          <Breadcrumb items={[
-            { label: 'Blog', href: '/blog' },
-            { label: current.title }
-          ]} />
-
-          <div className="flex items-center mb-6">
-            <Link
-              href="/blog"
+             * app/blog/[slug]/page.tsx
+             *
+             * 2025-09-13T06:20:07.361Z
+             *
+             * ——————————————————————————————
+             * Archivo .tsx: page.tsx
+             * Tamaño: 7543 caracteres, 231 líneas
+             * Resumen básico generado automáticamente sin análisis de IA.
+             */
               className="flex items-center text-accent hover:text-accent-700 transition-colors"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
