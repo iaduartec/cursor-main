@@ -38,7 +38,7 @@ export default async function AdminStreamsPage() {
     revalidateTag('streams');
     revalidatePath('/streaming');
     revalidatePath('/admin/streams');
-  }
+  // ...existing code...
 
   async function remove(formData: FormData) {
     'use server';
@@ -84,7 +84,7 @@ export default async function AdminStreamsPage() {
               <td>{s.provider}</td>
               <td>{s.youtubeId}</td>
               <td>
-                <form action={remove}>
+                <form action={remove} method="post">
                   <input type="hidden" name="slug" value={s.slug} />
                   <button className="text-red-600">Eliminar</button>
                 </form>
