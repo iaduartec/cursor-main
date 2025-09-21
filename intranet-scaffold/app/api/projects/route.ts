@@ -28,7 +28,7 @@ function checkAdminAccess(req: Request) {
 export async function GET() {
   try {
     const sql = getDb();
-    const rows = await sql`SELECT id, slug, title, description, hero_image, created_at FROM projects ORDER BY created_at DESC`;
+  const rows = await sql`SELECT id, slug, title, description, hero_image, created_at FROM projects ORDER BY created_at DESC` as any[];
     return NextResponse.json(rows);
   } catch (err: any) {
     console.error('API /api/projects GET error:', err);
@@ -57,15 +57,15 @@ export async function POST(req: Request) {
     }
     const sql = getDb();
     // uniqueness check
-    const exists = await sql`SELECT id FROM projects WHERE slug = ${slug}`;
-    if (exists && exists.length > 0) {
+  const exists = await sql`SELECT id FROM projects WHERE slug = ${slug}` as any[];
+  if (exists && exists.length > 0) {
       return NextResponse.json({ error: 'slug already exists' }, { status: 409 });
     }
     const inserted = await sql`
       INSERT INTO projects (slug, title, description, hero_image)
       VALUES (${slug}, ${title}, ${description}, ${hero_image})
       RETURNING id, slug, title, description, hero_image, created_at
-    `;
+    ` as any[];
     return NextResponse.json(inserted[0], { status: 201 });
   } catch (err: any) {
       console.error('API /api/projects POST error:', err);

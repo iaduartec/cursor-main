@@ -121,7 +121,7 @@ function createInMemoryAdapter() {
   return adapter;
 }
 
-export function getDb() {
+export function getDb(): (strings: TemplateStringsArray, ...values: unknown[]) => Promise<unknown> {
   if (!sql) {
     // If requested, use in-memory adapter (useful for local dev/E2E)
     if (process.env.USE_IN_MEMORY_DB === '1' || process.env.USE_IN_MEMORY_DB === 'true') {
@@ -133,7 +133,7 @@ export function getDb() {
         sql = createInMemoryAdapter();
   try { (globalThis as unknown as { __inMemorySqlAdapter?: unknown }).__inMemorySqlAdapter = sql; } catch (e) { /* ignore */ }
       }
-      return sql;
+      return sql as (strings: TemplateStringsArray, ...values: unknown[]) => Promise<unknown>;
     }
 
   // Prefer Neon/Postgres env vars. SUPABASE_DB_URL is accepted only as an
@@ -142,7 +142,7 @@ export function getDb() {
   if (!dbUrl) {throw new Error("Database URL not configured. Set POSTGRES_URL or DATABASE_URL.");}
   sql = postgres(dbUrl, { ssl: 'require' });
   }
-  return sql;
+  return sql as (strings: TemplateStringsArray, ...values: unknown[]) => Promise<unknown>;
 }
 
 export async function closeDb() {

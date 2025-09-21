@@ -39,7 +39,13 @@
     "deps:update-safe": "pnpm update --latest --workspace-root"
   },
   "dependencies": {
+    "@playwright/test": "^1.55.0",
+    "contentlayer": "^0.3.4",
+    "drizzle-orm": "^0.44.5",
+    "gray-matter": "^4.0.3",
     "next": "^14.2.13",
+    "next-mdx-remote": "^5.0.0",
+    "postgres": "^3.4.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

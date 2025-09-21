@@ -12,15 +12,15 @@ Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
 import Link from 'next/link';
-import { getAllPosts } from '../../lib/mdx';
+import { getAllPostsMeta } from '../../lib/mdx';
 
 export default function BlogListPage() {
-  const posts = getAllPosts();
+  const posts = getAllPostsMeta();
   return (
     <main style={{ padding: 24 }}>
       <h1>Blog</h1>
       <ul>
-        {posts.map((post, idx) => (
+  {posts.map((post: any, idx: number) => (
           <li key={idx} style={{ marginBottom: 24 }}>
             <Link href={`/blog/${post.frontmatter.slug}`}>
               <strong>{post.frontmatter.title}</strong>
