@@ -4,12 +4,24 @@ on:
   delete:
   pull_request:
     types: [closed]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch a limpiar
+        required: true
+        type: string
+      dry_run:
+        description: No borrar (simulación)
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   cleanup:
     if: >-
       ${{ (github.event_name == 'delete' && github.event.ref_type == 'branch')
-          || (github.event_name == 'pull_request' && github.event.pull_request.merged == true) }}
+          || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+          || (github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,7 +42,9 @@ jobs:
         id: target
         shell: bash
         run: |
-          if [ "${{ github.event_name }}" = "delete" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "branch=${{ github.event.inputs.branch }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event_name }}" = "delete" ]; then
             echo "branch=${{ github.event.ref }}" >> $GITHUB_OUTPUT
           else
             echo "branch=${{ github.head_ref || github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
@@ -43,7 +57,12 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
           TARGET_BRANCH: ${{ steps.target.outputs.branch }}
-        run: node scripts/cleanup-vercel-branch.mjs
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            DRY_RUN=1 node scripts/cleanup-vercel-branch.mjs
+          else
+            node scripts/cleanup-vercel-branch.mjs
+          fi
 
   skipped:
     if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false }}
