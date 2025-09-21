@@ -38,7 +38,7 @@ export default async function ProyectosPage() {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-2 text-sm text-gray-500 dark:text-gray-400">
                   <span>{p.category}</span>
-                  <span>{p.date ? new Date(p.date as any).getFullYear() : ''}</span>
+                  <span>{p.date ? new Date(p.date).getFullYear() : ''}</span>
                 </div>
                 <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">{p.title}</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">{p.description}</p>
