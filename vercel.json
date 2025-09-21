@@ -7,10 +7,10 @@
   "devCommand": "pnpm run dev",
   "functions": {
     "app/**/*.ts": {
-      "runtime": "nodejs22.x"
+      "runtime": "@vercel/node"
     },
     "app/**/*.tsx": {
-      "runtime": "nodejs22.x"
+      "runtime": "@vercel/node"
     }
   }
 }
