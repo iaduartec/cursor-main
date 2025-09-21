@@ -36,7 +36,7 @@ const hasDb = () =>
 
 export async function getAllServices(): Promise<ServiceRow[]> {
   if (!hasDb()) {
-    return fallbackServices();
+    return await fallbackServices();
   }
   try {
     const rows = await db
@@ -54,7 +54,7 @@ export async function getAllServices(): Promise<ServiceRow[]> {
     return rows as unknown as ServiceRow[];
   } catch (e) {
     console.error('DB getAllServices error', e);
-    return fallbackServices();
+    return await fallbackServices();
   }
 }
 

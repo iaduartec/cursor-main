@@ -5,7 +5,7 @@
   "description": "Sitio web profesional de Duartec Instalaciones Informáticas - Soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos",
   "scripts": {
     "dev": "next dev",
-    "build": "SKIP_DB=1 SKIP_CONTENTLAYER=1 next build",
+    "build": "node scripts/build.js",
     "start": "next start",
     "lint": "eslint . --max-warnings=20",
     "lint:fix": "eslint . --fix --max-warnings=20",
@@ -41,6 +41,9 @@
   "dependencies": {
     "@neondatabase/serverless": "file:vendor\\neon-serverless",
     "@playwright/test": "^1.55.0",
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
     "autoprefixer": "^10.4.21",
     "contentlayer": "^0.3.4",
     "dotenv": "^17.2.2",
@@ -55,21 +58,23 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-leaflet": "^5.0.0",
-    "tailwindcss": "^3.4.0"
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.13",
     "@types/leaflet": "^1.9.20",
-    "@types/node": "^24.5.2",
-    "@types/react": "^19.1.13",
-    "@types/react-dom": "^19.1.9",
     "@typescript-eslint/eslint-plugin": "^8.44.0",
     "@typescript-eslint/parser": "^8.44.0",
+    "cross-env": "^10.0.0",
     "eslint": "^9.36.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "typescript": "^5.9.2"
+    "eslint-plugin-react-hooks": "^5.2.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "node-domexception": "^2.0.2"
+    }
   },
   "engines": {
     "node": "22"
