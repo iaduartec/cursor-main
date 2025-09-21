@@ -47,14 +47,17 @@ pnpm vercel:diagnose:quick
 ## 🚨 Errores Comunes y Soluciones
 
 ### Error: "No serverless pages were built"
+
 - **Causa**: Configuración `output: 'standalone'` activada
 - **Solución**: Desactivar standalone en Vercel (automático en este proyecto)
 
 ### Error: "Module not found: Can't resolve 'fs'"
+
 - **Causa**: Uso de APIs de Node.js en componentes cliente
 - **Solución**: Usar dynamic imports o condicionales
 
 ### Error: Build timeout
+
 - **Causa**: Build muy lento o proceso colgado
 - **Soluciones**:
   - Aumentar timeout en Vercel Settings > Functions
@@ -62,10 +65,12 @@ pnpm vercel:diagnose:quick
   - Usar `SKIP_CONTENTLAYER=1` si es necesario
 
 ### Error: "getaddrinfo ENOTFOUND host"
+
 - **Causa**: Error de conexión a base de datos durante build
 - **Solución**: El proyecto detecta esto automáticamente y usa modo offline
 
 ### Error de peer dependencies
+
 - **Causa**: Dependencias incompatibles o faltantes
 - **Solución**: Revisar warnings de instalación y actualizar dependencies
 
