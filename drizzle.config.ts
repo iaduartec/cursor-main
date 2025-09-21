@@ -5,8 +5,12 @@ export default {
   out: './drizzle',
   dialect: 'postgresql',
   dbCredentials: {
-    // Supabase connection string
-    url: process.env.POSTGRES_URL || process.env.DATABASE_URL || '',
+    // Neon/Postgres connection string
+    url:
+      process.env.POSTGRES_URL ||
+      process.env.DATABASE_URL ||
+      process.env.NEON_DATABASE_URL ||
+      '',
   },
 } satisfies Config;
 

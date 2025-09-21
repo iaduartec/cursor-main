@@ -1,22 +1,22 @@
 #!/usr/bin/env tsx
 /**
- * scripts/db/migrate-supabase.ts
+ * scripts/db/migrate-safe.ts
  * Versión segura que no falla el build cuando no existen vars de BD.
- * Si se detecta POSTGRES_URL/DATABASE_URL intentará aplicar la migración
- * (misma lógica que la versión en intranet-scaffold). En entornos sin DB
- * simplemente hace un exit 0 para que Vercel/CI no interrumpa el build.
+ * Si se detecta POSTGRES_URL/DATABASE_URL/NEON_DATABASE_URL intentará aplicar la migración.
+ * En entornos sin DB simplemente hace un exit 0 para que Vercel/CI no interrumpa el build.
  */
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
-import postgres from 'postgres';
+import type { NeonSql } from '@neondatabase/serverless';
+import { neon } from '@neondatabase/serverless';
 
 async function main() {
   const databaseUrl =
     process.env.POSTGRES_URL ||
     process.env.DATABASE_URL ||
-    process.env.cxz_POSTGRES_URL ||
-    process.env.SUPABASE_DB_URL;
+    process.env.NEON_DATABASE_URL ||
+    process.env.cxz_POSTGRES_URL;
 
   if (!databaseUrl) {
     console.warn(
@@ -25,7 +25,7 @@ async function main() {
     return;
   }
 
-  const sql = postgres(databaseUrl, { ssl: 'require' });
+  const sql = neon(databaseUrl) as NeonSql;
 
   // try possible locations for the SQL migration
   const candidate1 = path.resolve(
@@ -49,21 +49,31 @@ async function main() {
     migrationPath = candidate2;
   } else {
     console.error('Migration SQL not found. Checked:', candidate1, candidate2);
-    await sql.end({ timeout: 5 }).catch(() => {});
+    if (typeof sql.end === 'function') {
+      await sql.end().catch(() => {});
+    }
     process.exit(1);
   }
 
   const sqlText = fs.readFileSync(migrationPath, 'utf8');
   console.log('Applying migration:', migrationPath);
   try {
-    await sql.unsafe(sqlText);
+    if (typeof sql.unsafe === 'function') {
+      await sql.unsafe(sqlText);
+    } else {
+      await sql(sqlText);
+    }
     console.log('Migration applied successfully');
   } catch (err) {
     console.error('Migration failed:', err);
-    await sql.end({ timeout: 5 }).catch(() => {});
+    if (typeof sql.end === 'function') {
+      await sql.end().catch(() => {});
+    }
     process.exit(1);
   } finally {
-    await sql.end({ timeout: 5 }).catch(() => {});
+    if (typeof sql.end === 'function') {
+      await sql.end().catch(() => {});
+    }
   }
 }
 
@@ -71,3 +81,4 @@ main().catch(err => {
   console.error(err);
   process.exit(1);
 });
+

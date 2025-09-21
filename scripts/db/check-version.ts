@@ -13,11 +13,11 @@ Contenido detectado basado en extensión y estructura básica.
 */
 // scripts/db/check-version.ts
 // Small helper to check DB connectivity and version via exported client
-import type { Sql } from 'postgres';
+import type { NeonSql } from '@neondatabase/serverless';
 
 type SqlModuleShape =
-  | { default?: { sql?: Sql } }
-  | { sql?: Sql };
+  | { default?: { sql?: NeonSql } }
+  | { sql?: NeonSql };
 
 (async () => {
   try {
@@ -37,9 +37,12 @@ type SqlModuleShape =
     const res = (await sql`select version()`) as Array<{ version?: string }>;
     const version = res[0]?.version ?? 'desconocida';
     console.log('pg version:', version);
-    await sql.end?.();
+    if (typeof sql.end === 'function') {
+      await sql.end();
+    }
   } catch (err) {
     console.error('Error comprobando versión de Postgres:', err);
     process.exit(1);
   }
 })();
+

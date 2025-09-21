@@ -17,10 +17,9 @@
 ## Base de datos (Drizzle + Postgres)
 
 - Variables soportadas por `db/client.ts`:
-  - `SUPABASE_DB_URL` (prioritaria).
-  - `POSTGRES_URL`, `POSTGRES_URL_NON_POOLING`, `DATABASE_URL`.
+  - `POSTGRES_URL`, `POSTGRES_URL_NON_POOLING`, `DATABASE_URL`, `NEON_DATABASE_URL`.
   - Prefijos `cxz_…` siguen siendo válidos para entornos locales.
-- El cliente usa `postgres` (driver serverless-friendly) con fallback en memoria si `USE_IN_MEMORY_DB=1` o `SKIP_DB=1`.
+- El cliente usa el driver serverless de Neon (con fallback en memoria si `USE_IN_MEMORY_DB=1` o `SKIP_DB=1`).
 - Migraciones:
   ```bash
   pnpm db:migrate

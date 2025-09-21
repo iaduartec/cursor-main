@@ -1,12 +1,13 @@
 // Diagnostic script: run simple queries to reproduce DB errors
-// Diagnostic script: run simple queries to reproduce DB errors
+import type { NeonSql } from '@neondatabase/serverless';
 import { sql, db } from '../../db/client';
 
 async function run() {
   try {
     console.log('Testing low-level sql client...');
     if (typeof sql === 'function') {
-      const res = await sql`select version()`;
+      const query = sql as NeonSql<Record<string, unknown>>;
+      const res = await query`select version()`;
       console.log('Version result:', res[0]);
     } else {
       console.log('sql client is not a function, value:', typeof sql, sql);
@@ -53,11 +54,9 @@ async function run() {
 
   try {
     // close sql if available
-    if (
-      sql &&
-      typeof (sql as unknown as { end?: unknown }).end === 'function'
-    ) {
-      await (sql as unknown as { end?: () => Promise<unknown> }).end?.();
+    const closer = sql as NeonSql;
+    if (sql && typeof closer.end === 'function') {
+      await closer.end();
       console.log('\nClosed low-level sql connection.');
     }
   } catch {

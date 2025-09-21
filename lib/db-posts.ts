@@ -16,7 +16,13 @@ export type PostRow = {
   published: boolean;
 };
 
-const hasDb = () => Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL);
+const hasDb = () =>
+  Boolean(
+    process.env.POSTGRES_URL ||
+      process.env.POSTGRES_URL_NON_POOLING ||
+      process.env.DATABASE_URL ||
+      process.env.NEON_DATABASE_URL
+  );
 
 export async function getAllPostsFromDb(): Promise<PostRow[]> {
   if (!hasDb()) return [];

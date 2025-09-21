@@ -1,5 +1,6 @@
+import type { NeonSql } from '@neondatabase/serverless';
 import { drizzle, type PostgresJsDatabase } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
+import { neon } from '@neondatabase/serverless';
 
 import * as schema from './schema';
 
@@ -79,9 +80,10 @@ type FakeDb = {
 };
 
 const rawConnectionString =
-  process.env.SUPABASE_DB_URL ||
   process.env.POSTGRES_URL ||
+  process.env.POSTGRES_URL_NON_POOLING ||
   process.env.DATABASE_URL ||
+  process.env.NEON_DATABASE_URL ||
   process.env.cxz_POSTGRES_URL ||
   process.env.cxz_POSTGRES_PRISMA_URL ||
   process.env.cxz_POSTGRES_URL_NON_POOLING ||
@@ -98,12 +100,12 @@ if (!connectionString) {
   console.warn('⚠️  No se encontró URL de base de datos. Usando modo sin conexión.');
 }
 
-let client: postgres.Sql | undefined;
+let client: NeonSql | undefined;
 let dbExport: DrizzleClient | undefined;
 
 if (!skipDb) {
   try {
-    client = postgres(connectionString, { prepare: false });
+    client = neon(connectionString) as NeonSql;
     dbExport = drizzle(client, { schema });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
@@ -130,5 +132,3 @@ if (!dbExport) {
 
 export const db: DrizzleClient = dbExport;
 export { client as sql };
-
-export const supabase = null;
