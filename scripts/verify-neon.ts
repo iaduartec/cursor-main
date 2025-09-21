@@ -1,5 +1,4 @@
-import type { NeonSql } from '@neondatabase/serverless';
-import { neon } from '@neondatabase/serverless';
+import { neon, type NeonSql } from '@neondatabase/serverless';
 
 async function verifyNeonConnection() {
   console.log('🔍 Verificando conexión a Neon...\n');

@@ -39,7 +39,7 @@
     "deps:update-safe": "pnpm update --latest --workspace-root"
   },
   "dependencies": {
-    "@neondatabase/serverless": "file:vendor/neon-serverless",
+    "@neondatabase/serverless": "file:vendor\\neon-serverless",
     "@playwright/test": "^1.55.0",
     "autoprefixer": "^10.4.21",
     "contentlayer": "^0.3.4",
@@ -54,15 +54,20 @@
     "postgres": "^3.4.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-leaflet": "^4.2.1",
-    "tailwindcss": "^3.4.17"
+    "react-leaflet": "^5.0.0",
+    "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.20",
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
-    "eslint": "^9.35.0",
+    "@typescript-eslint/eslint-plugin": "^8.44.0",
+    "@typescript-eslint/parser": "^8.44.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "typescript": "^5.9.2"
   },
   "engines": {

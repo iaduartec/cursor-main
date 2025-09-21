@@ -73,7 +73,7 @@ export default async function AdminStreamsPage() {
             <th>Nombre</th>
             <th>Provider</th>
             <th>YouTube ID</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
         <tbody>

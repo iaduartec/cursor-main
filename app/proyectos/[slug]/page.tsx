@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const p = await getProjectBySlug(normalizeSlug(slug));
-  if (!p) return { title: 'Proyecto no encontrado' };
+  if (!p) {return { title: 'Proyecto no encontrado' };}
   return {
     title: `${p.title} - Proyecto`,
     description: p.description || undefined,

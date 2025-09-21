@@ -22,7 +22,7 @@ const hasDb = () =>
   );
 
 export async function getAllProjects(): Promise<ProjectRow[]> {
-  if (!hasDb()) return [];
+  if (!hasDb()) {return [];}
   try {
     const rows = await db
       .select({

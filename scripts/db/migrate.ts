@@ -5,8 +5,7 @@
  */
 import { config } from 'dotenv';
 config({ path: '.env.local' }); // 👈 fuerza .env.local
-import type { NeonSql } from '@neondatabase/serverless';
-import { neon } from '@neondatabase/serverless';
+import { neon, type NeonSql } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import { migrate } from 'drizzle-orm/postgres-js/migrator';
 

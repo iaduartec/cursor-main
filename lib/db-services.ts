@@ -1,8 +1,7 @@
 import { db } from '../db/client';
 import { services } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';
-import type { Servicio } from 'contentlayer/generated';
-import { allServicios } from 'contentlayer/generated';
+import { allServicios, type Servicio } from 'contentlayer/generated';
 
 export type ServiceRow = {
   id: number;
@@ -23,7 +22,7 @@ const hasDb = () =>
   );
 
 export async function getAllServices(): Promise<ServiceRow[]> {
-  if (!hasDb()) return fallbackServices();
+  if (!hasDb()) {return fallbackServices();}
   try {
     const rows = await db
       .select({
@@ -47,7 +46,7 @@ export async function getAllServices(): Promise<ServiceRow[]> {
 export async function getServiceBySlug(slug: string): Promise<ServiceRow | null> {
   if (!hasDb()) {
     const s = allServicios.find((x) => x.slug === slug);
-    if (!s) return null;
+    if (!s) {return null;}
     return {
       id: 0,
       slug: s.slug,
@@ -72,7 +71,7 @@ export async function getServiceBySlug(slug: string): Promise<ServiceRow | null>
       .from(services)
       .where(eq(services.slug, slug))
       .limit(1);
-    if (row) return row as unknown as ServiceRow;
+    if (row) {return row as unknown as ServiceRow;}
   } catch (e) {
     console.error('DB getServiceBySlug error', e);
   }

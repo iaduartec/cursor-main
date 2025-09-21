@@ -1,8 +1,7 @@
 import { config } from 'dotenv'
 config({ path: '.env.local' })
 
-import type { NeonSql } from '@neondatabase/serverless'
-import { neon } from '@neondatabase/serverless'
+import { neon, type NeonSql } from '@neondatabase/serverless'
 
 async function main() {
   const url = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.NEON_DATABASE_URL

@@ -23,7 +23,7 @@ const hasDb = () =>
   );
 
 export async function getAllStreams(): Promise<StreamRow[]> {
-  if (!hasDb()) return fallbackStreams();
+  if (!hasDb()) {return fallbackStreams();}
   try {
     const rows = await db
       .select({

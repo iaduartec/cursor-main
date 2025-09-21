@@ -8,8 +8,7 @@
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
-import type { NeonSql } from '@neondatabase/serverless';
-import { neon } from '@neondatabase/serverless';
+import { neon, type NeonSql } from '@neondatabase/serverless';
 
 async function main() {
   const databaseUrl =

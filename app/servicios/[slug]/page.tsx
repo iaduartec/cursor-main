@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const s = await getServiceBySlug(normalizeSlug(slug));
-  if (!s) return { title: 'Servicio no encontrado' };
+  if (!s) {return { title: 'Servicio no encontrado' };}
   return {
     title: `${s.title} - Servicios` ,
     description: s.description || undefined,

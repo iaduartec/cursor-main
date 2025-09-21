@@ -19,10 +19,10 @@ export type BlogCard = {
 
 const getCategoryColor = (category: string) => {
   const c = (category || '').toLowerCase();
-  if (c === 'seguridad' || c === 'security') return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-  if (c === 'electricidad' || c === 'electricity') return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-  if (c === 'informática' || c === 'informatica' || c === 'it') return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-  if (c === 'sonido' || c === 'audio') return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
+  if (c === 'seguridad' || c === 'security') {return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';}
+  if (c === 'electricidad' || c === 'electricity') {return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';}
+  if (c === 'informática' || c === 'informatica' || c === 'it') {return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';}
+  if (c === 'sonido' || c === 'audio') {return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';}
   return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
 };
 
@@ -62,10 +62,10 @@ export default function BlogListClient({
   const setParams = (params: Record<string, string | undefined>) => {
     const sp = new URLSearchParams(searchParams?.toString());
     for (const [k, v] of Object.entries(params)) {
-      if (v === undefined || v === '') sp.delete(k);
-      else sp.set(k, v);
+      if (v === undefined || v === '') {sp.delete(k);}
+      else {sp.set(k, v);}
     }
-    if (!('page' in params)) sp.set('page', '1');
+    if (!('page' in params)) {sp.set('page', '1');}
     router.push(`${pathname}?${sp.toString()}`);
   };
 

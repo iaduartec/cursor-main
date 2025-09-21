@@ -67,7 +67,7 @@ export default async function AdminPostsPage() {
             <th>Título</th>
             <th>Fecha</th>
             <th>Categoría</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
         <tbody>
