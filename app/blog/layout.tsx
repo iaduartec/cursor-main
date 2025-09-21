@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = { 
   title: 'Blog - Duartec Instalaciones Informáticas',
   description: 'Artículos técnicos especializados sobre electricidad, informática, sonido y videovigilancia. Consejos profesionales y tendencias del sector.',
   keywords: 'blog, electricidad, informática, sonido, videovigilancia, consejos técnicos, instalaciones',
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 };
 
-export function BlogLayout({ children }: { children: ReactNode }) {
+export function BlogLayout({ children }: { children: ReactNode }) { 
   return (
     <div className="blog-layout">
       {children}

@@ -29,6 +29,8 @@ export default async function BlogPage({ params }: { params: { slug: string } })
  * Tamaño: 7543 caracteres, 231 líneas
  * Resumen básico generado automáticamente sin análisis de IA.
  * Contenido detectado basado en extensión y estructura básica.
+  // Removed duplicate imports and code blocks
+  // Additional code continues here...
  */
 import { notFound } from 'next/navigation';
 import { getBlogBySlug } from '../../../lib/db-blog';
