@@ -43,6 +43,29 @@ Pasos
 - En Windows local se desactiva para evitar errores de symlink (EPERM) durante el build.
 - Tras el build, el script `postbuild` ejecuta `next-sitemap` (según `next-sitemap.config.js` en la raíz) y genera `sitemap.xml` y `robots.txt`.
 
+## Despliegue automático (GitHub Actions)
+
+Este repositorio despliega a producción automáticamente en Vercel cuando haces push a `main`.
+
+Requisitos (configurar en GitHub > Settings > Secrets and variables > Actions):
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+Flujo:
+
+```mermaid
+flowchart LR
+  A[git push main] --> B[GitHub Actions: validate]
+  B --> C[Deploy to Vercel --prod]
+  C --> D[Vercel build]
+  D --> E[postbuild next-sitemap]
+  E --> F[Producción activa]
+```
+
+Archivo del workflow: `.github/workflows/deploy-workflow.yml`.
+
 4) Variables de entorno requeridas:
    - POSTGRES_URL = `postgresql://user:password@host/database?sslmode=require`
    - NODE_ENV = production
