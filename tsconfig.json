@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-  "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -10,11 +10,11 @@
     "incremental": true,
     "module": "esnext",
     "esModuleInterop": true,
-  "moduleResolution": "bundler",
-  "ignoreDeprecations": "5.0",
-  "resolveJsonModule": true,
-  "isolatedModules": true,
-  "jsx": "preserve",
+    "moduleResolution": "bundler",
+    "ignoreDeprecations": "5.0",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
     "types": ["node"],
     "plugins": [
       {
@@ -24,7 +24,8 @@
     "baseUrl": ".",
     "paths": {
       "contentlayer/generated": ["./.contentlayer/generated"],
-      "~/*": ["./*"]
+      "~/*": ["./*"],
+      "@neondatabase/serverless": ["./vendor/neon-serverless"]
     }
   },
   "include": [

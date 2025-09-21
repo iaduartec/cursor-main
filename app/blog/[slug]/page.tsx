@@ -1,159 +1,15 @@
-import { notFound } from 'next/navigation';
-import { getBlogBySlug } from '../../../lib/db-blog';
-import { BlogLayout } from '../layout';
-
-export default async function BlogPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlogBySlug(params.slug);
-  if (!blog) return notFound();
-  return <BlogLayout blog={blog} />;
-}
-
-/**
- * Resumen generado automáticamente.
- *
- * app/blog/[slug]/page.tsx
- *
- * 2025-09-13T06:20:07.361Z
- *
- * ——————————————————————————————
- * Archivo .tsx: page.tsx
- * Tamaño: 7543 caracteres, 231 líneas
- * Resumen básico generado automáticamente sin análisis de IA.
- */
-<<<<<<< HEAD
-=======
-import { notFound } from 'next/navigation';
-import { getBlogBySlug } from '../../../lib/db-blog';
-import { BlogLayout } from '../layout';
-
-export default async function BlogPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlogBySlug(params.slug);
-  if (!blog) return notFound();
-  return <BlogLayout blog={blog} />;
-}
-
-/**
- * Resumen generado automáticamente.
- *
- * app/blog/[slug]/page.tsx
- *
- * 2025-09-13T06:20:07.361Z
- *
- * ——————————————————————————————
- * Archivo .tsx: page.tsx
- * Tamaño: 7543 caracteres, 231 líneas
- * Resumen básico generado automáticamente sin análisis de IA.
- */
-import { notFound } from 'next/navigation';
-import { getBlogBySlug } from '../../../lib/db-blog';
-import { BlogLayout } from '../layout';
-
-export default async function BlogPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlogBySlug(params.slug);
-  if (!blog) return notFound();
-  return <BlogLayout blog={blog} />;
-}
-
-/**
- * Resumen generado automáticamente.
- *
- * app/blog/[slug]/page.tsx
- *
- * 2025-09-13T06:20:07.361Z
- *
- * ——————————————————————————————
- * Archivo .tsx: page.tsx
- * Tamaño: 7543 caracteres, 231 líneas
- * Resumen básico generado automáticamente sin análisis de IA.
- */
-import { notFound } from 'next/navigation';
-import { getBlogBySlug } from '../../../lib/db-blog';
-import { BlogLayout } from '../layout';
-
-export default async function BlogPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlogBySlug(params.slug);
-  if (!blog) return notFound();
-  return <BlogLayout blog={blog} />;
-}
-import { notFound } from 'next/navigation';
-import { getBlogBySlug } from '../../../lib/db-blog';
-import { BlogLayout } from '../layout';
-
-export default async function BlogPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlogBySlug(params.slug);
-  if (!blog) return notFound();
-  return <BlogLayout blog={blog} />;
-}
-
-/**
- * Resumen generado automáticamente.
- *
- * app/blog/[slug]/page.tsx
- *
- * 2025-09-13T06:20:07.361Z
- *
- * ——————————————————————————————
- * Archivo .tsx: page.tsx
- * Tamaño: 7543 caracteres, 231 líneas
- * Resumen básico generado automáticamente sin análisis de IA.
- * Contenido detectado basado en extensión y estructura básica.
-  // Removed duplicate imports and code blocks
-  // Additional code continues here...
- */
-import { notFound } from 'next/navigation';
-import { getBlogBySlug } from '../../../lib/db-blog';
-import { BlogLayout } from '../layout';
-
-export default async function BlogPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlogBySlug(params.slug);
-  if (!blog) return notFound();
-  return <BlogLayout blog={blog} />;
-}
-import { notFound } from 'next/navigation';
-import { getBlogBySlug } from '../../../lib/db-blog';
-import { BlogLayout } from '../layout';
-
-export default async function BlogPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlogBySlug(params.slug);
-  if (!blog) return notFound();
-  return <BlogLayout blog={blog} />;
-}
-import { notFound } from 'next/navigation';
-import { getBlogBySlug } from '../../../lib/db-blog';
-import { BlogLayout } from '../layout';
-
-export default async function BlogPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlogBySlug(params.slug);
-  if (!blog) return notFound();
-  return <BlogLayout blog={blog} />;
-}
-<<<<<<< HEAD
-=======
-/**
-Resumen generado automáticamente.
-
-app/blog/[slug]/page.tsx
-
-2025-09-13T06:20:07.361Z
-
-——————————————————————————————
-Archivo .tsx: page.tsx
-Tamaño: 7543 caracteres, 231 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
->>>>>>> 3457dd6 (Limpieza definitiva: solo bloque funcional mínimo en blog)
-import { Metadata } from 'next';
-import Link from 'next/link';
+import type { Metadata } from 'next';
 import Image from 'next/image';
-import { Calendar, ArrowLeft, Clock } from 'lucide-react';
-import { notFound, redirect } from 'next/navigation';
-import Breadcrumb from '../../../components/Breadcrumb';
-import RelatedPosts from '../../../components/RelatedPosts';
+import Link from 'next/link';
+import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import { unstable_cache } from 'next/cache';
+import { notFound, redirect } from 'next/navigation';
+
+import RelatedPosts from '../../../components/RelatedPosts';
 import { getAllPosts, getAllSlugs, getPostBySlug } from '../../../lib/db-posts';
 import { renderMarkdown } from '../../../lib/markdown';
+
+const FALLBACK_IMAGE = '/images/proyectos/CCTV.jpeg';
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -163,7 +19,7 @@ const normalizeSlug = (s: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-const canonicalSlugFor = (p: { slug?: string; title?: string }): string => {
+const canonicalSlugFor = (p: { slug?: string | null; title?: string | null }): string => {
   const base = p.slug || p.title || '';
   return normalizeSlug(base);
 };
@@ -189,32 +45,7 @@ const estimateReadTime = (text: string) => {
   return `${minutes} min`;
 };
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const incoming = normalizeSlug(slug);
-  const post = await getPostBySlug(incoming);
-  if (!post) {
-    return {
-      title: 'Artículo no encontrado',
-      description: 'El artículo que buscas no existe.'
-    };
-  }
-
-  return {
-    title: `${post.title} - Duartec Blog`,
-    description: post.description || undefined,
-    openGraph: {
-      title: post.title,
-      description: post.description || undefined,
-      images: post.image ? [cleanSrc(post.image)] : [],
-    },
-  };
-}
-
-export async function generateStaticParams() {
-  const slugs = await getAllSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
+const cleanSrc = (value?: string | null) => (value || '').replace(/[\r\n]+/g, '').trim();
 
 type BlogCard = {
   title: string;
@@ -226,28 +57,18 @@ type BlogCard = {
   excerpt: string;
 };
 
-const cleanSrc = (s?: string) => (s || '').replace(/[\r\n]+/g, '').trim();
-
 const getBlogCards = unstable_cache(
-  async (): Promise<{
-    title: string;
-    slug: string;
-    category: string;
-    image: string;
-    date: string;
-    readTime: string;
-    excerpt: string;
-  }[]> => {
+  async (): Promise<BlogCard[]> => {
     const all = await getAllPosts();
     return all
-      .map((p) => ({
-        title: p.title,
-        slug: canonicalSlugFor(p),
-        category: p.category ?? 'General',
-        image: cleanSrc(p.image || '') || '/images/proyectos/CCTV.jpeg',
-        date: p.date.toISOString(),
-        readTime: estimateReadTime(p.content || ''),
-        excerpt: p.description || '',
+      .map((post) => ({
+        title: post.title,
+        slug: canonicalSlugFor(post),
+        category: post.category ?? 'General',
+        image: cleanSrc(post.image) || FALLBACK_IMAGE,
+        date: post.date.toISOString(),
+        readTime: estimateReadTime(post.content || ''),
+        excerpt: post.description || '',
       }))
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   },
@@ -255,28 +76,60 @@ const getBlogCards = unstable_cache(
   { revalidate: 3600, tags: ['blogs'] }
 );
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const incoming = normalizeSlug(slug);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const incoming = normalizeSlug(params.slug);
   const post = await getPostBySlug(incoming);
+
+  if (!post) {
+    return {
+      title: 'Artículo no encontrado',
+      description: 'El artículo que buscas no existe.',
+    };
+  }
+
+  const image = cleanSrc(post.image);
+
+  return {
+    title: `${post.title} - Duartec Blog`,
+    description: post.description || undefined,
+    openGraph: {
+      title: post.title,
+      description: post.description || undefined,
+      images: image ? [image] : [],
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
+
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  const incoming = normalizeSlug(params.slug);
+  const post = await getPostBySlug(incoming);
+
   if (!post) {
     notFound();
   }
+
   const canonical = canonicalSlugFor(post);
-  if (slug !== canonical) {
+  if (incoming !== canonical) {
     redirect(`/blog/${canonical}`);
   }
 
   const html = renderMarkdown(post.content || '');
   const readTime = estimateReadTime(post.content || '');
 
-  const allPosts: BlogCard[] = await getBlogCards();
+  const allPosts = await getBlogCards();
+
+  const heroImage = cleanSrc(post.image) || FALLBACK_IMAGE;
 
   const current: BlogCard = {
     title: post.title,
     slug: canonicalSlugFor(post),
     category: post.category ?? 'General',
-    image: post.image || '/images/proyectos/CCTV.jpeg',
+    image: heroImage,
     date: post.date.toISOString(),
     readTime,
     excerpt: post.description || '',
@@ -284,86 +137,76 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="min-h-screen">
-      <section className="relative bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 py-20 px-4 overflow-hidden">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 py-20 px-4">
         <div className="absolute inset-0">
           <Image
-            src={current.image || '/images/proyectos/CCTV.jpeg'}
+            src={heroImage}
             alt={current.title}
-            /**
-             * Resumen generado automáticamente.
-             *
+            fill
+            className="object-cover opacity-30"
+            sizes="(min-width: 1024px) 1280px, 100vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/70 to-white/60 dark:from-slate-900/90 dark:via-slate-900/80 dark:to-slate-900/70" />
         </div>
-             * app/blog/[slug]/page.tsx
-             *
-             * 2025-09-13T06:20:07.361Z
-             *
-             * ——————————————————————————————
-             * Archivo .tsx: page.tsx
-             * Tamaño: 7543 caracteres, 231 líneas
-             * Resumen básico generado automáticamente sin análisis de IA.
-             */
-              className="flex items-center text-accent hover:text-accent-700 transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5 mr-2" />
-              Volver al blog
-            </Link>
-          </div>
+
+        <div className="relative max-w-4xl mx-auto text-slate-900 dark:text-white">
+          <Link href="/blog" className="mb-8 inline-flex items-center text-accent hover:text-accent-700 transition-colors">
+            <ArrowLeft className="mr-2 h-5 w-5" />
+            Volver al blog
+          </Link>
 
           <div className="mb-6">
-            <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${getCategoryColor((current.category || '') )}`}>
+            <span className={`inline-block rounded-full px-4 py-2 text-sm font-medium ${getCategoryColor(current.category)}`}>
               {current.category}
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary dark:text-white">
+          <h1 className="mb-6 text-4xl font-bold md:text-5xl">
             {current.title}
           </h1>
 
-          <div className="flex items-center text-gray-600 dark:text-gray-300 space-x-6">
+          <div className="flex flex-wrap items-center gap-6 text-gray-600 dark:text-gray-300">
             <div className="flex items-center">
-              <Calendar className="w-5 h-5 mr-2" />
-              <span>{new Date(current.date).toLocaleDateString('es-ES', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}</span>
+              <Calendar className="mr-2 h-5 w-5" />
+              <span>
+                {new Date(current.date).toLocaleDateString('es-ES', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </span>
             </div>
             <div className="flex items-center">
-              <Clock className="w-5 h-5 mr-2" />
+              <Clock className="mr-2 h-5 w-5" />
               <span>{current.readTime} de lectura</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="max-w-4xl mx-auto py-16 px-4">
-        <article className="prose prose-lg dark:prose-invert max-w-none">
+      <section className="mx-auto max-w-4xl px-4 py-16">
+        <article className="prose prose-lg max-w-none dark:prose-invert">
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </article>
 
-        <RelatedPosts
-          currentPost={current}
-          allPosts={allPosts}
-          maxPosts={3}
-        />
+        <RelatedPosts currentPost={current} allPosts={allPosts} maxPosts={3} />
 
-        <div className="mt-16 bg-accent rounded-2xl p-8 text-white text-center">
-          <h3 className="text-2xl font-bold mb-4">
-            ¿Necesitas ayuda con tu proyecto?
-          </h3>
-          <p className="text-lg mb-6 opacity-90">
-            Nuestros expertos están aquí para ayudarte con cualquier consulta técnica
+        <div className="mt-16 rounded-2xl bg-accent p-8 text-center text-white">
+          <h3 className="mb-4 text-2xl font-bold">¿Necesitas ayuda con tu proyecto?</h3>
+          <p className="mb-6 text-lg opacity-90">
+            Nuestros expertos están aquí para ayudarte con cualquier consulta técnica.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/contacto"
-              className="inline-flex items-center justify-center bg-white text-accent px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
+              className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 font-semibold text-accent transition-colors duration-200 hover:bg-gray-100"
             >
               Contactar expertos
             </Link>
             <a
               href="tel:+34947256430"
-              className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-accent transition-colors duration-200"
+              className="inline-flex items-center justify-center rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-accent"
             >
               Llamar ahora
             </a>
@@ -373,4 +216,3 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     </div>
   );
 }
-
