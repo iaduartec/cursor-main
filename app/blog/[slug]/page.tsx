@@ -191,6 +191,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         />
 
         <article className="prose prose-lg max-w-none dark:prose-invert">
+          {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </article>
 

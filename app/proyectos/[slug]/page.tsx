@@ -56,6 +56,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </section>
 
       <section className="max-w-5xl mx-auto py-12 px-4">
+        {/* eslint-disable-next-line react/no-danger */}
         <article className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: html }} />
       </section>
     </div>
