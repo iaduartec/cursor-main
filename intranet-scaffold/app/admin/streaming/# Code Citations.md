@@ -5,7 +5,8 @@
 ### jmcarbo/jmcarbo.github.com
 <https://github.com/jmcarbo/jmcarbo.github.com/blob/529425ea6912173a660587b8a5db1edfa1d32b1d/portfolio/index.html>
 
-```
+``````
+// some code here
 strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
           </svg>
           <h3 className="mt-2 text-sm font-medium text-gray-900"
@@ -59,8 +60,7 @@ viewBox="0 0 24 24">
             </svg
 ```
 
-## License: MIT
-
+### taybart/taybart.com
 <https://github.com/taybart/taybart.com/blob/af9fdc3cbdb1d074491e32c0ed0fc4459e12eb06/frontend/src/routes/notes/PencilIcon.tsx>
 
 ```
@@ -69,8 +69,7 @@ viewBox="0 0 24 24">
             </svg
 ```
 
-## License: MIT
-
+### calebrussel77/e-commerce-shop
 <https://github.com/calebrussel77/e-commerce-shop/blob/fdc711b62e058b648e2a5d39386b203b426632f0/frontend/src/pages/UsersList/UsersList.tsx>
 
 ```
@@ -79,8 +78,7 @@ viewBox="0 0 24 24">
             </svg
 ```
 
-## License: MIT
-
+### datguyducky/pare-down
 <https://github.com/datguyducky/pare-down/blob/7dcc2aabb6ae7205e2a46c689cec11fd3140657c/icons/Edit.tsx>
 
 ```
@@ -95,8 +93,7 @@ viewBox="0 0 24 24">
                 </div>
 ```
 
-## License: MIT
-
+### Daniel-Conte/Guia-do-Programador
 <https://github.com/Daniel-Conte/Guia-do-Programador/blob/42386c72376da36a785d4e4dcfbf55a2d576b80e/WEB/Next/next-crud/src/components/Icones.tsx>
 
 ```
@@ -151,8 +148,7 @@ viewBox="0 0 24 24">
                 </div
 ```
 
-## License: MIT
-
+### WonderataX/website
 <https://github.com/WonderataX/website/blob/75f58bb350119ee65cf71c395dd7c3a7dfdcdfd5/components/Services.tsx>
 
 ```
