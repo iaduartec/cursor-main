@@ -10,6 +10,7 @@
 
 - `next.config.mjs` activa `output: 'standalone'` cuando `VERCEL=1` o `ENABLE_STANDALONE=1`, excepto en Windows local donde se desactiva por defecto para evitar EPERM de symlink.
 - En Windows pueden aparecer errores de permisos con symlinks; para probar localmente forzando standalone:
+
   ```powershell
   $env:ENABLE_STANDALONE='1'; pnpm build
   ```
@@ -21,10 +22,13 @@
   - Prefijos `cxz_…` siguen siendo válidos para entornos locales.
 - El cliente usa el driver serverless de Neon (con fallback en memoria si `USE_IN_MEMORY_DB=1` o `SKIP_DB=1`).
 - Migraciones:
+
   ```bash
   pnpm db:migrate
   ```
+
 - Seeds disponibles:
+
   ```bash
   pnpm db:seed          # blog + proyectos básicos
   pnpm db:seed:streams  # cámaras iniciales

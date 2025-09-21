@@ -12,6 +12,15 @@ Este checklist te ayudará a evitar errores comunes durante el despliegue en Ver
 - [ ] **Install Command**: `pnpm install --frozen-lockfile`
 - [ ] **Root Directory**: `.` (raíz del proyecto)
 
+### CI/CD (GitHub Actions → Vercel)
+
+- [ ] Workflow de deploy activado: `.github/workflows/deploy-workflow.yml`
+- [ ] Secretos configurados en GitHub → Settings → Secrets and variables → Actions:
+  - `VERCEL_TOKEN`
+  - `VERCEL_ORG_ID`
+  - `VERCEL_PROJECT_ID`
+  
+
 ### Variables de Entorno Requeridas
 
 - [ ] **POSTGRES_URL**: URL de conexión a PostgreSQL/Neon
