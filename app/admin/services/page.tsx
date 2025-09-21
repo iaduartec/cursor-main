@@ -19,6 +19,27 @@ export default async function AdminServicesPage() {
     </div>
   );
 }
+import { db } from '../../../db/client';
+import { services } from '../../../db/schema';
+import { asc } from 'drizzle-orm';
+
+async function getItems() {
+  return await (db as any).select().from(services).orderBy(asc(services.title));
+}
+
+export default async function AdminServicesPage() {
+  const items = await getItems();
+  return (
+    <div>
+      <h1>Servicios</h1>
+      <ul>
+        {items.map((item: any) => (
+          <li key={item.id}>{item.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db, type DrizzleClient } from '../../../db/client';
 import { services, type NewService, type Service } from '../../../db/schema';
