@@ -1,183 +1,73 @@
-<<<<<<< HEAD
-=======
-<!--
-Resumen generado automáticamente.
+# Notas de desarrollo y despliegue
 
-DEV_NOTES.md
+## Entorno base
 
-2025-09-13T
-- Blog: listadAvisos y advertencias conocidas (seguras)
+- **Node.js**: 22.x (`package.json` y `.node-version`).
+- **Gestor de paquetes**: pnpm (`packageManager`). Usa `pnpm install` / `pnpm run`.
+- **Panel de administración**: `/admin` protegido por `ADMIN_TOKEN` (middleware y endpoints).
 
-- Contentlayer en Windows muestra warnings, pero el build funciona.
-- OTel puede mostrar "Critical dependency" en dev/build; es ruido por
-  detección dinámica.detalle leen desde `posts` (fallback a Contentlayer si
-  no hay BD).
-- Streaming: listado (`/streaming`) y detalle (`/streaming/[slug]`) desde
-  `streams`.
-- Servicios/Proyectos: CRUD en admin listo; si quieres, puedo migrar sus
-  páginas públicas para leer desde BD.
+## Salida standalone
 
-Avisos y advertencias conocidas (seguras)
+- `next.config.mjs` activa `output: 'standalone'` cuando `VERCEL=1` o `ENABLE_STANDALONE=1`.
+- En Windows pueden aparecer errores de permisos con symlinks; para probar localmente:
+  ```powershell
+  $env:ENABLE_STANDALONE='1'; pnpm build
+  ```
 
-- Contentlayer en Windows muestra warnings, pero el build funciona.
-- OTel puede mostrar "Critical dependency" en dev/build; es ruido por
-  detección dinámica.
+## Base de datos (Drizzle + Postgres)
 
-——————————————————————————————
-Archivo .md: DEV_NOTES.md
-Tamaño: 2403 caracteres, 54 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
--->
-# Desarrollo y despliegue: Node 22, DB y standalone
+- Variables soportadas por `db/client.ts`:
+  - `SUPABASE_DB_URL` (prioritaria).
+  - `POSTGRES_URL`, `POSTGRES_URL_NON_POOLING`, `DATABASE_URL`.
+  - Prefijos `cxz_…` siguen siendo válidos para entornos locales.
+- El cliente usa `postgres` (driver serverless-friendly) con fallback en memoria si `USE_IN_MEMORY_DB=1` o `SKIP_DB=1`.
+- Migraciones:
+  ```bash
+  pnpm db:migrate
+  ```
+- Seeds disponibles:
+  ```bash
+  pnpm db:seed          # blog + proyectos básicos
+  pnpm db:seed:streams  # cámaras iniciales
+  pnpm db:seed:services # servicios
+  ```
 
-DEV_NOTES.md
+## Contenido
 
-2025-09-13T06:20:07.355Z
+- **Blog**: listado y detalle desde `posts` (fallback a Contentlayer si no hay DB).
+- **Streaming**: `/streaming` y `/streaming/[slug]` consultan la tabla `streams`.
+- **Servicios y proyectos**: CRUD en admin listo; las páginas públicas pueden consultar DB cuando esté disponible.
 
-——————————————————————————————
-Archivo .md: DEV_NOTES.md
-Tamaño: 2403 caracteres, 54 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
--->
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-Desarrollo y despliegue: Node 22, DB y standalone
+## API y administración
 
-Resumen rápido
+- Endpoints públicos: `GET /api/streams`, `GET /api/streams/[slug]`.
+- Endpoints protegidos (`Authorization: Bearer <ADMIN_TOKEN>`): `POST /api/streams`, `PATCH/DELETE /api/streams/[slug]`.
+- Revalidación automática de la etiqueta `streams` tras mutaciones.
 
-- Node: 22.x (ver `engines.node` y `.node-version`).
-- Gestor de paquetes: pnpm (ver `packageManager`). Usa `pnpm install`/`pnpm run`.
-<<<<<<< HEAD
-- Standalone: desactivado por defecto en local Windows (para evitar symlinks). En Vercel se activa automáticamente.
-- BD: Postgres (Neon/Vercel) con Drizzle ORM. Usa `POSTGRES_URL` o `POSTGRES_URL_NON_POOLING`.
-=======
-- Standalone: desactivado por defecto en local Windows (para evitar symlinks).
-  En Vercel se activa automáticamente.
-- BD: Postgres (Neon/Vercel) con Drizzle ORM. Usa `POSTGRES_URL` o
-  `POSTGRES_URL_NON_POOLING`.
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-- Admin: panel en `/admin` protegido por token (`ADMIN_TOKEN`).
+## Comandos útiles
 
-Standalone (Next.js)
+```bash
+pnpm dev             # desarrollo normal
+pnpm build           # build de producción
+pnpm type-check      # verificación de tipos
+pnpm test            # tests unitarios
+pnpm test:e2e        # e2e con Playwright (requiere dependencias)
+```
 
-- `next.config.mjs` activa `output: 'standalone'` solo si:
-  - `VERCEL=1` (deploy en Vercel), o
-  - `ENABLE_STANDALONE=1` (forzar local).
-<<<<<<< HEAD
-- Motivo: en Windows el build standalone puede fallar por symlinks (EPERM). Para probarlo local, ejecuta:
-=======
-- Motivo: en Windows el build standalone puede fallar por symlinks (EPERM).
-  Para probarlo local, ejecuta:
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-  - PowerShell: `$env:ENABLE_STANDALONE='1'; npm run build`
+### Variantes
 
-Base de datos (Drizzle + Postgres)
+- `pnpm dev --filter !contentlayer` o `SKIP_CONTENTLAYER=1 pnpm dev` para saltar la generación de contenido.
+- Usa `USE_IN_MEMORY_DB=1` para evitar conexiones reales durante pruebas locales.
 
-<<<<<<< HEAD
-- Variables soportadas: `POSTGRES_URL` (pooled), `POSTGRES_URL_NON_POOLING` (directa), `DATABASE_URL` (fallback).
-- Cliente: `db/client.ts` usa `pg` Pool (válido en local y Vercel) — no requiere `@vercel/postgres`.
-- Migraciones: `npm run db:migrate` (lee `.env.local` si existe).
-- Seeds: `npm run db:seed` (blog desde MDX), `npm run db:seed:streams` (cámaras iniciales).
+## Logs y advertencias conocidas
 
-Admin y API
+- Contentlayer puede emitir advertencias en Windows, pero el build es válido.
+- La instrumentación de OpenTelemetry puede registrar "Critical dependency" durante compilación; es ruido.
 
-- `ADMIN_TOKEN`: añade en `.env.local` y en Vercel. Protege `/admin` (middleware) y las mutaciones de `/api/streams`.
-- Login admin: `/admin/login` (guarda cookie `admin` si el token es válido).
-- Endpoints Streams:
-  - GET `/api/streams`, GET `/api/streams/[slug]` (públicos).
-  - POST `/api/streams`, PATCH/DELETE `/api/streams/[slug]` (con `Authorization: Bearer <ADMIN_TOKEN>`).
-- Revalidación: al mutar streams, se invalida la tag `streams` para refrescar `/streaming`.
-=======
-- Variables soportadas: `POSTGRES_URL` (pooled), `POSTGRES_URL_NON_POOLING`
-  (directa), `DATABASE_URL` (fallback).
-- Cliente: `db/client.ts` usa `pg` Pool (válido en local y Vercel) — no
-  requiere `@vercel/postgres`.
-- Migraciones: `npm run db:migrate` (lee `.env.local` si existe).
-- Seeds: `npm run db:seed` (blog desde MDX), `npm run db:seed:streams`
-  (cámaras iniciales).
+## Historia reciente
 
-Admin y API
+- Se consolidó el historial en 2025-09-13 mediante squash conservando una copia `main-backup-<timestamp>`.
+- Se añadieron configuraciones PostCSS específicas (`intranet-scaffold/postcss.config.cjs`) para evitar errores ESM/CJS en Windows.
+- Scripts de debug en `intranet-scaffold/scripts/` permiten arrancar Next con `USE_IN_MEMORY_DB=1` y realizar comprobaciones automáticas.
 
-- `ADMIN_TOKEN`: añade en `.env.local` y en Vercel. Protege `/admin`
-  (middleware) y las mutaciones de `/api/streams`.
-- Login admin: `/admin/login` (guarda cookie `admin` si el token es válido).
-- Endpoints Streams:
-  - GET `/api/streams`, GET `/api/streams/[slug]` (públicos).
-  - POST `/api/streams`, PATCH/DELETE `/api/streams/[slug]` (con
-    `Authorization: Bearer <ADMIN_TOKEN>`).
-- Revalidación: al mutar streams, se invalida la tag `streams` para refrescar
-  `/streaming`.
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-
-Contenido desde BD
-
-- Blog: listado y detalle leen desde `posts` (fallback a Contentlayer si no hay BD).
-- Streaming: listado (`/streaming`) y detalle (`/streaming/[slug]`) desde `streams`.
-- Servicios/Proyectos: CRUD en admin listo; si quieres, puedo migrar sus páginas públicas para leer desde BD.
-
-Avisos y advertencias conocidas (seguras)
-
-- Contentlayer en Windows muestra warnings, pero el build funciona.
-- OTel puede mostrar “Critical dependency” en dev/build; es ruido por detección dinámica.
-
-Comandos útiles
-
-- Desarrollo: `pnpm dev`
-<<<<<<< HEAD
-=======
-- Desarrollo (ligero, sin Contentlayer): `pnpm dev:light`  # equivalente a
-  SKIP_CONTENTLAYER=1
-- Alternativa: `cross-env SKIP_CONTENTLAYER=1 pnpm dev`
-- Ejecutar Playwright condicionalmente: `pnpm test:e2e:maybe` (usa
-  SKIP_PLAYWRIGHT=1 para omitir)
-- Omitir Playwright: `cross-env SKIP_PLAYWRIGHT=1 pnpm test:e2e:maybe`
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-- Build prod: `pnpm build`
-- Type-check: `pnpm type-check`
-- Migraciones: `pnpm db:migrate`
-- Seed blog/streams: `pnpm db:seed` / `pnpm db:seed:streams`
-
-<<<<<<< HEAD
-=======
-## Operación de squash + backup (historial sobrescrito)
-
-- Fecha: 2025-09-13T
-- Acción: Se creó una rama de respaldo `main-backup-<timestamp>` y se
-  generó un commit único (squash) con el estado actual del árbol de `main`.
-- Resultado: Se forzó `git push --force origin main` local -> remoto. El
-  historial remoto fue reemplazado por el nuevo commit squasheado.
-- Notas: Si necesitas recuperar el historial completo, restaura desde la
-  rama `main-backup-<timestamp>` disponible en el repositorio remoto.
-
-## Correcciones y pruebas rápidas (2025-09-13)
-
-- PostCSS en Windows: se detectó un conflicto entre la configuración raíz
-  `postcss.config.js` (ESM) y la forma en que Next/webpack carga PostCSS en
-  el scaffold. Para arreglarlo se añadieron archivos CommonJS:
-- `postcss.config.cjs` en la raíz (temporal) y
-  `intranet-scaffold/postcss.config.cjs` para asegurar que la app local
-  cargue la configuración PostCSS correctamente.
-- Se eliminó la versión problemática `postcss.config.js` para evitar
-  interop ESM/CommonJS que causaba errores "module is not defined" y
-  "must export a plugins key".
-
-- Ruta de debug: se añadió `intranet-scaffold/app/api/_debug/ready/route.ts`
-  que responde JSON { status: 'ok', inMemoryDb: boolean } (200) y facilita
-  checks automáticos en CI/local.
-
-- Pruebas realizadas:
-- Arranqué Next (dev) con `USE_IN_MEMORY_DB=1` y
-  `INTRANET_DEBUG_TOKEN=test-token-123` (vía
-  `intranet-scaffold/scripts/spawn-next-and-test.js`).
-- GET `/api/_debug/ready`: la ruta está disponible — en algunas corridas
-  iniciales devolvió 404 por timing/compilación; tras compilación la ruta
-  responde correctamente.
-- POST `/api/projects` con header `x-debug-token: test-token-123`:
-  respondió 201 y creó un proyecto en la DB en memoria.
-
-Notas: si prefieres mantener la configuración PostCSS solo en la raíz o
-solo en el scaffold, lo dejamos consistente y limpio (yo dejé el
-`intranet-scaffold/postcss.config.cjs` para evitar conflictos locales en
-Windows).
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
+> Consejo: mantén `.env.local` sincronizado con las variables configuradas en Vercel para reproducir el entorno de producción.

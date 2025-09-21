@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /**
 Resumen generado automáticamente.
 
@@ -13,7 +11,6 @@ Tamaño: 1302 caracteres, 52 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: process.env.SITE_URL || 'https://duartec.es',

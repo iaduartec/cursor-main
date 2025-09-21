@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-// Bloquea gestor: exige pnpm 9.6.0
-const ua = process.env.npm_config_user_agent || "";
-if (!ua.includes("pnpm/9.6.0")) {
-  console.error(`❌ Usa pnpm 9.6.0. Detectado: ${ua || "desconocido"}`);
-  process.exit(1);
-}
-// Bloquea versión de Node: exige 22.x
-const major = Number(process.versions.node.split(".")[0]);
-if (major !== 22) {
-  console.error(`❌ Usa Node 22.x. Detectado: ${process.versions.node}`);
-  process.exit(1);
-}
-
-=======
 /**
 Resumen generado automáticamente.
 
@@ -81,4 +66,3 @@ if (major < 22) {
   }
 }
 
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9

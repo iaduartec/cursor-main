@@ -17,16 +17,10 @@
     "codingcopilot.commitMessageLanguage": "en",
     "liveServer.settings.multiRootWorkspaceName": "Nueva carpeta",
     "powershell.cwd": "cursor-main",
-<<<<<<< HEAD
-    "chatgpt.openOnStartup": true
-  },
-}
-=======
     "chatgpt.openOnStartup": true,
     "pullRequestMonitor.allowUnsafeSSL": true,
     "pullRequestMonitor.refreshInterval": 15,
     "pullRequestMonitor.showMerged": true,
     "pullRequestMonitor.showClosed": true
-  },
+  }
 }
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9

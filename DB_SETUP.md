@@ -1,116 +1,67 @@
-<<<<<<< HEAD
-Uso de Supabase (optimizado para Vercel)
+# Configuración de Base de Datos
 
-Resumen
+## Supabase (optimizado para Vercel)
 
-- Motor: Supabase Postgres (recomendado si quieres integrar Storage/Auth/Realtime).
-- Esquema: definido en `db/schema.ts` con Drizzle (pg-core). Funciona en Supabase porque es Postgres.
-- Migraciones: en carpeta `drizzle/` generadas por `drizzle-kit`.
-- Seed: scripts en `scripts/db/` permiten poblar `posts`, `projects`, `services`, `streams`.
+### Resumen
 
-Por qué usar Supabase en Vercel
+- Motor: Supabase Postgres (ideal si necesitas Auth, Storage o Realtime).
+- Esquema gestionado con Drizzle (`db/schema.ts`).
+- Migraciones en `drizzle/` generadas con `drizzle-kit`.
+- Scripts de seed disponibles en `scripts/db/` para poblar `posts`, `projects`, `services` y `streams`.
 
-- Integración sencilla con Auth y Storage (si necesitas subida de imágenes o sesiones).
-- Supabase ofrece un panel y roles gestionados; puedes crear una `SERVICE_ROLE` para tareas de migración/seed.
-- Para Vercel Serverless, Supabase es una opción madura y bien soportada.
+### Variables de entorno principales
 
-Variables de entorno recomendadas
+- `SUPABASE_DB_URL`: URL de conexión Postgres. Prioritaria en `db/client.ts`.
+- `SUPABASE_URL`: URL pública del proyecto para el SDK de Supabase.
+- `SUPABASE_SERVICE_ROLE_KEY`: clave de servicio (o `SUPABASE_ANON_KEY` para usos básicos).
+- Compatibilidad: `POSTGRES_URL` y `DATABASE_URL` siguen soportadas como alternativas.
 
-- `SUPABASE_DB_URL` - URL de conexión Postgres (ej: provided by Supabase project). Usada por `db/client.ts`.
-- `SUPABASE_URL` - URL pública del proyecto Supabase (para el SDK JS).
-- `SUPABASE_SERVICE_ROLE_KEY` - clave de servicio para tareas administrativas (migraciones/seed). Guárala en Vercel como Environment Secret.
-- Alternativas/compatibilidad:
-  - `POSTGRES_URL` o `DATABASE_URL` siguen siendo compatibles (legacy). `db/client.ts` las acepta como fallback.
+### Puesta en marcha local
 
-Aplicar migraciones y poblar datos (Supabase)
+1. Crea `.env.local` con las variables anteriores.
+2. Ejecuta las migraciones:
+   ```bash
+   pnpm db:migrate
+   ```
+3. (Opcional) Lanza los scripts de seed:
+   ```bash
+   pnpm db:seed
+   ```
 
-1) Crear el proyecto Supabase y copiar credenciales.
-   - En Supabase Cloud: crea un nuevo proyecto y copia la `Database URL` y la `Anon`/`Service Role Key`.
-2) En Vercel: añade las variables `SUPABASE_DB_URL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` en Settings > Environment Variables.
-3) Localmente: crea `.env.local` con las mismas variables para pruebas.
-4) Ejecuta migraciones (local):
+### Migrar datos desde Neon/Vercel Postgres
 
+1. Genera un volcado desde Neon:
+   ```bash
+   PGSOURCE=<NEON_DATABASE_URL>
+   pg_dump --format=custom --no-owner --no-privileges --file=neon_dump.dump "$PGSOURCE"
+   ```
+2. Restaura en Supabase:
+   ```bash
+   PGTARGET=<SUPABASE_DB_URL>
+   pg_restore --clean --no-owner --no-privileges --dbname="$PGTARGET" neon_dump.dump
+   ```
+3. Verifica extensiones y permisos tras la importación.
+
+### Notas
+
+- `db/client.ts` prioriza `SUPABASE_DB_URL` e inicializa el SDK de Supabase si las claves están presentes.
+- `scripts/db/migrate-supabase.ts` es el camino recomendado para aplicar migraciones en Supabase.
+
+## Neon / Vercel Postgres (compatibilidad)
+
+Aunque Supabase es la opción principal, también puedes usar Neon o Vercel Postgres.
+
+### Variables de entorno
+
+- `POSTGRES_URL`: URL principal de conexión.
+- `DATABASE_URL`: fallback genérico.
+
+Ejemplo de `.env.local`:
 ```bash
-pnpm db:migrate
-```
-
-   - Este script ejecuta `scripts/db/migrate-supabase.ts` y usa `POSTGRES_URL`/`DATABASE_URL`/`SUPABASE_DB_URL`.
-
-5) Ejecuta seeds (opcional):
-
-```bash
-pnpm db:seed
-```
-
-Migración de datos desde Neon (si vienes de Neon/Vercel Postgres)
-
-Si actualmente tienes datos en Neon (Vercel Postgres), sigue estos pasos mínimos:
-
-1) Dump desde Neon:
-
-```bash
-PGSOURCE=<NEON_DATABASE_URL>
-pg_dump --format=custom --no-owner --no-privileges --verbs --file=neon_dump.dump "$PGSOURCE"
-```
-
-2) Restore en Supabase (usar psql/pg_restore con las credenciales de Supabase):
-
-```bash
-PGTARGET=<SUPABASE_DB_URL>
-pg_restore --clean --no-owner --no-privileges --dbname="$PGTARGET" neon_dump.dump
-```
-
-Notas:
-- Asegúrate de que las extensiones usadas en Neon estén disponibles en Supabase; ajusta schema si hay diferencias.
-- Si tu base usa roles o funciones específicas, revisa permisos después del restore.
-
-Cambios en el código
-
-- `db/client.ts` ahora prioriza `SUPABASE_DB_URL` y emite advertencias si `SUPABASE_URL`/`SERVICE_ROLE_KEY` no están definidos.
-- `scripts/db/migrate-supabase.ts` ya es el script recomendado para migraciones.
-
-Pruebas y verificación
-
-1) En local: crea `.env.local` con `SUPABASE_DB_URL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
-2) Ejecuta:
-=======
-# Configuración de Base de Datos - Neon/Postgres
-
-<!-- Resumen generado automáticamente -->
-Configuración de base de datos con Neon/Vercel Postgres
-
-## Resumen
-
-- **Motor**: Postgres (Neon/Vercel) - Optimizado para serverless
-- **ORM**: Drizzle con driver `postgres` (Neon-friendly)
-- **Esquema**: Definido en `db/schema.ts` con Drizzle (pg-core)
-- **Migraciones**: En carpeta `drizzle/` generadas por `drizzle-kit`
-- **Seed**: Scripts en `scripts/db/` para poblar datos
-
-## Variables de Entorno Recomendadas
-
-- `POSTGRES_URL` - URL de conexión principal (recomendado)
-- `DATABASE_URL` - Fallback genérico para compatibilidad
-
-## Orden de Precedencia en `db/client.ts`
-
-1. `POSTGRES_URL` (recomendado)
-2. `DATABASE_URL`
-
-## Configuración Local (.env.local)
-
-```bash
-# URL de conexión principal
 POSTGRES_URL="postgresql://user:password@host/database?sslmode=require"
 ```
 
-## Configuración en Vercel
-
-En Settings > Environment Variables:
-
-- `POSTGRES_URL` = `postgresql://<DB_USER>:<DB_PASS>@<HOST>:5432/<DB_NAME>`
-
-## Comandos de Base de Datos
+### Comandos útiles
 
 ```bash
 # Generar migraciones
@@ -119,99 +70,8 @@ pnpm db:generate
 # Aplicar migraciones
 pnpm db:migrate
 
-# Poblar datos iniciales
+# Ejecutar seeds manualmente
 pnpm db:seed
-
-# Poblar datos específicos
-pnpm db:seed:projects
-pnpm db:seed:services
-pnpm db:seed:streams
 ```
 
-## Scripts de Verificación
-
-```bash
-# Verificar versión de Postgres
-pnpm exec tsx scripts/db/check-version.ts
-
-# Verificar conexión
-pnpm exec tsx scripts/db/check-env.ts
-```
-
-## Notas de Seguridad
-
-- Nunca commitear credenciales en el repositorio
-- Usar `.env.local` para desarrollo local
-- Configurar variables de entorno en Vercel para producción
-- El proyecto usa el driver `postgres` que es compatible con Neon
-
-## Troubleshooting
-
-### Error de conexión
-- Verificar que `POSTGRES_URL` esté configurada correctamente
-- Asegurarse de que la base de datos esté accesible desde el entorno
-
-### Error en migraciones
-- Ejecutar `pnpm db:generate` antes de `pnpm db:migrate`
-- Verificar que el esquema en `db/schema.ts` sea válido
-
-### Problemas con dependencias
-- El proyecto evita dependencias opcionales en runtime
-- Si hay problemas con el lockfile, eliminar `pnpm-lock.yaml` y ejecutar `pnpm install`
-
-## Migración de Datos
-
-Si necesitas migrar datos desde otra base de datos Postgres:
-
-1. Hacer dump de la base de datos origen
-2. Configurar la nueva base de datos en Neon/Vercel
-3. Restaurar el dump en la nueva base de datos
-4. Ejecutar migraciones y seed si es necesario
-
-### Comandos de migración
-
-```bash
-# Dump desde base de datos origen
-pg_dump --format=custom --no-owner --no-privileges \
-  --file=dump.dump "postgresql://user:pass@host/db"
-
-# Restore en nueva base de datos
-pg_restore --clean --no-owner --no-privileges \
-  --dbname="postgresql://user:pass@host/db" dump.dump
-```
-
-## Pruebas y Verificación
-
-1. Configurar `.env.local` con `POSTGRES_URL`
-2. Ejecutar comandos de verificación:
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
-
-```bash
-pnpm db:migrate
-pnpm db:seed
-pnpm test
-```
-
-<<<<<<< HEAD
-Siguientes pasos opcionales
-
-- Cambiar el driver a `@supabase/postgres-js` para mejor comportamiento en serverless (recomendado si experimentas problemas de conexiones). Esto requiere añadir la dependencia y adaptar `db/client.ts`.
-- Añadir un job en Vercel que ejecute `pnpm db:migrate` después de cada deploy.
-
-Si quieres, puedo:
-
-1. Cambiar el driver a `@supabase/postgres-js` y ajustar `db/client.ts`.
-2. Añadir scripts para automatizar dump/restore entre Neon y Supabase.
-3. Crear un pequeño endpoint/Admin para verificar la conexión y mostrar versión de DB.
-
-Dime qué quieres que implemente ahora y lo hago.
-
-=======
-## Buenas Prácticas
-
-- No commitear credenciales en el repositorio
-- Usar `.env.local` para desarrollo local
-- Configurar variables de entorno en Vercel para producción
-- El proyecto usa driver `postgres` compatible con Neon
-- Mantener esquema de base de datos actualizado con `db/schema.ts`
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
+> Para entornos locales sin base de datos disponible puedes definir `USE_IN_MEMORY_DB=1` o `SKIP_DB=1` para que la aplicación funcione con datos de Contentlayer.
