@@ -1,37 +1,11 @@
-<<<<<<< HEAD
 import './globals.css';
 import 'leaflet/dist/leaflet.css';
 import { Inter } from 'next/font/google';
-=======
-/**
-Resumen generado automáticamente.
-
-app/layout.tsx
-
-2025-09-13T06:20:07.363Z
-
-——————————————————————————————
-Archivo .tsx: layout.tsx
-Tamaño: 3466 caracteres, 103 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
-import './globals.css';
-import './browser-compatibility.css';
-import 'leaflet/dist/leaflet.css';
-// import { Inter } from 'next/font/google';
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import { ReactNode } from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
-<<<<<<< HEAD
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-=======
-// Temporarily using system font due to network restrictions
-// const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const inter = { variable: '--font-inter', className: '' };
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 export const metadata = {
   title: {
@@ -109,14 +83,6 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es" className={inter.variable}>
-<<<<<<< HEAD
-=======
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#2563eb" />
-        <meta name="color-scheme" content="light dark" />
-      </head>
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       <body className="font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col">
         <a href="#main-content" className="skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-white px-4 py-2 rounded z-50">
           Saltar al contenido principal

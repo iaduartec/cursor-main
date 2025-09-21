@@ -1,27 +1,7 @@
-<<<<<<< HEAD
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getAllServices, getServiceBySlug } from '../../../lib/db-services';
-=======
-/**
-Resumen generado automáticamente.
-
-app/servicios/[slug]/page.tsx
-
-2025-09-13T06:20:07.365Z
-
-——————————————————————————————
-Archivo .tsx: page.tsx
-Tamaño: 2436 caracteres, 72 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
-import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { getAllServices, getServiceBySlug } from '../../../lib/db-services.new';
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -39,7 +19,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const s = await getServiceBySlug(normalizeSlug(slug));
-  if (!s) {return { title: 'Servicio no encontrado' };}
+  if (!s) return { title: 'Servicio no encontrado' };
   return {
     title: `${s.title} - Servicios` ,
     description: s.description || undefined,

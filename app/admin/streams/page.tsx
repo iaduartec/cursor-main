@@ -1,8 +1,9 @@
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { db, type DrizzleClient } from '../../../db/client';
-import { streams, type NewStream } from '../../../db/schema';
+import { db } from '../../../db/client';
+import { streams } from '../../../db/schema';
 import { getAllStreams } from '../../../lib/db-streams';
 import { eq } from 'drizzle-orm';
+
 export default async function AdminStreamsPage() {
   const items = await getAllStreams();
 
@@ -17,7 +18,7 @@ export default async function AdminStreamsPage() {
     const description = String(formData.get('description') || '');
     const isLive = formData.get('isLive') ? true : false;
     const now = new Date();
-  await (db as any)
+    await db
       .insert(streams)
       .values({
         slug,
@@ -30,24 +31,23 @@ export default async function AdminStreamsPage() {
         isLive,
         createdAt: now,
         updatedAt: now,
-      } as NewStream)
+      })
       .onConflictDoUpdate({
         target: streams.slug,
-        set: { name, provider, youtubeId: youtubeId || null, embedUrl: embedUrl || null, image: image || null, description: description || null, isLive, updatedAt: now } as Partial<NewStream>,
+        set: { name, provider, youtubeId: youtubeId || null, embedUrl: embedUrl || null, image: image || null, description: description || null, isLive, updatedAt: now },
       });
     revalidateTag('streams');
     revalidatePath('/streaming');
     revalidatePath('/admin/streams');
-  // ...existing code...
+  }
 
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-  await (db as any).delete(streams).where(eq(streams.slug, slug));
+    await db.delete(streams).where(eq(streams.slug, slug));
     revalidateTag('streams');
     revalidatePath('/streaming');
     revalidatePath('/admin/streams');
-  }
   }
 
   return (
@@ -73,18 +73,18 @@ export default async function AdminStreamsPage() {
             <th>Nombre</th>
             <th>Provider</th>
             <th>YouTube ID</th>
-            <th />
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {items.map((s: any) => (
+          {items.map((s) => (
             <tr key={s.slug} className="border-b">
               <td className="py-2">{s.slug}</td>
               <td>{s.name}</td>
               <td>{s.provider}</td>
               <td>{s.youtubeId}</td>
               <td>
-                <form action={remove} method="post">
+                <form action={remove}>
                   <input type="hidden" name="slug" value={s.slug} />
                   <button className="text-red-600">Eliminar</button>
                 </form>

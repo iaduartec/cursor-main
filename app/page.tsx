@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-=======
-/**
-Resumen generado automáticamente.
-
-app/page.tsx
-
-2025-09-13T06:20:07.364Z
-
-——————————————————————————————
-Archivo .tsx: page.tsx
-Tamaño: 16337 caracteres, 341 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { Monitor, Camera, Volume2, Zap, Shield, Clock, Users, MapPin, Phone } from 'lucide-react';
@@ -34,7 +18,6 @@ export default function Page() {
   return (
     <>
       {/* Hero Section */}
-<<<<<<< HEAD
       <section className="relative bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-800 dark:to-slate-900 py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -48,36 +31,13 @@ export default function Page() {
             <a
               href="/contacto"
               className="inline-flex items-center justify-center bg-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-accent-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
-=======
-      <section className="relative bg-gradient-to-br from-primary/5 to-accent/10 dark:from-slate-800 dark:to-slate-900 py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent" aria-hidden="true" />
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-            Soluciones integrales en{' '}
-            <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-              informática, videovigilancia, sonido y electricidad
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl mb-10 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Instalación, mantenimiento y asesoramiento profesional para empresas y particulares en Burgos y Castilla y León.
-            Calidad, experiencia y cercanía garantizadas.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="/contacto"
-              className="inline-flex items-center justify-center bg-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-accent/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             >
               <Phone className="w-5 h-5 mr-2" />
               Solicita información
             </a>
             <a
               href="/servicios"
-<<<<<<< HEAD
               className="inline-flex items-center justify-center bg-white dark:bg-slate-800 text-primary dark:text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors duration-200 border border-gray-200 dark:border-slate-600"
-=======
-              className="inline-flex items-center justify-center bg-white dark:bg-slate-700 text-primary dark:text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-slate-600 transition-all duration-300 border border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl hover:scale-105"
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             >
               Ver servicios
             </a>
@@ -86,22 +46,15 @@ export default function Page() {
       </section>
 
       {/* Servicios Principales */}
-<<<<<<< HEAD
       <section className="max-w-6xl mx-auto py-16 px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Nuestros Servicios</h2>
-=======
-      <section className="max-w-6xl mx-auto py-20 px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Nuestros Servicios</h2>
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Ofrecemos soluciones completas en instalaciones informáticas, videovigilancia, sonido y electricidad
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-<<<<<<< HEAD
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-slate-700">
             <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
               <Monitor className="w-6 h-6 text-accent" />
@@ -111,22 +64,10 @@ export default function Page() {
               Equipos, redes, soporte y mantenimiento para tu empresa o negocio. Soluciones a medida.
             </p>
             <a href="/servicios/informatica" className="text-accent hover:underline font-medium">
-=======
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700 group">
-            <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-              <Monitor className="w-6 h-6 text-accent" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">Informática</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Equipos, redes, soporte y mantenimiento para tu empresa o negocio. Soluciones a medida.
-            </p>
-            <a href="/servicios/informatica" className="text-accent hover:text-accent/80 font-medium inline-flex items-center gap-1 transition-colors">
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
               Saber más →
             </a>
           </div>
 
-<<<<<<< HEAD
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-slate-700">
             <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
               <Camera className="w-6 h-6 text-green-600" />
@@ -136,22 +77,10 @@ export default function Page() {
               Instalación y gestión de sistemas de videovigilancia y seguridad para tu tranquilidad.
             </p>
             <a href="/servicios/videovigilancia" className="text-accent hover:underline font-medium">
-=======
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700 group">
-            <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-              <Camera className="w-6 h-6 text-accent" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">Videovigilancia (CCTV)</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Instalación y gestión de sistemas de videovigilancia y seguridad para tu tranquilidad.
-            </p>
-            <a href="/servicios/videovigilancia" className="text-accent hover:text-accent/80 font-medium inline-flex items-center gap-1 transition-colors">
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
               Saber más →
             </a>
           </div>
 
-<<<<<<< HEAD
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-slate-700">
             <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
               <Volume2 className="w-6 h-6 text-purple-600" />
@@ -161,22 +90,10 @@ export default function Page() {
               Instalaciones de audio para eventos, comercios y espacios públicos. Sonido de calidad.
             </p>
             <a href="/servicios/sonido" className="text-accent hover:underline font-medium">
-=======
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700 group">
-            <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-              <Volume2 className="w-6 h-6 text-accent" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">Sonido Profesional</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Instalaciones de audio para eventos, comercios y espacios públicos. Sonido de calidad.
-            </p>
-            <a href="/servicios/sonido" className="text-accent hover:text-accent/80 font-medium inline-flex items-center gap-1 transition-colors">
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
               Saber más →
             </a>
           </div>
 
-<<<<<<< HEAD
           <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-slate-700">
             <div className="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center mb-4">
               <Zap className="w-6 h-6 text-yellow-600" />
@@ -186,17 +103,6 @@ export default function Page() {
               Instalaciones eléctricas, cableados estructurados y soluciones de conectividad para cualquier entorno.
             </p>
             <a href="/servicios/electricidad" className="text-accent hover:underline font-medium">
-=======
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700 group">
-            <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-              <Zap className="w-6 h-6 text-accent" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">Electricidad y Cableados</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Instalaciones eléctricas, cableados estructurados y soluciones de conectividad para cualquier entorno.
-            </p>
-            <a href="/servicios/electricidad" className="text-accent hover:text-accent/80 font-medium inline-flex items-center gap-1 transition-colors">
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
               Saber más →
             </a>
           </div>
@@ -204,76 +110,42 @@ export default function Page() {
       </section>
 
       {/* Por qué elegirnos */}
-<<<<<<< HEAD
       <section className="bg-gray-50 dark:bg-slate-800 py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">¿Por qué elegir Duartec?</h2>
-=======
-      <section className="bg-gray-50 dark:bg-slate-800 py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">¿Por qué elegir Duartec?</h2>
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Más de 10 años de experiencia en el sector con un equipo de profesionales cualificados
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-<<<<<<< HEAD
             <div className="text-center">
               <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Calidad Garantizada</h3>
               <p className="text-gray-600 dark:text-gray-300">
-=======
-            <div className="text-center bg-white dark:bg-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Calidad Garantizada</h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 Trabajamos con los mejores materiales y equipos del mercado, garantizando la máxima calidad en todas nuestras instalaciones.
               </p>
             </div>
 
-<<<<<<< HEAD
             <div className="text-center">
               <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
                 <Clock className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Respuesta Rápida</h3>
               <p className="text-gray-600 dark:text-gray-300">
-=======
-            <div className="text-center bg-white dark:bg-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Respuesta Rápida</h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 Atención inmediata y soporte técnico disponible 24/7 para emergencias. Tu tranquilidad es nuestra prioridad.
               </p>
             </div>
 
-<<<<<<< HEAD
             <div className="text-center">
               <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Experiencia Local</h3>
               <p className="text-gray-600 dark:text-gray-300">
-=======
-            <div className="text-center bg-white dark:bg-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Experiencia Local</h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
                 Conocemos las necesidades específicas de Burgos y Castilla y León. Atención personalizada y cercana.
               </p>
             </div>
