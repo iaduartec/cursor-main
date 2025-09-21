@@ -30,7 +30,7 @@ strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 
           <h3 className="mt-2 text-sm font-medium text-gray-900"
 ```
 
-## License: desconocido
+## License: MIT
 
 <https://github.com/Teerut26/my-birthday/blob/1be811808f18caa196b21f467810bcfb7ee00823/pages/index.tsx>
 
@@ -41,7 +41,7 @@ viewBox="0 0 24 24">
                   <
 ```
 
-## License: desconocido
+## License: MIT
 
 <https://github.com/Teerut26/my-birthday/blob/1be811808f18caa196b21f467810bcfb7ee00823/pages/index.tsx>
 
@@ -62,7 +62,7 @@ viewBox="0 0 24 24">
             </svg
 ```
 
-## License: desconocido
+## License: MIT
 
 <https://github.com/taybart/taybart.com/blob/af9fdc3cbdb1d074491e32c0ed0fc4459e12eb06/frontend/src/routes/notes/PencilIcon.tsx>
 
