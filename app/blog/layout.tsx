@@ -1,25 +1,25 @@
-import { Metadata } from 'next';
+// Removed duplicate imports and definitions
 
-export const metadata: Metadata = {
-  title: 'Blog - Duartec Instalaciones Informáticas',
-  description: 'Artículos técnicos especializados sobre electricidad, informática, sonido y videovigilancia. Consejos profesionales y tendencias del sector.',
-  keywords: 'blog, electricidad, informática, sonido, videovigilancia, consejos técnicos, instalaciones',
-  openGraph: {
-    title: 'Blog Técnico - Duartec',
-    description: 'Artículos técnicos especializados sobre instalaciones informáticas',
-    type: 'website',
-  },
-};
+// Removed duplicate metadata
+// Removed duplicate title
+// Removed duplicate description
+// Removed duplicate keywords
+// Removed duplicate openGraph
+// Removed duplicate openGraph title
+// Removed duplicate openGraph description
+// Removed duplicate openGraph type
+// Removed duplicate closing brace
+// Removed duplicate closing brace
 
-import { ReactNode } from 'react';
+// Removed duplicate ReactNode import
 
-export function BlogLayout({ children }: { children: ReactNode }) {
-  return (
-    <div className="blog-layout">
-      {children}
-    </div>
-  );
-}
+// Removed duplicate BlogLayout function
+// Removed duplicate return statement
+// Removed duplicate div
+// Removed duplicate children
+// Removed duplicate closing div
+// Removed duplicate closing brace
+// Removed duplicate closing brace
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
