@@ -1,0 +1,52 @@
+name: Vercel Cleanup Branch Deployments
+
+on:
+  delete:
+  pull_request:
+    types: [closed]
+
+jobs:
+  cleanup:
+    if: >-
+      ${{ (github.event_name == 'delete' && github.event.ref_type == 'branch')
+          || (github.event_name == 'pull_request' && github.event.pull_request.merged == true) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.3
+          run_install: false
+
+      - name: Determine target branch
+        id: target
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "delete" ]; then
+            echo "branch=${{ github.event.ref }}" >> $GITHUB_OUTPUT
+          else
+            echo "branch=${{ github.head_ref || github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
+          fi
+          echo "Target branch: $(cat $GITHUB_OUTPUT)"
+
+      - name: Cleanup Vercel deployments for branch
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
+          TARGET_BRANCH: ${{ steps.target.outputs.branch }}
+        run: node scripts/cleanup-vercel-branch.mjs
+
+  skipped:
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PR closed without merge — skipping Vercel cleanup (deployments may be reused)."
