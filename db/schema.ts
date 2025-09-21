@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /**
 Resumen generado automáticamente.
 
@@ -13,7 +11,6 @@ Tamaño: 3596 caracteres, 106 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import {
   boolean,
   index,
@@ -119,8 +116,6 @@ export const projects = pgTable(
 
 export type Project = typeof projects.$inferSelect;
 export type NewProject = typeof projects.$inferInsert;
-<<<<<<< HEAD
-=======
 
 export const comments = pgTable(
   'comments',
@@ -144,4 +139,3 @@ export type Database = {
   projects: typeof projects;
   comments: typeof comments;
 };
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9

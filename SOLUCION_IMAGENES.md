@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <!--
 Resumen generado automáticamente.
 
@@ -13,28 +11,20 @@ Tamaño: 4292 caracteres, 145 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 -->
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 # Solución al Problema de Imágenes
 
 ## 🎯 Problema Identificado
 
-<<<<<<< HEAD
-Las imágenes generadas por el workflow de artículos eran muy pequeñas (86B - 509B), lo que indicaba que había errores en la generación o procesamiento de imágenes con las APIs de IA.
-=======
 Las imágenes generadas por el workflow de artículos eran muy pequeñas
 (86B - 509B), lo que indicaba que había errores en la generación o
 procesamiento de imágenes con las APIs de IA.
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 ## 🔧 Soluciones Implementadas
 
 ### 1. **Mejoras en el Workflow Principal**
 
 #### Archivo: `.github/workflows/generate-article.yml`
-<<<<<<< HEAD
-=======
 
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 - ✅ Mejorado el parsing del título del issue con más patrones
 - ✅ Añadida validación de directorios antes de generar contenido
 - ✅ Mejorado el manejo de errores con `set -e`
@@ -45,10 +35,7 @@ procesamiento de imágenes con las APIs de IA.
 ### 2. **Mejoras en el Script de Generación**
 
 #### Archivo: `tools/generate_article.py`
-<<<<<<< HEAD
-=======
 
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 - ✅ Añadida validación de tamaño de imágenes (>1KB)
 - ✅ Mejorado el logging para debugging
 - ✅ Añadidos fallbacks más robustos
@@ -58,10 +45,7 @@ procesamiento de imágenes con las APIs de IA.
 ### 3. **Sistema de Placeholder**
 
 #### Archivo: `tools/generate_placeholder_image.py`
-<<<<<<< HEAD
-=======
 
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 - ✅ Generador de imágenes de placeholder cuando las APIs fallan
 - ✅ Imágenes de 1920x1080 con diseño profesional
 - ✅ Colores configurables según el acento
@@ -70,12 +54,8 @@ procesamiento de imágenes con las APIs de IA.
 
 ### 4. **Scripts de Diagnóstico y Pruebas**
 
-<<<<<<< HEAD
-#### Scripts locales (ahora en `tools/dev/`):
-=======
 #### Scripts locales (ahora en `tools/dev/`)
 
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 - `tools/dev/test_workflow.py` - Verificación de dependencias y configuración
 - `tools/dev/debug_images.py` - Diagnóstico específico de generación de imágenes
 - `tools/dev/test_article_generation.py` - Prueba completa de generación
@@ -84,22 +64,14 @@ procesamiento de imágenes con las APIs de IA.
 
 ## 📊 Resultados de las Pruebas
 
-<<<<<<< HEAD
-### Antes de las correcciones:
-=======
 ### Antes de las correcciones
 
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 - ❌ Imágenes de 86B - 509B (inválidas)
 - ❌ No se referenciaban en el frontmatter
 - ❌ Workflow fallaba silenciosamente
 
-<<<<<<< HEAD
-### Después de las correcciones:
-=======
 ### Después de las correcciones
 
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 - ✅ Imágenes de placeholder: ~30KB (válidas)
 - ✅ Referencias correctas en frontmatter
 - ✅ Workflow robusto con múltiples fallbacks
@@ -114,11 +86,7 @@ procesamiento de imágenes con las APIs de IA.
 
 ## 📁 Estructura de Archivos
 
-<<<<<<< HEAD
-```
-=======
 ```text
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 content/blog/
 ├── {slug}.mdx (artículo con frontmatter)
 
@@ -131,35 +99,22 @@ public/images/blog/
 ## 🚀 Cómo Usar
 
 ### Opción 1: Issue con título específico
-<<<<<<< HEAD
-```
-=======
 
 ```text
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 Título: Artículo: Sistemas de videovigilancia inteligente
 ```
 
 ### Opción 2: Issue con etiqueta
-<<<<<<< HEAD
-```
-=======
 
 ```text
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 Título: Solicitud de artículo
 Cuerpo: Sistemas de videovigilancia inteligente
 Etiquetas: generate-article
 ```
 
-<<<<<<< HEAD
-### Parámetros opcionales en el cuerpo:
-```
-=======
 ### Parámetros opcionales en el cuerpo
 
 ```text
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 Estilo: fotográfico
 Color: azul
 Detalles: cámaras IP modernas, entorno profesional
@@ -168,13 +123,6 @@ Categoria: Seguridad
 
 ## 🛠️ Configuración Necesaria
 
-<<<<<<< HEAD
-### Secrets de GitHub:
-- `OPENAI_API_KEY` - Para generación con OpenAI
-- `GEMINI_API_KEY` - Para generación con Gemini
-
-### Permisos:
-=======
 ### Secrets de GitHub
 
 - `OPENAI_API_KEY` - Para generación con OpenAI
@@ -182,7 +130,6 @@ Categoria: Seguridad
 
 ### Permisos
 
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 - `contents: write` - Para crear archivos
 - `issues: write` - Para comentar y cerrar issues
 

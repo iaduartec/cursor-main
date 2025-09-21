@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /**
 Resumen generado automáticamente.
 
@@ -13,7 +11,6 @@ Tamaño: 2023 caracteres, 98 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 import '@testing-library/jest-dom';
 
 // Mock de Next.js router

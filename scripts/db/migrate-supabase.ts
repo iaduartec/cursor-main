@@ -1,30 +1,3 @@
-<<<<<<< HEAD
-// scripts/db/migrate-supabase.ts
-import { config } from 'dotenv'
-config({ path: '.env' }) // Usar .env para las credenciales
-import postgres from 'postgres'
-import { drizzle } from 'drizzle-orm/postgres-js'
-import { migrate } from 'drizzle-orm/postgres-js/migrator'
-
-async function main() {
-  const url = process.env.POSTGRES_URL || process.env.DATABASE_URL
-  if (!url) {
-    throw new Error('Falta POSTGRES_URL o DATABASE_URL en .env.local')
-  }
-
-  const sql = postgres(url, { prepare: false })
-  const db = drizzle(sql, { logger: true })
-
-  await migrate(db, { migrationsFolder: 'drizzle' })
-p
-  await sql.end()
-}
-
-main().catch((err) => {
-  console.error('❌ Error migrando:', err)
-  process.exit(1)
-})
-=======
 #!/usr/bin/env tsx
 /**
  * scripts/db/migrate-supabase.ts
@@ -98,4 +71,3 @@ main().catch(err => {
   console.error(err);
   process.exit(1);
 });
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9

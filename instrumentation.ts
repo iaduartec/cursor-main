@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /**
 Resumen generado automáticamente.
 
@@ -13,5 +11,4 @@ Tamaño: 29 caracteres, 1 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 export function register() {}

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /**
 Resumen generado automáticamente.
 
@@ -13,7 +11,6 @@ Tamaño: 150 caracteres, 12 líneas
 Resumen básico generado automáticamente sin análisis de IA.
 Contenido detectado basado en extensión y estructura básica.
 */
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 /// <reference types="jest" />
 
 declare global {

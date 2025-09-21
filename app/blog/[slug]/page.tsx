@@ -7,7 +7,7 @@ import Breadcrumb from '../../../components/Breadcrumb';
 import RelatedPosts from '../../../components/RelatedPosts';
 import { unstable_cache } from 'next/cache';
 import { getAllPosts, getAllSlugs, getPostBySlug } from '../../../lib/db-posts';
-import { marked } from 'marked';
+import { renderMarkdown } from '../../../lib/markdown';
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     redirect(`/blog/${canonical}`);
   }
 
-  const html = (await marked.parse(post.content || '')) as string;
+  const html = renderMarkdown(post.content || '');
   const readTime = estimateReadTime(post.content || '');
 
   const allPosts: BlogCard[] = await getBlogCards();

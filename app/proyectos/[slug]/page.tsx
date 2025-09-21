@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllProjects, getProjectBySlug } from '../../../lib/db-projects';
-import { marked } from 'marked';
+import { renderMarkdown } from '../../../lib/markdown';
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -39,7 +39,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </div>
     );
   }
-  const html = (await marked.parse(p.content || p.description || '')) as string;
+  const html = renderMarkdown(p.content || p.description || '');
 
   return (
     <div className="min-h-screen">
