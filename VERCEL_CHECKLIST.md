@@ -20,7 +20,6 @@ Este checklist te ayudará a evitar errores comunes durante el despliegue en Ver
   - `VERCEL_ORG_ID`
   - `VERCEL_PROJECT_ID`
   
-
 ### Variables de Entorno Requeridas
 
 - [ ] **POSTGRES_URL**: URL de conexión a PostgreSQL/Neon
