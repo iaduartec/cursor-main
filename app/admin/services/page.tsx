@@ -1,54 +1,10 @@
-import { db } from '../../../db/client';
-import { services } from '../../../db/schema';
-import { asc } from 'drizzle-orm';
-
-async function getItems() {
-  return await (db as any).select().from(services).orderBy(asc(services.title));
-}
-
-export default async function AdminServicesPage() {
-  const items = await getItems();
-  return (
-    <div>
-      <h1>Servicios</h1>
-      <ul>
-        {items.map((item: any) => (
-          <li key={item.id}>{item.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-import { db } from '../../../db/client';
-import { services } from '../../../db/schema';
-import { asc } from 'drizzle-orm';
-
-async function getItems() {
-  return await (db as any).select().from(services).orderBy(asc(services.title));
-}
-
-export default async function AdminServicesPage() {
-  const items = await getItems();
-  return (
-    <div>
-      <h1>Servicios</h1>
-      <ul>
-        {items.map((item: any) => (
-          <li key={item.id}>{item.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { db, type DrizzleClient } from '../../../db/client';
-import { services, type NewService, type Service } from '../../../db/schema';
+import { db } from '../../../db/client';
+import { services } from '../../../db/schema';
 import { eq, asc } from 'drizzle-orm';
 
 async function getItems() {
-  // El tipado DrizzleClient no existe, usar 'any' temporalmente
-  return await (db as any).select().from(services).orderBy(asc(services.title));
-}
+  return await db.select().from(services).orderBy(asc(services.title));
 }
 
 export default async function AdminServicesPage() {
@@ -63,11 +19,10 @@ export default async function AdminServicesPage() {
     const areaServed = String(formData.get('areaServed') || '');
     const hasOfferCatalog = formData.get('hasOfferCatalog') ? true : false;
     const now = new Date();
-    const typedDb = db as unknown as DrizzleClient;
-    await typedDb
+    await db
       .insert(services)
-      .values({ slug, title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, createdAt: now, updatedAt: now } as NewService)
-      .onConflictDoUpdate({ target: services.slug, set: { title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, updatedAt: now } as Partial<NewService> });
+      .values({ slug, title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, createdAt: now, updatedAt: now })
+      .onConflictDoUpdate({ target: services.slug, set: { title, description: description || null, image: image || null, areaServed: areaServed || null, hasOfferCatalog, updatedAt: now } });
     revalidateTag('services');
     revalidatePath('/admin/services');
   }
@@ -75,8 +30,7 @@ export default async function AdminServicesPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-    const typedDb = db as unknown as DrizzleClient;
-    await typedDb.delete(services).where(eq(services.slug, slug));
+    await db.delete(services).where(eq(services.slug, slug));
     revalidateTag('services');
     revalidatePath('/admin/services');
   }
@@ -101,11 +55,11 @@ export default async function AdminServicesPage() {
             <th>Título</th>
             <th>Área</th>
             <th>Catálogo</th>
-            <th />
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {items.map((s: Service) => (
+          {items.map((s) => (
             <tr key={s.slug} className="border-b">
               <td className="py-2">{s.slug}</td>
               <td>{s.title}</td>

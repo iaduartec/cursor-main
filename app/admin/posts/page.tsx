@@ -1,17 +1,15 @@
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { db, type DrizzleClient } from '../../../db/client';
-import { posts, type NewPost } from '../../../db/schema';
+import { db } from '../../../db/client';
+import { posts } from '../../../db/schema';
 import { eq, desc } from 'drizzle-orm';
 
-type ProjectedPost = { id: number; slug: string; title: string; date: Date | null; category: string | null };
-
 async function getItems() {
-  const typedDb = db as unknown as DrizzleClient;
-  return await typedDb
+  return await db
     .select({ id: posts.id, slug: posts.slug, title: posts.title, date: posts.date, category: posts.category })
     .from(posts)
     .orderBy(desc(posts.date));
 }
+
 export default async function AdminPostsPage() {
   const items = await getItems();
 
@@ -26,13 +24,12 @@ export default async function AdminPostsPage() {
     const dateStr = String(formData.get('date') || '');
     const date = dateStr ? new Date(dateStr) : new Date();
     const now = new Date();
-    const typedDb = db as unknown as DrizzleClient;
-    await typedDb
+    await db
       .insert(posts)
-      .values({ slug, title, description: description || null, category: category || null, image: image || null, content, date, published: true, createdAt: now, updatedAt: now } as NewPost)
+      .values({ slug, title, description: description || null, category: category || null, image: image || null, content, date, published: true, createdAt: now, updatedAt: now })
       .onConflictDoUpdate({
         target: posts.slug,
-        set: { title, description: description || null, category: category || null, image: image || null, content, date, published: true, updatedAt: now } as Partial<NewPost>,
+        set: { title, description: description || null, category: category || null, image: image || null, content, date, published: true, updatedAt: now },
       });
     revalidateTag('blogs');
     revalidatePath('/blog');
@@ -42,8 +39,7 @@ export default async function AdminPostsPage() {
   async function remove(formData: FormData) {
     'use server';
     const slug = String(formData.get('slug') || '');
-    const typedDb = db as unknown as DrizzleClient;
-    await typedDb.delete(posts).where(eq(posts.slug, slug));
+    await db.delete(posts).where(eq(posts.slug, slug));
     revalidateTag('blogs');
     revalidatePath('/blog');
     revalidatePath('/admin/posts');
@@ -71,15 +67,15 @@ export default async function AdminPostsPage() {
             <th>Título</th>
             <th>Fecha</th>
             <th>Categoría</th>
-            <th />
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {items.map((p: ProjectedPost) => (
+          {items.map((p) => (
             <tr key={p.slug} className="border-b">
               <td className="py-2">{p.slug}</td>
               <td>{p.title}</td>
-              <td>{p.date ? new Date(String(p.date)).toLocaleString('es-ES') : ''}</td>
+              <td>{p.date ? new Date(p.date as any).toLocaleString('es-ES') : ''}</td>
               <td>{p.category}</td>
               <td>
                 <form action={remove}>

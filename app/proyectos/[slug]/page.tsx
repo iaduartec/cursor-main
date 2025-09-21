@@ -1,30 +1,8 @@
-<<<<<<< HEAD
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllProjects, getProjectBySlug } from '../../../lib/db-projects';
 import { marked } from 'marked';
-=======
-/**
-Resumen generado automáticamente.
-
-app/proyectos/[slug]/page.tsx
-
-2025-09-13T06:20:07.365Z
-
-——————————————————————————————
-Archivo .tsx: page.tsx
-Tamaño: 2416 caracteres, 65 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
-*/
-import { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
-import { getAllProjects, getProjectBySlug } from '../../../lib/db-projects.new';
-import { marked } from 'marked';
-import { sanitizeHtml } from '../../../lib/sanitize-html';
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -42,7 +20,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const p = await getProjectBySlug(normalizeSlug(slug));
-  if (!p) {return { title: 'Proyecto no encontrado' };}
+  if (!p) return { title: 'Proyecto no encontrado' };
   return {
     title: `${p.title} - Proyecto`,
     description: p.description || undefined,
@@ -61,12 +39,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </div>
     );
   }
-<<<<<<< HEAD
   const html = (await marked.parse(p.content || p.description || '')) as string;
-=======
-  const htmlRaw = (await marked.parse(p.content || p.description || '')) as string;
-  const html = sanitizeHtml(htmlRaw);
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
 
   return (
     <div className="min-h-screen">
@@ -83,13 +56,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </section>
 
       <section className="max-w-5xl mx-auto py-12 px-4">
-<<<<<<< HEAD
         <article className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: html }} />
-=======
-  {/* Content generated from markdown; sanitized by lib/sanitize-html.ts */}
-  {/* eslint-disable-next-line react/no-danger */}
-  <article className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: html }} />
->>>>>>> a825cc0035acea741d54a0676ee96e99ce5c9aa9
       </section>
     </div>
   );
