@@ -14,6 +14,7 @@ Contenido detectado basado en extensión y estructura básica.
 import {
   boolean,
   index,
+  pgPolicy,
   pgTable,
   serial,
   text,
@@ -65,6 +66,7 @@ export const streams = pgTable(
     embedUrl: varchar('embed_url', { length: 1024 }),
     image: varchar('image', { length: 1024 }),
     isLive: boolean('is_live').notNull().default(true),
+    userId: varchar('user_id', { length: 255 }).notNull(),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -75,6 +77,7 @@ export const streams = pgTable(
   table => ({
     slugIdx: uniqueIndex('streams_slug_idx').on(table.slug),
     providerIdx: index('streams_provider_idx').on(table.provider),
+    userIdx: index('streams_user_idx').on(table.userId),
   })
 );
 
