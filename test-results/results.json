@@ -159,37 +159,37 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 2600,
+                  "duration": 2829,
                   "error": {
-                    "message": "SyntaxError: Unexpected end of JSON input",
-                    "stack": "SyntaxError: Unexpected end of JSON input\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16",
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17",
                     "location": {
                       "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 16,
-                      "line": 31
+                      "column": 17,
+                      "line": 40
                     },
-                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36mconst\u001b[39m items \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   \u001b[36mconst\u001b[39m found \u001b[33m=\u001b[39m items\u001b[33m.\u001b[39mfind((p\u001b[33m:\u001b[39m any) \u001b[33m=>\u001b[39m p\u001b[33m.\u001b[39mslug \u001b[33m===\u001b[39m slug)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   expect(found)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[90m// Delete the created project\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36mconst\u001b[39m del \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mfetch(\u001b[32m`/api/projects/${body.id}`\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 16,
-                        "line": 31
+                        "column": 17,
+                        "line": 40
                       },
-                      "message": "SyntaxError: Unexpected end of JSON input\n\n\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16\u001b[22m"
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n\n\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36mconst\u001b[39m items \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   \u001b[36mconst\u001b[39m found \u001b[33m=\u001b[39m items\u001b[33m.\u001b[39mfind((p\u001b[33m:\u001b[39m any) \u001b[33m=>\u001b[39m p\u001b[33m.\u001b[39mslug \u001b[33m===\u001b[39m slug)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   expect(found)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[90m// Delete the created project\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36mconst\u001b[39m del \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mfetch(\u001b[32m`/api/projects/${body.id}`\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T02:02:02.994Z",
+                  "startTime": "2025-09-22T02:03:11.157Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
                     "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 16,
-                    "line": 31
+                    "column": 17,
+                    "line": 40
                   }
                 }
               ],
@@ -217,37 +217,37 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "failed",
-                  "duration": 2599,
+                  "duration": 2827,
                   "error": {
-                    "message": "SyntaxError: Unexpected end of JSON input",
-                    "stack": "SyntaxError: Unexpected end of JSON input\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16",
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17",
                     "location": {
                       "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 16,
-                      "line": 31
+                      "column": 17,
+                      "line": 40
                     },
-                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36mconst\u001b[39m items \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   \u001b[36mconst\u001b[39m found \u001b[33m=\u001b[39m items\u001b[33m.\u001b[39mfind((p\u001b[33m:\u001b[39m any) \u001b[33m=>\u001b[39m p\u001b[33m.\u001b[39mslug \u001b[33m===\u001b[39m slug)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   expect(found)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[90m// Delete the created project\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36mconst\u001b[39m del \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mfetch(\u001b[32m`/api/projects/${body.id}`\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 16,
-                        "line": 31
+                        "column": 17,
+                        "line": 40
                       },
-                      "message": "SyntaxError: Unexpected end of JSON input\n\n\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16\u001b[22m"
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n\n\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36mconst\u001b[39m items \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   \u001b[36mconst\u001b[39m found \u001b[33m=\u001b[39m items\u001b[33m.\u001b[39mfind((p\u001b[33m:\u001b[39m any) \u001b[33m=>\u001b[39m p\u001b[33m.\u001b[39mslug \u001b[33m===\u001b[39m slug)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   expect(found)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[90m// Delete the created project\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36mconst\u001b[39m del \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mfetch(\u001b[32m`/api/projects/${body.id}`\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T02:02:02.993Z",
+                  "startTime": "2025-09-22T02:03:11.158Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
                     "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 16,
-                    "line": 31
+                    "column": 17,
+                    "line": 40
                   }
                 }
               ],
@@ -275,37 +275,37 @@
                   "workerIndex": 2,
                   "parallelIndex": 2,
                   "status": "failed",
-                  "duration": 2599,
+                  "duration": 2834,
                   "error": {
-                    "message": "SyntaxError: Unexpected end of JSON input",
-                    "stack": "SyntaxError: Unexpected end of JSON input\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16",
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17",
                     "location": {
                       "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 16,
-                      "line": 31
+                      "column": 17,
+                      "line": 40
                     },
-                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36mconst\u001b[39m items \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   \u001b[36mconst\u001b[39m found \u001b[33m=\u001b[39m items\u001b[33m.\u001b[39mfind((p\u001b[33m:\u001b[39m any) \u001b[33m=>\u001b[39m p\u001b[33m.\u001b[39mslug \u001b[33m===\u001b[39m slug)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   expect(found)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[90m// Delete the created project\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36mconst\u001b[39m del \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mfetch(\u001b[32m`/api/projects/${body.id}`\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 16,
-                        "line": 31
+                        "column": 17,
+                        "line": 40
                       },
-                      "message": "SyntaxError: Unexpected end of JSON input\n\n\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16\u001b[22m"
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n\n\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36mconst\u001b[39m items \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   \u001b[36mconst\u001b[39m found \u001b[33m=\u001b[39m items\u001b[33m.\u001b[39mfind((p\u001b[33m:\u001b[39m any) \u001b[33m=>\u001b[39m p\u001b[33m.\u001b[39mslug \u001b[33m===\u001b[39m slug)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   expect(found)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[90m// Delete the created project\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36mconst\u001b[39m del \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mfetch(\u001b[32m`/api/projects/${body.id}`\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T02:02:02.993Z",
+                  "startTime": "2025-09-22T02:03:11.157Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
                     "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 16,
-                    "line": 31
+                    "column": 17,
+                    "line": 40
                   }
                 }
               ],
@@ -333,37 +333,37 @@
                   "workerIndex": 3,
                   "parallelIndex": 3,
                   "status": "failed",
-                  "duration": 2599,
+                  "duration": 2828,
                   "error": {
-                    "message": "SyntaxError: Unexpected end of JSON input",
-                    "stack": "SyntaxError: Unexpected end of JSON input\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16",
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17",
                     "location": {
                       "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 16,
-                      "line": 31
+                      "column": 17,
+                      "line": 40
                     },
-                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36mconst\u001b[39m items \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   \u001b[36mconst\u001b[39m found \u001b[33m=\u001b[39m items\u001b[33m.\u001b[39mfind((p\u001b[33m:\u001b[39m any) \u001b[33m=>\u001b[39m p\u001b[33m.\u001b[39mslug \u001b[33m===\u001b[39m slug)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   expect(found)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[90m// Delete the created project\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36mconst\u001b[39m del \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mfetch(\u001b[32m`/api/projects/${body.id}`\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 16,
-                        "line": 31
+                        "column": 17,
+                        "line": 40
                       },
-                      "message": "SyntaxError: Unexpected end of JSON input\n\n\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16\u001b[22m"
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n\n\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36mconst\u001b[39m items \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   \u001b[36mconst\u001b[39m found \u001b[33m=\u001b[39m items\u001b[33m.\u001b[39mfind((p\u001b[33m:\u001b[39m any) \u001b[33m=>\u001b[39m p\u001b[33m.\u001b[39mslug \u001b[33m===\u001b[39m slug)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   expect(found)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[90m// Delete the created project\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36mconst\u001b[39m del \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mfetch(\u001b[32m`/api/projects/${body.id}`\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T02:02:02.994Z",
+                  "startTime": "2025-09-22T02:03:11.158Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
                     "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 16,
-                    "line": 31
+                    "column": 17,
+                    "line": 40
                   }
                 }
               ],
@@ -391,37 +391,37 @@
                   "workerIndex": 4,
                   "parallelIndex": 4,
                   "status": "failed",
-                  "duration": 2596,
+                  "duration": 2828,
                   "error": {
-                    "message": "SyntaxError: Unexpected end of JSON input",
-                    "stack": "SyntaxError: Unexpected end of JSON input\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16",
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17",
                     "location": {
                       "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 16,
-                      "line": 31
+                      "column": 17,
+                      "line": 40
                     },
-                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36mconst\u001b[39m items \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   \u001b[36mconst\u001b[39m found \u001b[33m=\u001b[39m items\u001b[33m.\u001b[39mfind((p\u001b[33m:\u001b[39m any) \u001b[33m=>\u001b[39m p\u001b[33m.\u001b[39mslug \u001b[33m===\u001b[39m slug)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   expect(found)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[90m// Delete the created project\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36mconst\u001b[39m del \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mfetch(\u001b[32m`/api/projects/${body.id}`\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 16,
-                        "line": 31
+                        "column": 17,
+                        "line": 40
                       },
-                      "message": "SyntaxError: Unexpected end of JSON input\n\n\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16\u001b[22m"
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n\n\u001b[0m \u001b[90m 38 |\u001b[39m   \u001b[36mconst\u001b[39m items \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   \u001b[36mconst\u001b[39m found \u001b[33m=\u001b[39m items\u001b[33m.\u001b[39mfind((p\u001b[33m:\u001b[39m any) \u001b[33m=>\u001b[39m p\u001b[33m.\u001b[39mslug \u001b[33m===\u001b[39m slug)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m   expect(found)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[90m// Delete the created project\u001b[39m\n \u001b[90m 43 |\u001b[39m   \u001b[36mconst\u001b[39m del \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mfetch(\u001b[32m`/api/projects/${body.id}`\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T02:02:02.997Z",
+                  "startTime": "2025-09-22T02:03:11.158Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
                     "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 16,
-                    "line": 31
+                    "column": 17,
+                    "line": 40
                   }
                 }
               ],
@@ -438,8 +438,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-09-22T02:01:55.395Z",
-    "duration": 10364.236,
+    "startTime": "2025-09-22T02:03:03.737Z",
+    "duration": 10438.326000000001,
     "expected": 0,
     "skipped": 0,
     "unexpected": 5,

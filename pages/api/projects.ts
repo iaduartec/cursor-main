@@ -19,6 +19,41 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // Handle in-memory database mode for testing
+  if (process.env.USE_IN_MEMORY_DB === '1') {
+    if (req.method === 'GET') {
+      return res.status(200).json([]);
+    }
+
+    if (req.method === 'POST') {
+      if (!checkAdminAccess(req)) {
+        return res.status(403).json({ error: 'Forbidden' });
+      }
+
+      const { slug, title, description, hero_image } = req.body;
+
+      if (!slug || !title) {
+        return res
+          .status(400)
+          .json({ error: 'Missing required fields: slug, title' });
+      }
+
+      // Mock response for in-memory mode
+      const mockProject = {
+        id: Date.now(),
+        slug,
+        title,
+        description: description || '',
+        hero_image: hero_image || '',
+        created_at: new Date(),
+      };
+
+      return res.status(201).json(mockProject);
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   if (req.method === 'GET') {
     try {
       const allProjects = await db
