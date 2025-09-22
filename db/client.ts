@@ -1,5 +1,15 @@
 import { drizzle, type PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { neon, type NeonSql } from '@neondatabase/serverless';
+import dotenv from 'dotenv';
+
+// Load environment variables
+const envLocal = process.cwd() + '/.env.local';
+const envFile = process.cwd() + '/.env';
+if (require('fs').existsSync(envLocal)) {
+  dotenv.config({ path: envLocal });
+} else if (require('fs').existsSync(envFile)) {
+  dotenv.config({ path: envFile });
+}
 
 import * as schema from './schema';
 

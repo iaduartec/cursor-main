@@ -1,6 +1,20 @@
 import { db } from '../db/client';
 import { projects } from '../db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { asc, eq, desc } from 'drizzle-orm';
+import dotenv from 'dotenv';
+import { existsSync } from 'fs';
+import { join } from 'path';
+
+// Load environment variables if not already loaded
+if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
+  const envLocal = join(process.cwd(), '.env.local');
+  const envFile = join(process.cwd(), '.env');
+  if (existsSync(envLocal)) {
+    dotenv.config({ path: envLocal });
+  } else if (existsSync(envFile)) {
+    dotenv.config({ path: envFile });
+  }
+}
 
 export type ProjectRow = {
   id: number;
@@ -22,7 +36,9 @@ const hasDb = () =>
   );
 
 export async function getAllProjects(): Promise<ProjectRow[]> {
-  if (!hasDb()) {return [];}
+  if (!hasDb()) {
+    return [];
+  }
   try {
     const rows = await db
       .select({
@@ -44,7 +60,9 @@ export async function getAllProjects(): Promise<ProjectRow[]> {
   }
 }
 
-export async function getProjectBySlug(slug: string): Promise<ProjectRow | null> {
+export async function getProjectBySlug(
+  slug: string
+): Promise<ProjectRow | null> {
   try {
     const [row] = await db
       .select({
@@ -66,4 +84,3 @@ export async function getProjectBySlug(slug: string): Promise<ProjectRow | null>
     return null;
   }
 }
-

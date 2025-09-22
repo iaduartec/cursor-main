@@ -1,6 +1,20 @@
 import { db } from '../db/client';
 import { services } from '../db/schema';
 import { asc, eq } from 'drizzle-orm';
+import dotenv from 'dotenv';
+import { existsSync } from 'fs';
+import { join } from 'path';
+
+// Load environment variables if not already loaded
+if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
+  const envLocal = join(process.cwd(), '.env.local');
+  const envFile = join(process.cwd(), '.env');
+  if (existsSync(envLocal)) {
+    dotenv.config({ path: envLocal });
+  } else if (existsSync(envFile)) {
+    dotenv.config({ path: envFile });
+  }
+}
 
 // Helper function to get allServicios conditionally
 async function getAllServicios(): Promise<any[]> {

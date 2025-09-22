@@ -1,6 +1,18 @@
 import { db } from '../db/client';
 import { streams } from '../db/schema';
 import { asc } from 'drizzle-orm';
+import dotenv from 'dotenv';
+
+// Load environment variables if not already loaded
+if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
+  const envLocal = process.cwd() + '/.env.local';
+  const envFile = process.cwd() + '/.env';
+  if (require('fs').existsSync(envLocal)) {
+    dotenv.config({ path: envLocal });
+  } else if (require('fs').existsSync(envFile)) {
+    dotenv.config({ path: envFile });
+  }
+}
 
 export type StreamRow = {
   id: number;
