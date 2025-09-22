@@ -91,7 +91,7 @@ jobs:
           # Build del proyecto usando el builder de Vercel
           pnpm dlx vercel@latest build --token "$VERCEL_TOKEN"
       - name: Deploy to Production (prebuilt)
-        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
+        if: ${{ steps.check_secrets.outputs.has_cli_creds == '1' }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -100,7 +100,7 @@ jobs:
           # Publica el build preconstruido a producción
           pnpm dlx vercel@latest deploy --prebuilt --prod --token "$VERCEL_TOKEN" --yes
       - name: Trigger Vercel Deploy Hook (fallback)
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK_URL != '' && !(secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '') }}
+        if: ${{ steps.check_secrets.outputs.has_hook == '1' && steps.check_secrets.outputs.has_cli_creds == '0' }}
         env:
           VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
