@@ -18,14 +18,17 @@ if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
 
 // Helper function to get allServicios conditionally
 async function getAllServicios(): Promise<any[]> {
-  if (process.env.VERCEL === '1' || process.env.SKIP_CONTENTLAYER === '1') {
+  if (process.env.SKIP_CONTENTLAYER === '1') {
     return [];
   }
   try {
     const { allServicios = [] } = await import('contentlayer/generated');
     return allServicios;
-  } catch {
-    // Contentlayer not available, return empty array
+  } catch (error) {
+    console.warn(
+      'Contentlayer data for servicios no disponible, usando arreglo vacío.',
+      error
+    );
     return [];
   }
 }
@@ -65,7 +68,11 @@ export async function getAllServices(): Promise<ServiceRow[]> {
       })
       .from(services)
       .orderBy(asc(services.title));
-    return rows as unknown as ServiceRow[];
+    const normalized = rows as unknown as ServiceRow[];
+    if (!normalized || normalized.length === 0) {
+      return await fallbackServices();
+    }
+    return normalized;
   } catch (e) {
     console.error('DB getAllServices error', e);
     return await fallbackServices();
@@ -111,7 +118,8 @@ export async function getServiceBySlug(
   } catch (e) {
     console.error('DB getServiceBySlug error', e);
   }
-  return null;
+  const fallback = await fallbackServices();
+  return fallback.find(item => item.slug === slug) ?? null;
 }
 
 async function fallbackServices(): Promise<ServiceRow[]> {
