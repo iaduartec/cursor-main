@@ -25,7 +25,7 @@ export default async function handler(
   // Handle in-memory database mode for testing
   if (process.env.USE_IN_MEMORY_DB === '1') {
     if (req.method === 'GET') {
-      return res.status(200).json([]);
+      return res.status(200).json(inMemoryProjects);
     }
 
     if (req.method === 'POST') {
