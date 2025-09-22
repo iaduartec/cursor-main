@@ -61,6 +61,7 @@ jobs:
           # Test basic Vercel CLI
           corepack enable
           corepack prepare pnpm@9.12.3 --activate
+<<<<<<< HEAD
 
           echo "Testing Vercel CLI version..."
           pnpm dlx vercel --version
@@ -69,6 +70,23 @@ jobs:
           pnpm dlx vercel whoami --token "$VERCEL_TOKEN" || echo "Whoami failed - this is expected for testing"
 
           echo "Test completed successfully"
+=======
+          
+          # Simple preview deployment
+          echo "Starting preview deployment..."
+          pnpm dlx vercel --yes --token "$VERCEL_TOKEN" 2>&1 | tee vercel_output.log
+          
+          # Extract URL from output
+          url=$(grep -o 'https://[^[:space:]]*\.vercel\.app' vercel_output.log | tail -n1)
+          echo "Extracted Preview URL: $url"
+          
+          if [ -n "$url" ]; then
+            echo "url=$url" >> $GITHUB_OUTPUT
+          else
+            echo "No URL found in output"
+            cat vercel_output.log
+          fi
+>>>>>>> 64bfc0dd652d5fdb418209ef596cee62a1599f31
         shell: bash
 
       - name: Comment Test Result
@@ -83,8 +101,4 @@ jobs:
               body: '✅ Runner test completed successfully - secrets are available and Vercel CLI is working'
             })
 
-      - name: Skipped reason
-        if: ${{ steps.check_secrets.outputs.skip == 'true' }}
-        run: |
-          echo "Skipping preview deploy. Missing Vercel secrets or configuration."
-        shell: bash
+
