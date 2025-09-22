@@ -36,7 +36,7 @@ export const posts = pgTable(
     image: varchar('image', { length: 1024 }),
     date: timestamp('date', { withTimezone: false }).notNull(),
     published: boolean('published').notNull().default(true),
-    userId: varchar('user_id', { length: 255 }).notNull(),
+    userId: varchar('user_id', { length: 255 }),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -66,7 +66,7 @@ export const streams = pgTable(
     embedUrl: varchar('embed_url', { length: 1024 }),
     image: varchar('image', { length: 1024 }),
     isLive: boolean('is_live').notNull().default(true),
-    userId: varchar('user_id', { length: 255 }).notNull(),
+    userId: varchar('user_id', { length: 255 }),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -94,7 +94,7 @@ export const services = pgTable(
     image: varchar('image', { length: 1024 }),
     areaServed: varchar('area_served', { length: 255 }),
     hasOfferCatalog: boolean('has_offer_catalog').notNull().default(false),
-    userId: varchar('user_id', { length: 255 }).notNull(),
+    userId: varchar('user_id', { length: 255 }),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -122,7 +122,7 @@ export const projects = pgTable(
     image: varchar('image', { length: 1024 }),
     category: varchar('category', { length: 100 }),
     date: timestamp('date', { withTimezone: false }),
-    userId: varchar('user_id', { length: 255 }).notNull(),
+    userId: varchar('user_id', { length: 255 }),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -149,6 +149,103 @@ export const comments = pgTable('comments', {
 
 export type Comment = typeof comments.$inferSelect;
 export type NewComment = typeof comments.$inferInsert;
+
+// RLS Policies for Neon RLS
+export const postsPolicies = [
+  pgPolicy('posts_select_policy', {
+    for: 'select',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('posts_insert_policy', {
+    for: 'insert',
+    to: 'authenticated',
+    withCheck: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('posts_update_policy', {
+    for: 'update',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+    withCheck: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('posts_delete_policy', {
+    for: 'delete',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+  }),
+];
+
+export const projectsPolicies = [
+  pgPolicy('projects_select_policy', {
+    for: 'select',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('projects_insert_policy', {
+    for: 'insert',
+    to: 'authenticated',
+    withCheck: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('projects_update_policy', {
+    for: 'update',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+    withCheck: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('projects_delete_policy', {
+    for: 'delete',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+  }),
+];
+
+export const servicesPolicies = [
+  pgPolicy('services_select_policy', {
+    for: 'select',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('services_insert_policy', {
+    for: 'insert',
+    to: 'authenticated',
+    withCheck: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('services_update_policy', {
+    for: 'update',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+    withCheck: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('services_delete_policy', {
+    for: 'delete',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+  }),
+];
+
+export const streamsPolicies = [
+  pgPolicy('streams_select_policy', {
+    for: 'select',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('streams_insert_policy', {
+    for: 'insert',
+    to: 'authenticated',
+    withCheck: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('streams_update_policy', {
+    for: 'update',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+    withCheck: sql`(select auth.user_id() = user_id)`,
+  }),
+  pgPolicy('streams_delete_policy', {
+    for: 'delete',
+    to: 'authenticated',
+    using: sql`(select auth.user_id() = user_id)`,
+  }),
+];
 
 // Drizzle Database type mapping. This aggregates the table definitions so
 // other modules can reference the whole schema as a single `Database` type
