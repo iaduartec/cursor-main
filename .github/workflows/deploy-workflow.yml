@@ -32,8 +32,12 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    # Despliega aunque falle validate; requiere secretos y estar en main
-    if: github.ref == 'refs/heads/main' && secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != ''
+    # Despliega aunque falle validate; requiere estar en main y disponer de credenciales de Vercel (CLI) o un Deploy Hook
+    if: >-
+      github.ref == 'refs/heads/main' && (
+        (secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '') ||
+        (secrets.VERCEL_DEPLOY_HOOK_URL != '')
+      )
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js 22
@@ -48,6 +52,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Pull Vercel env (production)
+        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -55,6 +60,7 @@ jobs:
         run: |
           pnpm dlx vercel@latest pull --yes --environment=production --token "$VERCEL_TOKEN"
       - name: Build (Vercel prebuilt)
+        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -63,6 +69,7 @@ jobs:
           # Build del proyecto usando el builder de Vercel
           pnpm dlx vercel@latest build --prod --token "$VERCEL_TOKEN"
       - name: Deploy to Production (prebuilt)
+        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -70,3 +77,10 @@ jobs:
         run: |
           # Publica el build preconstruido a producción
           pnpm dlx vercel@latest deploy --prebuilt --prod --token "$VERCEL_TOKEN" --yes
+      - name: Trigger Vercel Deploy Hook (fallback)
+        if: ${{ secrets.VERCEL_DEPLOY_HOOK_URL != '' && !(secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '') }}
+        env:
+          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          echo "Triggering Vercel Deploy Hook..."
+          curl -fsSL -X POST "$VERCEL_DEPLOY_HOOK_URL" && echo "Hook triggered"
