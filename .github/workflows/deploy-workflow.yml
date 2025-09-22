@@ -36,11 +36,37 @@ jobs:
     if: github.ref == 'refs/heads/main' && secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != ''
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy to Vercel (CLI)
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+      - name: Enable corepack and activate pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.3 --activate
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Pull Vercel env (production)
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          # usa vercel CLI sin integración GitHub; requiere proyecto ya vinculado (org/project id)
-          pnpm dlx vercel --prod --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --confirm
+          pnpm dlx vercel@latest pull --yes --environment=production --token "$VERCEL_TOKEN"
+      - name: Build (Vercel prebuilt)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          # Build del proyecto usando el builder de Vercel
+          pnpm dlx vercel@latest build --prod --token "$VERCEL_TOKEN"
+      - name: Deploy to Production (prebuilt)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          # Publica el build preconstruido a producción
+          pnpm dlx vercel@latest deploy --prebuilt --prod --token "$VERCEL_TOKEN" --yes
