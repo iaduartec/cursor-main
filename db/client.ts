@@ -146,3 +146,16 @@ if (!dbExport) {
 
 export const db: DrizzleClient = dbExport;
 export { client as sql };
+
+// Authenticated database client for Neon RLS
+export function createAuthenticatedClient(authToken: string): DrizzleClient {
+  const authenticatedUrl = process.env.DATABASE_AUTHENTICATED_URL;
+  if (!authenticatedUrl) {
+    throw new Error(
+      'DATABASE_AUTHENTICATED_URL is required for authenticated operations'
+    );
+  }
+
+  const authenticatedClient = neon(authenticatedUrl, { authToken });
+  return drizzle(authenticatedClient, { schema });
+}
