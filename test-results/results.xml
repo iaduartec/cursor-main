@@ -1,0 +1,112 @@
+<testsuites id="" name="" tests="5" failures="5" skipped="0" errors="0" time="22.641801">
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T01:59:42.372Z" hostname="chromium" tests="1" failures="1" skipped="0" time="14.648" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="14.648">
+<failure message="projects.spec.ts:3:5 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [chromium] › projects.spec.ts:3:5 › projects CRUD via API (in-memory) ────────────────────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 500
+
+      28 |     },
+      29 |   });
+    > 30 |   expect(res.status()).toBe(201);
+         |                        ^
+      31 |   const body = await res.json();
+      32 |   expect(body.slug).toBe(slug);
+      33 |   expect(body.id).toBeTruthy();
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:30:24
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T01:59:42.372Z" hostname="firefox" tests="1" failures="1" skipped="0" time="14.645" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="14.645">
+<failure message="projects.spec.ts:3:5 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [firefox] › projects.spec.ts:3:5 › projects CRUD via API (in-memory) ─────────────────────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 500
+
+      28 |     },
+      29 |   });
+    > 30 |   expect(res.status()).toBe(201);
+         |                        ^
+      31 |   const body = await res.json();
+      32 |   expect(body.slug).toBe(slug);
+      33 |   expect(body.id).toBeTruthy();
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:30:24
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T01:59:42.372Z" hostname="webkit" tests="1" failures="1" skipped="0" time="14.643" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="14.643">
+<failure message="projects.spec.ts:3:5 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [webkit] › projects.spec.ts:3:5 › projects CRUD via API (in-memory) ──────────────────────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 500
+
+      28 |     },
+      29 |   });
+    > 30 |   expect(res.status()).toBe(201);
+         |                        ^
+      31 |   const body = await res.json();
+      32 |   expect(body.slug).toBe(slug);
+      33 |   expect(body.id).toBeTruthy();
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:30:24
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T01:59:42.372Z" hostname="Mobile Chrome" tests="1" failures="1" skipped="0" time="14.645" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="14.645">
+<failure message="projects.spec.ts:3:5 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › projects.spec.ts:3:5 › projects CRUD via API (in-memory) ───────────────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 500
+
+      28 |     },
+      29 |   });
+    > 30 |   expect(res.status()).toBe(201);
+         |                        ^
+      31 |   const body = await res.json();
+      32 |   expect(body.slug).toBe(slug);
+      33 |   expect(body.id).toBeTruthy();
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:30:24
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T01:59:42.372Z" hostname="Mobile Safari" tests="1" failures="1" skipped="0" time="14.646" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="14.646">
+<failure message="projects.spec.ts:3:5 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [Mobile Safari] › projects.spec.ts:3:5 › projects CRUD via API (in-memory) ───────────────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 500
+
+      28 |     },
+      29 |   });
+    > 30 |   expect(res.status()).toBe(201);
+         |                        ^
+      31 |   const body = await res.json();
+      32 |   expect(body.slug).toBe(slug);
+      33 |   expect(body.id).toBeTruthy();
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:30:24
+]]>
+</failure>
+</testcase>
+</testsuite>
+</testsuites>
