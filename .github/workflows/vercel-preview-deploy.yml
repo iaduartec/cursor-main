@@ -12,7 +12,7 @@ concurrency:
 jobs:
   preview-deploy:
     name: Deploy Preview to Vercel
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     # Evita forks (sin secretos comprobados en tiempo de ejecución)
     if: ${{ github.event.pull_request.head.repo.fork == false }}
     permissions:
