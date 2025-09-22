@@ -31,7 +31,7 @@ jobs:
         run: pnpm build
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     # Despliega aunque falle validate; el job se ejecuta en pushes a main.
     # Las acciones concretas dentro del job están condicionadas por la presencia
     # de secretos (VERCEL_TOKEN / VERCEL_* o VERCEL_DEPLOY_HOOK_URL).
@@ -49,10 +49,32 @@ jobs:
           corepack prepare pnpm@9.12.3 --activate
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Check Vercel secrets
+        id: check_secrets
+        run: |
+          # Expose secrets to this step via GITHUB_ENV so the linter doesn't flag them in YAML
+          echo "VERCEL_TOKEN=${{ secrets.VERCEL_TOKEN }}" >> $GITHUB_ENV
+          echo "VERCEL_ORG_ID=${{ secrets.VERCEL_ORG_ID }}" >> $GITHUB_ENV
+          echo "VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}" >> $GITHUB_ENV
+          echo "VERCEL_DEPLOY_HOOK_URL=${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" >> $GITHUB_ENV
+
+          has_cli_creds=0
+          if [ -n "$VERCEL_TOKEN" ] && [ -n "$VERCEL_ORG_ID" ] && [ -n "$VERCEL_PROJECT_ID" ]; then
+            has_cli_creds=1
+          fi
+
+          has_hook=0
+          if [ -n "$VERCEL_DEPLOY_HOOK_URL" ]; then
+            has_hook=1
+          fi
+
+          echo "has_cli_creds=$has_cli_creds" >> $GITHUB_OUTPUT
+          echo "has_hook=$has_hook" >> $GITHUB_OUTPUT
+        shell: bash
       - name: Vercel CLI version
         run: pnpm dlx vercel@latest --version
       - name: Pull Vercel env (production)
-        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
+        if: ${{ steps.check_secrets.outputs.has_cli_creds == '1' }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -60,7 +82,7 @@ jobs:
         run: |
           pnpm dlx vercel@latest pull --yes --environment=production --token "$VERCEL_TOKEN"
       - name: Build (Vercel prebuilt)
-        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
+        if: ${{ steps.check_secrets.outputs.has_cli_creds == '1' }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
