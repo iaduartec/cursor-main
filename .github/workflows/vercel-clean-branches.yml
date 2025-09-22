@@ -13,6 +13,13 @@ on:
         description: No borrar (simulación)
         required: false
         default: "false"
+      force_delete_protected:
+        description: Forzar limpieza en ramas protegidas (main/master/production/prod)
+        required: false
+        default: "false"
+      protected_confirm:
+        description: Confirmación exacta del nombre de la rama protegida (p.ej. 'main')
+        required: false
 
 jobs:
   cleanup:
@@ -67,6 +74,8 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
           TARGET_BRANCH: ${{ steps.target.outputs.branch }}
+          FORCE_DELETE_PROTECTED: ${{ github.event.inputs.force_delete_protected == 'true' && '1' || '' }}
+          PROTECTED_CONFIRM: ${{ github.event.inputs.protected_confirm }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             DRY_RUN=1 node scripts/cleanup-vercel-branch.mjs

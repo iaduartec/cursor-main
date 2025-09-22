@@ -14,6 +14,8 @@ const projectId = process.env.VERCEL_PROJECT_ID;
 const teamId = process.env.VERCEL_TEAM_ID || '';
 const branch = process.env.TARGET_BRANCH;
 const dryRun = process.env.DRY_RUN === '1' || process.env.DRY_RUN === 'true';
+const forceDeleteProtected = process.env.FORCE_DELETE_PROTECTED === '1' || process.env.FORCE_DELETE_PROTECTED === 'true';
+const protectedConfirm = process.env.PROTECTED_CONFIRM || process.env.CONFIRM_BRANCH || '';
 
 if (!token || !projectId || !branch) {
     console.error('Missing required env vars. Needed: VERCEL_TOKEN, VERCEL_PROJECT_ID, TARGET_BRANCH');
@@ -38,6 +40,10 @@ async function listDeploymentsByBranch(branchName) {
             throw new Error(`Failed to list deployments (${res.status}): ${text}`);
         }
         const data = await res.json();
+        /**
+         * Nota: Los objetos pueden venir con forma de v6 (data.deployments) o v13 (items).
+         * Campo importante: `target` suele ser 'production' o 'preview'.
+         */
         const items = data.deployments || data.items || [];
         all.push(...items);
         // pagination via next/continue token
@@ -83,9 +89,19 @@ async function deleteDeployment(id) {
 
     // Protección básica contra ramas principales
     const protectedBranches = new Set(['main', 'master', 'production', 'prod']);
+    let deletingProtected = false;
     if (protectedBranches.has(branch)) {
-        console.log(`Branch '${branch}' is protected. Aborting.`);
-        process.exit(0);
+        if (!forceDeleteProtected) {
+            console.log(`Branch '${branch}' is protected. Aborting.`);
+            process.exit(0);
+        }
+        // Requiere confirmación explícita del nombre de la rama para minimizar riesgos
+        if (protectedConfirm !== branch) {
+            console.error(`Override requested but missing/incorrect PROTECTED_CONFIRM. Set PROTECTED_CONFIRM='${branch}' to proceed.`);
+            process.exit(2);
+        }
+        deletingProtected = true;
+        console.log(`Override enabled for protected branch '${branch}'. Will only delete preview deployments (no production).`);
     }
 
     const deployments = await listDeploymentsByBranch(branch);
@@ -93,10 +109,16 @@ async function deleteDeployment(id) {
         console.log('No deployments found for this branch.');
         return;
     }
-    console.log(`Found ${deployments.length} deployment(s):`);
-    deployments.forEach(d => {
+    // Si estamos en override de rama protegida, limitamos a target === 'preview'.
+    const candidates = deletingProtected ? deployments.filter(d => d.target === 'preview') : deployments;
+    if (!candidates.length) {
+        console.log('No matching preview deployments to delete (nothing to do).');
+        return;
+    }
+    console.log(`Found ${candidates.length} deployment(s):`);
+    candidates.forEach(d => {
         const url = d.url || d.alias?.[0] || '(no-url)';
-        console.log(` - ${d.uid || d.id}  ${url}  state=${d.state}`);
+        console.log(` - ${d.uid || d.id}  ${url}  state=${d.state} target=${d.target ?? '(n/a)'}`);
     });
 
     if (dryRun) {
@@ -105,7 +127,7 @@ async function deleteDeployment(id) {
     }
 
     let ok = 0, fail = 0;
-    for (const d of deployments) {
+    for (const d of candidates) {
         try {
             const id = d.uid || d.id;
             const result = await deleteDeployment(id);
