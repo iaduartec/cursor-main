@@ -1,22 +1,22 @@
-import { SignIn } from '@clerk/nextjs';
+import { SignUp } from '@clerk/nextjs';
 
-export default function AdminLoginPage() {
+export default function SignUpPage() {
   return (
     <div className='min-h-screen flex items-center justify-center p-6'>
       <div className='w-full max-w-md'>
         <div className='text-center mb-8'>
           <h1 className='text-3xl font-bold text-gray-900 dark:text-white mb-2'>
-            Acceso Admin
+            Crear Cuenta
           </h1>
           <p className='text-gray-600 dark:text-gray-400'>
-            Inicia sesión para acceder al panel de administración
+            Regístrate para acceder al panel de administración
           </p>
         </div>
 
-        <SignIn
-          path='/admin/login'
+        <SignUp
+          path='/admin/signup'
           routing='path'
-          signUpUrl='/admin/signup'
+          signInUrl='/admin/login'
           redirectUrl='/admin'
           appearance={{
             elements: {
