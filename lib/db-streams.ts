@@ -109,3 +109,8 @@ function fallbackStreams(): StreamRow[] {
     isLive: true,
   }));
 }
+
+// Nota: este archivo proporciona un fallback local para el listado de
+// cámaras. El comentario anterior es intencional y no realiza cambios
+// funcionales — se añadió para crear un commit y facilitar la creación
+// de un PR desde la rama "fix/streaming-fallback".
