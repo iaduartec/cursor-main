@@ -17,7 +17,6 @@
     "allowJs": true,
     "incremental": true,
     "isolatedModules": true,
-    "ignoreDeprecations": true,
     "plugins": [
       {
         "name": "next"
