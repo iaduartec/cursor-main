@@ -34,51 +34,66 @@ export default async function StreamingIndexPage() {
       </section>
 
       <section className='max-w-6xl mx-auto py-12 px-4'>
-        {isEmpty ? (
-          <div className='text-center py-16 text-gray-600 dark:text-gray-300'>
-            <p className='text-lg'>
-              No hay cámaras disponibles por el momento.
-            </p>
-            <p className='mt-2'>
-              Vuelve a intentarlo más tarde o contáctanos si necesitas acceso.
-            </p>
-          </div>
-        ) : (
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
-            {cams.map(c => (
-              <Link
-                key={c.slug}
-                href={`/streaming/${c.slug}`}
-                className='group rounded-xl overflow-hidden bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 shadow hover:shadow-lg transition-all'
-              >
-                <div className='relative h-44'>
-                  <Image
-                    src={
-                      c.image ||
-                      (c.youtubeId
-                        ? `https://img.youtube.com/vi/${c.youtubeId}/hqdefault.jpg`
-                        : '/images/proyectos/CCTV.jpeg')
-                    }
-                    alt={c.name}
-                    fill
-                    className='object-cover group-hover:scale-105 transition-transform duration-300'
-                  />
-                  <span className='absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded'>
-                    EN DIRECTO
-                  </span>
-                </div>
-                <div className='p-4'>
-                  <h3 className='font-semibold text-primary dark:text-white group-hover:text-accent transition-colors line-clamp-1'>
-                    {c.name}
-                  </h3>
-                  <p className='text-xs text-gray-500 mt-1'>
-                    {c.provider === 'youtube' ? 'YouTube Live' : 'Live'}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+          {(cams.length
+            ? cams
+            : [
+                {
+                  slug: 'silos',
+                  name: 'Santo Domingo de Silos',
+                  youtubeId: 'czwL7LgjyjU',
+                },
+                {
+                  slug: 'rabanera-del-pinar',
+                  name: 'Rabanera del Pinar',
+                  youtubeId: '2FLLNsHmgxc',
+                },
+                {
+                  slug: 'pineda-de-la-sierra',
+                  name: 'Pineda de la Sierra',
+                  youtubeId: 'MqU3cNr22XQ',
+                },
+                {
+                  slug: 'huerta-de-arriba',
+                  name: 'Huerta de Arriba',
+                  youtubeId: 'Kv2HeXZXWaw',
+                },
+              ]
+          ).map(c => (
+            <Link
+              key={c.slug}
+              href={`/streaming/${c.slug}`}
+              className='group rounded-xl overflow-hidden bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 shadow hover:shadow-lg transition-all'
+            >
+              <div className='relative h-44'>
+                <Image
+                  src={
+                    (c as any).image ||
+                    ((c as any).youtubeId
+                      ? `https://img.youtube.com/vi/${
+                          (c as any).youtubeId
+                        }/hqdefault.jpg`
+                      : '/images/proyectos/CCTV.jpeg')
+                  }
+                  alt={(c as any).name}
+                  fill
+                  className='object-cover group-hover:scale-105 transition-transform duration-300'
+                />
+                <span className='absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded'>
+                  EN DIRECTO
+                </span>
+              </div>
+              <div className='p-4'>
+                <h3 className='font-semibold text-primary dark:text-white group-hover:text-accent transition-colors line-clamp-1'>
+                  {(c as any).name}
+                </h3>
+                <p className='text-xs text-gray-500 mt-1'>
+                  {(c as any).provider === 'youtube' ? 'YouTube Live' : 'Live'}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
     </div>
   );

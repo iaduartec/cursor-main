@@ -30,7 +30,8 @@ export const dynamic = 'force-dynamic';
 
 export default async function Page() {
   const streams = await getAllStreams();
-  const cams = Array.isArray(streams) && streams.length ? streams.slice(0, 4) : [];
+  const cams =
+    Array.isArray(streams) && streams.length ? streams.slice(0, 4) : [];
 
   return (
     <>
@@ -91,39 +92,54 @@ export default async function Page() {
             videovigilancia, sonido y electricidad
           </p>
         </div>
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
-            {(cams.length ? cams : [
-              { slug: 'silos', name: 'Santo Domingo de Silos', youtubeId: 'czwL7LgjyjU' },
-              { slug: 'rabanera-del-pinar', name: 'Rabanera del Pinar', youtubeId: '2FLLNsHmgxc' },
-              { slug: 'pineda-de-la-sierra', name: 'Pineda de la Sierra', youtubeId: 'MqU3cNr22XQ' },
-              { slug: 'huerta-de-arriba', name: 'Huerta de Arriba', youtubeId: 'Kv2HeXZXWaw' },
-            ]).map(c => (
-              <a
-                key={c.slug}
-                href={`/streaming/${c.slug}`}
-                className='group rounded-xl overflow-hidden bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 shadow hover:shadow-lg transition-all'
-              >
-                <div className='relative h-40'>
-                  <Image
-                    src={`https://img.youtube.com/vi/${c.youtubeId}/hqdefault.jpg`}
-                    alt={c.name}
-                    fill
-                    className='object-cover group-hover:scale-105 transition-transform duration-300'
-                  />
-                  <span className='absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded'>
-                    EN DIRECTO
-                  </span>
-                </div>
-                <div className='p-4'>
-                  <h3 className='font-semibold text-primary dark:text-white group-hover:text-accent transition-colors line-clamp-1'>
-                    {c.name}
-                  </h3>
-                  <p className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
-                    En directo 24/7
-                  </p>
-                </div>
-              </a>
-            ))}
+
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+          <div className='bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-slate-700'>
+            <div className='w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4'>
+              <Monitor className='w-6 h-6 text-accent' />
+            </div>
+            <h3 className='text-xl font-semibold mb-3'>Informática</h3>
+            <p className='text-gray-600 dark:text-gray-300 mb-4'>
+              Equipos, redes, soporte y mantenimiento para tu empresa o negocio.
+              Soluciones a medida.
+            </p>
+            <a
+              href='/servicios/informatica'
+              className='text-accent hover:underline font-medium'
+            >
+              Saber más →
+            </a>
+          </div>
+
+          <div className='bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-slate-700'>
+            <div className='w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4'>
+              <Camera className='w-6 h-6 text-green-600' />
+            </div>
+            <h3 className='text-xl font-semibold mb-3'>
+              Videovigilancia (CCTV)
+            </h3>
+            <p className='text-gray-600 dark:text-gray-300 mb-4'>
+              Instalación y gestión de sistemas de videovigilancia y seguridad
+              para tu tranquilidad.
+            </p>
+            <a
+              href='/servicios/videovigilancia'
+              className='text-accent hover:underline font-medium'
+            >
+              Saber más →
+            </a>
+          </div>
+
+          <div className='bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-slate-700'>
+            <div className='w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4'>
+              <Volume2 className='w-6 h-6 text-purple-600' />
+            </div>
+            <h3 className='text-xl font-semibold mb-3'>Sonido Profesional</h3>
+            <p className='text-gray-600 dark:text-gray-300 mb-4'>
+              Instalaciones de audio para eventos, comercios y espacios
+              públicos. Sonido de calidad.
+            </p>
+            <a
               href='/servicios/sonido'
               className='text-accent hover:underline font-medium'
             >
