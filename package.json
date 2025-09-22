@@ -85,6 +85,8 @@
   },
   "pnpm": {
     "overrides": {
+      "path-to-regexp": "^6.3.0",
+      "cookie": "^0.7.0",
       "node-domexception": "^2.0.2",
       "estree-util-value-to-estree": "3.4.0",
       "esbuild": "0.25.9",
