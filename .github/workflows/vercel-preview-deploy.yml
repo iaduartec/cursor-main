@@ -25,18 +25,13 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Check Vercel secrets
-        id: check_secrets
-        run: |
           # Expose secrets to this step via GITHUB_ENV so the linter doesn't flag them in YAML
-          echo "VERCEL_TOKEN=${{ secrets.VERCEL_TOKEN }}" >> $GITHUB_ENV
-          echo "VERCEL_ORG_ID=${{ secrets.VERCEL_ORG_ID }}" >> $GITHUB_ENV
-          echo "VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}" >> $GITHUB_ENV
+          echo "VERCEL_TOKEN=$VERCEL_TOKEN_ENV" >> $GITHUB_ENV
+          echo "VERCEL_PROJECT_ID=$VERCEL_PROJECT_ID_ENV" >> $GITHUB_ENV
 
           missing=0
-          if [ -z "$VERCEL_TOKEN" ]; then echo "VERCEL_TOKEN missing"; missing=1; fi
-          if [ -z "$VERCEL_ORG_ID" ]; then echo "VERCEL_ORG_ID missing"; missing=1; fi
-          if [ -z "$VERCEL_PROJECT_ID" ]; then echo "VERCEL_PROJECT_ID missing"; missing=1; fi
+          if [ -z "$VERCEL_TOKEN_ENV" ]; then echo "VERCEL_TOKEN missing"; missing=1; fi
+          if [ -z "$VERCEL_PROJECT_ID_ENV" ]; then echo "VERCEL_PROJECT_ID missing"; missing=1; fi
           if [ $missing -eq 1 ]; then echo "skip=true" >> $GITHUB_OUTPUT; else echo "skip=false" >> $GITHUB_OUTPUT; fi
         shell: bash
 
@@ -47,14 +42,35 @@ jobs:
         if: ${{ steps.check_secrets.outputs.skip == 'false' }}
         run: |
           # Secrets were written to GITHUB_ENV in the previous step and are available here
+          echo "Starting Vercel deployment..."
+          echo "VERCEL_TOKEN is set: $(if [ -n "$VERCEL_TOKEN" ]; then echo "yes"; else echo "no"; fi)"
+          echo "VERCEL_ORG_ID: $VERCEL_ORG_ID"
+          echo "VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID"
+          
           corepack enable
           corepack prepare pnpm@9.12.3 --activate
+          
+          # First, try to link the project if not already linked
+          echo "Checking if project is linked..."
+          if [ ! -f ".vercel/project.json" ]; then
+            echo "Project not linked, linking..."
+            pnpm dlx vercel link --yes --token "$VERCEL_TOKEN" --project "$VERCEL_PROJECT_ID" || echo "Link failed, continuing..."
+          fi
+          
           # Deployment de preview (sin --prod). --yes evita prompts.
           # Capturamos la URL desde la salida de la CLI.
-          url=$(pnpm dlx vercel --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --confirm | sed -n 's/.*https:\/\/\(.*\.vercel\.app\).*/https:\/\/\1/p' | tail -n1)
-          echo "Preview URL: $url"
+          echo "Starting preview deployment..."
+          timeout 300 pnpm dlx vercel --yes --token "$VERCEL_TOKEN" 2>&1 | tee vercel_output.log
+          
+          # Extract URL from output
+          url=$(grep -o 'https://[^[:space:]]*\.vercel\.app' vercel_output.log | tail -n1)
+          echo "Extracted Preview URL: $url"
+          
           if [ -n "$url" ]; then
             echo "url=$url" >> $GITHUB_OUTPUT
+          else
+            echo "No URL found in output"
+            cat vercel_output.log
           fi
         shell: bash
 
