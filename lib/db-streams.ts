@@ -61,7 +61,7 @@ export async function getAllStreams(): Promise<StreamRow[]> {
       .orderBy(asc(streams.name));
 
     const timeoutMs = 7000; // 7s
-    const timeoutPromise = new Promise<null>((resolve) =>
+    const timeoutPromise = new Promise<null>(resolve =>
       setTimeout(() => resolve(null), timeoutMs)
     );
 
