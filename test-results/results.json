@@ -159,37 +159,37 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 14648,
+                  "duration": 2600,
                   "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:30:24",
+                    "message": "SyntaxError: Unexpected end of JSON input",
+                    "stack": "SyntaxError: Unexpected end of JSON input\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16",
                     "location": {
                       "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 24,
-                      "line": 30
+                      "column": 16,
+                      "line": 31
                     },
-                    "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m     }\u001b[33m,\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 24,
-                        "line": 30
+                        "column": 16,
+                        "line": 31
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n\n\u001b[0m \u001b[90m 28 |\u001b[39m     }\u001b[33m,\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:30:24\u001b[22m"
+                      "message": "SyntaxError: Unexpected end of JSON input\n\n\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T01:59:43.363Z",
+                  "startTime": "2025-09-22T02:02:02.994Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
                     "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 24,
-                    "line": 30
+                    "column": 16,
+                    "line": 31
                   }
                 }
               ],
@@ -217,37 +217,37 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "failed",
-                  "duration": 14645,
+                  "duration": 2599,
                   "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:30:24",
+                    "message": "SyntaxError: Unexpected end of JSON input",
+                    "stack": "SyntaxError: Unexpected end of JSON input\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16",
                     "location": {
                       "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 24,
-                      "line": 30
+                      "column": 16,
+                      "line": 31
                     },
-                    "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m     }\u001b[33m,\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 24,
-                        "line": 30
+                        "column": 16,
+                        "line": 31
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n\n\u001b[0m \u001b[90m 28 |\u001b[39m     }\u001b[33m,\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:30:24\u001b[22m"
+                      "message": "SyntaxError: Unexpected end of JSON input\n\n\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T01:59:43.364Z",
+                  "startTime": "2025-09-22T02:02:02.993Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
                     "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 24,
-                    "line": 30
+                    "column": 16,
+                    "line": 31
                   }
                 }
               ],
@@ -275,37 +275,37 @@
                   "workerIndex": 2,
                   "parallelIndex": 2,
                   "status": "failed",
-                  "duration": 14643,
+                  "duration": 2599,
                   "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:30:24",
+                    "message": "SyntaxError: Unexpected end of JSON input",
+                    "stack": "SyntaxError: Unexpected end of JSON input\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16",
                     "location": {
                       "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 24,
-                      "line": 30
+                      "column": 16,
+                      "line": 31
                     },
-                    "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m     }\u001b[33m,\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 24,
-                        "line": 30
+                        "column": 16,
+                        "line": 31
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n\n\u001b[0m \u001b[90m 28 |\u001b[39m     }\u001b[33m,\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:30:24\u001b[22m"
+                      "message": "SyntaxError: Unexpected end of JSON input\n\n\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T01:59:43.366Z",
+                  "startTime": "2025-09-22T02:02:02.993Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
                     "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 24,
-                    "line": 30
+                    "column": 16,
+                    "line": 31
                   }
                 }
               ],
@@ -333,37 +333,37 @@
                   "workerIndex": 3,
                   "parallelIndex": 3,
                   "status": "failed",
-                  "duration": 14645,
+                  "duration": 2599,
                   "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:30:24",
+                    "message": "SyntaxError: Unexpected end of JSON input",
+                    "stack": "SyntaxError: Unexpected end of JSON input\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16",
                     "location": {
                       "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 24,
-                      "line": 30
+                      "column": 16,
+                      "line": 31
                     },
-                    "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m     }\u001b[33m,\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 24,
-                        "line": 30
+                        "column": 16,
+                        "line": 31
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n\n\u001b[0m \u001b[90m 28 |\u001b[39m     }\u001b[33m,\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:30:24\u001b[22m"
+                      "message": "SyntaxError: Unexpected end of JSON input\n\n\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T01:59:43.364Z",
+                  "startTime": "2025-09-22T02:02:02.994Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
                     "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 24,
-                    "line": 30
+                    "column": 16,
+                    "line": 31
                   }
                 }
               ],
@@ -391,37 +391,37 @@
                   "workerIndex": 4,
                   "parallelIndex": 4,
                   "status": "failed",
-                  "duration": 14646,
+                  "duration": 2596,
                   "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:30:24",
+                    "message": "SyntaxError: Unexpected end of JSON input",
+                    "stack": "SyntaxError: Unexpected end of JSON input\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16",
                     "location": {
                       "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                      "column": 24,
-                      "line": 30
+                      "column": 16,
+                      "line": 31
                     },
-                    "snippet": "\u001b[0m \u001b[90m 28 |\u001b[39m     }\u001b[33m,\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                        "column": 24,
-                        "line": 30
+                        "column": 16,
+                        "line": 31
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m201\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n\n\u001b[0m \u001b[90m 28 |\u001b[39m     }\u001b[33m,\u001b[39m\n \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:30:24\u001b[22m"
+                      "message": "SyntaxError: Unexpected end of JSON input\n\n\u001b[0m \u001b[90m 29 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   expect(res\u001b[33m.\u001b[39mstatus())\u001b[33m.\u001b[39mtoBe(\u001b[35m201\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mconst\u001b[39m body \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m res\u001b[33m.\u001b[39mjson()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m   expect(body\u001b[33m.\u001b[39mslug)\u001b[33m.\u001b[39mtoBe(slug)\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m   expect(body\u001b[33m.\u001b[39mid)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:31:16\u001b[22m"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T01:59:43.364Z",
+                  "startTime": "2025-09-22T02:02:02.997Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
                     "file": "C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts",
-                    "column": 24,
-                    "line": 30
+                    "column": 16,
+                    "line": 31
                   }
                 }
               ],
@@ -438,8 +438,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-09-22T01:59:35.585Z",
-    "duration": 22641.801,
+    "startTime": "2025-09-22T02:01:55.395Z",
+    "duration": 10364.236,
     "expected": 0,
     "skipped": 0,
     "unexpected": 5,
