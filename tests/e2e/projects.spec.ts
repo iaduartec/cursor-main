@@ -31,7 +31,6 @@ test('projects CRUD via API (in-memory)', async ({ request }) => {
   const body = await res.json();
   expect(body.slug).toBe(slug);
   expect(body.id).toBeTruthy();
-
   // Read back list and find it
   const list = await request.get('/api/projects');
   expect(list.ok()).toBeTruthy();
