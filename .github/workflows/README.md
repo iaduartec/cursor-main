@@ -1,7 +1,8 @@
 Configuración de Deployment Automático
 ===========================================
 
-Este repositorio está configurado para desplegar automáticamente a Vercel cada vez que se hace push a la rama `main`.
+Este repositorio está configurado para desplegar automáticamente a Vercel
+cada vez que se hace push a la rama `main`.
 
 Configuración Requerida
 ------------------------
