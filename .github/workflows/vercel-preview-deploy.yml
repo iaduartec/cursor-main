@@ -65,17 +65,9 @@ jobs:
           corepack enable
           corepack prepare pnpm@9.12.3 --activate
           
-          # First, try to link the project if not already linked
-          echo "Checking if project is linked..."
-          if [ ! -f ".vercel/project.json" ]; then
-            echo "Project not linked, linking..."
-            pnpm dlx vercel link --yes --token "$VERCEL_TOKEN" --project "$VERCEL_PROJECT_ID" || echo "Link failed, continuing..."
-          fi
-          
-          # Deployment de preview (sin --prod). --yes evita prompts.
-          # Capturamos la URL desde la salida de la CLI.
+          # Simple preview deployment
           echo "Starting preview deployment..."
-          timeout 300 pnpm dlx vercel --yes --token "$VERCEL_TOKEN" 2>&1 | tee vercel_output.log
+          pnpm dlx vercel --yes --token "$VERCEL_TOKEN" 2>&1 | tee vercel_output.log
           
           # Extract URL from output
           url=$(grep -o 'https://[^[:space:]]*\.vercel\.app' vercel_output.log | tail -n1)
