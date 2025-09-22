@@ -32,6 +32,7 @@ jobs:
       # Despliega un Preview en Vercel para este commit. Si se provee github-token,
       # la acción comenta automáticamente la URL del preview en el PR.
       - name: Vercel Preview Deploy (CLI)
+        id: vercel_cli
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -49,7 +50,7 @@ jobs:
         shell: bash
 
       - name: Comment URL on PR
-        if: ${{ github.event_name == 'pull_request' && steps.vercel-preview-deploy-cli.outputs.url != '' }}
+        if: ${{ github.event_name == 'pull_request' && steps.vercel_cli.outputs.url != '' }}
         uses: actions/github-script@v7
         with:
           script: |
@@ -63,7 +64,7 @@ jobs:
               body
             })
         env:
-          PREVIEW_URL: ${{ steps.vercel-preview-deploy-cli.outputs.url }}
+          PREVIEW_URL: ${{ steps.vercel_cli.outputs.url }}
 
   # Trabajo de no-op para documentar por qué no se desplegó en ciertos casos
   skipped-reason:
