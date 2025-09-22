@@ -31,23 +31,39 @@ jobs:
 
       # Despliega un Preview en Vercel para este commit. Si se provee github-token,
       # la acción comenta automáticamente la URL del preview en el PR.
-      - name: Vercel Preview Deploy
-        id: vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          # No añadir --prod: esto crea un deployment de Preview
-          vercel-args: ''
-          working-directory: .
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      # Opcional: registra la URL del preview en los logs para fácil referencia.
-      - name: Log Preview URL
+      - name: Vercel Preview Deploy (CLI)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          echo "Preview URL: ${{ steps.vercel.outputs.preview-url }}"
+          corepack enable
+          corepack prepare pnpm@9.12.3 --activate
+          # Deployment de preview (sin --prod). --yes evita prompts.
+          # Capturamos la URL desde la salida de la CLI.
+          url=$(pnpm dlx vercel --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --confirm | sed -n 's/.*https:\/\/\(.*\.vercel\.app\).*/https:\/\/\1/p' | tail -n1)
+          echo "Preview URL: $url"
+          if [ -n "$url" ]; then
+            echo "url=$url" >> $GITHUB_OUTPUT
+          fi
         shell: bash
+
+      - name: Comment URL on PR
+        if: ${{ github.event_name == 'pull_request' && steps.vercel-preview-deploy-cli.outputs.url != '' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = process.env.PREVIEW_URL;
+            if (!url) return;
+            const body = `Preview desplegado: ${url}`;
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body
+            })
+        env:
+          PREVIEW_URL: ${{ steps.vercel-preview-deploy-cli.outputs.url }}
 
   # Trabajo de no-op para documentar por qué no se desplegó en ciertos casos
   skipped-reason:
