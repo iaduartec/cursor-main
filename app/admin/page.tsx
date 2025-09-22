@@ -1,3 +1,6 @@
+// Forzar renderizado del lado del cliente para evitar errores de prerenderizado
+export const dynamic = 'force-dynamic';
+
 export default function AdminHome() {
   return (
     <div className="max-w-6xl mx-auto p-6">
