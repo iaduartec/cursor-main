@@ -6,6 +6,13 @@ settings:
 
 overrides:
   node-domexception: ^2.0.2
+  estree-util-value-to-estree: 3.4.0
+  esbuild: 0.25.9
+  mdx-bundler>esbuild: 0.25.9
+  '@mdx-js/esbuild>esbuild': 0.25.9
+  '@esbuild-plugins/node-resolve>esbuild': 0.25.9
+  '@contentlayer/core>esbuild': 0.25.9
+  contentlayer>esbuild: 0.25.9
 
 importers:
 
@@ -136,7 +143,7 @@ packages:
   '@contentlayer/core@0.3.4':
     resolution: {integrity: sha512-o68oBLwfYZ+2vtgfk1lgHxOl3LoxvRNiUfeQ8IWFWy/L4wnIkKIqLZX01zlRE5IzYM+ZMMN5V0cKQlO7DsyR9g==}
     peerDependencies:
-      esbuild: 0.17.x || 0.18.x
+      esbuild: 0.25.9
       markdown-wasm: 1.x
     peerDependenciesMeta:
       esbuild:
@@ -202,7 +209,7 @@ packages:
   '@esbuild-plugins/node-resolve@0.1.4':
     resolution: {integrity: sha512-haFQ0qhxEpqtWWY0kx1Y5oE3sMyO1PcoSiWEPrAw6tm/ZOOLXjSs6Q+v1v9eyuVF0nNt50YEvrcrvENmyoMv5g==}
     peerDependencies:
-      esbuild: '*'
+      esbuild: 0.25.9
 
   '@esbuild/android-arm64@0.18.20':
     resolution: {integrity: sha512-Nz4rJcchGDtENV0eMKUNa6L12zz2zBDXuhj/Vjh18zGqB44Bi7MBMSXjgunJgjRhCmKOjnPuZp4Mb6OKqtMHLQ==}
@@ -555,7 +562,7 @@ packages:
   '@mdx-js/esbuild@2.3.0':
     resolution: {integrity: sha512-r/vsqsM0E+U4Wr0DK+0EfmABE/eg+8ITW4DjvYdh3ve/tK2safaqHArNnaqbOk1DjYGrhxtoXoGaM3BY8fGBTA==}
     peerDependencies:
-      esbuild: '>=0.11.0'
+      esbuild: 0.25.9
 
   '@mdx-js/mdx@2.3.0':
     resolution: {integrity: sha512-jLuwRlz8DQfQNiUCJR50Y09CGPq3fLtmtUQfVrj79E0JWu3dvsVcxVIcfhR5h0iXu+/z++zDrYeiJqifRynJkA==}
@@ -1551,9 +1558,8 @@ packages:
   estree-util-to-js@2.0.0:
     resolution: {integrity: sha512-WDF+xj5rRWmD5tj6bIqRi6CkLIXbbNQUcxQHzGysQzvHmdYG2G7p/Tf0J0gpxGgkeMZNTIjT/AoSvC9Xehcgdg==}
 
-  estree-util-value-to-estree@1.3.0:
-    resolution: {integrity: sha512-Y+ughcF9jSUJvncXwqRageavjrNPAI+1M/L3BI3PyLp1nmgYTGUXU6t5z1Y7OWuThoDdhPME07bQU+d5LxdJqw==}
-    engines: {node: '>=12.0.0'}
+  estree-util-value-to-estree@3.4.0:
+    resolution: {integrity: sha512-Zlp+gxis+gCfK12d3Srl2PdX2ybsEA8ZYy6vQGVQTNNYLEGRQQ56XB64bjemN8kxIKXP1nC9ip4Z+ILy9LGzvQ==}
 
   estree-util-visit@1.2.1:
     resolution: {integrity: sha512-xbgqcrkIVbIG+lI/gzbvd9SGTJL4zqJKBFttUl5pP27KhAjtMKbX/mQXJ7qgyXpMgVy/zvpm0xoQQaGL8OloOw==}
@@ -1902,10 +1908,6 @@ packages:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
 
-  is-plain-obj@3.0.0:
-    resolution: {integrity: sha512-gwsOE28k+23GP1B6vFl1oVh/WOzmawBrKwo5Ev6wMKzPkaXaCDIQKzLnvsA42DRlbVTWorkgTKIviAKCWkfUwA==}
-    engines: {node: '>=10'}
-
   is-plain-obj@4.1.0:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
     engines: {node: '>=12'}
@@ -2136,7 +2138,7 @@ packages:
     resolution: {integrity: sha512-hWEEip1KU9MCNqeH2rqwzAZ1pdqPPbfkx9OTJjADqGPQz4t9BO85fhI7AP9gVYrpmfArf9/xJZUN0yBErg/G/Q==}
     engines: {node: '>=14', npm: '>=6'}
     peerDependencies:
-      esbuild: 0.*
+      esbuild: 0.25.9
 
   memfs@3.5.3:
     resolution: {integrity: sha512-UERzLsxzllchadvbPs5aolHh65ISpKpM+ccLbOJ8/vvpBKmAWf+la7dXFy7Mr0ySHbdHrFv5kGFCUHHe6GFEmw==}
@@ -4636,9 +4638,9 @@ snapshots:
       astring: 1.9.0
       source-map: 0.7.6
 
-  estree-util-value-to-estree@1.3.0:
+  estree-util-value-to-estree@3.4.0:
     dependencies:
-      is-plain-obj: 3.0.0
+      '@types/estree': 1.0.8
 
   estree-util-visit@1.2.1:
     dependencies:
@@ -5075,8 +5077,6 @@ snapshots:
       has-tostringtag: 1.0.2
 
   is-number@7.0.0: {}
-
-  is-plain-obj@3.0.0: {}
 
   is-plain-obj@4.1.0: {}
 
@@ -6266,7 +6266,7 @@ snapshots:
   remark-mdx-frontmatter@1.1.1:
     dependencies:
       estree-util-is-identifier-name: 1.1.0
-      estree-util-value-to-estree: 1.3.0
+      estree-util-value-to-estree: 3.4.0
       js-yaml: 4.1.0
       toml: 3.0.0
 

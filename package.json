@@ -67,6 +67,7 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
+    "esbuild": "0.25.9",
     "@types/leaflet": "^1.9.20",
     "@typescript-eslint/eslint-plugin": "^8.44.0",
     "@typescript-eslint/parser": "^8.44.0",
@@ -78,7 +79,14 @@
   },
   "pnpm": {
     "overrides": {
-      "node-domexception": "^2.0.2"
+      "node-domexception": "^2.0.2",
+      "estree-util-value-to-estree": "3.4.0",
+      "esbuild": "0.25.9",
+      "mdx-bundler>esbuild": "0.25.9",
+      "@mdx-js/esbuild>esbuild": "0.25.9",
+      "@esbuild-plugins/node-resolve>esbuild": "0.25.9",
+      "@contentlayer/core>esbuild": "0.25.9",
+      "contentlayer>esbuild": "0.25.9"
     }
   },
   "engines": {
