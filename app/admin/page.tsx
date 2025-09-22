@@ -1,5 +1,5 @@
 import { SignIn } from '@clerk/nextjs';
-import { getAuth } from '@clerk/nextjs/server';
+import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 
 // Forzar renderizado del lado del cliente para evitar errores de prerenderizado
@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export default async function AdminLoginPage() {
   // Comprobación server-side: si ya hay sesión, redirigir al panel admin
   try {
-    const { userId } = getAuth();
+    const { userId } = await auth();
     if (userId) {
       // Usuario autenticado: redirigir al panel (por ejemplo /admin/posts)
       redirect('/admin/posts');
@@ -16,9 +16,9 @@ export default async function AdminLoginPage() {
   } catch (err) {
     // En caso de error, continuar y mostrar el formulario de login
     // (no hacemos throw para no romper la página)
+    // eslint-disable-next-line no-console
     console.error('Error comprobando sesión Clerk en /admin:', err);
   }
-
   return (
     <div className='min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-800 dark:to-slate-900'>
       <div className='w-full max-w-md'>
