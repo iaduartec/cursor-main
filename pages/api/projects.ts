@@ -2,6 +2,9 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '../../db/client';
 import { projects } from '../../db/schema';
 
+// In-memory storage for testing
+let inMemoryProjects: any[] = [];
+
 function checkAdminAccess(req: NextApiRequest) {
   const token = process.env.INTRANET_DEBUG_TOKEN;
   if (token) {
