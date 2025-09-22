@@ -6,7 +6,7 @@ const NEXT_DIR = path.resolve('.next');
 const NEXT_SITEMAP_BIN = path.resolve(
   'node_modules',
   '.bin',
-  process.platform === 'win32' ? 'next-sitemap.cmd' : 'next-sitemap',
+  process.platform === 'win32' ? 'next-sitemap.CMD' : 'next-sitemap',
 );
 
 function runNextSitemap() {
