@@ -156,6 +156,6 @@ export function createAuthenticatedClient(authToken: string): DrizzleClient {
     );
   }
 
-  const authenticatedClient = neon(authenticatedUrl, { authToken });
+  const authenticatedClient = neon(authenticatedUrl, { authToken } as any);
   return drizzle(authenticatedClient, { schema });
 }
