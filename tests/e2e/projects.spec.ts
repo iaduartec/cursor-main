@@ -5,17 +5,27 @@ test('projects CRUD via API (in-memory)', async ({ request }) => {
   const max = 30; // seconds
   let ready;
   for (let i = 0; i < max; i++) {
-    ready = await request.get('/api/_debug/ready');
-    if (ready.ok()) {break;}
-    await new Promise((r) => setTimeout(r, 1000));
+    ready = await request.get('/api/health');
+    if (ready.ok()) {
+      break;
+    }
+    await new Promise(r => setTimeout(r, 1000));
   }
   expect(ready && ready.ok()).toBeTruthy();
 
   // Create a project
   const slug = `pwtest-${Date.now()}`;
   const res = await request.post('/api/projects', {
-    headers: { 'Content-Type': 'application/json', 'x-debug-token': 'test-token-123' },
-    data: { slug, title: 'Playwright test', description: 'e2e', hero_image: '' },
+    headers: {
+      'Content-Type': 'application/json',
+      'x-debug-token': 'test-token-123',
+    },
+    data: {
+      slug,
+      title: 'Playwright test',
+      description: 'e2e',
+      hero_image: '',
+    },
   });
   expect(res.status()).toBe(201);
   const body = await res.json();
@@ -30,6 +40,8 @@ test('projects CRUD via API (in-memory)', async ({ request }) => {
   expect(found).toBeTruthy();
 
   // Delete the created project
-  const del = await request.fetch(`/api/projects/${body.id}`, { method: 'DELETE' });
+  const del = await request.fetch(`/api/projects/${body.id}`, {
+    method: 'DELETE',
+  });
   expect(del.ok()).toBeTruthy();
 });
