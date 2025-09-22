@@ -32,12 +32,10 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    # Despliega aunque falle validate; requiere estar en main y disponer de credenciales de Vercel (CLI) o un Deploy Hook
-    if: >-
-      github.ref == 'refs/heads/main' && (
-        (secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '') ||
-        (secrets.VERCEL_DEPLOY_HOOK_URL != '')
-      )
+    # Despliega aunque falle validate; el job se ejecuta en pushes a main.
+    # Las acciones concretas dentro del job están condicionadas por la presencia
+    # de secretos (VERCEL_TOKEN / VERCEL_* o VERCEL_DEPLOY_HOOK_URL).
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js 22
