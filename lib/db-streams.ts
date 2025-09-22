@@ -55,7 +55,14 @@ export async function getAllStreams(): Promise<StreamRow[]> {
       })
       .from(streams)
       .orderBy(asc(streams.name));
-    return rows as unknown as StreamRow[];
+    // Si el cliente de DB está en modo "fake" o la tabla aún no tiene datos,
+    // Drizzle devolverá un array vacío. En ese caso mostramos el contenido
+    // de respaldo para que la sección de cámaras nunca aparezca vacía.
+    const list = (rows as unknown as StreamRow[]) || [];
+    if (!Array.isArray(list) || list.length === 0) {
+      return fallbackStreams();
+    }
+    return list;
   } catch (e) {
     console.error('DB getAllStreams error', e);
     return fallbackStreams();

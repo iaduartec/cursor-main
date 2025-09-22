@@ -1,6 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, existsSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
+import { createRequire } from 'node:module';
 
 const NEXT_DIR = path.resolve('.next');
 const NEXT_SITEMAP_BIN = path.resolve(
@@ -8,6 +9,17 @@ const NEXT_SITEMAP_BIN = path.resolve(
   '.bin',
   process.platform === 'win32' ? 'next-sitemap.CMD' : 'next-sitemap',
 );
+const require = createRequire(import.meta.url);
+const packageJson = (() => {
+  try {
+    return require('../package.json');
+  } catch {
+    return undefined;
+  }
+})();
+const nextSitemapVersion =
+  packageJson?.dependencies?.['next-sitemap'] ??
+  packageJson?.devDependencies?.['next-sitemap'];
 
 function runNextSitemap() {
   const pnpmResult = spawnSync('pnpm', ['exec', 'next-sitemap'], {
@@ -21,6 +33,19 @@ function runNextSitemap() {
   if (pnpmResult.error && pnpmResult.error.code !== 'ENOENT') {
     const code = pnpmResult.status ?? 1;
     console.error(`[postbuild] next-sitemap via pnpm failed with exit code ${code}.`);
+    process.exit(code);
+  }
+
+  const dlxArgs = ['dlx', nextSitemapVersion ? `next-sitemap@${nextSitemapVersion}` : 'next-sitemap'];
+  const pnpmDlxResult = spawnSync('pnpm', dlxArgs, { stdio: 'inherit' });
+
+  if (pnpmDlxResult.status === 0) {
+    return;
+  }
+
+  if (pnpmDlxResult.error && pnpmDlxResult.error.code !== 'ENOENT') {
+    const code = pnpmDlxResult.status ?? 1;
+    console.error(`[postbuild] next-sitemap via pnpm dlx failed with exit code ${code}.`);
     process.exit(code);
   }
 
