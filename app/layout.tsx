@@ -1,12 +1,18 @@
 import './globals.css';
 import 'leaflet/dist/leaflet.css';
-import { Inter } from 'next/font/google';
-import { ReactNode } from 'react';
+import { Inter } from 'next/font/g        <Header />
+        <main
+          id='main-content'
+          tabIndex={-1}
+          className='outline-none focus-visible:ring-2 focus-visible:ring-accent flex-grow'
+        >
+          {children}
+        </main>
+        <Footer />port { ReactNode } from 'react';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import { Providers } from './providers';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
