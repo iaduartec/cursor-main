@@ -106,3 +106,6 @@ jobs:
         run: |
           echo "Triggering Vercel Deploy Hook..."
           curl -fsSL -X POST "$VERCEL_DEPLOY_HOOK_URL" && echo "Hook triggered"
+          # Workflow updated to use runtime secret checking to avoid linter errors
+          //commit
+        # Workflow updated to use runtime secret checking to avoid linter errors

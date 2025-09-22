@@ -364,6 +364,7 @@
 [2025-09-22 18:17:08Z INFO JobDispatcher] Successfully renew job 2276f3f8-08de-5fcd-b0d6-e14c290ba667, job is valid till 22/09/2025 18:27:09
 [2025-09-22 18:18:08Z INFO JobDispatcher] Successfully renew job 2276f3f8-08de-5fcd-b0d6-e14c290ba667, job is valid till 22/09/2025 18:28:09
 [2025-09-22 18:19:08Z INFO JobDispatcher] Successfully renew job 2276f3f8-08de-5fcd-b0d6-e14c290ba667, job is valid till 22/09/2025 18:29:09
+<<<<<<< HEAD
 [2025-09-22 18:19:43Z INFO JobDispatcher] Job cancellation request 2276f3f8-08de-5fcd-b0d6-e14c290ba667 received, cancellation timeout 5 minutes.
 [2025-09-22 18:19:43Z INFO JobDispatcher] Send job cancellation message to worker for job 2276f3f8-08de-5fcd-b0d6-e14c290ba667.
 [2025-09-22 18:19:43Z INFO ProcessChannel] Sending message of length 0, with hash 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
@@ -755,3 +756,5 @@
 [2025-09-22 18:22:54Z INFO JobDispatcher] Ensure WorkerDispatcher for job 1095e052-1a90-5bfb-87a0-fc81378c2072 run to finish, cancel any running job.
 [2025-09-22 18:22:54Z INFO JobDispatcher] Send job cancellation message to worker for job 1095e052-1a90-5bfb-87a0-fc81378c2072.
 [2025-09-22 18:22:54Z INFO ProcessChannel] Sending message of length 0, with hash 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+=======
+>>>>>>> 2d5f3936fc7b462f3da94f7afdc98d45d0dd292c
