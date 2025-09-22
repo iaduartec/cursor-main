@@ -25,14 +25,29 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-          # Expose secrets to this step via GITHUB_ENV so the linter doesn't flag them in YAML
-          echo "VERCEL_TOKEN=$VERCEL_TOKEN_ENV" >> $GITHUB_ENV
-          echo "VERCEL_PROJECT_ID=$VERCEL_PROJECT_ID_ENV" >> $GITHUB_ENV
+      - name: Check Vercel secrets
+        id: check_secrets
+        run: |
+          # Check if secrets exist and expose them to GITHUB_ENV
+          if [ -n "${{ secrets.VERCEL_TOKEN }}" ]; then
+            echo "VERCEL_TOKEN=${{ secrets.VERCEL_TOKEN }}" >> $GITHUB_ENV
+            echo "VERCEL_TOKEN present"
+          else
+            echo "VERCEL_TOKEN missing"
+            echo "skip=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
 
-          missing=0
-          if [ -z "$VERCEL_TOKEN_ENV" ]; then echo "VERCEL_TOKEN missing"; missing=1; fi
-          if [ -z "$VERCEL_PROJECT_ID_ENV" ]; then echo "VERCEL_PROJECT_ID missing"; missing=1; fi
-          if [ $missing -eq 1 ]; then echo "skip=true" >> $GITHUB_OUTPUT; else echo "skip=false" >> $GITHUB_OUTPUT; fi
+          if [ -n "${{ secrets.VERCEL_PROJECT_ID }}" ]; then
+            echo "VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}" >> $GITHUB_ENV
+            echo "VERCEL_PROJECT_ID present"
+          else
+            echo "VERCEL_PROJECT_ID missing"
+            echo "skip=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "skip=false" >> $GITHUB_OUTPUT
         shell: bash
 
       # Despliega un Preview en Vercel para este commit. Si se provee github-token,
