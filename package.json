@@ -87,7 +87,8 @@
       "@mdx-js/esbuild>esbuild": "0.25.9",
       "@esbuild-plugins/node-resolve>esbuild": "0.25.9",
       "@contentlayer/core>esbuild": "0.25.9",
-      "contentlayer>esbuild": "0.25.9"
+      "contentlayer>esbuild": "0.25.9",
+      "@opentelemetry/api": "1.4.1"
     }
   },
   "engines": {
