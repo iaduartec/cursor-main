@@ -67,6 +67,30 @@ pnpm test:e2e        # e2e con Playwright (requiere dependencias)
 - Contentlayer puede emitir advertencias en Windows, pero el build es válido.
 - La instrumentación de OpenTelemetry puede registrar "Critical dependency" durante compilación; es ruido.
 
+### Advertencias de dependencias (dev-only)
+
+- Durante la auditoría y el build hemos visto advertencias sobre subdependencias de desarrollo:
+  - `@esbuild-kit/core-utils@3.3.2`
+  - `@esbuild-kit/esm-loader@2.6.5`
+  - `node-domexception@2.0.2`
+
+- Causa: estas dependencias son transitivas y provienen de herramientas de desarrollo:
+  - `@esbuild-kit/*` es requerido por `drizzle-kit` (devDependency) y otras utilidades de build.
+  - `node-domexception` aparece en la cadena `contentlayer` → `mdx-bundler` → `@mdx-js/esbuild` (uso en tiempo de build de MDX).
+
+- Impacto: son advertencias deprecadas (warnings) y, en la configuración actual del proyecto, **no afectan al runtime en producción** porque entran por herramientas dev/build. No obstante, conviene seguirlas y arreglarlas upstream a medio plazo.
+
+- Acciones tomadas aquí:
+  1. Se añadieron overrides puntuales para parchear vulnerabilidades activas detectadas por `pnpm audit` (ej. `path-to-regexp`, `cookie`).
+ 2. Se intentó actualizar las dependencias que las traen; las versiones problemáticas siguen siendo las publicadas actualmente.
+
+- Recomendaciones:
+  - Estrategia a corto plazo: aceptar y documentar estas advertencias (seguro y no intrusivo).
+  - Estrategia a medio/largo plazo: abrir issues o PRs upstream en `drizzle-kit` y `contentlayer` solicitando actualización de sus dependencias transitorias. Esto es la solución correcta y duradera.
+  - Evitar forzar overrides de versiones que no existen o que no son compatibles (puede romper builds).
+
+Si quieres, puedo preparar los textos para los issues/PRs o abrirlos desde tu cuenta si me das permiso.
+
 ## Historia reciente
 
 - Se consolidó el historial en 2025-09-13 mediante squash conservando una copia `main-backup-<timestamp>`.
