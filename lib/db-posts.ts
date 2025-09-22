@@ -18,14 +18,17 @@ if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
 
 // Helper function to get allBlogs conditionally
 async function getAllBlogs(): Promise<any[]> {
-  if (process.env.VERCEL === '1' || process.env.SKIP_CONTENTLAYER === '1') {
+  if (process.env.SKIP_CONTENTLAYER === '1') {
     return [];
   }
   try {
     const { allBlogs = [] } = await import('contentlayer/generated');
     return allBlogs;
-  } catch {
-    // Contentlayer not available, return empty array
+  } catch (error) {
+    console.warn(
+      'Contentlayer data for blog no disponible, usando arreglo vacío.',
+      error
+    );
     return [];
   }
 }
@@ -307,7 +310,7 @@ export async function getPostsPage(params: PostsPageParams): Promise<{
   pageSize: number;
 }> {
   const dbResult = await getPostsPageFromDb(params);
-  if (dbResult.items.length > 0 || hasDb()) {
+  if (dbResult.items.length > 0) {
     return dbResult;
   }
   // Fallback emulate pagination with contentlayer
@@ -351,7 +354,7 @@ export async function getPostsPage(params: PostsPageParams): Promise<{
 
 export async function getDistinctCategories(): Promise<string[]> {
   const cats = await getDistinctCategoriesFromDb();
-  if (cats.length > 0 || hasDb()) {
+  if (cats.length > 0) {
     return cats;
   }
   const allBlogs = await getAllBlogs();
