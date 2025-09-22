@@ -36,9 +36,7 @@ Para que el workflow funcione, necesitas configurar las siguientes secrets en Gi
 - Settings > General
 - Copia el Project ID
 
-### 3. VERCEL_ORG_ID (opcional)
-
-- Si el proyecto pertenece a una organización, ve a Settings > Teams
+3. VERCEL_ORG_ID (opcional)
 - Copia el Team ID
 
 ### Configurar Secrets en GitHub
@@ -62,9 +60,9 @@ Para que el workflow funcione, necesitas configurar las siguientes secrets en Gi
 - Push a `main`
 - Manual (workflow_dispatch) para pruebas
 
-## Solución de Problemas
+```
 
-Si el deployment falla:
+Solución de Problemas
 
 1. Revisa los logs del workflow en GitHub Actions
 2. Verifica que las secrets estén configuradas correctamente
