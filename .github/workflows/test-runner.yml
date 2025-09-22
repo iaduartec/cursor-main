@@ -1,0 +1,29 @@
+name: Test Runner
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ main ]
+
+jobs:
+  test-runner:
+    name: Test Self-Hosted Runner
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test Environment
+        run: |
+          echo "Runner is working!"
+          echo "Node version: $(node --version)"
+          echo "Current directory: $(pwd)"
+          echo "OS: $(uname -a)"
+        shell: bash
+
+      - name: Test PNPM
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.3 --activate
+          pnpm --version
+        shell: bash
