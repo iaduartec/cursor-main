@@ -96,5 +96,4 @@ Septiembre 2025
 
 ## Responsable
 
-GitHub Copilot (agente de IA)</content>
-<parameter name="filePath">c:\Users\kiri_\cursor-main\SECURITY_MITIGATION_2025.md
+GitHub Copilot (agente de IA)
