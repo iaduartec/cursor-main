@@ -41,7 +41,11 @@ export async function getAllStreams(): Promise<StreamRow[]> {
     return fallbackStreams();
   }
   try {
-    const rows = await db
+    // Run the DB query but bound it with a timeout. On serverless
+    // platforms queries can hang or exceed provider limits; in that
+    // case fall back to the local example streams so the UI stays
+    // populated.
+    const queryPromise = db
       .select({
         id: streams.id,
         slug: streams.slug,
@@ -55,6 +59,22 @@ export async function getAllStreams(): Promise<StreamRow[]> {
       })
       .from(streams)
       .orderBy(asc(streams.name));
+
+    const timeoutMs = 7000; // 7s
+    const timeoutPromise = new Promise<null>((resolve) =>
+      setTimeout(() => resolve(null), timeoutMs)
+    );
+
+    const rows = (await Promise.race([queryPromise, timeoutPromise])) as
+      | StreamRow[]
+      | null;
+
+    if (rows === null) {
+      console.warn(
+        `DB query for streams exceeded ${timeoutMs}ms, returning fallback streams`
+      );
+      return fallbackStreams();
+    }
     // Si el cliente de DB está en modo "fake" o la tabla aún no tiene datos,
     // Drizzle devolverá un array vacío. En ese caso mostramos el contenido
     // de respaldo para que la sección de cámaras nunca aparezca vacía.
