@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "iaduartec/cursor-main",
+  "pipelineDirectory": "cursor-main",
+  "workspaceDirectory": "cursor-main\\cursor-main",
+  "repositories": {
+    "iaduartec/cursor-main": {
+      "repositoryPath": "cursor-main\\cursor-main",
+      "lastRunOn": "09/22/2025 20:12:53 +02:00"
+    }
+  },
+  "lastRunOn": "09/22/2025 20:12:53 +02:00"
+}
