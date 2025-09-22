@@ -35,6 +35,7 @@ export const posts = pgTable(
     image: varchar('image', { length: 1024 }),
     date: timestamp('date', { withTimezone: false }).notNull(),
     published: boolean('published').notNull().default(true),
+    userId: varchar('user_id', { length: 255 }).notNull(),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -42,9 +43,10 @@ export const posts = pgTable(
       .notNull()
       .defaultNow(),
   },
-  (table) => ({
+  table => ({
     slugIdx: uniqueIndex('posts_slug_idx').on(table.slug),
     dateIdx: index('posts_date_idx').on(table.date),
+    userIdx: index('posts_user_idx').on(table.userId),
   })
 );
 
@@ -63,10 +65,14 @@ export const streams = pgTable(
     embedUrl: varchar('embed_url', { length: 1024 }),
     image: varchar('image', { length: 1024 }),
     isLive: boolean('is_live').notNull().default(true),
-    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
   },
-  (table) => ({
+  table => ({
     slugIdx: uniqueIndex('streams_slug_idx').on(table.slug),
     providerIdx: index('streams_provider_idx').on(table.provider),
   })
@@ -85,11 +91,17 @@ export const services = pgTable(
     image: varchar('image', { length: 1024 }),
     areaServed: varchar('area_served', { length: 255 }),
     hasOfferCatalog: boolean('has_offer_catalog').notNull().default(false),
-    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+    userId: varchar('user_id', { length: 255 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
   },
-  (table) => ({
+  table => ({
     slugIdx: uniqueIndex('services_slug_idx').on(table.slug),
+    userIdx: index('services_user_idx').on(table.userId),
   })
 );
 
@@ -107,25 +119,30 @@ export const projects = pgTable(
     image: varchar('image', { length: 1024 }),
     category: varchar('category', { length: 100 }),
     date: timestamp('date', { withTimezone: false }),
-    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+    userId: varchar('user_id', { length: 255 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
   },
-  (table) => ({
+  table => ({
     slugIdx: uniqueIndex('projects_slug_idx').on(table.slug),
+    userIdx: index('projects_user_idx').on(table.userId),
   })
 );
 
 export type Project = typeof projects.$inferSelect;
 export type NewProject = typeof projects.$inferInsert;
 
-export const comments = pgTable(
-  'comments',
-  {
-    id: serial('id').primaryKey(),
-    comment: text('comment'),
-    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-  }
-);
+export const comments = pgTable('comments', {
+  id: serial('id').primaryKey(),
+  comment: text('comment'),
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
 
 export type Comment = typeof comments.$inferSelect;
 export type NewComment = typeof comments.$inferInsert;
