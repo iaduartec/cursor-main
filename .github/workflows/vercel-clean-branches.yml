@@ -9,15 +9,15 @@ on:
       branch:
         description: Branch a limpiar
         required: true
-        type: string
       dry_run:
         description: No borrar (simulación)
         required: false
-        default: false
-        type: boolean
+        default: "false"
 
 jobs:
   cleanup:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Guard clause for event types
@@ -25,6 +25,12 @@ jobs:
         run: |
           echo "Not a supported trigger (requires workflow_dispatch, branch delete, or merged PR). Exiting."
           exit 0
+
+      - name: Debug inputs
+        run: |
+          echo "event=${{ github.event_name }}"
+          echo "inputs.branch='${{ github.event.inputs.branch }}'"
+          echo "inputs.dry_run='${{ github.event.inputs.dry_run }}'"
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -48,8 +54,10 @@ jobs:
             echo "branch=${{ github.event.inputs.branch }}" >> $GITHUB_OUTPUT
           elif [ "${{ github.event_name }}" = "delete" ]; then
             echo "branch=${{ github.event.ref }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "branch=${{ github.head_ref }}" >> $GITHUB_OUTPUT
           else
-            echo "branch=${{ github.head_ref || github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
+            echo "branch=${{ github.ref_name }}" >> $GITHUB_OUTPUT
           fi
           echo "Target branch: $(cat $GITHUB_OUTPUT)"
 
