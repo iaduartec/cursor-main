@@ -159,7 +159,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 2829,
+                  "duration": 2662,
                   "error": {
                     "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
                     "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17",
@@ -183,7 +183,7 @@
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T02:03:11.157Z",
+                  "startTime": "2025-09-22T02:05:37.830Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
@@ -217,7 +217,7 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "failed",
-                  "duration": 2827,
+                  "duration": 2659,
                   "error": {
                     "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
                     "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17",
@@ -241,7 +241,7 @@
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T02:03:11.158Z",
+                  "startTime": "2025-09-22T02:05:37.830Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
@@ -275,7 +275,7 @@
                   "workerIndex": 2,
                   "parallelIndex": 2,
                   "status": "failed",
-                  "duration": 2834,
+                  "duration": 2663,
                   "error": {
                     "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
                     "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17",
@@ -299,7 +299,7 @@
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T02:03:11.157Z",
+                  "startTime": "2025-09-22T02:05:37.829Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
@@ -333,7 +333,7 @@
                   "workerIndex": 3,
                   "parallelIndex": 3,
                   "status": "failed",
-                  "duration": 2828,
+                  "duration": 2657,
                   "error": {
                     "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
                     "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17",
@@ -357,7 +357,7 @@
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T02:03:11.158Z",
+                  "startTime": "2025-09-22T02:05:37.832Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
@@ -391,7 +391,7 @@
                   "workerIndex": 4,
                   "parallelIndex": 4,
                   "status": "failed",
-                  "duration": 2828,
+                  "duration": 2656,
                   "error": {
                     "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
                     "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\kiri_\\cursor-main\\tests\\e2e\\projects.spec.ts:40:17",
@@ -415,7 +415,7 @@
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-22T02:03:11.158Z",
+                  "startTime": "2025-09-22T02:05:37.833Z",
                   "annotations": [],
                   "attachments": [],
                   "errorLocation": {
@@ -438,8 +438,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-09-22T02:03:03.737Z",
-    "duration": 10438.326000000001,
+    "startTime": "2025-09-22T02:05:30.476Z",
+    "duration": 10233.466,
     "expected": 0,
     "skipped": 0,
     "unexpected": 5,
