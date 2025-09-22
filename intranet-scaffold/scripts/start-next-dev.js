@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 const path = require('path');
 
 async function main() {
-    const cwd = path.resolve(__dirname, '..');
+    const cwd = path.resolve(__dirname, '../..');
     const nextBin = require.resolve('next/dist/bin/next');
 
     const env = Object.assign({}, process.env, {
