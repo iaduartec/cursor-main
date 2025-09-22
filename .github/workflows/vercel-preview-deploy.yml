@@ -5,9 +5,9 @@ on:
     types: [opened, synchronize, reopened]
     branches: [ main ]
 
-concurrency:
-  group: pr-${{ github.event.pull_request.number }}-preview
-  cancel-in-progress: true
+# concurrency:
+#   group: pr-${{ github.event.pull_request.number }}-preview
+#   cancel-in-progress: true
 
 jobs:
   preview-deploy:
