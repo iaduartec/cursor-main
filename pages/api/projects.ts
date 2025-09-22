@@ -31,7 +31,7 @@ export default async function handler(
   // Handle in-memory database mode for testing
   if (process.env.USE_IN_MEMORY_DB === '1') {
     if (req.method === 'GET') {
-      return res.status(200).json(inMemoryProjects);
+      return res.status(200).json(global.inMemoryProjects!);
     }
 
     if (req.method === 'POST') {
@@ -57,7 +57,7 @@ export default async function handler(
         created_at: new Date(),
       };
 
-      inMemoryProjects.push(mockProject);
+      global.inMemoryProjects!.push(mockProject);
       return res.status(201).json(mockProject);
     }
 
@@ -67,12 +67,12 @@ export default async function handler(
         return res.status(400).json({ error: 'Missing project ID' });
       }
 
-      const index = inMemoryProjects.findIndex(p => p.id === id);
+      const index = global.inMemoryProjects!.findIndex(p => p.id === id);
       if (index === -1) {
         return res.status(404).json({ error: 'Project not found' });
       }
 
-      inMemoryProjects.splice(index, 1);
+      global.inMemoryProjects!.splice(index, 1);
       return res.status(200).json({ success: true });
     }
 
