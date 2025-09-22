@@ -1,18 +1,6 @@
 # Mitigación de Vulnerabilidades de Seguridad - Septiembre 2025
 
-## Resu## Archivos Modificados
-
-- `SECURITY.md`: Documentación de vulnerabilidades mitigadas
-- `package.json`: Aplicación de pnpm overrides y devDependency
-- `pnpm-lock.yaml`: Lockfile regenerado con versiones seguras
-
-## Fecha de Mitigación
-
-Septiembre 2025
-
-## Responsable
-
-GitHub Copilot (agente de IA)
+## Resumen Ejecutivo
 
 Se han mitigado exitosamente dos vulnerabilidades de seguridad críticas encontradas en las dependencias del proyecto:
 
