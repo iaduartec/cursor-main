@@ -2,14 +2,16 @@ import { db } from '../db/client';
 import { posts } from '../db/schema';
 import { and, asc, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';
 import dotenv from 'dotenv';
+import { existsSync } from 'fs';
+import { join } from 'path';
 
 // Load environment variables if not already loaded
 if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
-  const envLocal = process.cwd() + '/.env.local';
-  const envFile = process.cwd() + '/.env';
-  if (require('fs').existsSync(envLocal)) {
+  const envLocal = join(process.cwd(), '.env.local');
+  const envFile = join(process.cwd(), '.env');
+  if (existsSync(envLocal)) {
     dotenv.config({ path: envLocal });
-  } else if (require('fs').existsSync(envFile)) {
+  } else if (existsSync(envFile)) {
     dotenv.config({ path: envFile });
   }
 }
