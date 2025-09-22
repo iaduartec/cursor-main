@@ -8,20 +8,23 @@ Configuración Requerida
 
 Para que el workflow funcione, necesitas configurar las siguientes secrets en GitHub:
 
-### VERCEL_TOKEN
+VERCEL_TOKEN
+------------
 
 - Ve a [Vercel Dashboard](https://vercel.com/dashboard)
 - Settings > Tokens
 - Crea un nuevo token con permisos de deployment
 - Copia el token
 
-### VERCEL_PROJECT_ID
+VERCEL_PROJECT_ID
+---
 
 - En Vercel Dashboard, ve a tu proyecto
 - Settings > General
 - Copia el Project ID
 
-### VERCEL_ORG_ID (opcional)
+VERCEL_ORG_ID (opcional)
+---
 
 - Copia el Team ID
 
