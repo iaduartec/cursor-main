@@ -25,6 +25,26 @@ currently being supported with security updates.
 | 4.0.x   | :white_check_mark: |
 | < 4.0   | :x:                |
 
+## Mitigated Vulnerabilities
+
+### esbuild Dev Server CORS Bypass (CVE-2024-47068)
+
+- **Severity**: Moderate
+- **Affected Package**: esbuild < 0.25.0
+- **Mitigation Applied**: Force upgrade to esbuild@0.25.9 via pnpm overrides
+- **Date Mitigated**: September 2025
+- **Details**: The esbuild development server allowed any website to send requests to the dev server and read responses, potentially exposing sensitive information during development.
+
+### Prototype Pollution in estree-util-value-to-estree
+
+- **Severity**: Moderate
+- **Affected Package**: estree-util-value-to-estree < 3.3.3
+- **Mitigation Applied**: Force upgrade to estree-util-value-to-estree@3.4.0 via pnpm overrides
+- **Date Mitigated**: September 2025
+- **Details**: Malicious code could pollute the prototype of Object via the generated ESTree, potentially leading to security vulnerabilities.
+
+**Note**: These mitigations use pnpm overrides as a temporary solution. The project continues to monitor upstream packages for official patches.
+
 ## Reporting a Vulnerability
 
 Use this section to tell people how to report a vulnerability.
