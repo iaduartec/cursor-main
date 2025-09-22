@@ -25,12 +25,23 @@ function runNextSitemap() {
   }
 
   // Intentar resolver el ejecutable vía require.resolve como fallback robusto
-  try {
-    const resolved = require.resolve('next-sitemap/dist/index.js');
-    const nodeRun = spawnSync(process.execPath, [resolved], { stdio: 'inherit' });
-    if (nodeRun.status === 0) return;
-  } catch (err) {
-    // ignore, seguimos al siguiente fallback
+  const candidates = [
+    // CLI tradicional
+    'next-sitemap/bin/cli.js',
+    // Distribuciones modernas
+    'next-sitemap/dist/cli.js',
+    'next-sitemap/dist/cli.mjs',
+    // Como último recurso, index (puede no ejecutar CLI)
+    'next-sitemap/dist/index.js',
+  ];
+  for (const mod of candidates) {
+    try {
+      const resolved = require.resolve(mod);
+      const nodeRun = spawnSync(process.execPath, [resolved], { stdio: 'inherit' });
+      if (nodeRun.status === 0) return;
+    } catch {
+      // probar siguiente candidato
+    }
   }
 
   if (!existsSync(NEXT_SITEMAP_BIN)) {
