@@ -11,6 +11,7 @@ export async function createPost(data: {
   category?: string;
   image?: string;
   published?: boolean;
+  date?: Date;
 }) {
   const { userId, getToken } = await auth();
 
@@ -30,6 +31,7 @@ export async function createPost(data: {
     .values({
       ...data,
       userId,
+      date: data.date || new Date(),
     })
     .returning();
 }
