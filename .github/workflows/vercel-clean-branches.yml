@@ -18,9 +18,14 @@ on:
 
 jobs:
   cleanup:
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'delete' && github.event.ref_type == 'branch') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true) }}
     runs-on: ubuntu-latest
     steps:
+      - name: Guard clause for event types
+        if: ${{ !(github.event_name == 'workflow_dispatch' || (github.event_name == 'delete' && github.event.ref_type == 'branch') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)) }}
+        run: |
+          echo "Not a supported trigger (requires workflow_dispatch, branch delete, or merged PR). Exiting."
+          exit 0
+
       - name: Checkout
         uses: actions/checkout@v4
 
