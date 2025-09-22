@@ -31,8 +31,7 @@ export default function Page() {
       {/* Componente de SignIn en la esquina superior derecha */}
       <div className='fixed top-4 right-4 z-50'>
         <SignIn
-          routing='path'
-          path='/sign-in'
+          routing='hash'
           redirectUrl='/'
           appearance={{
             elements: {
