@@ -24,8 +24,17 @@ function runNextSitemap() {
     process.exit(code);
   }
 
+  // Intentar resolver el ejecutable vía require.resolve como fallback robusto
+  try {
+    const resolved = require.resolve('next-sitemap/dist/index.js');
+    const nodeRun = spawnSync(process.execPath, [resolved], { stdio: 'inherit' });
+    if (nodeRun.status === 0) return;
+  } catch (err) {
+    // ignore, seguimos al siguiente fallback
+  }
+
   if (!existsSync(NEXT_SITEMAP_BIN)) {
-    console.warn('[postbuild] next-sitemap binary not found. Skipping sitemap generation.');
+    console.warn('[postbuild] next-sitemap binary not found via pnpm/resolve. Skipping sitemap generation.');
     return;
   }
 

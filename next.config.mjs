@@ -54,8 +54,9 @@ const nextConfig = {
     return [];
   },
 
+  // No reescribimos /sitemap.xml a una API inexistente. Se servirá estático desde public/ o generado por next-sitemap.
   async rewrites() {
-    return [{ source: '/sitemap.xml', destination: '/api/sitemap' }];
+    return [];
   },
 
   webpack: (config, { dev, isServer }) => {

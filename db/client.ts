@@ -105,7 +105,7 @@ const connectionString = rawConnectionString.replace(/^['"]|['"]$/g, '').trim();
 let skipDb =
   process.env.USE_IN_MEMORY_DB === '1' ||
   process.env.SKIP_DB === '1' ||
-  process.env.VERCEL === '1' ||
+  // No fuerces modo sin DB en Vercel; permite usar Neon en producción
   !connectionString;
 
 if (!connectionString) {
