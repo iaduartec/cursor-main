@@ -88,21 +88,23 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='es' className={inter.variable}>
       <body className='font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col'>
-        <a
-          href='#main-content'
-          className='skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-white px-4 py-2 rounded z-50'
-        >
-          Saltar al contenido principal
-        </a>
-        <Header />
-        <main
-          id='main-content'
-          tabIndex={-1}
-          className='outline-none focus-visible:ring-2 focus-visible:ring-accent flex-grow'
-        >
-          {children}
-        </main>
-        <Footer />
+        <Providers>
+          <a
+            href='#main-content'
+            className='skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-white px-4 py-2 rounded z-50'
+          >
+            Saltar al contenido principal
+          </a>
+          <Header />
+          <main
+            id='main-content'
+            tabIndex={-1}
+            className='outline-none focus-visible:ring-2 focus-visible:ring-accent flex-grow'
+          >
+            {children}
+          </main>
+          <Footer />
+        </Providers>
         {/* Vercel Analytics & Speed Insights */}
         <Analytics />
         <SpeedInsights />
