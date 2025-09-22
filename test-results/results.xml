@@ -1,0 +1,102 @@
+<testsuites id="" name="" tests="5" failures="5" skipped="0" errors="0" time="12.064983">
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T02:10:10.209Z" hostname="chromium" tests="1" failures="1" skipped="0" time="4.289" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="4.289">
+<failure message="projects.spec.ts:3:5 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [chromium] › projects.spec.ts:3:5 › projects CRUD via API (in-memory) ────────────────────────────
+
+    Error: expect(received).toBeTruthy()
+
+    Received: false
+
+      43 |     method: 'DELETE',
+      44 |   });
+    > 45 |   expect(del.ok()).toBeTruthy();
+         |                    ^
+      46 | });
+      47 |
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:45:20
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T02:10:10.209Z" hostname="firefox" tests="1" failures="1" skipped="0" time="4.292" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="4.292">
+<failure message="projects.spec.ts:3:5 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [firefox] › projects.spec.ts:3:5 › projects CRUD via API (in-memory) ─────────────────────────────
+
+    Error: expect(received).toBeTruthy()
+
+    Received: false
+
+      43 |     method: 'DELETE',
+      44 |   });
+    > 45 |   expect(del.ok()).toBeTruthy();
+         |                    ^
+      46 | });
+      47 |
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:45:20
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T02:10:10.209Z" hostname="webkit" tests="1" failures="1" skipped="0" time="4.29" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="4.29">
+<failure message="projects.spec.ts:3:5 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [webkit] › projects.spec.ts:3:5 › projects CRUD via API (in-memory) ──────────────────────────────
+
+    Error: expect(received).toBeTruthy()
+
+    Received: false
+
+      43 |     method: 'DELETE',
+      44 |   });
+    > 45 |   expect(del.ok()).toBeTruthy();
+         |                    ^
+      46 | });
+      47 |
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:45:20
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T02:10:10.209Z" hostname="Mobile Chrome" tests="1" failures="1" skipped="0" time="4.291" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="4.291">
+<failure message="projects.spec.ts:3:5 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › projects.spec.ts:3:5 › projects CRUD via API (in-memory) ───────────────────────
+
+    Error: expect(received).toBeTruthy()
+
+    Received: false
+
+      43 |     method: 'DELETE',
+      44 |   });
+    > 45 |   expect(del.ok()).toBeTruthy();
+         |                    ^
+      46 | });
+      47 |
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:45:20
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T02:10:10.209Z" hostname="Mobile Safari" tests="1" failures="1" skipped="0" time="4.291" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="4.291">
+<failure message="projects.spec.ts:3:5 projects CRUD via API (in-memory)" type="FAILURE">
+<![CDATA[  [Mobile Safari] › projects.spec.ts:3:5 › projects CRUD via API (in-memory) ───────────────────────
+
+    Error: expect(received).toBeTruthy()
+
+    Received: false
+
+      43 |     method: 'DELETE',
+      44 |   });
+    > 45 |   expect(del.ok()).toBeTruthy();
+         |                    ^
+      46 | });
+      47 |
+        at C:\Users\kiri_\cursor-main\tests\e2e\projects.spec.ts:45:20
+]]>
+</failure>
+</testcase>
+</testsuite>
+</testsuites>
