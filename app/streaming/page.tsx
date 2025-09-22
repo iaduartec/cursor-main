@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Camera } from 'lucide-react';
 import { getAllStreams } from '../../lib/db-streams';
-import { unstable_cache } from 'next/cache';
 
 export const metadata: Metadata = {
   title: 'Streaming 24h - Cámaras en directo',
@@ -11,14 +10,12 @@ export const metadata: Metadata = {
     'Cámaras en directo 24 horas desde pueblos de Burgos: Santo Domingo de Silos, Rabanera del Pinar, Pineda de la Sierra y Huerta de Arriba.',
 };
 
-const getStreams = unstable_cache(
-  async () => await getAllStreams(),
-  ['streams-index'],
-  { revalidate: 3600, tags: ['streams'] }
-);
+// Forzar renderizado dinámico para que siempre obtengamos la lista actual
+// (y el fallback) sin quedar atados a un HTML estático o caché obsoleta.
+export const dynamic = 'force-dynamic';
 
 export default async function StreamingIndexPage() {
-  const cams = await getStreams();
+  const cams = await getAllStreams();
   const isEmpty = !Array.isArray(cams) || cams.length === 0;
   return (
     <div className='min-h-screen'>
@@ -47,7 +44,7 @@ export default async function StreamingIndexPage() {
             </p>
           </div>
         ) : (
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg-grid-cols-4 lg:grid-cols-4 gap-6'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
             {cams.map(c => (
               <Link
                 key={c.slug}
