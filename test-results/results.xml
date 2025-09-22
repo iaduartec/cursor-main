@@ -1,0 +1,22 @@
+<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="10.562625">
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T02:11:31.905Z" hostname="chromium" tests="1" failures="0" skipped="0" time="2.979" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="2.979">
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T02:11:31.905Z" hostname="firefox" tests="1" failures="0" skipped="0" time="2.98" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="2.98">
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T02:11:31.905Z" hostname="webkit" tests="1" failures="0" skipped="0" time="2.979" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="2.979">
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T02:11:31.905Z" hostname="Mobile Chrome" tests="1" failures="0" skipped="0" time="2.98" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="2.98">
+</testcase>
+</testsuite>
+<testsuite name="projects.spec.ts" timestamp="2025-09-22T02:11:31.905Z" hostname="Mobile Safari" tests="1" failures="0" skipped="0" time="2.98" errors="0">
+<testcase name="projects CRUD via API (in-memory)" classname="projects.spec.ts" time="2.98">
+</testcase>
+</testsuite>
+</testsuites>
