@@ -18,10 +18,10 @@ jobs:
         with:
           node-version: '22'
           cache: 'pnpm'
-      - name: Configurar pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.12.3
+      - name: Enable corepack and activate pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.3 --activate
       - name: Instalar dependencias
         run: pnpm install --frozen-lockfile
       - name: Auditoría de seguridad Node.js
