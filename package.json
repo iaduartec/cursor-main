@@ -41,6 +41,7 @@
     "vercel:diagnose:quick": "node scripts/vercel-diagnostics.mjs --skip-build"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.32.0",
     "@neondatabase/serverless": "file:vendor\\neon-serverless",
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.5.2",
