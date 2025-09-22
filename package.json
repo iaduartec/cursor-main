@@ -33,6 +33,7 @@
     "db:seed:streams": "tsx scripts/db/seed-streams.ts",
     "db:migrate:mdx": "node scripts/migrate-mdx-to-db.mjs",
     "db:apply": "pnpm run db:migrate:apply && pnpm run db:seed:comments:apply",
+    "db:rls:apply": "node scripts/apply-rls-policies.mjs",
     "lint:changed": "node scripts/lint-changed.mjs",
     "lint:staged": "node scripts/lint-staged.mjs",
     "deps:check": "node scripts/dependency-monitor.mjs",

@@ -1,5 +1,8 @@
 import { SignUp } from '@clerk/nextjs';
 
+// Forzar renderizado del lado del cliente para evitar errores de prerenderizado
+export const dynamic = 'force-dynamic';
+
 export default function SignUpPage() {
   return (
     <div className='min-h-screen flex items-center justify-center p-6'>
