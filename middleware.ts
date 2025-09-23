@@ -1,10 +1,11 @@
-import { createMiddleware } from '@stackframe/stack';
-import { verifyAccess, middleware as flagsMiddleware } from 'flags/next';
+// import { createMiddleware } from '@stackframe/stack';
+// import { verifyAccess, middleware as flagsMiddleware } from 'flags/next';
 
-export default createMiddleware(async (req) => {
-  // Add flags middleware
-  await flagsMiddleware(req);
-});
+export default async function middleware(req: any) {
+  // Temporarily disabled due to API changes
+  // Add flags middleware later when APIs are stable
+  // await flagsMiddleware(req);
+}
 
 export const config = {
   matcher: [
