@@ -3,19 +3,26 @@
   "github.copilot.enable": {
     "*": true,
     "plaintext": true,
-    "markdown": false,
-    "scminput": false
+    "markdown": true,
+    "scminput": true,
+    "jsonc": true
   },
-  // Sugerencias inline sin barra, con colores
+
+  // Inline suggestions sin barra, con tipografía monoespaciada
+  "editor.inlineSuggest.enabled": true,
   "editor.inlineSuggest.fontFamily": "monospace",
   "editor.inlineSuggest.showToolbar": "never",
+
+  // [No verificado] Puede variar por versión
   "editor.inlineSuggest.syntaxHighlightingEnabled": true,
-  // Next Edit Suggestions
+
+  // Next Edit Suggestions (copilot “edits”)
+  // [No verificado] Estas claves pueden ser experimentales o renombradas
   "github.copilot.nextEditSuggestions.enabled": true,
-  "editor.inlineSuggest.edits.allowCodeShifting": "always",
-  "editor.inlineSuggest.edits.renderSideBySide": "auto",
-  // Arreglos basados en diagnósticos (imports, etc.)
   "github.copilot.nextEditSuggestions.fixes": true,
-  // Sin retraso: aparece al instante
+  "editor.inlineSuggest.edits.allowCodeShifting": "always", // [No verificado]
+  "editor.inlineSuggest.edits.renderSideBySide": "auto", // [No verificado]
+
+  // Aparición inmediata
   "editor.inlineSuggest.minShowDelay": 0
 }
