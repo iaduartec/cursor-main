@@ -1,7 +1,7 @@
 import { createAuthenticatedClient } from '../db/client';
 import { posts } from '../db/schema';
 import { eq } from 'drizzle-orm';
-import { auth } from '@clerk/nextjs/server';
+import { stackServerApp } from '@stackframe/stack/server';
 
 export async function createPost(data: {
   title: string;
@@ -13,13 +13,13 @@ export async function createPost(data: {
   published?: boolean;
   date?: Date;
 }) {
-  const { userId, getToken } = await auth();
+  const user = await stackServerApp.getUser();
 
-  if (!userId) {
+  if (!user) {
     throw new Error('Usuario no autenticado');
   }
 
-  const token = await getToken();
+  const token = await stackServerApp.getAccessToken();
   if (!token) {
     throw new Error('Token JWT no disponible');
   }
@@ -30,7 +30,7 @@ export async function createPost(data: {
     .insert(posts)
     .values({
       ...data,
-      userId,
+      userId: user.id,
       date: data.date || new Date(),
     })
     .returning();
@@ -48,13 +48,13 @@ export async function updatePost(
     published?: boolean;
   }>
 ) {
-  const { userId, getToken } = await auth();
+  const user = await stackServerApp.getUser();
 
-  if (!userId) {
+  if (!user) {
     throw new Error('Usuario no autenticado');
   }
 
-  const token = await getToken();
+  const token = await stackServerApp.getAccessToken();
   if (!token) {
     throw new Error('Token JWT no disponible');
   }
@@ -65,13 +65,13 @@ export async function updatePost(
 }
 
 export async function deletePost(id: number) {
-  const { userId, getToken } = await auth();
+  const user = await stackServerApp.getUser();
 
-  if (!userId) {
+  if (!user) {
     throw new Error('Usuario no autenticado');
   }
 
-  const token = await getToken();
+  const token = await stackServerApp.getAccessToken();
   if (!token) {
     throw new Error('Token JWT no disponible');
   }
