@@ -14,6 +14,13 @@ import {
 import MapCamarasClient from '../components/MapCamaras.client';
 import { getAllStreams } from '../lib/db-streams';
 import { SignIn } from '@clerk/nextjs';
+import { exampleFlag } from '../flags';
+
+export default async function Page() {
+  const example = await exampleFlag();
+
+  return <div>{example ? 'Flag is on' : 'Flag is off'}</div>;
+}
 
 export const metadata: Metadata = {
   title: 'Inicio',
