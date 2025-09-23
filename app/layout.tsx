@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { ClerkProvider } from '@clerk/nextjs';
+import { StackProvider, StackTheme } from '@stackframe/stack';
 import { FlagsProvider } from 'flags/client';
 import Header from '../components/header';
 import Footer from '../components/footer';
@@ -22,18 +22,24 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <ClerkProvider>
-      <FlagsProvider>
-        <html lang='es' className={inter.variable}>
-          <body className='font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col'>
-            <Header />
-            <main className='flex-grow'>{children}</main>
-            <Footer />
-            <Analytics />
-            <SpeedInsights />
-          </body>
-        </html>
-      </FlagsProvider>
-    </ClerkProvider>
+    <StackProvider
+      appId={process.env.NEXT_PUBLIC_STACK_PROJECT_ID!}
+      publishableClientKey={process.env.NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY!}
+      secretServerKey={process.env.STACK_SECRET_SERVER_KEY!}
+    >
+      <StackTheme>
+        <FlagsProvider>
+          <html lang='es' className={inter.variable}>
+            <body className='font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col'>
+              <Header />
+              <main className='flex-grow'>{children}</main>
+              <Footer />
+              <Analytics />
+              <SpeedInsights />
+            </body>
+          </html>
+        </FlagsProvider>
+      </StackTheme>
+    </StackProvider>
   );
 }

@@ -12,42 +12,9 @@ import {
   Phone,
 } from 'lucide-react';
 import MapCamarasClient from '../components/MapCamaras.client';
+import { getAllStreams } from '../lib/db-streams';
+import { SignIn } from '@stackframe/stack';
 import { exampleFlag, newFeatureFlag, betaFeatureFlag } from '../flags';
-import { exampleFlag } from '../flags';
-import { encryptFlagValues, type FlagValuesType } from 'flags';
-import { FlagValues } from 'flags/react';
-
-async function ConfidentialFlagValues({ values }: { values: FlagValuesType }) {
-  const encryptedFlagValues = await encryptFlagValues(values);
-  return <FlagValues values={encryptedFlagValues} />;
-}
-
-export function Page() {
-  const values = { exampleFlag: true };
-  return (
-    <div>
-      {/* Some other content */}
-      <Suspense fallback={null}>
-        <ConfidentialFlagValues values={values} />
-      </Suspense>
-    </div>
-  );
-}
-
-export function Page() {
-  return (
-    <div>
-      {/* Some other content */}
-      <FlagValues values={{ exampleFlag: true }} />
-    </div>
-  );
-}
-
-export default async function Page() {
-  const example = await exampleFlag();
-
-  return <div>{example ? 'Flag is on' : 'Flag is off'}</div>;
-}
 
 export const metadata: Metadata = {
   title: 'Inicio',

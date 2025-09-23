@@ -1,7 +1,7 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { stackMiddleware } from '@stackframe/stack';
 import { verifyAccess, middleware as flagsMiddleware } from 'flags/next';
 
-export default clerkMiddleware(async (auth, req) => {
+export default stackMiddleware(async (req) => {
   // Add flags middleware
   await flagsMiddleware(req);
 });
