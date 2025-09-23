@@ -44,9 +44,8 @@
     },
     "dependencies": {
         "@neondatabase/serverless": "^1.0.1",
-        "@supabase/postgres-js": "^1.3.0",
         "@next/bundle-analyzer": "^15.0.0",
-        "@supabase/supabase-js": "^2.57.2",
+        "@stackframe/stack": "^2.8.39",
         "@svgr/webpack": "^8.1.0",
         "@types/react-dom": "^18.3.0",
         "@vercel/analytics": "^1.5.0",
