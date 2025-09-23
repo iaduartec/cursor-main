@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { StackProvider, StackTheme } from '@stackframe/stack';
+// import { StackProvider, StackTheme } from '@stackframe/stack';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
@@ -24,12 +24,12 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <StackProvider
-      appId={process.env.NEXT_PUBLIC_STACK_PROJECT_ID!}
-      publishableClientKey={process.env.NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY!}
-      secretServerKey={process.env.STACK_SECRET_SERVER_KEY!}
-    >
-      <StackTheme>
+    // <StackProvider
+    //   appId={process.env.NEXT_PUBLIC_STACK_PROJECT_ID!}
+    //   publishableClientKey={process.env.NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY!}
+    //   secretServerKey={process.env.STACK_SECRET_SERVER_KEY!}
+    // >
+    //   <StackTheme>
         <html lang='es' className={inter.variable}>
           <body className='font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col'>
             <Header />
@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <SpeedInsights />
           </body>
         </html>
-      </StackTheme>
-    </StackProvider>
+    //   </StackTheme>
+    // </StackProvider>
   );
 }
