@@ -43,18 +43,7 @@ export default async function Page() {
     <>
       {/* Componente de SignIn en la esquina superior derecha */}
       <div className='fixed top-4 right-4 z-50'>
-        <SignIn
-          routing='hash'
-          redirectUrl='/'
-          appearance={{
-            elements: {
-              formButtonPrimary: 'bg-blue-600 hover:bg-blue-700 text-white',
-              card: 'shadow-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800',
-              headerTitle: 'hidden',
-              headerSubtitle: 'hidden',
-            },
-          }}
-        />
+        <SignIn />
       </div>
 
       {/* Hero Section */}
