@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "name": "duartec-web",
     "version": "1.0.0",
     "private": true,
@@ -116,7 +115,6 @@
         "node": "22"
     },
     "packageManager": "pnpm@10.0.0"
-=======
   "name": "duartec-web",
   "version": "1.0.0",
   "private": true,
@@ -233,5 +231,4 @@
     "node": "22"
   },
   "packageManager": "pnpm@10.0.0"
->>>>>>> 95a5035cbe5e01f7f6e61d656112339f822a9069
 }
