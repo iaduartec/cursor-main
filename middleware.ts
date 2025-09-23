@@ -1,6 +1,10 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
+import { verifyAccess, middleware as flagsMiddleware } from 'flags/next';
 
-export default clerkMiddleware();
+export default clerkMiddleware(async (auth, req) => {
+  // Add flags middleware
+  await flagsMiddleware(req);
+});
 
 export const config = {
   matcher: [

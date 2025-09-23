@@ -12,8 +12,7 @@ import {
   Phone,
 } from 'lucide-react';
 import MapCamarasClient from '../components/MapCamaras.client';
-import { getAllStreams } from '../lib/db-streams';
-import { SignIn } from '@clerk/nextjs';
+import { exampleFlag, newFeatureFlag, betaFeatureFlag } from '../flags';
 import { exampleFlag } from '../flags';
 import { encryptFlagValues, type FlagValuesType } from 'flags';
 import { FlagValues } from 'flags/react';
@@ -67,6 +66,11 @@ export default async function Page() {
   const streams = await getAllStreams();
   const cams =
     Array.isArray(streams) && streams.length ? streams.slice(0, 4) : [];
+
+  // Get feature flag values
+  const exampleFlagValue = await exampleFlag();
+  const newFeatureFlagValue = await newFeatureFlag();
+  const betaFeatureFlagValue = await betaFeatureFlag();
 
   return (
     <>
@@ -480,6 +484,70 @@ export default async function Page() {
           },
         })}
       </script>
+
+      {/* Feature Flags Demo Section */}
+      <section className='py-16 px-4 bg-gray-50 dark:bg-slate-800'>
+        <div className='max-w-4xl mx-auto'>
+          <h2 className='text-3xl font-bold text-center mb-8'>Feature Flags Demo</h2>
+          <div className='grid md:grid-cols-3 gap-6'>
+            <div className='bg-white dark:bg-slate-700 p-6 rounded-lg shadow-md'>
+              <h3 className='text-xl font-semibold mb-2'>Example Flag</h3>
+              <p className='text-gray-600 dark:text-gray-300 mb-4'>Un flag de ejemplo básico</p>
+              <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${exampleFlagValue
+                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                  : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                }`}>
+                {exampleFlagValue ? 'Activado' : 'Desactivado'}
+              </div>
+            </div>
+
+            <div className='bg-white dark:bg-slate-700 p-6 rounded-lg shadow-md'>
+              <h3 className='text-xl font-semibold mb-2'>Nueva Feature</h3>
+              <p className='text-gray-600 dark:text-gray-300 mb-4'>Flag para nuevas funcionalidades</p>
+              <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${newFeatureFlagValue
+                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                  : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                }`}>
+                {newFeatureFlagValue ? 'Activado' : 'Desactivado'}
+              </div>
+            </div>
+
+            <div className='bg-white dark:bg-slate-700 p-6 rounded-lg shadow-md'>
+              <h3 className='text-xl font-semibold mb-2'>Beta Feature</h3>
+              <p className='text-gray-600 dark:text-gray-300 mb-4'>Flag para funcionalidades en beta</p>
+              <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${betaFeatureFlagValue
+                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                  : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                }`}>
+                {betaFeatureFlagValue ? 'Activado' : 'Desactivado'}
+              </div>
+            </div>
+          </div>
+
+          {newFeatureFlagValue && (
+            <div className='mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800'>
+              <h3 className='text-xl font-semibold text-blue-800 dark:text-blue-200 mb-2'>
+                🎉 Nueva funcionalidad activada!
+              </h3>
+              <p className='text-blue-700 dark:text-blue-300'>
+                Esta sección solo se muestra cuando el flag "new-feature" está activado.
+                Puedes controlar esto desde el Flags Explorer en Vercel.
+              </p>
+            </div>
+          )}
+
+          {betaFeatureFlagValue && (
+            <div className='mt-6 p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800'>
+              <h3 className='text-xl font-semibold text-yellow-800 dark:text-yellow-200 mb-2'>
+                🧪 Feature en Beta
+              </h3>
+              <p className='text-yellow-700 dark:text-yellow-300'>
+                Esta es una funcionalidad experimental. Solo visible cuando el flag "beta-feature" está activado.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
     </>
   );
 }

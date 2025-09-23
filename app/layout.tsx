@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ClerkProvider } from '@clerk/nextjs';
+import { FlagsProvider } from 'flags/client';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
@@ -22,15 +23,17 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <ClerkProvider>
-      <html lang='es' className={inter.variable}>
-        <body className='font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col'>
-          <Header />
-          <main className='flex-grow'>{children}</main>
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </body>
-      </html>
+      <FlagsProvider>
+        <html lang='es' className={inter.variable}>
+          <body className='font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col'>
+            <Header />
+            <main className='flex-grow'>{children}</main>
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+          </body>
+        </html>
+      </FlagsProvider>
     </ClerkProvider>
   );
 }
