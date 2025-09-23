@@ -1,4 +1,4 @@
-import { SignUp } from '@clerk/nextjs';
+import { SignUp } from '@stackframe/stack';
 
 // Forzar renderizado del lado del cliente para evitar errores de prerenderizado
 export const dynamic = 'force-dynamic';
