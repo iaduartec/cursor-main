@@ -1,7 +1,7 @@
 import { createAuthenticatedClient } from '../db/client';
 import { posts } from '../db/schema';
 import { eq } from 'drizzle-orm';
-import { stackServerApp } from '@stackframe/stack/server';
+import { stackServerApp } from '@stackframe/stack';
 
 export async function createPost(data: {
   title: string;

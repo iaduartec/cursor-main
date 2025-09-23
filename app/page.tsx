@@ -450,8 +450,8 @@ export default async function Page() {
               <h3 className='text-xl font-semibold mb-2'>Example Flag</h3>
               <p className='text-gray-600 dark:text-gray-300 mb-4'>Un flag de ejemplo básico</p>
               <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${exampleFlagValue
-                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                  : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
                 }`}>
                 {exampleFlagValue ? 'Activado' : 'Desactivado'}
               </div>
@@ -461,8 +461,8 @@ export default async function Page() {
               <h3 className='text-xl font-semibold mb-2'>Nueva Feature</h3>
               <p className='text-gray-600 dark:text-gray-300 mb-4'>Flag para nuevas funcionalidades</p>
               <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${newFeatureFlagValue
-                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                  : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
                 }`}>
                 {newFeatureFlagValue ? 'Activado' : 'Desactivado'}
               </div>
@@ -472,8 +472,8 @@ export default async function Page() {
               <h3 className='text-xl font-semibold mb-2'>Beta Feature</h3>
               <p className='text-gray-600 dark:text-gray-300 mb-4'>Flag para funcionalidades en beta</p>
               <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${betaFeatureFlagValue
-                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                  : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
                 }`}>
                 {betaFeatureFlagValue ? 'Activado' : 'Desactivado'}
               </div>

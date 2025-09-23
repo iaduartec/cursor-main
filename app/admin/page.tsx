@@ -1,5 +1,4 @@
-import { SignIn } from '@stackframe/stack';
-import { stackServerApp } from '@stackframe/stack/server';
+import { SignIn, stackServerApp } from '@stackframe/stack';
 import { redirect } from 'next/navigation';
 
 // Forzar renderizado del lado del cliente para evitar errores de prerenderizado

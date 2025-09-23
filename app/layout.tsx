@@ -5,7 +5,6 @@ import { ReactNode } from 'react';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { StackProvider, StackTheme } from '@stackframe/stack';
-import { FlagsProvider } from 'flags/client';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
@@ -28,17 +27,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       secretServerKey={process.env.STACK_SECRET_SERVER_KEY!}
     >
       <StackTheme>
-        <FlagsProvider>
-          <html lang='es' className={inter.variable}>
-            <body className='font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col'>
-              <Header />
-              <main className='flex-grow'>{children}</main>
-              <Footer />
-              <Analytics />
-              <SpeedInsights />
-            </body>
-          </html>
-        </FlagsProvider>
+        <html lang='es' className={inter.variable}>
+          <body className='font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col'>
+            <Header />
+            <main className='flex-grow'>{children}</main>
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+          </body>
+        </html>
       </StackTheme>
     </StackProvider>
   );
