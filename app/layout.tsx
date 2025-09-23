@@ -30,15 +30,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     //   secretServerKey={process.env.STACK_SECRET_SERVER_KEY!}
     // >
     //   <StackTheme>
-        <html lang='es' className={inter.variable}>
-          <body className='font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col'>
-            <Header />
-            <main className='flex-grow'>{children}</main>
-            <Footer />
-            <Analytics />
-            <SpeedInsights />
-          </body>
-        </html>
+    <html lang='es' className={inter.variable}>
+      <body className='font-sans bg-white text-primary dark:bg-slate-900 dark:text-white min-h-screen flex flex-col'>
+        <Header />
+        <main className='flex-grow'>{children}</main>
+        <Footer />
+        <Analytics />
+        <SpeedInsights />
+      </body>
+    </html>
     //   </StackTheme>
     // </StackProvider>
   );
