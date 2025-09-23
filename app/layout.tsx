@@ -10,6 +10,9 @@ import Footer from '../components/footer';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
+// Forzar renderizado dinámico para evitar problemas con Stack Auth
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: {
     default: 'Duartec Instalaciones Informáticas - Burgos',
