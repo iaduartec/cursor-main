@@ -1,7 +1,7 @@
-import { stackMiddleware } from '@stackframe/stack';
+import { createMiddleware } from '@stackframe/stack';
 import { verifyAccess, middleware as flagsMiddleware } from 'flags/next';
 
-export default stackMiddleware(async (req) => {
+export default createMiddleware(async (req) => {
   // Add flags middleware
   await flagsMiddleware(req);
 });

@@ -1,4 +1,4 @@
-import { SignIn, stackServerApp } from '@stackframe/stack';
+import { SignIn, StackServerApp } from '@stackframe/stack';
 import { redirect } from 'next/navigation';
 
 // Forzar renderizado del lado del cliente para evitar errores de prerenderizado
@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 export default async function AdminLoginPage() {
   // Comprobación server-side: si ya hay sesión, redirigir al panel admin
   try {
-    const user = await stackServerApp.getUser();
+    const user = await StackServerApp.getUser();
     if (user) {
       // Usuario autenticado: redirigir al panel (por ejemplo /admin/posts)
       redirect('/admin/posts');
