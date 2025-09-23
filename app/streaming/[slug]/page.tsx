@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllStreams, getStreamBySlug } from '../../../lib/db-streams';
 
+// Forzar renderizado dinámico para evitar problemas con Stack Auth
+export const dynamic = 'force-dynamic';
+
 const normalizeSlug = (s: string) =>
   String(s || '')
     .toLowerCase()

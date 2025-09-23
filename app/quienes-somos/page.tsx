@@ -2,6 +2,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Users, Award, MapPin, Clock, Phone } from 'lucide-react';
 
+// Forzar renderizado dinámico para evitar problemas con Stack Auth
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Quiénes Somos - Duartec Instalaciones Informáticas',
   description: 'Conoce a Duartec, empresa de instalaciones informáticas en Burgos con más de 10 años de experiencia en el sector.',

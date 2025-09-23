@@ -3,6 +3,9 @@ import { Home, ArrowLeft } from 'lucide-react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
+// Forzar renderizado dinámico para evitar problemas con Stack Auth
+export const dynamic = 'force-dynamic';
+
 export default function NotFound() {
   return (
     <>
