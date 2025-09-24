@@ -4,34 +4,13 @@ import { and, asc, count, desc, eq, ilike, or, SQL } from 'drizzle-orm';
 import dotenv from 'dotenv';
 import { existsSync } from 'fs';
 import { join } from 'path';
+import { getBlogs } from './contentlayer-wrapper';
+import './load-env'; // carga variables de entorno centralizada
 
-// Load environment variables if not already loaded
-if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
-  const envLocal = join(process.cwd(), '.env.local');
-  const envFile = join(process.cwd(), '.env');
-  if (existsSync(envLocal)) {
-    dotenv.config({ path: envLocal });
-  } else if (existsSync(envFile)) {
-    dotenv.config({ path: envFile });
-  }
-}
+// (Eliminado): Carga de dotenv duplicada reemplazada por import './load-env'
 
-// Helper function to get allBlogs conditionally
-async function getAllBlogs(): Promise<any[]> {
-  if (process.env.SKIP_CONTENTLAYER === '1') {
-    return [];
-  }
-  try {
-    const { allBlogs = [] } = await import('contentlayer/generated');
-    return allBlogs;
-  } catch (error) {
-    console.warn(
-      'Contentlayer data for blog no disponible, usando arreglo vacío.',
-      error
-    );
-    return [];
-  }
-}
+// Wrapper centralizado ahora gestiona la carga.
+async function getAllBlogs(): Promise<any[]> { return await getBlogs(); }
 
 type Blog = any; // Fallback type for Vercel
 
@@ -50,9 +29,9 @@ export type PostRow = {
 const hasDb = () =>
   Boolean(
     process.env.POSTGRES_URL ||
-      process.env.POSTGRES_URL_NON_POOLING ||
-      process.env.DATABASE_URL ||
-      process.env.NEON_DATABASE_URL
+    process.env.POSTGRES_URL_NON_POOLING ||
+    process.env.DATABASE_URL ||
+    process.env.NEON_DATABASE_URL
   );
 
 export async function getAllPostsFromDb(): Promise<PostRow[]> {
@@ -202,8 +181,8 @@ export async function getPostsPageFromDb({
             ? asc(posts.title)
             : desc(posts.title)
           : sortDir === 'asc'
-          ? asc(posts.date)
-          : desc(posts.date)
+            ? asc(posts.date)
+            : desc(posts.date)
       )
       .limit(pageSize)
       .offset(offset);

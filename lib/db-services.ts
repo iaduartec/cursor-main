@@ -4,34 +4,12 @@ import { asc, eq } from 'drizzle-orm';
 import dotenv from 'dotenv';
 import { existsSync } from 'fs';
 import { join } from 'path';
+import { getServicios } from './contentlayer-wrapper';
+import './load-env';
 
-// Load environment variables if not already loaded
-if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
-  const envLocal = join(process.cwd(), '.env.local');
-  const envFile = join(process.cwd(), '.env');
-  if (existsSync(envLocal)) {
-    dotenv.config({ path: envLocal });
-  } else if (existsSync(envFile)) {
-    dotenv.config({ path: envFile });
-  }
-}
+// (Eliminado) lógica repetida de dotenv -> ahora central en load-env
 
-// Helper function to get allServicios conditionally
-async function getAllServicios(): Promise<any[]> {
-  if (process.env.SKIP_CONTENTLAYER === '1') {
-    return [];
-  }
-  try {
-    const { allServicios = [] } = await import('contentlayer/generated');
-    return allServicios;
-  } catch (error) {
-    console.warn(
-      'Contentlayer data for servicios no disponible, usando arreglo vacío.',
-      error
-    );
-    return [];
-  }
-}
+async function getAllServicios(): Promise<any[]> { return await getServicios(); }
 
 export type ServiceRow = {
   id: number;
@@ -46,9 +24,9 @@ export type ServiceRow = {
 const hasDb = () =>
   Boolean(
     process.env.POSTGRES_URL ||
-      process.env.POSTGRES_URL_NON_POOLING ||
-      process.env.DATABASE_URL ||
-      process.env.NEON_DATABASE_URL
+    process.env.POSTGRES_URL_NON_POOLING ||
+    process.env.DATABASE_URL ||
+    process.env.NEON_DATABASE_URL
   );
 
 export async function getAllServices(): Promise<ServiceRow[]> {
