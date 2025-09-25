@@ -52,19 +52,11 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
           pnpm dlx vercel@latest pull --yes --environment=production --token "$VERCEL_TOKEN"
-      - name: Build (Vercel prebuilt)
+      - name: Deploy to Production
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          # Build del proyecto usando el builder de Vercel
-          pnpm dlx vercel@latest build --token "$VERCEL_TOKEN"
-      - name: Deploy to Production (prebuilt)
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          # Publica el build preconstruido a producción
-          pnpm dlx vercel@latest deploy --prebuilt --prod --token "$VERCEL_TOKEN" --yes
+          # Deploy directo a producción sin prebuilt
+          pnpm dlx vercel@latest --prod --token "$VERCEL_TOKEN" --yes
