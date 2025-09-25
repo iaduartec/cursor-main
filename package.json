@@ -53,7 +53,8 @@
     "deps:check": "node scripts/dependency-monitor.mjs",
     "deps:update-safe": "pnpm update --latest --workspace-root",
     "vercel:diagnose": "node scripts/vercel-diagnostics.mjs",
-    "vercel:diagnose:quick": "node scripts/vercel-diagnostics.mjs --skip-build"
+    "vercel:diagnose:quick": "node scripts/vercel-diagnostics.mjs --skip-build",
+    "vercel:pre-deploy": "node scripts/vercel-pre-deploy.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "file:vendor/neon-serverless",
