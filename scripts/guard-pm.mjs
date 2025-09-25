@@ -1,3 +1,14 @@
+// scripts/guard-pm.mjs
+// Evita instalaciones con npm/yarn accidentalmente y exige pnpm
+
+const pm = process.env.npm_config_user_agent || '';
+const isPNPM = pm.includes('pnpm');
+if (!isPNPM) {
+  console.error('\n[guard-pm] Este repositorio usa pnpm. Por favor ejecuta:');
+  console.error('  corepack enable');
+  console.error('  pnpm i');
+  process.exit(1);
+}
 /**
 Resumen generado automáticamente.
 

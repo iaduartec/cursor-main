@@ -42,9 +42,10 @@ async function loadOnce(): Promise<void> {
             state.loaded = true; return;
         }
         try {
-            // Especifier constante pero aislado aquí; alias webpack puede redirigir.
-            // Ofuscamos el specifier para que webpack no intente validar export map estáticamente
-            const SPEC = 'contentlayer/' + 'generated';
+            // Construir el specifier de forma que eslint no marque concatenación inútil
+            // sin exponerlo como literal completo para los bundlers
+            const parts = ['contentlayer', 'generated'];
+            const SPEC = parts.join('/');
             const mod = await import(SPEC).catch(() => ({} as any));
             state.blogs = Array.isArray(mod.allBlogs) ? mod.allBlogs : [];
             state.servicios = Array.isArray(mod.allServicios) ? mod.allServicios : [];

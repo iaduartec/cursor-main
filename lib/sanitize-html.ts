@@ -20,5 +20,25 @@ export function sanitizeHtml(input?: string): string {
   // Remove javascript: URLs in href/src attributes
   s = s.replace(/(href|src)\s*=\s*("|')?\s*javascript:[^"'>\s]*/gi, '$1="#"');
 
+  // Remove data: URLs that could embed scripts (allow only images/fonts)
+  s = s.replace(/(href|src)\s*=\s*("|')?\s*data:(?!image\/|font\/)[^"'>\s]*/gi, '$1="#"');
+
+  // Strip style attributes that may contain expressions or urls
+  s = s.replace(/\sstyle\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, (m) => {
+    const val = m.split('=')[1] || '';
+    const low = val.toLowerCase();
+    if (low.includes('expression(') || low.includes('url(') || low.includes('javascript:')) {
+      return '';
+    }
+    // keep benign style attributes
+    return m;
+  });
+
+  // Remove srcdoc attribute on iframes
+  s = s.replace(/\ssrcdoc\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+
+  // Ensure iframes (if any) do not allow scripts by removing allow attributes (very conservative)
+  s = s.replace(/\sallow\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+
   return s;
 }

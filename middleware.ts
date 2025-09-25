@@ -1,7 +1,7 @@
 // import { createMiddleware } from '@stackframe/stack';
 // import { verifyAccess, middleware as flagsMiddleware } from 'flags/next';
 
-export default async function middleware(req: any) {
+export default async function middleware(_req: any) {
   // Temporarily disabled due to API changes
   // Add flags middleware later when APIs are stable
   // await flagsMiddleware(req);

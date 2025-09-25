@@ -38,14 +38,40 @@ const nextConfig = {
         headers: [
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
           { key: 'X-UA-Compatible', value: 'IE=edge' },
+          // Security hardening additions (conservadores)
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+          { key: 'Cross-Origin-Resource-Policy', value: 'same-origin' },
+          { key: 'Origin-Agent-Cluster', value: '?1' },
+          { key: 'X-Permitted-Cross-Domain-Policies', value: 'none' },
+          { key: 'X-DNS-Prefetch-Control', value: 'off' },
+          { key: 'X-XSS-Protection', value: '0' },
+          // Report-Only CSP para observabilidad sin riesgo de romper producción
+          {
+            key: 'Content-Security-Policy-Report-Only',
+            value: [
+              "default-src 'self'",
+              "connect-src 'self' https:",
+              "img-src 'self' https: data: blob:",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https:",
+              "style-src 'self' 'unsafe-inline' https:",
+              "font-src 'self' https: data:",
+              "frame-ancestors 'none'",
+              'upgrade-insecure-requests',
+            ].join('; '),
+          },
         ],
       },
       {
         source: '/api/(.*)',
-        headers: [{ key: 'Cache-Control', value: 'no-store, max-age=0' }],
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, max-age=0' },
+          { key: 'Pragma', value: 'no-cache' },
+          { key: 'Expires', value: '0' },
+        ],
       },
     ];
   },
