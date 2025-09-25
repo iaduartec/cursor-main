@@ -1,57 +1,72 @@
-// Minimal server-side HTML sanitizer for Markdown output.
-// This is intentionally conservative: it strips <script> tags, event handler
-// attributes (on*), and javascript: URLs. It's not a full-featured sanitizer
-// like DOMPurify, but it reduces the most-common XSS vectors for generated
-// HTML coming from trusted markdown sources. Replace with a vetted library
-// (e.g. isomorphic-dompurify) if stricter guarantees are required.
+// Secure HTML sanitizer using escape-based approach instead of regex
+// This prevents all XSS vectors by escaping HTML entities rather than
+// trying to parse HTML with regex (which is inherently unsafe)
 
 export function sanitizeHtml(input?: string): string {
   if (!input) {
     return '';
   }
-  let s = String(input);
+  
+  // Convert to string and clean dangerous patterns first
+  let cleaned = String(input)
+    // Remove dangerous protocols
+    .replace(/javascript:/gi, '')
+    .replace(/data:/gi, '')
+    .replace(/vbscript:/gi, '')
+    // Remove dangerous attributes
+    .replace(/\s+(srcdoc|allow|onload|onerror|onclick|onmouseover|onmouseout|onfocus|onblur)=["'][^"']*["']/gi, '')
+    // Remove dangerous iframe attributes
+    .replace(/<iframe[^>]*srcdoc=["'][^"']*["'][^>]*>/gi, '<iframe>')
+    .replace(/<iframe[^>]*allow=["'][^"']*["'][^>]*>/gi, '<iframe>');
+  
+  // Escape all HTML
+  const escaped = cleaned
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;');
 
-  // Remove script tags entirely (improved pattern to handle edge cases)
-  s = s.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-
-  // Remove inline event handlers like onclick="..." or onmouseover='...' (improved pattern)
-  s = s.replace(/\bon[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, '');
-
-  // Remove javascript: URLs in href/src attributes (improved to handle encoding)
-  s = s.replace(/(href|src)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, (match, attr) => {
-    const decoded = match.replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
-                         .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
-                         .toLowerCase();
-    if (decoded.includes('javascript:') || decoded.includes('vbscript:') || decoded.includes('data:text/html')) {
-      return `${attr}="#"`;
-    }
-    return match;
-  });
-
-  // Remove data: URLs that could embed scripts (improved pattern)
-  s = s.replace(/(href|src)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, (match, attr) => {
-    if (match.toLowerCase().includes('data:') && !match.toLowerCase().match(/data:(image\/|font\/)/)) {
-      return `${attr}="#"`;
-    }
-    return match;
-  });
-
-  // Strip style attributes that may contain expressions or urls
-  s = s.replace(/\sstyle\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, (m) => {
-    const val = m.split('=')[1] || '';
-    const low = val.toLowerCase();
-    if (low.includes('expression(') || low.includes('url(') || low.includes('javascript:')) {
-      return '';
-    }
-    // keep benign style attributes
-    return m;
-  });
-
-  // Remove srcdoc attribute on iframes
-  s = s.replace(/\ssrcdoc\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
-
-  // Ensure iframes (if any) do not allow scripts by removing allow attributes (very conservative)
-  s = s.replace(/\sallow\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
-
-  return s;
+  // For markdown output, we might want to allow some basic formatting
+  // This is a minimal whitelist that only allows very basic tags
+  // by converting escaped entities back selectively
+  return escaped
+    // Allow basic paragraph and line breaks
+    .replace(/&lt;p&gt;/gi, '<p>')
+    .replace(/&lt;\/p&gt;/gi, '</p>')
+    .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
+    .replace(/&lt;hr\s*\/?&gt;/gi, '<hr>')
+    
+    // Allow basic text formatting
+    .replace(/&lt;strong&gt;/gi, '<strong>')
+    .replace(/&lt;\/strong&gt;/gi, '</strong>')
+    .replace(/&lt;em&gt;/gi, '<em>')
+    .replace(/&lt;\/em&gt;/gi, '</em>')
+    .replace(/&lt;b&gt;/gi, '<b>')
+    .replace(/&lt;\/b&gt;/gi, '</b>')
+    .replace(/&lt;i&gt;/gi, '<i>')
+    .replace(/&lt;\/i&gt;/gi, '</i>')
+    
+    // Allow headers
+    .replace(/&lt;h([1-6])&gt;/gi, '<h$1>')
+    .replace(/&lt;\/h([1-6])&gt;/gi, '</h$1>')
+    
+    // Allow lists
+    .replace(/&lt;ul&gt;/gi, '<ul>')
+    .replace(/&lt;\/ul&gt;/gi, '</ul>')
+    .replace(/&lt;ol&gt;/gi, '<ol>')
+    .replace(/&lt;\/ol&gt;/gi, '</ol>')
+    .replace(/&lt;li&gt;/gi, '<li>')
+    .replace(/&lt;\/li&gt;/gi, '</li>')
+    
+    // Allow code blocks (safe as content is already escaped)
+    .replace(/&lt;code&gt;/gi, '<code>')
+    .replace(/&lt;\/code&gt;/gi, '</code>')
+    .replace(/&lt;pre&gt;/gi, '<pre>')
+    .replace(/&lt;\/pre&gt;/gi, '</pre>')
+    
+    // Allow blockquotes
+    .replace(/&lt;blockquote&gt;/gi, '<blockquote>')
+    .replace(/&lt;\/blockquote&gt;/gi, '</blockquote>');
 }
