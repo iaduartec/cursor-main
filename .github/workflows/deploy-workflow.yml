@@ -77,10 +77,3 @@ jobs:
         run: |
           # Publica el build preconstruido a producción
           pnpm dlx vercel@latest deploy --prebuilt --prod --token "$VERCEL_TOKEN" --yes
-      - name: Trigger Vercel Deploy Hook (fallback)
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK_URL != '' && !(secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '') }}
-        env:
-          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
-        run: |
-          echo "Triggering Vercel Deploy Hook..."
-          curl -fsSL -X POST "$VERCEL_DEPLOY_HOOK_URL" && echo "Hook triggered"
