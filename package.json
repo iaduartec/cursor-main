@@ -32,6 +32,7 @@
     "test:run": "node --test \"__tests__/**/*.test.cjs\"",
     "test:e2e": "playwright test",
     "postbuild": "node scripts/postbuild.mjs",
+    "generate:pdfs": "node scripts/generate-legal-pdfs.mjs",
     "vercel-build": "pnpm run build",
     "images:generate": "node scripts/generate_missing_images_runner.js --only-missing --min-bytes 1000",
     "images:check": "node scripts/generate_missing_images_runner.js --only-missing --min-bytes 1000 --dry-run",
@@ -107,6 +108,7 @@
     "lint-staged": "^16.2.1",
     "markdownlint-cli": "^0.45.0",
     "prettier": "^3.6.2",
+    "puppeteer": "^24.22.3",
     "tsx": "^4.20.5"
   },
   "pnpm": {
