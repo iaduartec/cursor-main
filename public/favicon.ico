@@ -1,1 +1,4 @@
-data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🏗️</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#1e40af"/>
+  <path d="M8 24V16h3v8h2v-6h3v6h2V14h3v10h2V12h3v12h1V8H7v16h1z" fill="white"/>
+</svg>
