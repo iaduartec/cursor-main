@@ -27,7 +27,7 @@ const TYPE_FILTER = process.argv.find(arg => arg.startsWith('--type='))?.split('
 
 console.log('🚀 Iniciando migración MDX → Base de datos');
 console.log(`📋 Modo: ${DRY_RUN ? 'SIMULACIÓN (dry-run)' : 'EJECUCIÓN REAL'}`);
-if (TYPE_FILTER) console.log(`🎯 Tipo filtrado: ${TYPE_FILTER}`);
+if (TYPE_FILTER) {console.log(`🎯 Tipo filtrado: ${TYPE_FILTER}`);}
 
 // Función para leer archivos MDX de un directorio
 async function getMdxFiles(dir) {

@@ -1,0 +1,36 @@
+# Directorios que no necesitan formato
+node_modules/
+.next/
+.contentlayer/
+out/
+build/
+dist/
+public/
+.git/
+vendor/
+intranet-scaffold/
+drizzle/
+pnpm build/
+test-results/
+playwright-report/
+.venv/
+
+# Archivos de configuración que pueden tener formato específico
+pnpm-lock.yaml
+*.min.js
+*.min.css
+
+# Archivos temporales y de respaldo
+_remote_*.mdx
+*.backup
+*.tmp
+
+# Archivos de reportes y logs
+REPORTE_PRUEBAS.md
+*.log
+
+# Archivos específicos que pueden tener formato personalizado
+.lintstagedrc.js
+fix_*.js
+probe*.js
+auto_comment.mjs

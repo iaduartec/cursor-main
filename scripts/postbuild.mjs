@@ -63,7 +63,7 @@ function runNextSitemap() {
     try {
       const resolved = require.resolve(mod);
       const nodeRun = spawnSync(process.execPath, [resolved], { stdio: 'inherit' });
-      if (nodeRun.status === 0) return;
+      if (nodeRun.status === 0) {return;}
     } catch {
       // probar siguiente candidato
     }

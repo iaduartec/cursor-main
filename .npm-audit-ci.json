@@ -1,2 +1,1 @@
-# Vulnerabilidades conocidas de Contentlayer (dependencias transitivas)
 {"advisories":["1102341","1103822"],"muted":[{"until":"2025-12-31","reason":"Contentlayer dependency - no direct fix available"}]}

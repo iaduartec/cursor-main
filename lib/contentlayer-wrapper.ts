@@ -33,7 +33,7 @@ const state: CLState = {
 };
 
 async function loadOnce(): Promise<void> {
-    if (state.loaded) return;
+    if (state.loaded) {return;}
     if (state.loading) {
         await state.loading; return;
     }

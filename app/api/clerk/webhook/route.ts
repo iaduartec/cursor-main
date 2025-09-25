@@ -6,7 +6,7 @@ import nodemailer from 'nodemailer';
 // We'll verify using HMAC SHA256 with the CLERK_WEBHOOK_SECRET
 
 function parseClerkSignature(header: string | null) {
-  if (!header) return null;
+  if (!header) {return null;}
   const parts = header.split(',').map(p => p.split('='));
   const map: Record<string, string> = {};
   for (const [k, v] of parts as Array<[string, string]>) {
@@ -16,11 +16,11 @@ function parseClerkSignature(header: string | null) {
 }
 
 async function sendAdminEmail(email: string, name?: string, event?: string) {
-  const SMTP_HOST = process.env.SMTP_HOST;
-  const SMTP_PORT = process.env.SMTP_PORT;
-  const SMTP_USER = process.env.SMTP_USER;
-  const SMTP_PASS = process.env.SMTP_PASS;
-  const ADMIN_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL;
+  const {SMTP_HOST} = process.env;
+  const {SMTP_PORT} = process.env;
+  const {SMTP_USER} = process.env;
+  const {SMTP_PASS} = process.env;
+  const {ADMIN_NOTIFICATION_EMAIL} = process.env;
 
   if (
     !SMTP_HOST ||
