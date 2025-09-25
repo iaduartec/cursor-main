@@ -9,14 +9,13 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
+      - name: Install pnpm globally
+        run: npm install -g pnpm
       - uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'pnpm'
-      - name: Install pnpm
-        run: npm install -g pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Type check
@@ -35,16 +34,13 @@ jobs:
     # de secretos (VERCEL_TOKEN / VERCEL_* o VERCEL_DEPLOY_HOOK_URL).
     if: github.ref == 'refs/heads/main'
     steps:
+      - name: Install pnpm globally
+        run: npm install -g pnpm
       - uses: actions/checkout@v4
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'pnpm'
-      - name: Enable corepack and activate pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@9.12.3 --activate
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Vercel CLI version
