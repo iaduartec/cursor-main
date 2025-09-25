@@ -118,7 +118,9 @@
       "@mdx-js/esbuild>esbuild": "0.25.9",
       "@esbuild-plugins/node-resolve>esbuild": "0.25.9",
       "@contentlayer/core>esbuild": "0.25.9",
-      "contentlayer>esbuild": "0.25.9"
+      "contentlayer>esbuild": "0.25.9",
+      "path-to-regexp": "^6.3.0",
+      "cookie": "^0.7.0"
     }
   },
   "engines": {
