@@ -17,7 +17,7 @@ export default function Header() {
   };
 
   return (
-    <header className='w-full bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-slate-800 dark:to-slate-900 shadow-lg sticky top-0 z-50'>
+    <header className='w-full bg-slate-800 dark:bg-slate-900 shadow-lg sticky top-0 z-50'>
       {/* Top bar con información de contacto */}
       <div className='bg-accent text-white py-2 px-4'>
         <div className='max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm'>
@@ -44,7 +44,7 @@ export default function Header() {
       </div>
 
       {/* Header principal */}
-      <div className='max-w-6xl mx-auto px-4 py-4 bg-slate-800 dark:bg-slate-800 rounded-lg my-2 shadow-lg'>
+      <div className='max-w-6xl mx-auto px-4 py-4'>
         <div className='flex items-center justify-between'>
           {/* Logo */}
           <Link

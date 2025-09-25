@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import MapCamarasClient from '../components/MapCamaras.client';
 import { getAllStreams } from '../lib/db-streams';
-import { SignIn } from '@stackframe/stack';
+// import { SignIn } from '@stackframe/stack';
 import { exampleFlag, newFeatureFlag, betaFeatureFlag } from '../flags';
 
 export const metadata: Metadata = {
@@ -41,11 +41,6 @@ export default async function Page() {
 
   return (
     <>
-      {/* Componente de SignIn en la esquina superior derecha */}
-      <div className='fixed top-4 right-4 z-50'>
-        <SignIn />
-      </div>
-
       {/* Hero Section */}
       <section className='relative bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-800 dark:to-slate-900 py-20 px-4'>
         <div className='max-w-6xl mx-auto text-center'>
