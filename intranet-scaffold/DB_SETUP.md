@@ -18,12 +18,8 @@ Este repositorio usa Neon/Postgres y Drizzle ORM.
 Variables de entorno necesarias (ejemplo `.env.local`):
 
 ```bash
-# Prefer POSTGRES_URL / DATABASE_URL for Neon/Postgres
+# Use POSTGRES_URL / DATABASE_URL for Neon/Postgres
 POSTGRES_URL=postgresql://user:password@db.host:5432/postgres
-# Supabase-specific variables (opcional / legacy)
-SUPABASE_DB_URL=postgresql://user:password@db.supabase.co:5432/postgres
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ENABLE_DB_IN_DEV=1
 ```
 
