@@ -10,6 +10,11 @@ cursor-work/
 
 .vercel
 .env*.local
+.env
+.env.vercel-import
+
+# Security: Continue AI config with potential secrets
+.continue/
 
 pgsql/
 package-lock.json
