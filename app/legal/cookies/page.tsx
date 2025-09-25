@@ -179,7 +179,7 @@ export default function CookiesPage() {
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
                 <li><strong>Email:</strong> info@duartec.es</li>
                 <li><strong>Teléfono:</strong> 947 256 430</li>
-                <li><strong>Dirección:</strong> Burgos, España</li>
+                <li><strong>Dirección:</strong> AVDA. Valencia del Cid, 3 - Bajo, 09001 Burgos (España)</li>
               </ul>
             </section>
           </div>

@@ -369,7 +369,9 @@ export default async function Page() {
           email: 'info@duartec.es',
           address: {
             '@type': 'PostalAddress',
+            streetAddress: 'AVDA. Valencia del Cid, 3 - Bajo',
             addressLocality: 'Burgos',
+            postalCode: '09001',
             addressRegion: 'Castilla y León',
             addressCountry: 'ES',
           },

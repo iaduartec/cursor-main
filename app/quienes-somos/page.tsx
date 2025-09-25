@@ -74,7 +74,7 @@ export default function QuienesSomosPage() {
             <div className="mt-6 text-sm text-gray-600 dark:text-gray-300">
               <p className="font-semibold">Dónde estamos</p>
               <p>AVDA. Valencia del Cid, 3 - Bajo, Burgos (España)</p>
-              <p className="mt-2">Email: info@duartec.es · Tel: 947 000 000</p>
+              <p className="mt-2">Email: info@duartec.es · Tel: 947 256 430</p>
             </div>
           </div>
         </div>

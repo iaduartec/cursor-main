@@ -43,7 +43,7 @@ const privacidadHTML = `
         <p>Duartec Instalaciones Informáticas es el responsable del tratamiento de los datos personales que se recaban a través de este sitio web.</p>
         <ul>
             <li><strong>Denominación social:</strong> Duartec Instalaciones Informáticas</li>
-            <li><strong>Domicilio:</strong> Burgos, España</li>
+            <li><strong>Domicilio:</strong> AVDA. Valencia del Cid, 3 - Bajo, 09001 Burgos (España)</li>
             <li><strong>Email:</strong> info@duartec.es</li>
             <li><strong>Teléfono:</strong> 947 256 430</li>
         </ul>
@@ -84,7 +84,7 @@ const privacidadHTML = `
     <ul>
         <li><strong>Email:</strong> info@duartec.es</li>
         <li><strong>Teléfono:</strong> 947 256 430</li>
-        <li><strong>Dirección:</strong> Burgos, España</li>
+        <li><strong>Dirección:</strong> AVDA. Valencia del Cid, 3 - Bajo, 09001 Burgos (España)</li>
     </ul>
 </body>
 </html>
@@ -150,7 +150,7 @@ const cookiesHTML = `
     <ul>
         <li><strong>Email:</strong> info@duartec.es</li>
         <li><strong>Teléfono:</strong> 947 256 430</li>
-        <li><strong>Dirección:</strong> Burgos, España</li>
+        <li><strong>Dirección:</strong> AVDA. Valencia del Cid, 3 - Bajo, 09001 Burgos (España)</li>
     </ul>
 </body>
 </html>

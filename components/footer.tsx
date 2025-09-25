@@ -94,7 +94,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-accent" />
-                <span className="text-gray-300">Burgos, España</span>
+                <span className="text-gray-300">AVDA. Valencia del Cid, 3, Burgos</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-accent" />
