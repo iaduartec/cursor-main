@@ -21,7 +21,7 @@ export default function Header() {
       {/* Top bar con información de contacto */}
       <div className='bg-accent text-white py-2 px-4'>
         <div className='max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm'>
-          <div className='flex items-center gap-4 mb-2 sm:mb-0'>
+          <div className='flex flex-col sm:flex-row items-center gap-4 mb-2 sm:mb-0'>
             <a
               href='tel:+34947256430'
               className='flex items-center gap-1 hover:underline'
@@ -37,7 +37,7 @@ export default function Header() {
               <span>info@duartec.es</span>
             </a>
           </div>
-          <div className='text-xs'>
+          <div className='text-xs text-center'>
             Horario: L-V 9:00-18:00 | Emergencias 24/7
           </div>
         </div>
@@ -134,8 +134,9 @@ export default function Header() {
           {/* Botón menú móvil */}
           <button
             onClick={toggleMenu}
-            className='md:hidden p-2 text-white hover:text-accent transition-colors'
-            aria-label='Abrir menú de navegación'
+            className='md:hidden p-2 text-white hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded-md'
+            aria-label={isMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
               <X className='w-6 h-6' />
@@ -147,76 +148,84 @@ export default function Header() {
 
         {/* Menú móvil */}
         {isMenuOpen && (
-          <nav
-            className='md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-slate-700'
-            aria-label='Navegación móvil'
-          >
-            <ul className='flex flex-col gap-4 pt-4'>
-              <li>
-                <Link
-                  href='/'
-                  onClick={closeMenu}
-                  className='block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2'
-                >
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/servicios'
-                  onClick={closeMenu}
-                  className='block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2'
-                >
-                  Servicios
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/streaming'
-                  onClick={closeMenu}
-                  className='block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2'
-                >
-                  Streaming 24h
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/proyectos'
-                  onClick={closeMenu}
-                  className='block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2'
-                >
-                  Proyectos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/blog'
-                  onClick={closeMenu}
-                  className='block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2'
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/quienes-somos'
-                  onClick={closeMenu}
-                  className='block text-primary dark:text-white hover:text-accent dark:hover:text-accent transition-colors font-medium py-2'
-                >
-                  Quiénes somos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/contacto'
-                  onClick={closeMenu}
-                  className='block bg-accent text-white px-4 py-3 rounded-lg hover:bg-accent-700 transition-colors font-medium text-center'
-                >
-                  Contacto
-                </Link>
-              </li>
-            </ul>
-          </nav>
+          <>
+            {/* Backdrop para cerrar el menú al hacer clic fuera */}
+            <div 
+              className='fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden'
+              onClick={closeMenu}
+              aria-hidden='true'
+            />
+            <nav
+              className='md:hidden mt-4 pb-4 border-t border-slate-600 relative z-50 bg-slate-800'
+              aria-label='Navegación móvil'
+            >
+              <ul className='flex flex-col gap-2 pt-4'>
+                <li>
+                  <Link
+                    href='/'
+                    onClick={closeMenu}
+                    className='block text-white hover:text-accent transition-colors font-medium py-3 px-2 rounded-md hover:bg-slate-700'
+                  >
+                    Inicio
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href='/servicios'
+                    onClick={closeMenu}
+                    className='block text-white hover:text-accent transition-colors font-medium py-3 px-2 rounded-md hover:bg-slate-700'
+                  >
+                    Servicios
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href='/proyectos'
+                    onClick={closeMenu}
+                    className='block text-white hover:text-accent transition-colors font-medium py-3 px-2 rounded-md hover:bg-slate-700'
+                  >
+                    Proyectos
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href='/streaming'
+                    onClick={closeMenu}
+                    className='block text-white hover:text-accent transition-colors font-medium py-3 px-2 rounded-md hover:bg-slate-700'
+                  >
+                    Streaming 24h
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href='/blog'
+                    onClick={closeMenu}
+                    className='block text-white hover:text-accent transition-colors font-medium py-3 px-2 rounded-md hover:bg-slate-700'
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href='/quienes-somos'
+                    onClick={closeMenu}
+                    className='block text-white hover:text-accent transition-colors font-medium py-3 px-2 rounded-md hover:bg-slate-700'
+                  >
+                    Quiénes somos
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href='/contacto'
+                    onClick={closeMenu}
+                    className='block bg-accent text-white px-4 py-3 rounded-lg hover:bg-accent-700 transition-colors font-medium text-center mt-2'
+                  >
+                    Contacto
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </>
         )}
       </div>
     </header>
