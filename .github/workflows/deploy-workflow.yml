@@ -17,10 +17,6 @@ jobs:
           cache: 'pnpm'
       - name: Install pnpm
         run: npm install -g pnpm
-      - name: Enable corepack and activate pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@9.12.3 --activate
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Type check
