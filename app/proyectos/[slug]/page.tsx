@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllProjects, getProjectBySlug } from '../../../lib/db-projects';
 import { renderMarkdown } from '../../../lib/markdown';
+import { generateProjectOpenGraph } from '../../../components/OpenGraph';
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -27,15 +28,13 @@ export async function generateMetadata({
   if (!p) {
     return { title: 'Proyecto no encontrado' };
   }
-  return {
-    title: `${p.title} - Proyecto`,
-    description: p.description || undefined,
-    openGraph: {
-      title: p.title,
-      description: p.description || undefined,
-      images: p.image ? [p.image] : undefined,
-    },
-  };
+  
+  return generateProjectOpenGraph({
+    title: p.title,
+    description: p.description || `Proyecto ${p.title} realizado por Duartec en Burgos`,
+    slug: p.slug,
+    image: p.image || undefined,
+  });
 }
 
 export default async function ProjectPage({

@@ -30,11 +30,11 @@ export default function Header() {
               <span>947 256 430</span>
             </a>
             <a
-              href='mailto:info@duartec.es'
+              href='mailto:fjduarte@duartec.es'
               className='flex items-center gap-1 hover:underline'
             >
               <Mail className='w-4 h-4' />
-              <span>info@duartec.es</span>
+              <span>fjduarte@duartec.es</span>
             </a>
           </div>
           <div className='text-xs text-center'>

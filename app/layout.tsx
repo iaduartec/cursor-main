@@ -20,6 +20,63 @@ export const metadata = {
   },
   description:
     'Instalación y mantenimiento de informática, videovigilancia, sonido, electricidad y cableados en Burgos y Castilla y León. Soluciones integrales para empresas y particulares.',
+  keywords: [
+    'instalaciones informáticas',
+    'videovigilancia',
+    'sonido profesional', 
+    'electricidad',
+    'cableado estructurado',
+    'Burgos',
+    'Castilla y León',
+    'mantenimiento informático',
+    'seguridad',
+    'CCTV'
+  ],
+  authors: [{ name: 'Duartec Instalaciones Informáticas' }],
+  creator: 'Duartec Instalaciones Informáticas',
+  publisher: 'Duartec Instalaciones Informáticas',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.duartec.es'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_ES',
+    url: '/',
+    siteName: 'Duartec Instalaciones Informáticas',
+    title: 'Duartec Instalaciones Informáticas - Burgos',
+    description: 'Soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos y Castilla y León.',
+    images: [
+      {
+        url: '/images/og-default.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Duartec Instalaciones Informáticas - Burgos',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@duartec_es',
+    creator: '@duartec_es',
+    title: 'Duartec Instalaciones Informáticas - Burgos',
+    description: 'Soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos y Castilla y León.',
+    images: ['/images/og-default.webp'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: process.env.GOOGLE_VERIFICATION_ID,
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },

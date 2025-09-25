@@ -88,13 +88,13 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-accent" />
-                <a href="mailto:info@duartec.es" className="text-gray-300 hover:text-accent transition-colors">
-                  info@duartec.es
+                <a href="mailto:fjduarte@duartec.es" className="text-gray-300 hover:text-accent transition-colors">
+                  fjduarte@duartec.es
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-accent" />
-                <span className="text-gray-300">AVDA. Valencia del Cid, 3, Burgos</span>
+                <span className="text-gray-300">Avenida Valencia Del Cid, 3, Burgos</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-accent" />
@@ -137,7 +137,7 @@ export default function Footer() {
       <div className="bg-slate-950 py-4 px-4">
         <div className="max-w-6xl mx-auto text-center text-xs text-gray-500">
           <p>
-            Empresa registrada en Burgos | CIF: B00000000 | Inscrita en el Registro Mercantil de Burgos
+            Technet Soluciones Para Empresas S.L. | CIF: B09551342 | Inscrita en el Registro Mercantil de Burgos
           </p>
           <p className="mt-1">
             Certificaciones: ISO 9001, ISO 14001 | Miembro de la Asociación de Empresas de Instalaciones de Burgos

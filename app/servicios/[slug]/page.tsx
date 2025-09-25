@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getAllServices, getServiceBySlug } from '../../../lib/db-services';
+import { generateServiceOpenGraph } from '../../../components/OpenGraph';
 
 const normalizeSlug = (s: string) =>
   String(s || '')
@@ -20,15 +21,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const s = await getServiceBySlug(normalizeSlug(slug));
   if (!s) {return { title: 'Servicio no encontrado' };}
-  return {
-    title: `${s.title} - Servicios` ,
-    description: s.description || undefined,
-    openGraph: {
-      title: s.title,
-      description: s.description || undefined,
-      images: s.image ? [s.image] : undefined,
-    },
-  };
+  
+  return generateServiceOpenGraph({
+    title: s.title,
+    description: s.description || `Servicio de ${s.title} en Burgos - Duartec Instalaciones Informáticas`,
+    slug: s.slug,
+    image: s.image || undefined,
+  });
 }
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {

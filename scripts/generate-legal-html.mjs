@@ -1,7 +1,18 @@
 #!/usr/bin/env node
 
 /**
- * Script para generar PDFs de las políticas legales
+ * Script pa    <div class="company-info">
+        <h2>1. Responsable del Tratamiento</h2>
+        <p>Technet Soluciones Para Empresas S.L. (nombre comercial: Duartec Instalaciones Informáticas) es el responsable del tratamiento de los datos personales que se recaban a través de este sitio web.</p>
+        <ul>
+            <li><strong>Razón social:</strong> Technet Soluciones Para Empresas S.L.</li>
+            <li><strong>Nombre comercial:</strong> Duartec Instalaciones Informáticas</li>
+            <li><strong>CIF:</strong> B09551342</li>
+            <li><strong>Domicilio:</strong> Avenida Valencia Del Cid, 3 - Bajo, 09002 Burgos (España)</li>
+            <li><strong>Email:</strong> fjduarte@duartec.es</li>
+            <li><strong>Teléfono:</strong> 947 256 430</li>
+        </ul>
+    </div> PDFs de las políticas legales
  * Versión simplificada para generar PDFs estáticos
  * 
  * @author Duartec Instalaciones Informáticas

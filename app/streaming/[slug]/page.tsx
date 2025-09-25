@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllStreams, getStreamBySlug } from '../../../lib/db-streams';
+import { generateStreamingOpenGraph } from '../../../components/OpenGraph';
 
 // Forzar renderizado dinámico para evitar problemas con Stack Auth
 export const dynamic = 'force-dynamic';
@@ -28,15 +29,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: 'La cámara que buscas no existe o no está disponible.'
     };
   }
-  return {
-    title: `Streaming ${s.name} - Cámara en directo`,
-    description: s.description || `Emisión 24 horas desde ${s.name} (Burgos)`,
-    openGraph: {
-      title: `Streaming ${s.name}`,
-      description: s.description || undefined,
-      images: s.image ? [s.image] : undefined,
-    },
-  };
+  
+  return generateStreamingOpenGraph({
+    name: s.name,
+    description: s.description || undefined,
+    slug: s.slug,
+    image: s.image || undefined,
+  });
 }
 
 export default async function StreamingCamPage({ params }: { params: Promise<{ slug: string }> }) {

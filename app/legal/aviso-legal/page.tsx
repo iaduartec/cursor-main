@@ -44,10 +44,11 @@ export default function AvisoLegalPage() {
                 En cumplimiento con el deber de información dispuesto en la Ley 34/2002 de Servicios de la Sociedad de la Información y el Comercio Electrónico (LSSI-CE), se facilitan a continuación los siguientes datos de información general de este sitio web:
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
-                <li><strong>Denominación social:</strong> Duartec Instalaciones Informáticas</li>
-                <li><strong>NIF/CIF:</strong> B00000000</li>
-                <li><strong>Domicilio:</strong> AVDA. Valencia del Cid, 3 - Bajo, 09001 Burgos (España)</li>
-                <li><strong>Email:</strong> info@duartec.es</li>
+                <li><strong>Denominación social:</strong> Technet Soluciones Para Empresas S.L.</li>
+                <li><strong>Nombre comercial:</strong> Duartec Instalaciones Informáticas</li>
+                <li><strong>NIF/CIF:</strong> B09551342</li>
+                <li><strong>Domicilio:</strong> Avenida Valencia Del Cid, 3 - Bajo, 09002 Burgos (España)</li>
+                <li><strong>Email:</strong> fjduarte@duartec.es</li>
                 <li><strong>Teléfono:</strong> 947 256 430</li>
               </ul>
             </section>
@@ -109,9 +110,9 @@ export default function AvisoLegalPage() {
                 Para cualquier consulta relacionada con este aviso legal, puede contactar con nosotros a través de:
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
-                <li><strong>Email:</strong> info@duartec.es</li>
+                <li><strong>Email:</strong> fjduarte@duartec.es</li>
                 <li><strong>Teléfono:</strong> 947 256 430</li>
-                <li><strong>Dirección:</strong> AVDA. Valencia del Cid, 3 - Bajo, 09001 Burgos (España)</li>
+                <li><strong>Dirección:</strong> Avenida Valencia Del Cid, 3 - Bajo, 09002 Burgos (España)</li>
               </ul>
             </section>
           </div>

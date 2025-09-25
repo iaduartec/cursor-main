@@ -57,10 +57,10 @@ export default function NotFound() {
             <div className='mt-8 text-sm text-gray-500 dark:text-gray-400'>
               <p>¿Necesitas ayuda? Contacta con nosotros:</p>
               <a
-                href='mailto:info@duartec.es'
+                href='mailto:fjduarte@duartec.es'
                 className='text-accent hover:underline'
               >
-                info@duartec.es
+                fjduarte@duartec.es
               </a>
             </div>
           </div>

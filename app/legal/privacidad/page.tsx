@@ -41,13 +41,14 @@ export default function PrivacidadPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">1. Responsable del Tratamiento</h2>
               <p className="text-gray-700 mb-4">
-                Duartec Instalaciones Informáticas es el responsable del tratamiento de los datos personales que se recaban a través de este sitio web.
+                Technet Soluciones Para Empresas S.L. (nombre comercial: Duartec Instalaciones Informáticas) es el responsable del tratamiento de los datos personales que se recaban a través de este sitio web.
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
-                <li><strong>Denominación social:</strong> Duartec Instalaciones Informáticas</li>
-                <li><strong>NIF/CIF:</strong> B00000000</li>
-                <li><strong>Domicilio:</strong> AVDA. Valencia del Cid, 3 - Bajo, 09001 Burgos (España)</li>
-                <li><strong>Email:</strong> info@duartec.es</li>
+                <li><strong>Razón social:</strong> Technet Soluciones Para Empresas S.L.</li>
+                <li><strong>Nombre comercial:</strong> Duartec Instalaciones Informáticas</li>
+                <li><strong>CIF:</strong> B09551342</li>
+                <li><strong>Domicilio:</strong> Avenida Valencia Del Cid, 3 - Bajo, 09002 Burgos (España)</li>
+                <li><strong>Email:</strong> fjduarte@duartec.es</li>
                 <li><strong>Teléfono:</strong> 947 256 430</li>
               </ul>
             </section>
@@ -127,8 +128,8 @@ export default function PrivacidadPage() {
                 Para ejercer estos derechos, puede contactar con nosotros a través de:
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
-                <li><strong>Email:</strong> info@duartec.es</li>
-                <li><strong>Dirección postal:</strong> AVDA. Valencia del Cid, 3 - Bajo, 09001 Burgos (España)</li>
+                <li><strong>Email:</strong> fjduarte@duartec.es</li>
+                <li><strong>Dirección postal:</strong> Avenida Valencia Del Cid, 3 - Bajo, 09002 Burgos (España)</li>
               </ul>
             </section>
 
@@ -166,9 +167,9 @@ export default function PrivacidadPage() {
                 Para cualquier consulta relacionada con esta política de privacidad, puede contactar con nosotros a través de:
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
-                <li><strong>Email:</strong> info@duartec.es</li>
+                <li><strong>Email:</strong> fjduarte@duartec.es</li>
                 <li><strong>Teléfono:</strong> 947 256 430</li>
-                <li><strong>Dirección:</strong> AVDA. Valencia del Cid, 3 - Bajo, 09001 Burgos (España)</li>
+                <li><strong>Dirección:</strong> Avenida Valencia Del Cid, 3 - Bajo, 09002 Burgos (España)</li>
               </ul>
             </section>
           </div>

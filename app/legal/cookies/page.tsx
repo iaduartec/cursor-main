@@ -177,9 +177,9 @@ export default function CookiesPage() {
                 Si tiene alguna pregunta sobre nuestra política de cookies, puede contactar con nosotros a través de:
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
-                <li><strong>Email:</strong> info@duartec.es</li>
+                <li><strong>Email:</strong> fjduarte@duartec.es</li>
                 <li><strong>Teléfono:</strong> 947 256 430</li>
-                <li><strong>Dirección:</strong> AVDA. Valencia del Cid, 3 - Bajo, 09001 Burgos (España)</li>
+                <li><strong>Dirección:</strong> Avenida Valencia Del Cid, 3 - Bajo, 09002 Burgos (España)</li>
               </ul>
             </section>
           </div>

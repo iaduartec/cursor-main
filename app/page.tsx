@@ -12,19 +12,20 @@ import {
   Phone,
 } from 'lucide-react';
 import MapCamarasClient from '../components/MapCamaras.client';
+import { generateOpenGraphMetadata } from '../components/OpenGraph';
 // import { SignIn } from '@stackframe/stack';
 import { exampleFlag, newFeatureFlag, betaFeatureFlag } from '../flags';
 
-export const metadata: Metadata = {
-  title: 'Inicio',
-  description:
-    'Duartec Instalaciones Informáticas - Soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos y Castilla y León.',
-  openGraph: {
-    title: 'Duartec Instalaciones Informáticas - Burgos',
-    description:
-      'Soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos y Castilla y León.',
-  },
-};
+export const metadata: Metadata = generateOpenGraphMetadata({
+  title: 'Inicio | Duartec Instalaciones Informáticas',
+  description: 'Soluciones integrales en informática, videovigilancia, sonido y electricidad en Burgos y Castilla y León. Más de 10 años de experiencia profesional.',
+  url: '/',
+  type: 'website',
+  image: '/images/og-default.webp',
+  imageAlt: 'Duartec Instalaciones Informáticas - Soluciones tecnológicas en Burgos',
+  section: 'Inicio',
+  tags: ['instalaciones', 'informática', 'videovigilancia', 'sonido', 'electricidad', 'burgos'],
+});
 
 export const dynamic = 'force-dynamic';
 
@@ -366,12 +367,12 @@ export default async function Page() {
             'Instalación y mantenimiento de informática, videovigilancia, sonido, electricidad y cableados en Burgos y Castilla y León.',
           url: 'https://duartec.es',
           telephone: '+34947256430',
-          email: 'info@duartec.es',
+          email: 'fjduarte@duartec.es',
           address: {
             '@type': 'PostalAddress',
             streetAddress: 'AVDA. Valencia del Cid, 3 - Bajo',
             addressLocality: 'Burgos',
-            postalCode: '09001',
+            postalCode: '09002',
             addressRegion: 'Castilla y León',
             addressCountry: 'ES',
           },
