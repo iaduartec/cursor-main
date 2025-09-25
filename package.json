@@ -19,7 +19,8 @@
     "dev": "next dev",
     "preinstall": "node scripts/guard-pm.mjs",
     "prebuild": "node scripts/prebuild.mjs",
-    "build": "node scripts/build.js",
+    "prepare": "husky",
+    "build": "node scripts/build.js && pnpm run build:next",
     "start": "next start",
     "lint": "eslint . --max-warnings=20",
     "lint:fix": "eslint . --fix --max-warnings=20",
@@ -54,11 +55,12 @@
     "deps:update-safe": "pnpm update --latest --workspace-root",
     "vercel:diagnose": "node scripts/vercel-diagnostics.mjs",
     "vercel:diagnose:quick": "node scripts/vercel-diagnostics.mjs --skip-build",
-    "vercel:pre-deploy": "node scripts/vercel-pre-deploy.js"
+    "vercel:pre-deploy": "node scripts/vercel-pre-deploy.js",
+    "build:next": "next build",
+    "check:all": "pnpm lint && pnpm type-check && pnpm test"
   },
   "dependencies": {
     "@neondatabase/serverless": "file:vendor/neon-serverless",
-    "@playwright/test": "^1.55.0",
     "@stackframe/stack": "^2.8.39",
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
@@ -90,6 +92,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.36.0",
+    "@playwright/test": "^1.55.0",
     "@types/leaflet": "^1.9.20",
     "@typescript-eslint/eslint-plugin": "^8.44.0",
     "@typescript-eslint/parser": "^8.44.0",
@@ -100,6 +103,8 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.0",
     "markdownlint-cli": "^0.45.0",
     "prettier": "^3.6.2",
     "tsx": "^4.20.5"
@@ -117,7 +122,7 @@
     }
   },
   "engines": {
-    "node": "22"
+    "node": ">=18 <23"
   },
   "packageManager": "pnpm@10.0.0"
 }
