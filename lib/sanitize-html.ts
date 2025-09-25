@@ -11,17 +11,30 @@ export function sanitizeHtml(input?: string): string {
   }
   let s = String(input);
 
-  // Remove script tags entirely
-  s = s.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
+  // Remove script tags entirely (improved pattern to handle edge cases)
+  s = s.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
 
-  // Remove inline event handlers like onclick="..." or onmouseover='...'
-  s = s.replace(/\son[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+  // Remove inline event handlers like onclick="..." or onmouseover='...' (improved pattern)
+  s = s.replace(/\bon[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, '');
 
-  // Remove javascript: URLs in href/src attributes
-  s = s.replace(/(href|src)\s*=\s*("|')?\s*javascript:[^"'>\s]*/gi, '$1="#"');
+  // Remove javascript: URLs in href/src attributes (improved to handle encoding)
+  s = s.replace(/(href|src)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, (match, attr) => {
+    const decoded = match.replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+                         .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
+                         .toLowerCase();
+    if (decoded.includes('javascript:') || decoded.includes('vbscript:') || decoded.includes('data:text/html')) {
+      return `${attr}="#"`;
+    }
+    return match;
+  });
 
-  // Remove data: URLs that could embed scripts (allow only images/fonts)
-  s = s.replace(/(href|src)\s*=\s*("|')?\s*data:(?!image\/|font\/)[^"'>\s]*/gi, '$1="#"');
+  // Remove data: URLs that could embed scripts (improved pattern)
+  s = s.replace(/(href|src)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, (match, attr) => {
+    if (match.toLowerCase().includes('data:') && !match.toLowerCase().match(/data:(image\/|font\/)/)) {
+      return `${attr}="#"`;
+    }
+    return match;
+  });
 
   // Strip style attributes that may contain expressions or urls
   s = s.replace(/\sstyle\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, (m) => {
