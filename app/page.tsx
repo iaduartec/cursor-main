@@ -12,7 +12,6 @@ import {
   Phone,
 } from 'lucide-react';
 import MapCamarasClient from '../components/MapCamaras.client';
-import { getAllStreams } from '../lib/db-streams';
 // import { SignIn } from '@stackframe/stack';
 import { exampleFlag, newFeatureFlag, betaFeatureFlag } from '../flags';
 
@@ -30,10 +29,6 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-  const streams = await getAllStreams();
-  const cams =
-    Array.isArray(streams) && streams.length ? streams.slice(0, 4) : [];
-
   // Get feature flag values
   const exampleFlagValue = await exampleFlag();
   const newFeatureFlagValue = await newFeatureFlag();
@@ -481,7 +476,7 @@ export default async function Page() {
                 🎉 Nueva funcionalidad activada!
               </h3>
               <p className='text-blue-700 dark:text-blue-300'>
-                Esta sección solo se muestra cuando el flag "new-feature" está activado.
+                Esta sección solo se muestra cuando el flag &ldquo;new-feature&rdquo; está activado.
                 Puedes controlar esto desde el Flags Explorer en Vercel.
               </p>
             </div>
@@ -493,7 +488,7 @@ export default async function Page() {
                 🧪 Feature en Beta
               </h3>
               <p className='text-yellow-700 dark:text-yellow-300'>
-                Esta es una funcionalidad experimental. Solo visible cuando el flag "beta-feature" está activado.
+                Esta es una funcionalidad experimental. Solo visible cuando el flag &ldquo;beta-feature&rdquo; está activado.
               </p>
             </div>
           )}

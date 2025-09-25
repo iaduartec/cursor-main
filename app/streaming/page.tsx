@@ -4,6 +4,15 @@ import Image from 'next/image';
 import { Camera } from 'lucide-react';
 import { getAllStreams } from '../../lib/db-streams';
 
+// Tipo para los streams
+interface StreamData {
+  name: string;
+  slug: string;
+  image?: string;
+  youtubeId?: string;
+  provider?: string;
+}
+
 export const metadata: Metadata = {
   title: 'Streaming 24h - Cámaras en directo',
   description:
@@ -16,7 +25,6 @@ export const dynamic = 'force-dynamic';
 
 export default async function StreamingIndexPage() {
   const cams = await getAllStreams();
-  const isEmpty = !Array.isArray(cams) || cams.length === 0;
   return (
     <div className='min-h-screen'>
       <section className='bg-gradient-to-br from-sky-50 to-blue-100 dark:from-slate-800 dark:to-slate-900 py-16 px-4'>
@@ -68,14 +76,14 @@ export default async function StreamingIndexPage() {
               <div className='relative h-44'>
                 <Image
                   src={
-                    (c as any).image ||
-                    ((c as any).youtubeId
+                    (c as StreamData).image ||
+                    ((c as StreamData).youtubeId
                       ? `https://img.youtube.com/vi/${
-                          (c as any).youtubeId
+                          (c as StreamData).youtubeId
                         }/hqdefault.jpg`
                       : '/images/proyectos/CCTV.jpeg')
                   }
-                  alt={(c as any).name}
+                  alt={(c as StreamData).name}
                   fill
                   className='object-cover group-hover:scale-105 transition-transform duration-300'
                 />
@@ -85,10 +93,10 @@ export default async function StreamingIndexPage() {
               </div>
               <div className='p-4'>
                 <h3 className='font-semibold text-primary dark:text-white group-hover:text-accent transition-colors line-clamp-1'>
-                  {(c as any).name}
+                  {(c as StreamData).name}
                 </h3>
                 <p className='text-xs text-gray-500 mt-1'>
-                  {(c as any).provider === 'youtube' ? 'YouTube Live' : 'Live'}
+                  {(c as StreamData).provider === 'youtube' ? 'YouTube Live' : 'Live'}
                 </p>
               </div>
             </Link>
