@@ -84,6 +84,8 @@ jobs:
 
   skipped:
     if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false }}
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - run: echo "PR closed without merge — skipping Vercel cleanup (deployments may be reused)."
