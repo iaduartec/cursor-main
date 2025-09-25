@@ -13,7 +13,7 @@ Contenido detectado basado en extensión y estructura básica.
 -->
 # Duartec Intranet - DB Setup
 
-Este repositorio usa Neon/Postgres (compatible con Supabase) y Drizzle ORM.
+Este repositorio usa Neon/Postgres y Drizzle ORM.
 
 Variables de entorno necesarias (ejemplo `.env.local`):
 

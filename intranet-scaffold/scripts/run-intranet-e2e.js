@@ -63,7 +63,7 @@ async function waitForServer(base='http://127.0.0.1:3000', timeoutMs=60000) {
   }
 
   // If a real DB URL is present, prefer it; otherwise enable in-memory DB for local E2E.
-  const hasDbUrl = env.POSTGRES_URL || env.DATABASE_URL || env.SUPABASE_DB_URL;
+  const hasDbUrl = env.POSTGRES_URL || env.DATABASE_URL;
   if (!hasDbUrl) {
     env.USE_IN_MEMORY_DB = env.USE_IN_MEMORY_DB || '1';
   } else {

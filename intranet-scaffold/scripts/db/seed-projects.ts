@@ -22,10 +22,6 @@ async function main() {
   const databaseUrl =
     process.env.POSTGRES_URL ||
     process.env.DATABASE_URL ||
-    // Accept SUPABASE_DB_URL only as an explicit legacy fallback if present.
-    process.env.POSTGRES_URL ||
-    process.env.DATABASE_URL ||
-    process.env.SUPABASE_DB_URL ||
     process.env.cxz_POSTGRES_URL ||
     process.env.cxz_POSTGRES_URL_NON_POOLING;
   if (!databaseUrl) {

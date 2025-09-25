@@ -1,16 +1,15 @@
 #!/usr/bin/env tsx
 /**
-Resumen generado automáticamente.
+Database migration script for Postgres/Neon using Drizzle ORM.
 
-intranet-scaffold/scripts/db/migrate-supabase.ts
+intranet-scaffold/scripts/db/migrate-postgres.ts
 
-2025-09-13T06:20:07.377Z
+Updated: 2025-09-25 - Removed Supabase dependencies
 
 ——————————————————————————————
-Archivo .ts: migrate-supabase.ts
+Archivo .ts: migrate-postgres.ts
 Tamaño: 1439 caracteres, 43 líneas
-Resumen básico generado automáticamente sin análisis de IA.
-Contenido detectado basado en extensión y estructura básica.
+Database migration script for PostgreSQL databases.
 */
 import 'dotenv/config';
 import fs from 'fs';
@@ -18,13 +17,11 @@ import path from 'path';
 import postgres from 'postgres';
 
 async function main() {
-  // Prefer Neon/Postgres URL. SUPABASE_DB_URL may be present for legacy setups
-  // but is not preferred for new deployments.
+  // Use Neon/Postgres URL for database connections
   const databaseUrl =
     process.env.POSTGRES_URL ||
     process.env.DATABASE_URL ||
-    process.env.cxz_POSTGRES_URL ||
-    process.env.SUPABASE_DB_URL;
+    process.env.cxz_POSTGRES_URL;
   if (!databaseUrl) {
     console.error(
       'No database URL found in environment. Set POSTGRES_URL or DATABASE_URL.'

@@ -11,7 +11,7 @@
     "dev": "node scripts/dev-no-contentlayer.js",
     "build": "node -e \"if(process.env.DISABLE_DB==='1'){console.log('DISABLE_DB=1 set, skipping db:migrate');process.exit(0);}console.log('Running db:migrate (will continue on failure)');try{require('child_process').spawnSync('pnpm',['db:migrate'],{stdio:'inherit'})}catch(e){console.log('DB migration failed, continuing with build...');}process.exit(0);\" && next build",
     "start": "next start",
-    "db:migrate": "tsx --require dotenv/config scripts/db/migrate-supabase.ts",
+    "db:migrate": "tsx --require dotenv/config scripts/db/migrate-postgres.ts",
     "db:seed": "tsx scripts/db/seed-from-mdx.ts",
     "type-check": "tsc --noEmit",
     "intranet:e2e": "node ./scripts/run-intranet-e2e.js",
