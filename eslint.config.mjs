@@ -31,6 +31,8 @@ export default [
       'tmp_home.tsx',
       // Ignore script files with shebang
       'scripts/**/*.js',
+      'scripts/**/*.mjs',
+      'scripts/**/*.cjs',
       'content/**/*.js',
       'fix_*.js',
       'auto_comment.js',
@@ -155,6 +157,7 @@ export default [
       '@typescript-eslint/no-unused-vars': 'off',
       'no-undef': 'off',
       'no-console': 'off',
+      'no-redeclare': 'off',
       curly: ['error', 'all'],
       'prefer-destructuring': 'off',
       'no-empty': 'off',
@@ -197,10 +200,13 @@ export default [
 
   // Allow explicit any and console usage in server-side API routes, scripts and db client
   {
-    files: ['app/api/**', 'server/**', 'db/**', 'scripts/**', 'lib/**', 'tests/e2e/**'],
+    files: ['app/api/**', 'pages/api/**', 'server/**', 'db/**', 'scripts/**', 'lib/**', 'tests/e2e/**'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       'no-console': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-require-imports': 'off',
+      radix: 'warn',
     },
   },
 
@@ -220,6 +226,15 @@ export default [
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'no-undef': 'off',
       '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+
+  // App directory: relax some rules that generate false positives/noise
+  {
+    files: ['app/**/*.{ts,tsx}'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'react/no-unescaped-entities': 'warn',
     },
   },
 

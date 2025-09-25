@@ -1,35 +1,48 @@
-#!/usr/bin/env node
+// scripts/build.js
+// Objetivo: preparar entorno antes de next build, sin ejecutar el build aquí (package.json ya llama build:next)
+// - Desactiva telemetría
+// - En Windows local (no CI/Vercel), permite saltar Contentlayer por defecto para evitar fricciones
+// - Ejecuta prebuild (validaciones/normalizaciones previas)
 
-// Script de build personalizado para manejar variables de entorno
-// en diferentes plataformas (Windows y Vercel/Linux)
+const { spawnSync } = require('node:child_process');
+const os = require('node:os');
 
-// No desactivar DB ni Contentlayer en Vercel. En local (especialmente Windows)
-// aplicamos valores por defecto seguros salvo que el usuario los haya definido.
-const isVercel = process.env.VERCEL === '1';
-if (!isVercel) {
-    if (process.env.SKIP_DB === undefined) {
-        // Evita conexiones DB durante builds locales por defecto
-        process.env.SKIP_DB = '1';
-    }
-    if (process.env.SKIP_CONTENTLAYER === undefined) {
-        // Contentlayer suele dar problemas en Windows; desactívalo por defecto
-        process.env.SKIP_CONTENTLAYER = '1';
-    }
+function run(cmd, args, opts = {}) {
+  const res = spawnSync(cmd, args, { stdio: 'inherit', ...opts });
+  if (res.status !== 0) {
+    const code = res.status ?? 1;
+    console.error(`[build.js] Falló: ${cmd} ${args.join(' ')} (exit=${code})`);
+    process.exit(code);
+  }
 }
 
-// Ejecutar Next.js build
-const { spawn } = require('child_process');
+function main() {
+  const isCI = Boolean(process.env.CI || process.env.GITHUB_ACTIONS || process.env.VERCEL);
+  const isWindows = process.platform === 'win32';
 
-const nextBuild = spawn('next', ['build'], {
-    stdio: 'inherit',
-    shell: true
-});
+  // Telemetría fuera por defecto
+  process.env.NEXT_TELEMETRY_DISABLED = process.env.NEXT_TELEMETRY_DISABLED || '1';
 
-nextBuild.on('close', (code) => {
-    process.exit(code);
-});
+  // En Windows local, favorecer builds sin Contentlayer si no se especifica lo contrario
+  if (!isCI && isWindows && !process.env.SKIP_CONTENTLAYER) {
+    process.env.SKIP_CONTENTLAYER = '1';
+  }
 
-nextBuild.on('error', (error) => {
-    console.error('Error ejecutando next build:', error);
-    process.exit(1);
-});
+  // NODE_ENV production para build
+  process.env.NODE_ENV = 'production';
+
+  console.log('[build.js] Entorno: ', {
+    platform: process.platform,
+    isCI,
+    NEXT_TELEMETRY_DISABLED: process.env.NEXT_TELEMETRY_DISABLED,
+    SKIP_CONTENTLAYER: process.env.SKIP_CONTENTLAYER || '0',
+  });
+
+  // Ejecutar prebuild si existe
+  run('pnpm', ['run', 'prebuild']);
+
+  // No ejecutamos next build aquí; lo hace package.json con "&& pnpm run build:next"
+  console.log('[build.js] Prebuild completado. Continuará con build:next desde package.json...');
+}
+
+main();

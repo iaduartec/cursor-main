@@ -16,7 +16,7 @@ export default async function handler(
   // Handle in-memory database mode for testing
   if (process.env.USE_IN_MEMORY_DB === '1') {
     if (req.method === 'DELETE') {
-      const id = parseInt(req.query.id as string);
+  const id = parseInt(req.query.id as string, 10);
       if (!id) {
         return res.status(400).json({ error: 'Missing project ID' });
       }
