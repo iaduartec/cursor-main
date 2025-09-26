@@ -7,7 +7,7 @@ Multiple API keys and secrets were inadvertently committed and pushed to the pub
 
 ### 1. OpenAI API Key (CRITICAL)
 - **File**: `.continue/assistants/new-assistant-1.yaml:16`
-- **Key**: `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`
+- **Key**: `[EXPOSED_API_KEY_REVOKED]`
 - **Status**: ⚠️ REVOKED IMMEDIATELY REQUIRED
 
 ### 2. Legacy Supabase References (RESOLVED)
