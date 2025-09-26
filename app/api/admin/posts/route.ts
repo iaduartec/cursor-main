@@ -1,244 +1,192 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '../../../../db/client';
-import { posts } from '../../../../db/schema';
-import { eq } from 'drizzle-orm';
-import { revalidateTag } from 'next/cache';
+import { cookies } from 'next/headers';
 
-function isAuthorized(req: NextRequest): boolean {
-  const header = req.headers.get('authorization') || '';
-  const token = header.startsWith('Bearer ') ? header.slice(7) : header;
-  const expected = process.env.ADMIN_TOKEN || '';
-  return expected !== '' && token === expected;
+// Mock data for development - replace with actual contentlayer import when available
+const mockPosts = [
+  {
+    _id: 'post-1',
+    title: 'Automatización Industrial: El Futuro de la Eficiencia',
+    slug: 'automatizacion-industrial-futuro-eficiencia',
+    date: '2024-12-30',
+    excerpt: 'Descubre cómo la automatización industrial está transformando los procesos productivos',
+    category: 'Tecnología',
+    published: true,
+    author: 'Duartec Team',
+    readTime: '8 min',
+    tags: ['automatización', 'industria', 'tecnología']
+  },
+  {
+    _id: 'post-2',
+    title: 'Domótica: Smart Home para el Siglo XXI',
+    slug: 'domotica-smart-home-siglo-xxi',
+    date: '2024-12-29',
+    excerpt: 'Todo lo que necesitas saber sobre sistemas de domótica inteligente',
+    category: 'Domótica',
+    published: true,
+    author: 'Duartec Team',
+    readTime: '6 min',
+    tags: ['domótica', 'smart-home', 'iot']
+  }
+];
+
+// Simple auth middleware function
+async function checkAdminAuth(request: NextRequest) {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('admin-token')?.value;
+
+    if (!token) {
+      return false;
+    }
+
+    const tokenData = JSON.parse(Buffer.from(token, 'base64').toString());
+    
+    if (Date.now() > tokenData.expires) {
+      return false;
+    }
+
+    return tokenData.isAdmin && tokenData.userId === 'admin';
+  } catch {
+    return false;
+  }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const allPosts = await db
-      .select({
-        id: posts.id,
-        slug: posts.slug,
-        title: posts.title,
-        description: posts.description,
-        content: posts.content,
-        category: posts.category,
-        image: posts.image,
-        date: posts.date,
-        published: posts.published,
-        createdAt: posts.createdAt,
-        updatedAt: posts.updatedAt,
-      })
-      .from(posts)
-      .orderBy(posts.date);
+    // Check authentication
+    const isAuthenticated = await checkAdminAuth(request);
+    if (!isAuthenticated) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
 
-    return NextResponse.json({ posts: allPosts });
+    // Get blog posts from mock data (replace with contentlayer when available)
+    const posts = mockPosts.map(post => ({
+      id: post._id,
+      title: post.title,
+      slug: post.slug,
+      date: post.date,
+      excerpt: post.excerpt || '',
+      category: post.category || 'Sin categoría',
+      published: post.published ?? true,
+      author: post.author || 'Admin',
+      readTime: post.readTime || '5 min',
+      tags: post.tags || []
+    }));
+
+    return NextResponse.json({ posts });
+
   } catch (error) {
-    console.error('Error fetching posts:', error);
+    console.error('Posts fetch error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch posts' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
   try {
-    const body = await req.json().catch(() => ({}));
-    const {
-      slug,
-      title,
-      description,
-      content,
-      category,
-      image,
-      date,
-      published = true,
-    } = body || {};
-
-    if (!slug || !title || !content) {
+    // Check authentication
+    const isAuthenticated = await checkAdminAuth(req);
+    if (!isAuthenticated) {
       return NextResponse.json(
-        {
-          error: 'Missing required fields: slug, title, content',
-        },
-        { status: 400 }
+        { error: 'Unauthorized' },
+        { status: 401 }
       );
     }
 
-    const postDate = date ? new Date(date) : new Date();
-    const now = new Date();
+    const data = await req.json();
+    
+    // TODO: Implement actual post creation with file system or database
+    // For now, return success with the data that would be created
+    return NextResponse.json({
+      success: true,
+      message: 'Post creation not yet implemented - will create MDX file',
+      data: {
+        ...data,
+        id: Date.now().toString(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      }
+    });
 
-    const [newPost] = await db
-      .insert(posts)
-      .values({
-        slug,
-        title,
-        description: description ?? null,
-        content,
-        category: category ?? null,
-        image: image ?? null,
-        date: postDate,
-        published: Boolean(published),
-        createdAt: now,
-        updatedAt: now,
-      })
-      .returning();
-
-    // Revalidate caches
-    revalidateTag('blogs');
-    revalidateTag('posts');
-
-    return NextResponse.json({ post: newPost }, { status: 201 });
   } catch (error) {
-    console.error('Error creating post:', error);
+    console.error('Post creation error:', error);
     return NextResponse.json(
-      { error: 'Failed to create post' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
 }
 
 export async function PUT(req: NextRequest) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
   try {
-    const body = await req.json().catch(() => ({}));
-    const {
-      id,
-      slug,
-      title,
-      description,
-      content,
-      category,
-      image,
-      date,
-      published,
-    } = body || {};
-
-    if (!id && !slug) {
+    // Check authentication
+    const isAuthenticated = await checkAdminAuth(req);
+    if (!isAuthenticated) {
       return NextResponse.json(
-        {
-          error: 'Missing identifier: id or slug required',
-        },
-        { status: 400 }
+        { error: 'Unauthorized' },
+        { status: 401 }
       );
     }
 
-    const updateData: any = {
-      updatedAt: new Date(),
-    };
+    const data = await req.json();
+    
+    // TODO: Implement actual post update with file system
+    return NextResponse.json({
+      success: true,
+      message: 'Post update not yet implemented - will update MDX file',
+      data: {
+        ...data,
+        updatedAt: new Date().toISOString()
+      }
+    });
 
-    if (title !== undefined) {
-      updateData.title = title;
-    }
-    if (description !== undefined) {
-      updateData.description = description;
-    }
-    if (content !== undefined) {
-      updateData.content = content;
-    }
-    if (category !== undefined) {
-      updateData.category = category;
-    }
-    if (image !== undefined) {
-      updateData.image = image;
-    }
-    if (date !== undefined) {
-      updateData.date = new Date(date);
-    }
-    if (published !== undefined) {
-      updateData.published = Boolean(published);
-    }
-    if (slug !== undefined) {
-      updateData.slug = slug;
-    }
-
-    let result;
-    if (id) {
-      result = await db
-        .update(posts)
-        .set(updateData)
-        .where(eq(posts.id, id))
-        .returning();
-    } else {
-      result = await db
-        .update(posts)
-        .set(updateData)
-        .where(eq(posts.slug, slug))
-        .returning();
-    }
-
-    if (result.length === 0) {
-      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
-    }
-
-    // Revalidate caches
-    revalidateTag('blogs');
-    revalidateTag('posts');
-
-    return NextResponse.json({ post: result[0] });
   } catch (error) {
-    console.error('Error updating post:', error);
+    console.error('Post update error:', error);
     return NextResponse.json(
-      { error: 'Failed to update post' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
 }
 
 export async function DELETE(req: NextRequest) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
   try {
+    // Check authentication
+    const isAuthenticated = await checkAdminAuth(req);
+    if (!isAuthenticated) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id');
     const slug = searchParams.get('slug');
 
     if (!id && !slug) {
       return NextResponse.json(
-        {
-          error: 'Missing identifier: id or slug required',
-        },
+        { error: 'Post ID or slug is required' },
         { status: 400 }
       );
     }
 
-    let result;
-    if (id) {
-      result = await db
-        .delete(posts)
-        .where(eq(posts.id, parseInt(id, 10)))
-        .returning();
-    } else if (slug) {
-      result = await db.delete(posts).where(eq(posts.slug, slug)).returning();
-    } else {
-      return NextResponse.json(
-        {
-          error: 'Invalid identifier provided',
-        },
-        { status: 400 }
-      );
-    }
+    // TODO: Implement actual post deletion with file system
+    return NextResponse.json({
+      success: true,
+      message: 'Post deletion not yet implemented - will delete MDX file',
+      deletedId: id || slug
+    });
 
-    if (result.length === 0) {
-      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
-    }
-
-    // Revalidate caches
-    revalidateTag('blogs');
-    revalidateTag('posts');
-
-    return NextResponse.json({ message: 'Post deleted successfully' });
   } catch (error) {
-    console.error('Error deleting post:', error);
+    console.error('Post deletion error:', error);
     return NextResponse.json(
-      { error: 'Failed to delete post' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
