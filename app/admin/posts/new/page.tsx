@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import AdminAuthGuard from '../../../../components/AdminAuthGuard';
+import SEOResults from '../../../../components/SEOResults';
 
 export default function NewPostPage() {
   return (
@@ -27,6 +28,7 @@ function NewPostContent() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [seoResults, setSeoResults] = useState(null);
   const router = useRouter();
 
   // Auto-generate slug from title
@@ -103,13 +105,8 @@ function NewPostContent() {
 
       if (response.ok) {
         const data = await response.json();
-        setFormData(prev => ({
-          ...prev,
-          title: data.optimizedTitle || prev.title,
-          excerpt: data.optimizedExcerpt || prev.excerpt,
-          tags: data.optimizedTags ? data.optimizedTags.join(', ') : prev.tags,
-          content: data.optimizedContent || prev.content
-        }));
+        setSeoResults(data);
+        // No aplicar automáticamente, dejar que el usuario revise
       } else {
         setError('Error al optimizar con AI');
       }
@@ -118,6 +115,17 @@ function NewPostContent() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const applySEOOptimization = (seoData) => {
+    setFormData(prev => ({
+      ...prev,
+      title: seoData.optimizedTitle || prev.title,
+      excerpt: seoData.optimizedExcerpt || prev.excerpt,
+      tags: seoData.optimizedTags ? seoData.optimizedTags.join(', ') : prev.tags,
+      content: seoData.optimizedContent || prev.content
+    }));
+    setSeoResults(null); // Ocultar resultados después de aplicar
   };
 
   return (
@@ -146,6 +154,14 @@ function NewPostContent() {
                 </button>
               </div>
             </div>
+
+            {/* Mostrar resultados SEO */}
+            {seoResults && (
+              <SEOResults 
+                seoData={seoResults} 
+                onApply={applySEOOptimization}
+              />
+            )}
 
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">

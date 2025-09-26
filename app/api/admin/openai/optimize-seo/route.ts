@@ -65,34 +65,62 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const prompt = `
-Como experto en SEO y marketing de contenidos para Duartec (empresa de automatización e iluminación), optimiza el siguiente contenido:
+    // Datos del negocio y slugs internos disponibles
+    const businessData = {
+      name: "Duartec",
+      address: "Burgos, España",
+      website: "https://duartec.es",
+      description: "Empresa especializada en automatización industrial, domótica, iluminación LED, control de accesos, sistemas de seguridad e IoT"
+    };
 
-TÍTULO ORIGINAL: ${title}
-CONTENIDO ORIGINAL: ${content}
-TIPO: ${type}
+    const internalSlugs = [
+      "/servicios/electricidad",
+      "/servicios/informatica", 
+      "/servicios/sonido",
+      "/servicios/videovigilancia",
+      "/proyectos/sistema-videovigilancia-cctv",
+      "/proyectos/seguridad-red-empresarial",
+      "/proyectos/datacenter-racks-servidores",
+      "/blog/instalaciones-electricas-industriales",
+      "/blog/seguridad-red-empresarial",
+      "/blog/sistemas-audio-profesional",
+      "/contacto",
+      "/quienes-somos"
+    ];
 
-Proporciona una respuesta en JSON con:
-1. optimizedTitle: Título optimizado para SEO (máximo 60 caracteres)
-2. optimizedExcerpt: Meta descripción atractiva (máximo 160 caracteres)
-3. optimizedTags: Array de 3-5 tags relevantes
-4. optimizedContent: Contenido mejorado con:
-   - Palabras clave relevantes para el sector
-   - Estructura optimizada para SEO
-   - Llamadas a la acción
-   - Enlaces internos sugeridos
-5. seoScore: Puntuación del 1-10 de la optimización SEO
-6. recommendations: Array de recomendaciones adicionales
+    const seoSystemPrompt = `Eres un editor SEO técnico. Tu función es reescribir y optimizar el contenido únicamente con la información proporcionada por el usuario; no inventes hechos y, si falta algún dato relevante, indícalo en el campo \`verification_needed\`.
 
-Enfócate en términos como: automatización industrial, domótica, iluminación LED, control de accesos, sistemas de seguridad, IoT, smart home.
+Tu objetivo es entregar una versión localmente optimizada para SEO (es-ES) del artículo, cumpliendo estos requisitos:
 
-Responde únicamente con JSON válido.`;
+- Mejora la claridad, estructura, intención y cobertura de búsqueda.
+- Corrige y optimiza title tag, meta description y H1.
+- Añade sección de FAQ derivadas del contenido, orientadas a fragmentos destacados.
+- Propón enlaces internos utilizando los slugs disponibles y externos solo si se proporcionan; si no, deja "url": null.
+- Sugiere 2–4 imágenes, cada una con un alt y un caption descriptivo (sin inventar nombres de marcas/modelos).
+- Devuelve un changelog de lo optimizado y un checklist técnico priorizado.
+- No garantices rankings ni uses afirmaciones absolutas; señala toda aseveración no verificable como [No verificado].
+
+Devuelve únicamente un JSON estructurado según este esquema completo con todas las secciones: summary, meta, toc, body_markdown, faqs, links, images, structured_data, tech_checklist, risks, verification_needed.`;
+
+    const userContent = JSON.stringify({
+      business: businessData,
+      internal_slugs_available: internalSlugs,
+      article: {
+        title: title,
+        content: content,
+        article_slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+        locale: "es-ES"
+      }
+    });
 
     const completion = await openaiClient.chat.completions.create({
       model: "gpt-4o-mini",
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.7,
-      max_tokens: 2000,
+      messages: [
+        { role: "system", content: seoSystemPrompt },
+        { role: "user", content: userContent }
+      ],
+      temperature: 0.3,
+      max_tokens: 4000,
     });
 
     const response = completion.choices[0]?.message?.content;
@@ -105,18 +133,38 @@ Responde únicamente con JSON válido.`;
     }
 
     try {
-      const optimizedContent = JSON.parse(response);
-      return NextResponse.json(optimizedContent);
+      const seoOptimized = JSON.parse(response);
+      
+      // Convertir al formato que espera nuestra interfaz
+      const compatibleResponse = {
+        optimizedTitle: seoOptimized.meta?.title_tag || title,
+        optimizedExcerpt: seoOptimized.meta?.meta_description || content.substring(0, 160) + '...',
+        optimizedTags: seoOptimized.summary?.entities?.slice(0, 5) || ['automatización', 'tecnología', 'duartec'],
+        optimizedContent: seoOptimized.body_markdown || content,
+        seoScore: 8, // Basado en la optimización completa del asistente
+        recommendations: seoOptimized.tech_checklist?.high || [],
+        // Datos adicionales del asistente SEO
+        fullSeoData: seoOptimized,
+        faqs: seoOptimized.faqs || [],
+        internalLinks: seoOptimized.links?.internal || [],
+        suggestedImages: seoOptimized.images || [],
+        structuredData: seoOptimized.structured_data || null,
+        risks: seoOptimized.risks || [],
+        verificationNeeded: seoOptimized.verification_needed || []
+      };
+
+      return NextResponse.json(compatibleResponse);
     } catch (parseError) {
-      // If JSON parsing fails, return a structured response
+      // Si JSON parsing falla, devolver estructura compatible
       return NextResponse.json({
         optimizedTitle: title,
         optimizedExcerpt: content.substring(0, 160) + '...',
         optimizedTags: ['automatización', 'tecnología', 'duartec'],
         optimizedContent: content,
         seoScore: 5,
-        recommendations: ['Contenido procesado pero formato no válido'],
-        rawResponse: response
+        recommendations: ['Error al procesar respuesta del asistente SEO'],
+        rawResponse: response,
+        error: 'JSON parsing failed'
       });
     }
 
