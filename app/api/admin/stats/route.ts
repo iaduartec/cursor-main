@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { neon } from '@neondatabase/serverless';
 
 // Simple auth middleware function
 async function checkAdminAuth(request: NextRequest) {
@@ -36,7 +37,6 @@ export async function GET(request: NextRequest) {
 
     try {
       // Obtener stats reales de la base de datos
-      const { neon } = require('@neondatabase/serverless');
       const sql = neon(process.env.DATABASE_URL!);
       
       // Contar posts reales

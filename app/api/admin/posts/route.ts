@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { neon } from '@neondatabase/serverless';
 
 // Mock data for development - replace with actual contentlayer import when available
 const mockPosts = [
@@ -68,7 +69,6 @@ export async function GET(request: NextRequest) {
       console.log('[DEBUG] Environment:', process.env.NODE_ENV);
       
       // Intentar obtener posts de la base de datos
-      const { neon } = require('@neondatabase/serverless');
       const sql = neon(process.env.DATABASE_URL!);
       
       const dbPosts = await sql`
