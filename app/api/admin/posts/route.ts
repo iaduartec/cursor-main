@@ -100,18 +100,62 @@ export async function POST(req: NextRequest) {
 
     const data = await req.json();
     
-    // TODO: Implement actual post creation with file system or database
-    // For now, return success with the data that would be created
-    return NextResponse.json({
-      success: true,
-      message: 'Post creation not yet implemented - will create MDX file',
-      data: {
-        ...data,
-        id: Date.now().toString(),
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      }
-    });
+    // Implementación real: crear archivo MDX
+    const { title, content, slug, published = false, tags = [] } = data;
+    
+    if (!title || !content || !slug) {
+      return NextResponse.json(
+        { error: 'Title, content, and slug are required' },
+        { status: 400 }
+      );
+    }
+
+    try {
+      const fs = require('fs').promises;
+      const path = require('path');
+      
+      // Crear el contenido MDX
+      const mdxContent = `---
+title: "${title}"
+date: "${new Date().toISOString().split('T')[0]}"
+excerpt: "${content.substring(0, 160)}..."
+category: "Blog"
+published: ${published}
+author: "Duartec Team"
+readTime: "5 min"
+tags: [${tags.map((tag: string) => `"${tag}"`).join(', ')}]
+---
+
+${content}
+`;
+
+      // Asegurar que el directorio existe
+      const contentDir = path.join(process.cwd(), 'content', 'blog');
+      await fs.mkdir(contentDir, { recursive: true });
+      
+      // Escribir el archivo
+      const filename = `${slug}.mdx`;
+      const filepath = path.join(contentDir, filename);
+      await fs.writeFile(filepath, mdxContent, 'utf-8');
+      
+      return NextResponse.json({
+        success: true,
+        message: `Post "${title}" created successfully`,
+        data: {
+          ...data,
+          id: Date.now().toString(),
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          filepath: `content/blog/${filename}`
+        }
+      });
+    } catch (fsError) {
+      console.error('File system error:', fsError);
+      return NextResponse.json(
+        { error: 'Failed to create post file' },
+        { status: 500 }
+      );
+    }
 
   } catch (error) {
     console.error('Post creation error:', error);

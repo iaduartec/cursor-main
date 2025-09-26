@@ -133,16 +133,22 @@ Devuelve únicamente un JSON estructurado según este esquema completo con todas
     }
 
     try {
-      const seoOptimized = JSON.parse(response);
+      // Limpiar la respuesta de posibles códigos markdown
+      let cleanResponse = response.trim();
+      if (cleanResponse.startsWith('```json')) {
+        cleanResponse = cleanResponse.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+      }
+      
+      const seoOptimized = JSON.parse(cleanResponse);
       
       // Convertir al formato que espera nuestra interfaz
       const compatibleResponse = {
-        optimizedTitle: seoOptimized.meta?.title_tag || title,
-        optimizedExcerpt: seoOptimized.meta?.meta_description || content.substring(0, 160) + '...',
-        optimizedTags: seoOptimized.summary?.entities?.slice(0, 5) || ['automatización', 'tecnología', 'duartec'],
+        optimizedTitle: seoOptimized.meta?.title || title,
+        optimizedExcerpt: seoOptimized.meta?.description || content.substring(0, 160) + '...',
+        optimizedTags: seoOptimized.meta?.keywords?.split(', ').slice(0, 5) || ['automatización', 'tecnología', 'duartec'],
         optimizedContent: seoOptimized.body_markdown || content,
         seoScore: 8, // Basado en la optimización completa del asistente
-        recommendations: seoOptimized.tech_checklist?.high || [],
+        recommendations: seoOptimized.tech_checklist || [],
         // Datos adicionales del asistente SEO
         fullSeoData: seoOptimized,
         faqs: seoOptimized.faqs || [],
