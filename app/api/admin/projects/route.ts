@@ -3,7 +3,31 @@ import { db } from '../../../../db/client';
 import { projects } from '../../../../db/schema';
 import { eq } from 'drizzle-orm';
 import { revalidateTag } from 'next/cache';
+import { cookies } from 'next/headers';
 
+// Cookie-based auth function (same as posts)
+async function checkAdminAuth(request: NextRequest) {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('admin-token')?.value;
+
+    if (!token) {
+      return false;
+    }
+
+    const tokenData = JSON.parse(Buffer.from(token, 'base64').toString());
+    
+    if (Date.now() > tokenData.expires) {
+      return false;
+    }
+
+    return tokenData.isAdmin && tokenData.userId === 'admin';
+  } catch {
+    return false;
+  }
+}
+
+// Legacy Bearer token auth (keeping for backward compatibility)
 function isAuthorized(req: NextRequest): boolean {
   const header = req.headers.get('authorization') || '';
   const token = header.startsWith('Bearer ') ? header.slice(7) : header;
@@ -11,8 +35,16 @@ function isAuthorized(req: NextRequest): boolean {
   return expected !== '' && token === expected;
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    // Check authentication (cookie first, then Bearer token)
+    const isAuthenticated = await checkAdminAuth(request) || isAuthorized(request);
+    if (!isAuthenticated) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
     const allProjects = await db
       .select({
         id: projects.id,
@@ -40,7 +72,9 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAuthorized(req)) {
+  // Check authentication (cookie first, then Bearer token)
+  const isAuthenticated = await checkAdminAuth(req) || isAuthorized(req);
+  if (!isAuthenticated) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -90,7 +124,9 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  if (!isAuthorized(req)) {
+  // Check authentication (cookie first, then Bearer token)
+  const isAuthenticated = await checkAdminAuth(req) || isAuthorized(req);
+  if (!isAuthenticated) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -167,7 +203,9 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  if (!isAuthorized(req)) {
+  // Check authentication (cookie first, then Bearer token)
+  const isAuthenticated = await checkAdminAuth(req) || isAuthorized(req);
+  if (!isAuthenticated) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
