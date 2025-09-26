@@ -63,6 +63,10 @@ export async function GET(request: NextRequest) {
     }
 
     try {
+      // Debug: Log environment status
+      console.log('[DEBUG] DATABASE_URL exists:', !!process.env.DATABASE_URL);
+      console.log('[DEBUG] Environment:', process.env.NODE_ENV);
+      
       // Intentar obtener posts de la base de datos
       const { neon } = require('@neondatabase/serverless');
       const sql = neon(process.env.DATABASE_URL!);
@@ -73,6 +77,8 @@ export async function GET(request: NextRequest) {
         FROM posts 
         ORDER BY created_at DESC
       `;
+
+      console.log('[DEBUG] Found', dbPosts.length, 'posts in database');
 
       // Convertir al formato esperado por el frontend
       const posts = dbPosts.map((post: any) => ({
@@ -88,7 +94,7 @@ export async function GET(request: NextRequest) {
         tags: Array.isArray(post.tags) ? post.tags : []
       }));
 
-      console.log(`Found ${posts.length} posts in database`);
+      console.log('[DEBUG] Returning', posts.length, 'formatted posts');
       return NextResponse.json({ posts });
       
     } catch (dbError) {
