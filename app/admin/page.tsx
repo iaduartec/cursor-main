@@ -17,12 +17,16 @@ export default function AdminPage() {
 
   const checkAuth = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch('/api/admin/auth/check');
       if (response.ok) {
         setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
       }
     } catch (error) {
       console.error('Error checking auth:', error);
+      setIsAuthenticated(false);
     } finally {
       setIsLoading(false);
     }
@@ -149,6 +153,8 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
     projects: 0,
     streams: 0
   });
+  const [isLoadingStats, setIsLoadingStats] = useState(true);
+  const [statsError, setStatsError] = useState('');
 
   useEffect(() => {
     fetchStats();
@@ -156,13 +162,26 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
 
   const fetchStats = async () => {
     try {
+      setIsLoadingStats(true);
       const response = await fetch('/api/admin/stats');
+      
+      if (response.status === 401) {
+        // Si no está autenticado, hacer logout inmediatamente
+        onLogout();
+        return;
+      }
+      
       if (response.ok) {
         const data = await response.json();
         setStats(data);
+      } else {
+        setStatsError('Error al cargar estadísticas');
       }
     } catch (error) {
       console.error('Error fetching stats:', error);
+      setStatsError('Error de conexión');
+    } finally {
+      setIsLoadingStats(false);
     }
   };
 
@@ -215,36 +234,60 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <StatsCard
-              title="Posts del Blog"
-              value={stats.posts}
-              icon="📝"
-              color="blue"
-              href="/admin/posts"
-            />
-            <StatsCard
-              title="Servicios"
-              value={stats.services}
-              icon="🔧"
-              color="green"
-              href="/admin/services"
-            />
-            <StatsCard
-              title="Proyectos"
-              value={stats.projects}
-              icon="📁"
-              color="purple"
-              href="/admin/projects"
-            />
-            <StatsCard
-              title="Streaming"
-              value={stats.streams}
-              icon="📹"
-              color="red"
-              href="/admin/streams"
-            />
-          </div>
+          {statsError && (
+            <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+              {statsError}
+            </div>
+          )}
+          
+          {isLoadingStats ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="bg-white shadow rounded-lg animate-pulse">
+                  <div className="p-5">
+                    <div className="flex items-center">
+                      <div className="w-12 h-12 bg-gray-200 rounded-lg"></div>
+                      <div className="ml-5 flex-1">
+                        <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                        <div className="h-6 bg-gray-200 rounded"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <StatsCard
+                title="Posts del Blog"
+                value={stats.posts}
+                icon="📝"
+                color="blue"
+                href="/admin/posts"
+              />
+              <StatsCard
+                title="Servicios"
+                value={stats.services}
+                icon="🔧"
+                color="green"
+                href="/admin/services"
+              />
+              <StatsCard
+                title="Proyectos"
+                value={stats.projects}
+                icon="📁"
+                color="purple"
+                href="/admin/projects"
+              />
+              <StatsCard
+                title="Streaming"
+                value={stats.streams}
+                icon="📹"
+                color="red"
+                href="/admin/streams"
+              />
+            </div>
+          )}
 
           {/* Quick Actions */}
           <div className="bg-white shadow rounded-lg">

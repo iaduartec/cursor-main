@@ -3,8 +3,17 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import AdminAuthGuard from '../../../../components/AdminAuthGuard';
 
 export default function NewPostPage() {
+  return (
+    <AdminAuthGuard>
+      <NewPostContent />
+    </AdminAuthGuard>
+  );
+}
+
+function NewPostContent() {
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
