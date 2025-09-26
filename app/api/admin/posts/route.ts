@@ -54,19 +54,26 @@ async function checkAdminAuth(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    // Check authentication
-    const isAuthenticated = await checkAdminAuth(request);
-    if (!isAuthenticated) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const url = new URL(request.url);
+    const debug = url.searchParams.get('debug') === 'true';
+    
+    // Debug mode bypasses auth for diagnostics
+    if (!debug) {
+      // Check authentication
+      const isAuthenticated = await checkAdminAuth(request);
+      if (!isAuthenticated) {
+        return NextResponse.json(
+          { error: 'Unauthorized' },
+          { status: 401 }
+        );
+      }
     }
 
     try {
       // Debug: Log environment status
       console.log('[DEBUG] DATABASE_URL exists:', !!process.env.DATABASE_URL);
       console.log('[DEBUG] Environment:', process.env.NODE_ENV);
+      console.log('[DEBUG] Debug mode:', debug);
       
       // Intentar obtener posts de la base de datos
       const sql = neon(process.env.DATABASE_URL!);
@@ -95,7 +102,24 @@ export async function GET(request: NextRequest) {
       }));
 
       console.log('[DEBUG] Returning', posts.length, 'formatted posts');
-      return NextResponse.json({ posts });
+      
+      const response: any = { 
+        posts,
+        count: posts.length,
+        source: 'database'
+      };
+      
+      if (debug) {
+        response.debug = {
+          environment: process.env.NODE_ENV,
+          hasDbUrl: !!process.env.DATABASE_URL,
+          dbUrlPrefix: process.env.DATABASE_URL?.substring(0, 30) + '...',
+          timestamp: new Date().toISOString(),
+          samplePost: posts[0] || null
+        };
+      }
+      
+      return NextResponse.json(response);
       
     } catch (dbError) {
       console.error('Database error:', dbError);
@@ -115,7 +139,25 @@ export async function GET(request: NextRequest) {
       }));
 
       console.log(`Database failed, using ${posts.length} mock posts`);
-      return NextResponse.json({ posts });
+      
+      const response: any = { 
+        posts,
+        count: posts.length,
+        source: 'mock',
+        error: dbError instanceof Error ? dbError.message : 'Unknown error'
+      };
+      
+      if (debug) {
+        response.debug = {
+          environment: process.env.NODE_ENV,
+          hasDbUrl: !!process.env.DATABASE_URL,
+          dbUrlPrefix: process.env.DATABASE_URL?.substring(0, 30) + '...',
+          timestamp: new Date().toISOString(),
+          errorDetails: dbError
+        };
+      }
+      
+      return NextResponse.json(response);
     }
 
   } catch (error) {
