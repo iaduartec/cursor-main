@@ -61,7 +61,7 @@
     "check:all": "pnpm lint && pnpm type-check && pnpm test"
   },
   "dependencies": {
-    "@neondatabase/serverless": "file:vendor/neon-serverless",
+    "@neondatabase/serverless": "file:vendor\\neon-serverless",
     "@stackframe/stack": "^2.8.39",
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",

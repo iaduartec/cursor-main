@@ -21,7 +21,7 @@ importers:
   .:
     dependencies:
       '@neondatabase/serverless':
-        specifier: file:vendor/neon-serverless
+        specifier: file:vendor\neon-serverless
         version: file:vendor/neon-serverless
       '@stackframe/stack':
         specifier: ^2.8.39

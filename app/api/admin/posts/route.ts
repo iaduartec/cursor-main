@@ -100,7 +100,7 @@ export async function POST(req: NextRequest) {
 
     const data = await req.json();
     
-    // Implementación real: crear archivo MDX
+    // Implementación real: guardar en base de datos
     const { title, content, slug, published = false, tags = [] } = data;
     
     if (!title || !content || !slug) {
@@ -111,48 +111,88 @@ export async function POST(req: NextRequest) {
     }
 
     try {
-      const fs = require('fs').promises;
-      const path = require('path');
+      // Usar neon database para guardar el post
+      const { neon } = require('@neondatabase/serverless');
+      const sql = neon(process.env.DATABASE_URL!);
       
-      // Crear el contenido MDX
-      const mdxContent = `---
-title: "${title}"
-date: "${new Date().toISOString().split('T')[0]}"
-excerpt: "${content.substring(0, 160)}..."
-category: "Blog"
-published: ${published}
-author: "Duartec Team"
-readTime: "5 min"
-tags: [${tags.map((tag: string) => `"${tag}"`).join(', ')}]
----
-
-${content}
-`;
-
-      // Asegurar que el directorio existe
-      const contentDir = path.join(process.cwd(), 'content', 'blog');
-      await fs.mkdir(contentDir, { recursive: true });
+      const excerpt = content.substring(0, 160) + '...';
+      const tagsJson = JSON.stringify(tags);
       
-      // Escribir el archivo
-      const filename = `${slug}.mdx`;
-      const filepath = path.join(contentDir, filename);
-      await fs.writeFile(filepath, mdxContent, 'utf-8');
+      const result = await sql`
+        INSERT INTO posts (title, content, slug, excerpt, published, tags)
+        VALUES (${title}, ${content}, ${slug}, ${excerpt}, ${published}, ${tagsJson})
+        RETURNING id, title, slug, created_at
+      `;
       
       return NextResponse.json({
         success: true,
-        message: `Post "${title}" created successfully`,
+        message: `Post "${title}" created successfully in database`,
         data: {
           ...data,
-          id: Date.now().toString(),
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-          filepath: `content/blog/${filename}`
+          id: result[0].id,
+          createdAt: result[0].created_at,
+          updatedAt: result[0].created_at,
+          excerpt
         }
       });
-    } catch (fsError) {
-      console.error('File system error:', fsError);
+    } catch (dbError: any) {
+      console.error('Database error:', dbError);
+      
+      // Si la tabla no existe, crearla
+      if (dbError.message?.includes('relation "posts" does not exist')) {
+        try {
+          const { neon } = require('@neondatabase/serverless');
+          const sql = neon(process.env.DATABASE_URL!);
+          
+          await sql`
+            CREATE TABLE posts (
+              id SERIAL PRIMARY KEY,
+              title VARCHAR(255) NOT NULL,
+              content TEXT NOT NULL,
+              slug VARCHAR(255) UNIQUE NOT NULL,
+              excerpt TEXT,
+              published BOOLEAN DEFAULT false,
+              author VARCHAR(100) DEFAULT 'Duartec Team',
+              category VARCHAR(100) DEFAULT 'Blog',
+              tags JSONB DEFAULT '[]',
+              read_time VARCHAR(20) DEFAULT '5 min',
+              created_at TIMESTAMP DEFAULT NOW(),
+              updated_at TIMESTAMP DEFAULT NOW()
+            )
+          `;
+          
+          // Reintentar inserción
+          const excerpt = content.substring(0, 160) + '...';
+          const tagsJson = JSON.stringify(tags);
+          
+          const result = await sql`
+            INSERT INTO posts (title, content, slug, excerpt, published, tags)
+            VALUES (${title}, ${content}, ${slug}, ${excerpt}, ${published}, ${tagsJson})
+            RETURNING id, title, slug, created_at
+          `;
+          
+          return NextResponse.json({
+            success: true,
+            message: `Post "${title}" created successfully (table created)`,
+            data: {
+              ...data,
+              id: result[0].id,
+              createdAt: result[0].created_at,
+              updatedAt: result[0].created_at,
+              excerpt
+            }
+          });
+        } catch (createError) {
+          console.error('Table creation error:', createError);
+          return NextResponse.json(
+            { error: 'Failed to create database table' },
+            { status: 500 }
+          );
+        }
+      }
+      
       return NextResponse.json(
-        { error: 'Failed to create post file' },
+        { error: 'Failed to save post to database' },
         { status: 500 }
       );
     }
